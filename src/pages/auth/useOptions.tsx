@@ -1,9 +1,6 @@
 import {
-  CancelPasswordSVG,
-  CheckDiplomSVG,
-  GetContractSVG,
-  LoginIconSVG,
-  StatisticsSVG,
+  CancelPasswordSVG, LoginIconSVG,
+  StatisticsSVG
 } from '@/assets/icon';
 import { paths } from '@/router/paths';
 import { ReactElement, useEffect, useState } from 'react';
@@ -30,16 +27,6 @@ const useOptions = (): IExtraOptions[] => {
         icon: <CancelPasswordSVG />,
         label: t('login.extra_options.cancel_password_text'),
         link: paths.cancelPassword,
-      },
-      {
-        icon: <CheckDiplomSVG />,
-        label: t('login.extra_options.check_diplom_text'),
-        link: paths.checkDiplom,
-      },
-      {
-        icon: <GetContractSVG />,
-        label: t('login.extra_options.get_contract_text'),
-        link: paths.getContract,
       },
       {
         icon: <StatisticsSVG />,

@@ -2,8 +2,6 @@ import { Navigate, type RouteObject } from 'react-router-dom';
 
 import CallbackPage from '@/pages/auth/Callback';
 import CancelPasswordPage from '@/pages/auth/CancelPassword';
-import GetContract from '@/pages/auth/GetContract';
-import GetDiplom from '@/pages/auth/GetDiplom';
 import LoginPage from '@/pages/auth/Login';
 import RootLayout from '@/pages/auth/RootLayout';
 import StatisticsDashboard from '@/pages/auth/StatisticsDashboard';
@@ -26,14 +24,6 @@ export const publicRoutes: RouteObject[] = [
       {
         path: paths.cancelPassword,
         element: <CancelPasswordPage />,
-      },
-      {
-        path: paths.checkDiplom,
-        element: <GetDiplom />,
-      },
-      {
-        path: paths.getContract,
-        element: <GetContract />,
       },
       {
         path: paths.help,
