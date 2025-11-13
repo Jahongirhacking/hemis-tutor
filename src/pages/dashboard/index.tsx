@@ -17,7 +17,6 @@ import {
 } from '@/store/slices/authSlice';
 import { toggleThemeColor } from '@/store/slices/themeSlice';
 import { RootState } from '@/store/store';
-import { DrawerChildTypes, SearchParams } from '@/utils/config';
 import {
   getLocalStorage,
   localStorageNames,
@@ -43,8 +42,7 @@ import {
   Link,
   Outlet,
   useLocation,
-  useNavigate,
-  useSearchParams,
+  useNavigate
 } from 'react-router-dom';
 import './main.scss';
 
@@ -94,16 +92,9 @@ export const Dashboard = () => {
   const { navbarList } = useNavbarList();
   const [isLoading, setIsLoading] = useState(true);
   const [noResponseFromServer, setNoResponseFromServer] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const onSemesterChange = (semester: ISemesterSelectProp) => {
     setActiveSemester(semester);
-  };
-
-  const handleAiChatOpen = () => {
-    const params = new URLSearchParams(searchParams);
-    params.set(SearchParams.Drawer, DrawerChildTypes.AiChat);
-    setSearchParams(params);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

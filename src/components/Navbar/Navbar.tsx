@@ -3,7 +3,6 @@ import './navbar.scss';
 
 import { useParamActions } from '@/hooks/useParam';
 import { DashboardContext } from '@/pages/dashboard';
-import { RESTRICTED_PATH } from '@/router/paths';
 import { useAppDispatch } from '@/store/hooks';
 import { logoutThunk } from '@/store/slices/authSlice';
 import { RootState } from '@/store/store';
@@ -21,10 +20,6 @@ export const Navbar = () => {
   const navbarRef = useRef<HTMLDivElement>(null);
   const isMobileRef = useRef(isMobile);
   const { navbarBottom, navbarList } = useNavbarList();
-
-  const handleRestrictedUniversity = () => {
-    navigate(RESTRICTED_PATH);
-  };
 
   const handleClickOutside = (event?: MouseEvent) => {
     event.stopPropagation();

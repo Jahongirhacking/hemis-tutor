@@ -9,7 +9,6 @@ import ScheduleInDrawer from '@/components/Schedule/ScheduleInDrawer';
 import TaskInDrawer from '@/components/Task/TaskInDrawer';
 import ExtraOptions from '@/pages/auth/ExtraOptions';
 import AiChat from '@/pages/dashboard/AiChat';
-import ControlsInDrawer from '@/pages/dashboard/Dashboard/components/ControlsInDrawer';
 import GpaDetailsInDrawer from '@/pages/dashboard/EduPlan/_GpaScore/GpaDetailsInDrawer';
 import SubjectInfoInDrawer from '@/pages/dashboard/EduPlan/components/SubjectInfoInDrawer';
 import GpaCalculator from '@/pages/dashboard/GPA/GpaCalculator';
@@ -66,8 +65,6 @@ export const getChildElement = (childType: IChildType): ReactElement | null => {
       return <SubjectInfoInDrawer />;
     case DrawerChildTypes.Appropriation:
       return <AppropriationInDrawer />;
-    case DrawerChildTypes.DashboardCards:
-      return <ControlsInDrawer />;
     case DrawerChildTypes.BookResource:
       return <BookResourceInDrawer />;
     case DrawerChildTypes.JournalResource:
