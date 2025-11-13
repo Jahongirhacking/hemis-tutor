@@ -1,26 +1,23 @@
-import { type RouteObject } from 'react-router-dom';
+import { Navigate, type RouteObject } from 'react-router-dom';
 
 import NotFound from '@/components/NotFound';
 import { Dashboard } from '@/pages/dashboard';
-import { AttendancePage } from '@/pages/dashboard/Attendance/Attendance';
-import { DashboardPage } from '@/pages/dashboard/Dashboard/DashboardPage';
-import { DocumentsPage } from '@/pages/dashboard/Documents/Documents';
-import { EduPlanPage } from '@/pages/dashboard/EduPlan/EduPlan';
-import ExamsPage from '@/pages/dashboard/Exams';
-import ExamDetails from '@/pages/dashboard/Exams/ExamDetails';
-import HelpPage from '@/pages/dashboard/Help/HelpPage';
-import LibraryPage from '@/pages/dashboard/Library/Library';
-import { PaymentPage } from '@/pages/dashboard/Payment/Payment';
-import ProfilePage from '@/pages/dashboard/Profile/Profile';
-import { ReEducationPage } from '@/pages/dashboard/ReEducation/ReEducation';
-import Restricted from '@/pages/dashboard/Restricted';
-import SettingsPage from '@/pages/dashboard/Settings/Settings';
-import SubjectDetailPage from '@/pages/dashboard/Subjects/SubjectDetailPage';
-import { SubjectsPage } from '@/pages/dashboard/Subjects/Subjects';
-import SubMenus from '@/pages/dashboard/SubMenus';
-import ProfileMenus from '@/pages/dashboard/SubMenus/ProfileMenus';
-import UsefulMenus from '@/pages/dashboard/SubMenus/UsefulMenus';
-import { TimeTablePage } from '@/pages/dashboard/TimeTable/TimeTablePage';
+import AttendancePage from '@/pages/dashboard/attendance';
+import CheckAddressPage from '@/pages/dashboard/check-address';
+import ExternalServicePage from '@/pages/dashboard/external-service';
+import FinancialPage from '@/pages/dashboard/financial';
+import HelpPage from '@/pages/dashboard/help/HelpPage';
+import LearningProcessPage from '@/pages/dashboard/learning-process';
+import MessagesPage from '@/pages/dashboard/messages';
+import PerformancePage from '@/pages/dashboard/performance';
+import ProfilePage from '@/pages/dashboard/profile/Profile';
+import Restricted from '@/pages/dashboard/restricted';
+import SettingsPage from '@/pages/dashboard/settings/Settings';
+import StudentsPage from '@/pages/dashboard/students';
+import SubMenus from '@/pages/dashboard/submenu';
+import ProfileMenus from '@/pages/dashboard/submenu/ProfileMenus';
+import UsefulMenus from '@/pages/dashboard/submenu/UsefulMenus';
+import { paths } from '../paths';
 
 export const privateRoutes: RouteObject[] = [
   {
@@ -29,47 +26,39 @@ export const privateRoutes: RouteObject[] = [
     children: [
       {
         path: '/dashboard',
-        element: <DashboardPage />,
+        element: <Navigate to={paths.private.students} />,
       },
       {
-        path: 'timetable',
-        element: <TimeTablePage />,
+        path: paths.private.students,
+        element: <StudentsPage />,
       },
       {
-        path: 'subjects',
-        element: <SubjectsPage />,
+        path: paths.private.learningProcess,
+        element: <LearningProcessPage />,
       },
       {
-        path: 'subjects/:subjectId',
-        element: <SubjectDetailPage />,
-      },
-      {
-        path: 'eduplan',
-        element: <EduPlanPage />,
-      },
-      {
-        path: 'attendance',
+        path: paths.private.attendance,
         element: <AttendancePage />,
       },
       {
-        path: 'exams',
-        element: <ExamsPage />,
+        path: paths.private.performance,
+        element: <PerformancePage />,
       },
       {
-        path: 'payment',
-        element: <PaymentPage />,
+        path: paths.private.financial,
+        element: <FinancialPage />,
       },
       {
-        path: 'reeducation',
-        element: <ReEducationPage />,
+        path: paths.private.externalService,
+        element: <ExternalServicePage />,
       },
       {
-        path: 'folders',
-        element: <DocumentsPage />,
+        path: paths.private.checkAddress,
+        element: <CheckAddressPage />,
       },
       {
-        path: 'library',
-        element: <LibraryPage />,
+        path: paths.private.messages,
+        element: <MessagesPage />,
       },
       {
         path: 'profile',
@@ -103,11 +92,11 @@ export const privateRoutes: RouteObject[] = [
         path: 'restricted',
         element: <Restricted />,
       },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
     ],
-  },
-  {
-    path: '/exams/:id',
-    element: <ExamDetails />,
   },
   {
     path: '*',

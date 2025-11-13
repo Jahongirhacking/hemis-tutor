@@ -24,3 +24,23 @@ export interface IBaseDataUniLib<TData> {
     next_page_url: string | null;
   };
 }
+
+export interface IUniversity {
+  code: string;
+  name: string;
+  api_url: string;
+  student_url: string;
+  employee_url: string;
+}
+
+export interface IOverallScore {
+  grade: number;
+  max_ball: number;
+  percent: number;
+  label?: string;
+  examType?: {
+    name: string;
+  };
+}
+
+export type ILangParam = 'uz' | 'en' | 'ru';

@@ -1,4 +1,4 @@
-import { IUniversity } from '@/services/dashboard/type';
+import { IUniversity } from '@/services/type';
 import { parseXML } from '@/utils/objectFunc';
 import { localStorageNames, setLocalStorage } from '@/utils/storageFunc';
 import { toFirstLowerLetter } from '@/utils/stringFunc';

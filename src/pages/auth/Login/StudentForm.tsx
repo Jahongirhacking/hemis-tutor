@@ -1,6 +1,4 @@
 import { ControlledFlowContext } from '@/components/ControlledFlow';
-import useTestUniversity from '@/hooks/useTestUniversity';
-import { getLocalStorage, localStorageNames } from '@/utils/storageFunc';
 import {
   LoadingOutlined,
   LoginOutlined,
@@ -13,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
   const { form, onSubmit, data } = useContext(ControlledFlowContext);
   const { t } = useTranslation();
-  const { isTestUniversity } = useTestUniversity();
 
   const handleSubmit = () => {
     onSubmit({
@@ -63,28 +60,25 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
             </Button>
           </Form.Item>
 
-          {isTestUniversity && (
-            <>
-              <Divider style={{ margin: '3px 0', fontSize: '11pt' }}>
-                {t('const.enter_via_other_method')}
-              </Divider>
+          <Divider style={{ margin: '3px 0', fontSize: '11pt' }}>
+            {t('const.enter_via_other_method')}
+          </Divider>
 
-              <Button
-                size="large"
-                type="link"
-                style={{
-                  width: '100%',
-                  backgroundColor: '#4825c2',
-                  color: '#fff',
-                }}
-                icon={<UserOutlined />}
-                href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://my.hemis.uz/auth/callback`}
-                target="_blank"
-              >
-                One ID
-              </Button>
-            </>
-          )}
+          <Button
+            size="large"
+            type="link"
+            style={{
+              width: '100%',
+              backgroundColor: '#4825c2',
+              color: '#fff',
+            }}
+            icon={<UserOutlined />}
+            onClick={() => onSubmit()}
+            // href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://TUTOR.HEMIS.UZ/auth/callback`}
+            target="_blank"
+          >
+            One ID
+          </Button>
         </Flex>
       </Form>
     </div>

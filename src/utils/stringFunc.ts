@@ -1,4 +1,4 @@
-import { ILangParam } from '@/services/dashboard/type';
+import { ILangParam } from '@/services/type';
 import forge from 'node-forge';
 
 export const toFirstCapitalLetter = (str: string): string => {

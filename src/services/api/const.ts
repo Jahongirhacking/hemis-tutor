@@ -2,9 +2,6 @@ import { getLocalStorage, localStorageNames } from '@/utils/storageFunc';
 
 export const hostName = 'https://student.hemis.uz';
 export const baseUrl = `${hostName}/rest/v1`;
-export const uniLibraryBaseApi = 'https://api.unilibrary.uz';
-export const chatBaseUrl = 'https://ai-hemis.e-edu.uz';
-// export const chatBaseUrl = 'http://192.168.58.43:8000';
 export const ttsUrl = 'https://oyqiz.airi.uz/api/v1/tts';
 export const STORY_BASE_URL = 'https://story.e-edu.uz';
 

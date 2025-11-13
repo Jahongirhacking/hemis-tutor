@@ -11,7 +11,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 const CallbackPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const isLogged = useSelector((store: RootState) => store.authSlice.isLogged);
+  const isLogged = !!useSelector((store: RootState) => store.authSlice.access);
   const navigate = useNavigate();
 
   useEffect(() => {

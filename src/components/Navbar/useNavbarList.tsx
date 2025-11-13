@@ -1,18 +1,16 @@
 import {
+  AppropriationIconSVG,
   BookIconSVG,
   CalendarIconSVG,
-  DashboardIconSVG,
   DocumentIconSVG,
-  ExamIconSVG,
-  FolderIconSVG,
-  HelpIconSVG,
-  LibraryIconSVG,
   LogOutIconSVG,
   MoneyIconSVG,
   PlanIconSVG,
+  SearchIconSVG,
   SettingIconSVG,
+  StudentIconSVG,
 } from '@/assets/icon';
-import useTestUniversity from '@/hooks/useTestUniversity';
+import { paths } from '@/router/paths';
 import { ReactElement, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -27,7 +25,6 @@ const useNavbarList = () => {
   const [navbarList, setNavbarList] = useState<INavbarList[]>([]);
   const [navbarBottom, setNavbarBottom] = useState<INavbarList[]>([]);
   const { t, i18n } = useTranslation();
-  const { isTestUniversity } = useTestUniversity();
 
   useEffect(() => {
     setNavbarList([
@@ -35,8 +32,8 @@ const useNavbarList = () => {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[0],
-        icon: <DashboardIconSVG />,
-        path: '/dashboard',
+        icon: <StudentIconSVG />,
+        path: paths.private.students,
         isPrivatePath: true,
       },
       {
@@ -44,72 +41,54 @@ const useNavbarList = () => {
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[1],
         icon: <CalendarIconSVG />,
-        path: '/dashboard/timetable',
+        path: paths.private.learningProcess,
         isPrivatePath: true,
       },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[2],
-        icon: <BookIconSVG />,
-        path: '/dashboard/subjects',
+        icon: <PlanIconSVG />,
+        path: paths.private.attendance,
         isPrivatePath: true,
       },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[3],
-        icon: <DocumentIconSVG />,
-        path: '/dashboard/eduplan',
+        icon: <AppropriationIconSVG />,
+        path: paths.private.performance,
         isPrivatePath: true,
       },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[4],
-        icon: <PlanIconSVG />,
-        path: '/dashboard/attendance',
+        icon: <MoneyIconSVG />,
+        path: paths.private.financial,
         isPrivatePath: true,
       },
-      ...(isTestUniversity
-        ? [
-            {
-              title: t('const.exams'),
-              icon: <ExamIconSVG />,
-              path: '/dashboard/exams',
-              isPrivatePath: true,
-            },
-          ]
-        : []),
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[5],
-        icon: <MoneyIconSVG />,
-        path: '/dashboard/payment',
+        icon: <BookIconSVG />,
+        path: paths.private.externalService,
       },
-
-      // {
-      //   title: (
-      //     t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
-      //   )[6],
-      //   icon: <RestoreIconSVG />,
-      //   path: '/dashboard/reeducation',
-      // },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[7],
-        icon: <FolderIconSVG />,
-        path: '/dashboard/folders',
+        icon: <SearchIconSVG />,
+        path: paths.private.checkAddress,
         isPrivatePath: true,
       },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[8],
-        icon: <LibraryIconSVG />,
-        path: '/dashboard/library',
+        icon: <DocumentIconSVG />,
+        path: paths.private.messages,
         isPrivatePath: false,
       },
     ]);
@@ -130,23 +109,13 @@ const useNavbarList = () => {
           t('dashboard.navbar.navbarBottom', {
             returnObjects: true,
           }) as string[]
-        )[1],
-        icon: <HelpIconSVG />,
-        path: '/dashboard/help',
-        isPrivatePath: false,
-      },
-      {
-        title: (
-          t('dashboard.navbar.navbarBottom', {
-            returnObjects: true,
-          }) as string[]
         )[2],
         icon: <LogOutIconSVG />,
         path: '/',
         isPrivatePath: false,
       },
     ]);
-  }, [i18n.language, isTestUniversity]);
+  }, [i18n.language]);
 
   return { navbarList, navbarBottom };
 };

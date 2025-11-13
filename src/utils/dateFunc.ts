@@ -1,4 +1,3 @@
-import { ISemestr } from '@/services/users/type';
 import moment from 'moment';
 import { getLocalStorage, localStorageNames } from './storageFunc';
 
@@ -352,30 +351,6 @@ export const getTaskStatus = (
   if (statusCode === '13') return 'marked';
   if (statusCode === '11' && now < deadline) return 'new';
   if (deadline <= now) return 'expired';
-};
-
-export const getCorrectWeek = (unixTimestamp: number, semester: ISemestr) => {
-  if (!semester) return 0;
-  const currentWeek = semester?.weeks;
-  if (!currentWeek || !currentWeek.length) return 0;
-  return currentWeek.find(
-    week => moment.unix(week?.end_date).endOf('day').unix() >= unixTimestamp
-  )?.id;
-};
-
-export const getCurrentSemester = (semesters: ISemestr[]) => {
-  if (!semesters || !semesters.length) return;
-  const currentSemester = semesters.find(semester => semester.current);
-  if (currentSemester) return currentSemester;
-  const probCurrentSemester = semesters.find(semester => {
-    if (!semester.weeks || !semester.weeks.length) return false;
-    const weeksLen = semester.weeks.length;
-    return moment().isBefore(
-      moment.unix(semester.weeks[weeksLen - 1].end_date).endOf('day')
-    );
-  });
-  if (probCurrentSemester) return probCurrentSemester;
-  return semesters[0];
 };
 
 // Format seconds → hh:mm:ss

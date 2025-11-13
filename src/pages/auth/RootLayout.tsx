@@ -1,26 +1,18 @@
-import { RightTopSVG } from '@/assets/icon';
 import LanguageSelect from '@/components/Select/LanguageSelect';
 import { paths } from '@/router/paths';
-import { setDrawer } from '@/store/slices/drawerSlice';
 import { RootState } from '@/store/store';
-import { DrawerChildTypes, SearchParams } from '@/utils/config';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Flex, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
 import moment from 'moment';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import useOptions from './useOptions';
 
 const RootLayout = () => {
   const extraOptions = useOptions();
-  const dispatch = useDispatch();
   const themeColor = useSelector((store: RootState) => store.themeSlice?.color);
-  const { t } = useTranslation();
   const location = useLocation();
   const pathName = location.pathname;
   const activeOption = extraOptions.find(option => option.link === pathName);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div className="login">
@@ -53,7 +45,7 @@ const RootLayout = () => {
         <div className="flex-center direction-column gap24">
           <Outlet />
 
-          <Flex vertical gap={8} align="center" style={{ textAlign: 'center' }}>
+          {/* <Flex vertical gap={8} align="center" style={{ textAlign: 'center' }}>
             <Button
               type="link"
               className="linkText flex-center gap8"
@@ -97,7 +89,7 @@ const RootLayout = () => {
                 </Button>
               </Link>
             )}
-          </Flex>
+          </Flex> */}
         </div>
       </div>
 

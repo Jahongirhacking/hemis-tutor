@@ -42,17 +42,11 @@ export const Navbar = () => {
     navigate(path);
   };
 
-  const handleClickSubItem = ({
-    path,
-    index,
-  }: {
-    path: string;
-    index: number;
-  }) => {
+  const handleClickSubItem = ({ path }: { path: string; index: number }) => {
     if (isMobile) {
       setIsNavbarActive(false);
     }
-    if (index == 2) {
+    if (path === '/') {
       dispatch(logoutThunk());
     } else {
       navigate(path);
@@ -99,16 +93,16 @@ export const Navbar = () => {
       <div className="navbar__list">
         {navbarList.map(item => (
           <Flex
-            className={`navbar__item ${pathLocation.pathname == item.path ? 'navbar__item-active' : ''
-              }`}
+            className={`navbar__item ${
+              pathLocation.pathname == item.path ? 'navbar__item-active' : ''
+            }`}
             gap={8}
             key={item.title}
             // check restricted university click
             onClick={() => handleClickNavItem(item.path)}
           >
             {/* check restricted university icon */}
-            {item.icon}{' '}
-            <h3>{item.title}</h3>
+            {item.icon} <h3>{item.title}</h3>
           </Flex>
         ))}
       </div>

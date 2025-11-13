@@ -1,4 +1,4 @@
-import { IOverallScore } from '@/services/dashboard/type';
+import { IOverallScore } from '@/services/type';
 import { Tag, Tooltip } from 'antd';
 
 const getMarkColor = (percent: number) => {

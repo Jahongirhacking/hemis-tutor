@@ -220,8 +220,8 @@
             "button_text": "Davom etish"
         },
         "student_form": {
-            "title": "Talaba ID va parolni kiriting",
-            "login_label": "Talaba ID",
+            "title": "Login va parolni kiriting",
+            "login_label": "Login",
             "login_placeholder": "Loginni kiriting",
             "password_label": "Parol",
             "password_placeholder": "Parolni kiriting",
@@ -269,15 +269,15 @@
         "notifications_text": "Bildirishnomalar",
         "navbar": {
             "navbarList": [
-                "Dashboard",
-                "Dars jadvali",
-                "Fanlar",
-                "O‘quv parametrlari",
+                "Talabalar",
+                "O‘quv jarayoni",
                 "Davomat",
-                "Moliyaviy to‘lov",
-                "Qayta o‘qish",
-                "Hujjatlar",
-                "Elektron kutubxona"
+                "O‘zlashtirish",
+                "Moliyaviy holat",
+                "Tashqi xizmatlar",
+                "Talaba pasporti",
+                "Manzil teshiruvi",
+                "Xabarlar"
             ],
             "navbarBottom": [
                 "Sozlamalar",
@@ -462,17 +462,17 @@
         }
     },
     "help": {
-        "tg_group_info": "«MY.HEMIS.UZ» sayti bo‘yicha muhokama, savol-javob va takliflar uchun yaratilgan Telegram guruh",
+        "tg_group_info": "«TUTOR.HEMIS.UZ» sayti bo‘yicha muhokama, savol-javob va takliflar uchun yaratilgan Telegram guruh",
         "tg_channel_info": "HEMIS tizimi bo‘yicha yangiliklar va foydali ma‘lumotlar berib boriladigan Telegram kanal",
-        "tg_bot_info": "«MY.HEMIS.UZ» sayti texnik muammolarni bartaraf etish uchun ishlab chiqilgan Telegram bot",
+        "tg_bot_info": "«TUTOR.HEMIS.UZ» sayti texnik muammolarni bartaraf etish uchun ishlab chiqilgan Telegram bot",
         "yt_channel_info": "HEMIS tizmi bo‘yicha video darslar va yo‘riqnomalar taqdim etiladigan YouTube kanal"
     },
     "off_topic": {
         "qa_chat": "Savol-javob chat",
         "famous_questions": "Quyidagi ko'p beriladigan savollardan birini tanlang",
         "forget_password": "Parolni unutdim",
-        "forget_login": "Talaba IDni unutdim",
-        "about_find_login": "Talaba ID ya'ni login - faqatgina ta'lim olayotgan muassasangiz tomonidan sizga taqdim etiladi. Login 12 xonali faqat raqamlardan iborat son bo'lib, o'zingiz mustaqil yaratolmaysiz va shuningdek o'zgartirolmaysiz!",
+        "forget_login": "Loginni unutdim",
+        "about_find_login": "Login - faqatgina ta'lim olayotgan muassasangiz tomonidan sizga taqdim etiladi. Login 12 xonali faqat raqamlardan iborat son bo'lib, o'zingiz mustaqil yaratolmaysiz va shuningdek o'zgartirolmaysiz!",
         "about_find_password_title": "Sizga ushbu 4 qadam bo'yicha tekshirishingizni maslahat beraman:",
         "about_find_password_1": "Parolni bekor qilish uchun bosing",
         "about_find_password_2": "Parol o'rniga pasport seriya va raqamingizni kiritib ko'ring. Masalan: AB0123456 ko'rinishida (katta harf va bo'shliq-probellarsiz)",

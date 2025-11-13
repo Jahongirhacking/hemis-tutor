@@ -52,8 +52,8 @@ const NavbarBottom = () => {
           key={`${nav.path}-${nav.title}`}
           to={nav?.path}
           className={
-            (nav.path === dashboardNav.path &&
-              pathLocation.pathname !== dashboardNav.path)
+            nav.path === dashboardNav.path &&
+            pathLocation.pathname !== dashboardNav.path
               ? 'inactive'
               : ''
           }

@@ -5,10 +5,9 @@ import CancelPasswordPage from '@/pages/auth/CancelPassword';
 import GetContract from '@/pages/auth/GetContract';
 import GetDiplom from '@/pages/auth/GetDiplom';
 import LoginPage from '@/pages/auth/Login';
-import OAuthCallbackPage from '@/pages/auth/OAuth';
 import RootLayout from '@/pages/auth/RootLayout';
 import StatisticsDashboard from '@/pages/auth/StatisticsDashboard';
-import HelpPage from '@/pages/dashboard/Help/HelpPage';
+import HelpPage from '@/pages/dashboard/help/HelpPage';
 import { paths } from '../paths';
 
 export const publicRoutes: RouteObject[] = [
@@ -43,10 +42,6 @@ export const publicRoutes: RouteObject[] = [
       {
         path: paths.callback,
         element: <CallbackPage />,
-      },
-      {
-        path: paths.oauth_callback,
-        element: <OAuthCallbackPage />,
       },
     ],
   },

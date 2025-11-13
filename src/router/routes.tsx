@@ -1,8 +1,6 @@
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-
-import AnalyzeModal from '@/components/Chat/AnalyzeModal';
 import Drawer from '@/components/Drawer';
 import Wrapper from '@/router/wrapper';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import { paths } from './paths';
 import PrivateRoute from './privateRoute';
 import { privateRoutes } from './routes/privateRoutes';
@@ -55,7 +53,6 @@ export function Router() {
       </Routes>
 
       <Drawer />
-      <AnalyzeModal />
     </BrowserRouter>
   );
 }

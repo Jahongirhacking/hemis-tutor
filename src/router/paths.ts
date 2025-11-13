@@ -9,6 +9,17 @@ export const paths = {
   help: '/help',
   callback: '/auth/callback',
   oauth_callback: '/auth/oauth-callback',
+
+  private: {
+    students: '/dashboard/students',
+    learningProcess: '/dashboard/learning-process',
+    attendance: '/dashboard/attendance',
+    performance: '/dashboard/performance',
+    financial: '/dashboard/financial',
+    externalService: '/dashboard/external-service',
+    checkAddress: '/dashboard/check-address',
+    messages: '/dashboard/messages',
+  },
 };
 
 export const RESTRICTED_PATH = '/dashboard/restricted';

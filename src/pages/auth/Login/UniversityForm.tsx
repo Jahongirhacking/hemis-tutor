@@ -1,6 +1,6 @@
 import Loading from '@/components/Common/Loading';
 import { ControlledFlowContext } from '@/components/ControlledFlow';
-import { IUniversity } from '@/services/dashboard/type';
+import { IUniversity } from '@/services/type';
 import { parseXML } from '@/utils/objectFunc';
 import { localStorageNames, setLocalStorage } from '@/utils/storageFunc';
 import {
