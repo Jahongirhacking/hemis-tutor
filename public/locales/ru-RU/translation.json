@@ -1,0 +1,489 @@
+{
+    "const": {
+        "day": "День",
+        "week": "Неделя",
+        "month": "Месяц",
+        "hours_plural": "часов",
+        "hours_singular": "час",
+        "today": "Сегодня",
+        "credit_plural": "кредиты",
+        "credit_singular": "кредит",
+        "tasks": "Задачи",
+        "resources": "Ресурсы",
+        "thematic_tests": "Тематические тесты",
+        "title": "Название",
+        "number_of_files": "Количество файлов",
+        "actions": "Действия",
+        "all": "Все",
+        "not_found": "не найдено",
+        "more_info": "Подробнее",
+        "curriculum": "Учебный план",
+        "control_table": "Контрольная таблица",
+        "appropriation": "Освоение",
+        "gradebook": "Зачетная книжка",
+        "exams": "Экзамены",
+        "subjects": "Предметы",
+        "subject": "Предмет",
+        "subject_type": "Тип предмета",
+        "acload": "Нагрузка",
+        "semester": "Семестр",
+        "close": "Закрыть",
+        "subject_info": "Информация о предмете",
+        "teacher": "Преподаватель",
+        "auditorium": "Аудитория",
+        "control_data": "Контрольные данные",
+        "year_number": "{{year}} год",
+        "current_exam": "Текущий экзамен",
+        "midterm_exam": "Промежуточный экзамен",
+        "final_exam": "Итоговый экзамен",
+        "overall": "Всего",
+        "rating_score": "Рейтинг / Оценка",
+        "mark": "Оценка",
+        "in_detail": "Подробно",
+        "staff": "Персонал",
+        "lesson_date": "Дата занятия",
+        "training": "Обучение",
+        "explicable": "с уважительной причиной",
+        "not_explicable": "без уважительной причины",
+        "no": "Нет",
+        "yes": "Да",
+        "order": "Приказ",
+        "document": "Документ",
+        "reference": "Справка",
+        "academic_year": "Учебный год",
+        "course": "Курс",
+        "file": "Файл",
+        "download": "Скачать",
+        "application": "Заявление",
+        "time_table": "Расписание",
+        "save": "Сохранить",
+        "cancel": "Отменить",
+        "edit": "Редактировать",
+        "firstname": "Имя",
+        "lastname": "Фамилия",
+        "login": "Логин",
+        "email": "Эл. почта",
+        "phone_number": "Номер телефона",
+        "passport_number": "Номер паспорта",
+        "for_communication": "Для связи",
+        "password": "Пароль",
+        "please": "Пожалуйста",
+        "academic_parameters": "Академические параметры",
+        "contract_payment": "Оплата контракта",
+        "student_dormitory": "Студенческое общежитие",
+        "see": "Смотреть",
+        "send": "Отправить",
+        "search": "Искать",
+        "clean": "Очистить",
+        "number_of": "Количество {{name}}",
+        "number_count": "{{number}}",
+        "pairs_left": "пропущенные уроки",
+        "marks": "Оценки",
+        "info": "Информация",
+        "score": "баллы",
+        "sorry": "Извините",
+        "back_to_section": "Вернуться в раздел {{section}}",
+        "added": "Добавлено",
+        "add": "Добавить",
+        "settings": "Настройки",
+        "profile": "Профиль",
+        "personal_info": "Личная информация",
+        "system_settings": "Настройки системы",
+        "not_calculated": "Не рассчитано",
+        "passport_info": "Информация о паспорте",
+        "patronymic": "Отчество",
+        "birth_date": "Дата рождения",
+        "gender": "Пол",
+        "education_info": "Информация об образовании",
+        "expertise": "Специализация",
+        "faculty": "Факультет",
+        "group": "Группа",
+        "payment_form": "Форма оплаты",
+        "education_type": "Тип образования",
+        "education_form": "Форма обучения",
+        "permanent_address_info": "Информация о постоянном адресе",
+        "country": "Страна",
+        "region": "Регион",
+        "district": "Район",
+        "home_address": "Домашний адрес",
+        "current_address_info": "Информация о текущем адресе",
+        "place_of_residence": "Место жительства",
+        "student_phone": "Телефон студента",
+        "additional_info": "Дополнительная информация",
+        "social_class": "Социальный класс",
+        "languages": "Языки",
+        "language": "Язык",
+        "change_language_settings": "Изменить настройки языка",
+        "theme": "Тема",
+        "change_theme_settings": "Изменить настройки темы",
+        "light": "Светлый",
+        "dark": "Тёмный",
+        "literature": "Литература",
+        "articles": "Статьи",
+        "dissertations": "Диссертации",
+        "monographs": "Монографии",
+        "journals": "Журналы",
+        "downloading": "Загрузка...",
+        "keywords": "Ключевые слова",
+        "read_more": "Читать больше",
+        "read_less": "Читать меньше",
+        "category": "Категория",
+        "type": "Тип",
+        "field": "Промышленность",
+        "type_of_file": "Тип файла",
+        "total": "Всего",
+        "channel": "канал",
+        "bot": "бот",
+        "building": "Здание",
+        "department": "Отдел",
+        "interval": "Интервал",
+        "minute": "минут",
+        "gpa_method": "Метод GPA",
+        "debt": "Долг",
+        "total_gpa": "Общий GPA",
+        "annual_gpa": "Годовой GPA",
+        "main": "Главное",
+        "status": "статус",
+        "attended": "присутствовал",
+        "waiting": "ожидание",
+        "in_process": "в процессе",
+        "enter_via_other_method": "Войдите другим способом",
+        "contract": "Контракт",
+        "choose": "Выбирать",
+        "last_update_time": "Время последнего обновления",
+        "uzs": "сум",
+        "fullname": "Ф.И.О",
+        "pinfl": "ЛИНФЛ",
+        "information_on_education_credit": "Информация о кредите на образование",
+        "check": "Проверять",
+        "bank_name": "Название банка",
+        "edu_loan_sum": "Сумма образовательного кредита",
+        "comment": "Комментарий",
+        "bank_number": "Номер банка",
+        "daily_grades": "Ежедневные оценки",
+        "average_daily_grade": "Средняя дневная оценка",
+        "by_science": "В разделе наук",
+        "useful": "Полезный",
+        "aside": "В сторону",
+        "bottom": "Нижний",
+        "menu": "Меню",
+        "change_menu_settings": "Изменить вид меню",
+        "problem_with_server": "проблема с сервером",
+        "try_again_later": "попробуйте еще раз позже",
+        "statistics": "Статистика",
+        "certificate_id": "Билет",
+        "student": "Студент",
+        "wait": "Жду",
+        "certificates": "Сертификаты",
+        "avg_gpa": "Средний GPA",
+        "attendance": "Посещаемость",
+        "gpa_appropriation": "Средний балл и успеваемость",
+        "recommended_courses": "Рекомендуемые курсы",
+        "plagiarism": "Проверка на плагиат",
+        "financial_state": "Финансовое состояние",
+        "discuss": "Обсудить",
+        "active": "Активный",
+        "inactive": "Неактивный",
+        "start": "Начать",
+        "exam_interval": "Период экзамена",
+        "question": "вопрос",
+        "attempt": "попытка",
+        "time": "Время",
+        "questions": "Вопросы"
+    },
+    "exam": {
+        "retry_title": "Хотите пройти тест заново?",
+        "retry_message": "<span>Вы ранее проходили этот тест с результатом <strong>{{percent}}%</strong>.</span> <span>Если вы хотите пройти тест снова, нажмите кнопку <strong>Продолжить</strong>, но при этом ваш предыдущий результат будет аннулирован. <br/><br/><hr /><br/>Если вы нажали кнопку <strong>Начать</strong> случайно, нажмите кнопку <strong>Отмена</strong>, не решая тест. В этом случае ваши предыдущие результаты сохранятся.</span>",
+        "try_title": "Вы готовы начать тест?",
+        "try_message": "После нажатия кнопки <strong>Продолжить</strong> система перенаправит вас на страницу экзамена. Вам будет предоставлено {{questionCount}} вопросов и {{durationMinutes}} минут для выполнения.",
+        "finish_title": "Хотите завершить экзамен?",
+        "finish_message": "Нажав кнопку <strong>Продолжить</strong>, вы отправляете выбранные ответы на проверку и подтверждаете, что завершили экзамен."
+    },
+    "login": {
+        "root": {
+            "extra_options_text": "Дополнительные опции"
+        },
+        "extra_options": {
+            "cancel_password_text": "Отменить пароль",
+            "check_diplom_text": "Проверить диплом",
+            "get_contract_text": "Получить договор",
+            "statistics_dashboard_text": "Панель статистики",
+            "login_text": "Войти"
+        },
+        "steps": [
+            "Высшее учебное заведение",
+            "ID и пароль"
+        ],
+        "university_form": {
+            "title": "В каком высшем учебном заведении вы учитесь?",
+            "input_placeholder": "Выберите высшее учебное заведение",
+            "button_text": "Продолжить"
+        },
+        "student_form": {
+            "title": "Введите ID студента и пароль",
+            "login_label": "ID студента",
+            "login_placeholder": "Введите логин",
+            "password_label": "Пароль",
+            "password_placeholder": "Введите пароль",
+            "remember_text": "Запомнить меня",
+            "button_text": "Войти"
+        },
+        "success_message_text": "Вы успешно вошли в систему!"
+    },
+    "cancel_password": {
+        "steps": [
+            {
+                "name": "Шаг 1",
+                "title": "Введите код пользователя или логин",
+                "input_label": "Код пользователя",
+                "input_placeholder": "Введите код пользователя",
+                "button_text": "Продолжить"
+            },
+            {
+                "name": "Шаг 2",
+                "title": "Введите PIN-код, отправленный на вашу электронную почту или телефон",
+                "input_label": "PIN-код",
+                "input_placeholder": "Введите PIN-код",
+                "button_text": "Продолжить"
+            }
+        ]
+    },
+    "get_diplom": {
+        "title": "Введите JSHSHIR",
+        "input_label": "JSHSHIR",
+        "input_placeholder": "Введите JSHSHIR",
+        "code_label": "Код подтверждения",
+        "code_placeholder": "Введите код подтверждения",
+        "button_text": "Скачать"
+    },
+    "get_contract": {
+        "title": "Введите JSHSHIR",
+        "input_label": "JSHSHIR",
+        "input_placeholder": "Введите JSHSHIR",
+        "code_label": "Код подтверждения",
+        "code_placeholder": "Введите код подтверждения",
+        "button_text": "Скачать"
+    },
+    "dashboard": {
+        "expired_token_text": "Сессия истекла. Пожалуйста, войдите снова!",
+        "notifications_text": "Уведомления",
+        "navbar": {
+            "navbarList": [
+                "Дашбоард",
+                "Расписание",
+                "Предметы",
+                "Академ. параметры",
+                "Посещаемость",
+                "Финансовые платежи",
+                "Повторное обучение",
+                "Документы",
+                "Э-библиотека"
+            ],
+            "navbarBottom": [
+                "Настройки",
+                "Помощь и инструкции",
+                "Выход"
+            ]
+        },
+        "dashboard_page": {
+            "title": "Дашбоард",
+            "edit_cards_text": "Редактировать карточки",
+            "manage_cards_button_text": "Управлять",
+            "drag_cards_text": "Перетащить карточки",
+            "card_names": [
+                "Задачи",
+                "Расписание",
+                "Освоение",
+                "Посещаемость"
+            ],
+            "tasks": {
+                "title": "Задачи",
+                "drawer_title": "Дополнительные опции",
+                "empty_text": "Задач пока нет"
+            },
+            "schedules": {
+                "title": "Расписание",
+                "empty_text": "На эту дату занятий не запланировано"
+            },
+            "appropriations": {
+                "title": "Освоение",
+                "empty_text": "Данные по освоению не найдены"
+            },
+            "attendances": {
+                "title": "Посещаемость",
+                "empty_text": "Данные о посещаемости не найдены"
+            }
+        },
+        "subjects_page": {
+            "title": "Предметы",
+            "subject_detail": {
+                "empty_task": "Задач больше нет",
+                "task_types": [
+                    "Важные задачи",
+                    "Новые задачи",
+                    "Сданные задачи",
+                    "Оцененные задачи",
+                    "Просроченные задачи"
+                ]
+            }
+        },
+        "eduplan": {
+            "daily_average_grade_warning": "Примечание: расчет средней дневной цены может отличаться в некоторых заведениях."
+        },
+        "documents_page": {
+            "tabs": [
+                "Приказы",
+                "Справки",
+                "Документ студента"
+            ],
+            "orders": {
+                "order_number": "Номер приказа",
+                "order_name": "Название приказа",
+                "order_date": "Дата приказа",
+                "order_type": "Тип приказа"
+            },
+            "references": {
+                "reference_number": "Номер документа",
+                "reference_date": "Дата документа"
+            },
+            "get_reference": "Получить справку"
+        },
+        "settings": {
+            "profile": {
+                "title": "Профиль",
+                "info": "{{university}}, {{faculty}}, {{specialty}} специальность, студент {{course}} курса, {{group}} группы",
+                "personal_info_text": "Личная информация",
+                "edit_password": "Изменить пароль"
+            }
+        },
+        "contract": {
+            "contract_number": "Номер контракта",
+            "contract_date": "Дата контракта",
+            "contract_type": "Тип контракта",
+            "mfo_bank": "Номер МФО банка",
+            "organization_account": "Номер счета организации",
+            "organization_inn": "ИНН организации",
+            "contract_sum": "Сумма контракта",
+            "paid_sum": "Оплаченная сумма",
+            "total_debt": "Общая задолженность",
+            "education_organization": "Образовательная организация",
+            "paid_information_text": "Уважаемый(ая) <strong>{{fullname}}</strong>, вы оплатили <strong>{{amount}} сум</strong> за <strong>{{year}}</strong> учебный год.",
+            "debt_information_text": "Вы должны {{amount}} сум с прошлого учебного года.",
+            "overpaid_information_text": "Вы имеете переплату в размере {{amount}} сум за текущий учебный год.",
+            "no_debts_text": "Хорошая новость, у вас нет долгов с прошлого учебного года!",
+            "rest_amount_text": "Вам осталось заплатить <strong>{{amount}} сум</strong>.",
+            "debt_from_prev_year": "Долг с прошлого учебного года",
+            "not_paid": "Не оплачено",
+            "paid": "оплачено",
+            "contract_sum_text": "Контрактная сумма для оплаты за текущий учебный год",
+            "total_amount_unpaid": "Общая сумма, которую необходимо оплатить",
+            "grant_message": "поскольку вы учитесь на основе государственного гранта, вы не обязаны учиться на основе платного договора. Эта возможность – результат вашего упорного труда и самоотверженности. Теперь вы можете сосредоточить все свое внимание на обучении и саморазвитии!"
+        }
+    },
+    "components": {
+        "task": {
+            "deadline_text": "Крайний срок",
+            "types": [
+                "Сдать быстрее",
+                "Новые",
+                "Сданные",
+                "Оцененные",
+                "Просроченные",
+                "В ожидании"
+            ],
+            "task_in_drawer": {
+                "empty_text": "Задачи не найдены",
+                "max_score_text": "Макс балл",
+                "score_text": "Баллы",
+                "result_text": "Результат",
+                "task_info_title": "Для задачи",
+                "task_info_comment_text": "Комментарий преподавателя:",
+                "task_submit_title": "Ваша сданная задача"
+            }
+        },
+        "file_list": {
+            "download_text": "Скачать"
+        },
+        "attendance": {
+            "attendance_board": {
+                "drawer_title": "Посещаемость",
+                "absent_text": "Отсутствовал",
+                "overall_info": "Всего пропущено занятий на {{time}} часов"
+            },
+            "attendance_in_drawer": {
+                "no_schedule_text": "На этот день нет расписания занятий",
+                "empty_text": "Данные посещаемости отсутствуют",
+                "session_number": "{{session}}-период",
+                "percentage_info": "Процент может быть изменен в связи с обновлением расписания. Пропуски без уважительной причины +25% могут привести к ограничению оценок."
+            }
+        },
+        "time_table": {
+            "title": "Расписание",
+            "empty_text": "Предмет не найден"
+        },
+        "soon_card": {
+            "text": "Эта часть системы находится в разработке..."
+        },
+        "sorting": {
+            "subject_name": "Сортировать по названию предмета",
+            "date": "Сортировать по дате",
+            "academic_year": "Сортировать по учебному году",
+            "ordinal_number": "Сортировать по порядковому номеру"
+        },
+        "searching": {
+            "by_name": "Поиск по имени"
+        },
+        "message": {
+            "save_data_success": "Ваши данные были успешно сохранены!",
+            "save_data_error": "Ошибка при вводе данных!",
+            "email_warning_text": "Пожалуйста, введите действующий адрес электронной почты!",
+            "phone_warning_text": "Пожалуйста, введите действующий номер телефона!",
+            "password_warning_text": "Пароль должен быть не менее 8 символов и содержать как минимум 1 букву и 1 цифру!",
+            "enter_password_text": "Введите пароль",
+            "confirm_password_text": "Подтвердите пароль",
+            "no_matching_password_text": "Пароли не совпадают!",
+            "upload_files_success_text": "Файл успешно загружен!",
+            "number_of_attempts_warning_text": "Вы использовали все попытки для отправки файла",
+            "error_on_file_upload_text": "Ошибка при загрузке файла",
+            "error_on_file_download_text": "Ошибка при загрузке файла. Пожалуйста, проверьте скорость интернета или подключение к сети.",
+            "max_number_of_files_warning_text": "Максимальное количество файлов",
+            "max_size_of_files_warning_text": "Максимальный размер файла",
+            "extensions_warning_text": "Файл принимается только в форматах {{extensions}}",
+            "drag_drop_info": "Вы можете изменить расположение карт, перетаскивая их"
+        },
+        "notification": {
+            "empty_text": "У вас нет новых уведомлений!"
+        },
+        "file_uploader": {
+            "max_number_of_files_text": "Максимальное количество файлов",
+            "max_size_of_files_text": "Максимальный размер файла",
+            "max_size_of_overall_text": "Максимальный общий размер файлов",
+            "upload_file_text": "Загрузить задание"
+        }
+    },
+    "help": {
+        "tg_group_info": "Группа в Telegram создана для обсуждений, вопросов и ответов и предложений по сайту «MY.HEMIS.UZ»",
+        "tg_channel_info": "Канал Telegram, предоставляющий новости и полезную информацию о системе HEMIS",
+        "tg_bot_info": "Бот Telegram, разработанный для устранения технических проблем в системе «MY.HEMIS.UZ»",
+        "yt_channel_info": "Канал YouTube, предоставляющий видеоуроки и руководства по системе HEMIS"
+    },
+    "off_topic": {
+        "qa_chat": "Чат вопросов и ответов",
+        "famous_questions": "Выберите один из часто задаваемых вопросов ниже",
+        "forget_password": "Забыл пароль",
+        "forget_login": "Забыл студенческий ID",
+        "about_find_login": "Студенческий ID (логин) предоставляется только вашим учебным заведением. Логин состоит из 12 цифр и не может быть создан или изменён вами самостоятельно!",
+        "about_find_password_title": "Рекомендуем вам проверить, следуя этим 4 шагам:",
+        "about_find_password_1": "Нажмите, чтобы сбросить пароль",
+        "about_find_password_2": "Попробуйте ввести серию и номер паспорта вместо пароля. Например: AB0123456 (без пробелов и с использованием заглавных букв)",
+        "about_find_password_3": "Нажмите, чтобы изменить высшее учебное заведение",
+        "about_find_password_4": "Обратитесь к ответственному лицу вашего учебного заведения (например, деканату), чтобы восстановить ваш логин и пароль",
+        "hemis_more_info": "Подробная информация о системе HEMIS",
+        "no_response_server_title": "Связь с сервером ВУЗа плохая!",
+        "no_response_server_content": "Извините, происходит задержка при получении данных с сервера ВУЗа. Хотите выйти из системы?",
+        "restricted_university_warning": "Извините, ваш доступ к этой системе ограничен. Ваше учебное заведение использует \"LITE\" версию информационной системы HEMIS. Чтобы получить доступ ко всем возможностям системы, вашему учебному заведению необходимо перейти на \"FULL\" версию HEMIS. Пожалуйста, обратитесь к руководству вашего учебного заведения по этому вопросу!",
+        "restricted_profile_warning": "Извините, ваш доступ к этой системе ограничен. Для использования системы HEMIS ваш статус должен быть студентом или выпускником!",
+        "tech_maintenance": "В настоящее время в этом разделе сайта проводятся технические работы",
+        "contract_links_info": "Если вы студент государственного высшего учебного заведения, вы можете получить информацию о финансовых платежах через <a target='_blank' href='https://kontrakt.edu.uz/'>kontrakt.edu.uz</a>. Если вы студент негосударственного высшего учебного заведения, вы можете получить информацию через систему <a target='_blank' href='https://shartnoma.edu.uz/'>shartnoma.edu.uz</a>."
+    }
+}

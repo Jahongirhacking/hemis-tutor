@@ -1,0 +1,14 @@
+[build]
+  functions = "netlify/functions"
+
+# API route (birinchi qo‘yiladi)
+[[redirects]]
+  from = "/summary"
+  to = "/.netlify/functions/summary"
+  status = 200
+
+# Frontend uchun SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

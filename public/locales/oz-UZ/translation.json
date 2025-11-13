@@ -1,0 +1,489 @@
+{
+    "const": {
+        "day": "Кун",
+        "week": "Ҳафта",
+        "month": "Ой",
+        "hours_plural": "соат",
+        "hours_singular": "соат",
+        "today": "Бугун",
+        "credit_plural": "кредит",
+        "credit_singular": "кредит",
+        "tasks": "Топшириқлар",
+        "resources": "Ресурслар",
+        "thematic_tests": "Мавзулаштирилган тестлар",
+        "title": "Сарлавҳа",
+        "number_of_files": "Файллар сони",
+        "actions": "Амaллар",
+        "all": "Ҳаммаси",
+        "not_found": "топилмади",
+        "more_info": "Кўпроқ маълумот",
+        "curriculum": "Ўқув режа",
+        "control_table": "Назорат жадвали",
+        "appropriation": "Ўзлаштириш",
+        "gradebook": "Рейтинг дафтарча",
+        "exams": "Имтиҳонлар",
+        "subjects": "Фанлар",
+        "subject": "Фан",
+        "subject_type": "Фан тури",
+        "acload": "Юклама",
+        "semester": "Семестр",
+        "close": "Ёпиш",
+        "subject_info": "Фан маълумотлари",
+        "teacher": "Ўқитувчи",
+        "auditorium": "Аудитория",
+        "control_data": "Назорат маълумотлари",
+        "year_number": "{{year}}-йил",
+        "current_exam": "Жорий назорат",
+        "midterm_exam": "Оралиқ назорат",
+        "final_exam": "Якуний",
+        "overall": "Умумий",
+        "rating_score": "Рейтинг / Балл",
+        "mark": "Баҳо",
+        "in_detail": "Батафсил",
+        "staff": "Ходим",
+        "lesson_date": "Дарс санаси",
+        "training": "Машғулот",
+        "explicable": "сабабли",
+        "not_explicable": "сабабсиз",
+        "no": "Йўқ",
+        "yes": "Ҳа",
+        "order": "Буйруқ",
+        "document": "Ҳужжат",
+        "reference": "Маълумотнома",
+        "academic_year": "Ўқув йили",
+        "course": "Курс",
+        "file": "Файл",
+        "download": "Юклаб олиш",
+        "application": "Ариза",
+        "time_table": "Дарс жадвали",
+        "save": "Сақлаш",
+        "cancel": "Бекор қилиш",
+        "edit": "Таҳрирлаш",
+        "firstname": "Исм",
+        "lastname": "Фамилия",
+        "login": "Логин",
+        "email": "Email",
+        "phone_number": "Телефон рақами",
+        "passport_number": "Паспорт рақами",
+        "for_communication": "Алоқа учун",
+        "password": "Парол",
+        "please": "Илтимос",
+        "academic_parameters": "Ўқув параметрлари",
+        "contract_payment": "Контракт тўлови",
+        "student_dormitory": "Талабалар турар жойи",
+        "see": "Кўриш",
+        "send": "Юбориш",
+        "search": "Қидириш",
+        "clean": "Тозалаш",
+        "number_of": "{{name}} сони",
+        "number_count": "{{number}} та",
+        "pairs_left": "Қолдирилган дарслар",
+        "marks": "Баҳо",
+        "info": "Маълумот",
+        "score": "балл",
+        "sorry": "Кечирасиз",
+        "back_to_section": "{{section}} бўлимига қайтиш",
+        "added": "Қўшилган",
+        "add": "Қўшиш",
+        "settings": "Созламалар",
+        "profile": "Профил",
+        "personal_info": "Шахсий маълумотлар",
+        "system_settings": "Тизим созламалари",
+        "not_calculated": "Ҳисобланмаган",
+        "passport_info": "Паспорт маълумоти",
+        "patronymic": "Отасининг исми",
+        "birth_date": "Туғилган сана",
+        "gender": "Жинс",
+        "education_info": "Таълим маълумоти",
+        "expertise": "Мутахассислик",
+        "faculty": "Факультет",
+        "group": "Гуруҳ",
+        "payment_form": "Тўлов шакли",
+        "education_type": "Таълим тури",
+        "education_form": "Таълим шакли",
+        "permanent_address_info": "Доимий манзил маълумотлари",
+        "country": "Давлат",
+        "region": "Вилоят",
+        "district": "Туман",
+        "home_address": "Ўй манзили",
+        "current_address_info": "Жорий манзил маълумотлари",
+        "place_of_residence": "Яшаш жойи",
+        "student_phone": "Талаба телефони",
+        "additional_info": "Қўшимча маълумотлар",
+        "social_class": "Ижтимоий тоифа",
+        "languages": "Тиллар",
+        "language": "Тил",
+        "change_language_settings": "Тил созламаларини ўзгартириш",
+        "theme": "Мавзу",
+        "change_theme_settings": "Тизим мавзусини ўзгартириш",
+        "light": "Ёруғ",
+        "dark": "Қоронғу",
+        "literature": "Адабиётлар",
+        "articles": "Мақолалар",
+        "dissertations": "Диссертациялар",
+        "monographs": "Монографиялар",
+        "journals": "Журналлар",
+        "downloading": "Юклаб олинмоқда...",
+        "keywords": "Калит сўзлар",
+        "read_more": "Кўпроқ ўқиш",
+        "read_less": "Камроқ ўқиш",
+        "category": "Категория",
+        "type": "Тур",
+        "field": "Соҳа",
+        "type_of_file": "Файл тури",
+        "total": "Жами",
+        "channel": "канал",
+        "bot": "бот",
+        "building": "Бино",
+        "department": "Бўлим",
+        "interval": "Интервал",
+        "minute": "дақиқа",
+        "gpa_method": "GPA усули",
+        "debt": "Қарз",
+        "total_gpa": "Умумий GPA",
+        "annual_gpa": "Йиллик GPA",
+        "main": "Асосий",
+        "status": "ҳолат",
+        "attended": "қатнашилган",
+        "waiting": "кутилмоқда",
+        "in_process": "жараёнда",
+        "enter_via_other_method": "Бошқа усул орқали кириш",
+        "contract": "Контракт",
+        "choose": "Танлаш",
+        "last_update_time": "Охирги янгиланиш вақти",
+        "uzs": "сўм",
+        "fullname": "Ф.И.Ш",
+        "pinfl": "ЖШШИР",
+        "information_on_education_credit": "Таълим кредити маълумотлари",
+        "check": "Текшириш",
+        "bank_name": "Банк номи",
+        "edu_loan_sum": "Таълим кредити суммаси",
+        "comment": "Изоҳ",
+        "bank_number": "Банк рақами",
+        "daily_grades": "Кунлик баҳолар",
+        "average_daily_grade": "Ўртача кунлик баҳо",
+        "by_science": "Фанлар кесимида",
+        "useful": "Фойдали",
+        "aside": "Ён",
+        "bottom": "Пастки",
+        "menu": "Меню",
+        "change_menu_settings": "Меню Кўринишини ўзгартириш",
+        "problem_with_server": "сервер билан муаммо",
+        "try_again_later": "кейинроқ уриниб кўринг",
+        "statistics": "Статистика",
+        "certificate_id": "ID Гувохномаси",
+        "student": "Талаба",
+        "wait": "Кутиш",
+        "certificates": "Сертификатлар",
+        "avg_gpa": "Ўртача GPA",
+        "attendance": "Давомат",
+        "gpa_appropriation": "GPA ва ўзлаштириш",
+        "recommended_courses": "Тавсиявий курслар",
+        "plagiarism": "Плагиат текшируви",
+        "financial_state": "Молиявий ҳолат",
+        "discuss": "Мухокама қилиш",
+        "active": "Фаол",
+        "inactive": "Нофаол",
+        "start": "Бошлаш",
+        "exam_interval": "Имтиҳон даври",
+        "question": "савол",
+        "attempt": "уриниш",
+        "time": "Вақт",
+        "questions": "Саволлар"
+    },
+    "exam": {
+        "retry_title": "Тестни қайта топширмоқчимисиз?",
+        "retry_message": "<span>Сиз ушбу тестни аввалроқ <strong>{{percent}}%</strong> натижа билан топширгансиз.</span> <span>Тестни қайтадан топширмоқчи бўлсангиз, <strong>Давом этиш</strong> тугмасини босинг, лекин бу ҳолда олдинги натижангиз бекор қилинади. <br/><br/><hr /><br/>Агар <strong>Бошлаш</strong> тугмасини тасодифан босган бўлсангиз, тестни ечимсиз <strong>Бекор қилиш</strong> тугмасини босинг. Бу ҳолатда олдинги натижаларингиз сақланиб қолади.</span>",
+        "try_title": "Тестни бошлашга тайёрмисиз?",
+        "try_message": "<strong>Давом этиш</strong> тугмасини босганингизда тизим сизни имтиҳон саҳифасига ўтказади. Имтиҳон учун сизга {{questionCount}} та савол ва {{durationMinutes}} дақиқа вақт берилади.",
+        "finish_title": "Имтиҳонни якунламоқчимисиз?",
+        "finish_message": "<strong>Давом этиш</strong> тугмасини босиш орқали белгиланган жавобларингизни текшириш учун юборишингиз ва имтиҳонни якунлаганингизни тасдиқлашингиз ҳисобланади."
+    },
+    "login": {
+        "root": {
+            "extra_options_text": "Қўшимча имкониятлар"
+        },
+        "extra_options": {
+            "cancel_password_text": "Паролни бекор қилиш",
+            "check_diplom_text": "Диплом текшириш",
+            "get_contract_text": "Шартнома олиш",
+            "statistics_dashboard_text": "Статистика дашборди",
+            "login_text": "Кириш"
+        },
+        "steps": [
+            "Олий таълим муассасаси",
+            "ID ва парол"
+        ],
+        "university_form": {
+            "title": "Қайси олий таълим муассасасида ўқийсиз?",
+            "input_placeholder": "Олий таълим муассасасини танланг",
+            "button_text": "Давом эттириш"
+        },
+        "student_form": {
+            "title": "Талаба ID ва паролни киритинг",
+            "login_label": "Талаба ID",
+            "login_placeholder": "Логинни киритинг",
+            "password_label": "Парол",
+            "password_placeholder": "Паролни киритинг",
+            "remember_text": "Эслaб қолиш",
+            "button_text": "Кириш"
+        },
+        "success_message_text": "Сиз тизимга муваффақиятли кирдингиз!"
+    },
+    "cancel_password": {
+        "steps": [
+            {
+                "name": "1-қадам",
+                "title": "Фойдаланувчининг ID коди ёки логинини киритинг",
+                "input_label": "ID коди",
+                "input_placeholder": "ID кодни киритинг",
+                "button_text": "Давом эттириш"
+            },
+            {
+                "name": "2-қадам",
+                "title": "Электрон почтага ёки телефонга юборилган ПИН кодни киритинг",
+                "input_label": "ПИН код",
+                "input_placeholder": "ПИН кодни киритинг",
+                "button_text": "Давом эттириш"
+            }
+        ]
+    },
+    "get_diplom": {
+        "title": "ЖШШИР ни киритинг",
+        "input_label": "ЖШШИР",
+        "input_placeholder": "ЖШШИР ни киритинг",
+        "code_label": "Текширув коди",
+        "code_placeholder": "Текширув кодини киритинг",
+        "button_text": "Юклаб олиш"
+    },
+    "get_contract": {
+        "title": "ЖШШИР ни киритинг",
+        "input_label": "ЖШШИР",
+        "input_placeholder": "ЖШШИР ни киритинг",
+        "code_label": "Текширув коди",
+        "code_placeholder": "Текширув кодини киритинг",
+        "button_text": "Юклаб олиш"
+    },
+    "dashboard": {
+        "expired_token_text": "Фаоллик муддати тугади. Илтимос тизимга қайтадан киринг!",
+        "notifications_text": "Билдиришномалар",
+        "navbar": {
+            "navbarList": [
+                "Дашбоард",
+                "Дарс жадвали",
+                "Фанлар",
+                "Ўқув параметрлари",
+                "Давомат",
+                "Молиявий тўлов",
+                "Қайта ўқиш",
+                "Ҳужжатлар",
+                "Электрон кутубхона"
+            ],
+            "navbarBottom": [
+                "Созламалар",
+                "Ёрдам & йўриқнома",
+                "Чиқиш"
+            ]
+        },
+        "dashboard_page": {
+            "title": "Dashboard",
+            "edit_cards_text": "Карталарни таҳрирлаш",
+            "manage_cards_button_text": "Бошқарув",
+            "drag_cards_text": "Карталарни суриш",
+            "card_names": [
+                "Топшириқлар",
+                "Дарс жадвали",
+                "Ўзлаштириш",
+                "Давомат"
+            ],
+            "tasks": {
+                "title": "Топшириқлар",
+                "drawer_title": "Қўшимча имкониятлар",
+                "empty_text": "Топшириқ ҳозирча йўқ"
+            },
+            "schedules": {
+                "title": "Дарс жадвали",
+                "empty_text": "Ушбу санада дарслар қўйилмаган"
+            },
+            "appropriations": {
+                "title": "Ўзлаштириш",
+                "empty_text": "Ўзлаштириш маълумотлари топилмади"
+            },
+            "attendances": {
+                "title": "Давомат",
+                "empty_text": "Давомат топилмади"
+            }
+        },
+        "subjects_page": {
+            "title": "Фанлар",
+            "subject_detail": {
+                "empty_task": "Топшириқ қолмаган",
+                "task_types": [
+                    "Мухим топшириқлар",
+                    "Янги топшириқлар",
+                    "Юборилган топшириқлар",
+                    "Баҳоланган топшириқлар",
+                    "Муддати ўтган топшириқлар"
+                ]
+            }
+        },
+        "eduplan": {
+            "daily_average_grade_warning": "Эслатма: ўртача кунлик баҳони ҳисоблаш айрим муассасаларда турлича бўлиши мумкин"
+        },
+        "documents_page": {
+            "tabs": [
+                "Буйруқлар",
+                "Маълумотномалар",
+                "Талаба ҳужжати"
+            ],
+            "orders": {
+                "order_number": "Буйруқ рақами",
+                "order_name": "Буйруқ номи",
+                "order_date": "Буйруқ санаси",
+                "order_type": "Буйруқ тури"
+            },
+            "references": {
+                "reference_number": "Ҳужжат рақами",
+                "reference_date": "Ҳужжат санаси"
+            },
+            "get_reference": "Маълумотнома олиш"
+        },
+        "settings": {
+            "profile": {
+                "title": "Профил",
+                "info": "{{university}}, {{faculty}}, {{specialty}} йўналиши, {{course}} {{group}} гуруҳи талабаси",
+                "personal_info_text": "Шахсий маълумотлар",
+                "edit_password": "Паролни ўзгартириш"
+            }
+        },
+        "contract": {
+            "contract_number": "Шартнома рақами",
+            "contract_date": "Шартнома санаси",
+            "contract_type": "Шартнома тури",
+            "mfo_bank": "Банк МФО рақами",
+            "organization_account": "Ташкилот ҳисоб рақами",
+            "organization_inn": "Ташкилот СТИР рақами",
+            "contract_sum": "Шартнома суммаси",
+            "paid_sum": "Тўланган сумма",
+            "total_debt": "Жами қарздорлик",
+            "education_organization": "Таълим ташкилоти",
+            "paid_information_text": "Ҳурматли <strong>{{fullname}}</strong>, сиз <strong>{{year}}</strong> ўқув йили учун <strong>{{amount}} сўм</strong> тўлов қилдингиз.",
+            "debt_information_text": "Сиз ўтган ўқув йилдан {{amount}} сўм миқдорда қарздорсиз.",
+            "overpaid_information_text": "Сиз жорий ўқув йилдан {{amount}} сўм миқдорда ҳақдорсиз.",
+            "no_debts_text": "Хушхабар, сизда ўтган ўқув йилдан қолган қарздорликлар йўқ!",
+            "rest_amount_text": "Яна жами <strong>{{amount}} сўм</strong> тўлашингиз керак.",
+            "debt_from_prev_year": "Ўтган ўқув йилдан қарздорлик",
+            "not_paid": "Тўланмаган",
+            "paid": "тўланган",
+            "contract_sum_text": "Жорий ўқув йили учун тўлов контракт суммаси",
+            "total_amount_unpaid": "Жами тўланиши керак бўлган сумма",
+            "grant_message": "cиз давлат гранти асосида таҳсил олаётганингиз сабабли, сизга тўлов-шартнома асосида ўқиш мажбурияти йўқ. Бу имконият сизнинг меҳнатингиз ва интилишингизнинг натижасидир. Энди сиз бутун эътиборингизни фақат билим олишга ва ўзингизни ривожлантиришга қаратишингиз мумкин!"
+        }
+    },
+    "components": {
+        "task": {
+            "deadline_text": "Муддати",
+            "types": [
+                "Тезроқ топширинг",
+                "Янги",
+                "Юборилган",
+                "Баҳоланган",
+                "Муддати тугаган",
+                "Кутилаётган"
+            ],
+            "task_in_drawer": {
+                "empty_text": "Топшириқ топилмади",
+                "max_score_text": "Макс балл",
+                "score_text": "Балл",
+                "result_text": "Натижа",
+                "task_info_title": "Топшириқ учун",
+                "task_info_comment_text": "Ўқитувчи изоҳи:",
+                "task_submit_title": "Сиз юклаган топшириқ"
+            }
+        },
+        "file_list": {
+            "download_text": "Юклаш"
+        },
+        "attendance": {
+            "attendance_board": {
+                "drawer_title": "Давомат",
+                "absent_text": "Қолдирган",
+                "overall_info": "Жами {{time}}лик қолдирилган дарс соати"
+            },
+            "attendance_in_drawer": {
+                "no_schedule_text": "Ушбу кунда дарс соатлари мавжуд эмас",
+                "empty_text": "Давомат маълумоти бўш",
+                "session_number": "{{session}}-пара",
+                "percentage_info": "Фоиз дарс жадвали янгиланиши ҳисобига ўзгариши мумкин. Сабабсиз қолдирилган соатлар +25% бўлса, баҳо олишда чекловлар келтириб чиқариши мумкин"
+            }
+        },
+        "time_table": {
+            "title": "Дарс жадвали",
+            "empty_text": "Фан топилмади"
+        },
+        "soon_card": {
+            "text": "Тизимнинг бу қисми ишлаб чиқиш жараёнида..."
+        },
+        "sorting": {
+            "subject_name": "Фан номи бўйича саралаш",
+            "date": "Сана бўйича саралаш",
+            "academic_year": "Ўқув йили бўйича саралаш",
+            "ordinal_number": "Тартиб рақам бўйича саралаш"
+        },
+        "searching": {
+            "by_name": "Номи бўйича қидириш"
+        },
+        "message": {
+            "save_data_success": "Маълумотингиз муваффақиятли сақланди!",
+            "save_data_error": "Маълумот киритишда хатолик!",
+            "email_warning_text": "Илтимос, тўғри email киритинг!",
+            "phone_warning_text": "Илтимос, тўғри телефон рақам киритинг!",
+            "password_warning_text": "Парол камида 8 та белги ва камида 1 та ҳарф ва 1 та рақамдан иборат бўлиши керак!",
+            "enter_password_text": "паролни киритинг",
+            "confirm_password_text": "паролни тасдиқланг",
+            "no_matching_password_text": "Пароллар мос келмади!",
+            "upload_files_success_text": "Файл муваффақиятли юкланди!",
+            "number_of_attempts_warning_text": "Сиз файлни юбориш учун берилган барча уринишларни ишлатгансиз",
+            "error_on_file_upload_text": "Файлни юклашда хатолик",
+            "error_on_file_download_text": "Файлни юклаб олишда хатолик. Илтимос, интернет тармоғи тезлиги ёки узилмаганлигини текширинг.",
+            "max_number_of_files_warning_text": "Мумкин бўлган максимал файллар сони",
+            "max_size_of_files_warning_text": "Мумкин бўлган максимал файл ҳажми",
+            "extensions_warning_text": "Файл фақат {{extensions}} форматларида қабул қилинади",
+            "drag_drop_info": "Карталарни босиб туриб суриш орқали уларнинг жойлашувини ўзгартиришингиз мумкин"
+        },
+        "notification": {
+            "empty_text": "Сизда янги билдиришномалар йўқ!"
+        },
+        "file_uploader": {
+            "max_number_of_files_text": "Макс. юкланадиган файллар сони",
+            "max_size_of_files_text": "Макс файл ўлчами",
+            "max_size_of_overall_text": "Максимал юкланадиган жами файллар ўлчами",
+            "upload_file_text": "Топшириқни юклаш"
+        }
+    },
+    "help": {
+        "tg_group_info": "«MY.HEMIS.UZ» сайти бўйича мухокама, савол-жавоб ва таклифлар учун яратилган Telegram гуруҳ",
+        "tg_channel_info": "HEMIS тизими ҳақида янгиликлар ва фойдали маълумотлар бериб бориладиган Telegram канали",
+        "tg_bot_info": "«MY.HEMIS.UZ» тизимидаги техник муаммоларни бартараф этиш учун ишлаб чиқилган Telegram бот",
+        "yt_channel_info": "HEMIS тизими бўйича видео дарслар ва йўриқномалар тақдим этиладиган YouTube канали"
+    },
+    "off_topic": {
+        "qa_chat": "Савол-жавоб чат",
+        "famous_questions": "Қуйидаги кўп бериладиган саволлардан бирини танланг",
+        "forget_password": "Паролни унутдим",
+        "forget_login": "Талаба IDни унутдим",
+        "about_find_login": "Талаба ID яъни логин — фақатгина таълим олаётган муассасангиз томонидан сизга тақдим этилади. Логин 12 хонали фақат рақамлардан иборат сон бўлиб, ўзингиз мустақил ярата олмайсиз ва шунингдек ўзгартира олмайсиз!",
+        "about_find_password_title": "Сизга ушбу 4 қадам бўйича текширишингизни маслаҳат бераман:",
+        "about_find_password_1": "Паролни бекор қилиш учун босинг",
+        "about_find_password_2": "Парол ўрнига паспорт серия ва рақамингизни киритиб кўринг. Масалан: AB0123456 кўринишида (катта ҳарф ва бўшлиқ-пробелларсиз)",
+        "about_find_password_3": "Олий таълим муассасасини ўзгартириш учун босинг",
+        "about_find_password_4": "Ўқиш жойингиздаги масъул ходим яъни деканатдан логин ва паролингизни тиклаб беришини сўранг",
+        "hemis_more_info": "HEMIS тизими бўйича батафсил маълумот",
+        "no_response_server_title": "OTM сервери билан алоқа яхши эмас!",
+        "no_response_server_content": "Кечирасиз, OTM серверидан маълумот олиб келиш кечикмоқда. Тизимдан чиқмоқчимисиз?",
+        "restricted_university_warning": "Кечирасиз, сизнинг ушбу тизимдан фойдаланиш имкониятингиз чекланган. Сизнинг таълим муассасангиз HEMIS ахборот тизимнинг \"LITE\" версиясидан фойдаланади. Сиз бу тизимнинг тўлиқ имкониятларидан фойдаланишингиз учун таълим муассасангиз HEMIS ахборот тизимнинг \"FULL\" версиясига ўтиши керак. Илтимос таълим муассасангиз раҳбариятига бу тўғрисида мурожаат қилинг!",
+        "restricted_profile_warning": "Кечирасиз, сизнинг ушбу тизимдан фойдаланиш имкониятингиз чекланган. ҲЕМИС тизимидан фойдаланишингиз учун сизнинг статусингиз ўқиётган ёки битирган ҳолатида бўлиши зарур!",
+        "tech_maintenance": "Айни вақтда сайтнинг ушбу қисмида техник ишлар олиб борилмоқда",
+        "contract_links_info": "Агар давлат ОТМ талабаси бўлсангиз <a target='_blank' href='https://kontrakt.edu.uz/'>kontrakt.edu.uz</a>, нодавлат ОТМ талабаси бўлсангиз <a target='_blank' href='https://shartnoma.edu.uz/'>shartnoma.edu.uz</a> тизими орқали молиявий тўловларингиз ҳақида маълумот олишингиз мумкин"
+    }
+}

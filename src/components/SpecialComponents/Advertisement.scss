@@ -1,0 +1,15 @@
+.advertisement {
+  position: fixed;
+  bottom: 35px;
+  right: 0;
+  width: max(25%, 250px);
+  max-width: min(100%, 400px);
+  z-index: 99;
+
+  .advertisement-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    z-index: 100;
+  }
+}

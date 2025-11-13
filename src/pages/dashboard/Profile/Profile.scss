@@ -1,0 +1,127 @@
+.profile__outlet {
+  .ant-card {
+    max-width: 800px;
+    width: 100%;
+
+    .ant-avatar {
+      width: min(155px, 95%);
+      height: 155px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      font-size: 35pt;
+    }
+
+    .ant-flex-vertical {
+      h2 {
+        font-size: 23px;
+        line-height: 28px;
+      }
+      span.ant-typography {
+        font-size: 16px;
+        line-height: 24px;
+        color: rgba($color: #000, $alpha: 0.65);
+      }
+      .edit-btn {
+        margin: 14px auto 0 0;
+        &:hover .ant-btn-icon svg path {
+          fill: #4096ff;
+        }
+
+        .ant-btn-icon {
+          svg {
+            fill: #000;
+
+            path {
+              fill: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ant-form {
+    .ant-card {
+      flex: 1;
+    }
+
+    .profile__form-wrapper {
+      .ant-upload-disabled .ant-avatar {
+        &::after {
+          content: none;
+        }
+      }
+
+      .ant-avatar {
+        &::after {
+          content: 'Rasm yuklash';
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(#000, 0.46);
+          border-radius: 50%;
+          overflow: hidden;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        &:hover::after {
+          opacity: 1;
+        }
+      }
+
+      .ant-form-item {
+        margin: 0;
+
+        & > .ant-row {
+          flex-direction: column;
+          align-items: flex-start;
+
+          .ant-form-item-control {
+            flex: initial;
+            width: 100%;
+          }
+        }
+
+        .ant-form-item-label {
+          &
+            > label.ant-form-item-required:not(
+              .ant-form-item-required-mark-optional
+            ),
+          & > label {
+            &::after,
+            &::before {
+              content: none !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-theme {
+  .profile__outlet {
+    .profile-card {
+      .ant-card-body > .ant-flex > .ant-flex-vertical > .ant-flex-vertical {
+        path {
+          fill: #fff !important;
+        }
+
+        strong {
+          color: #ffffffa6 !important;
+        }
+        span {
+          color: #ffffffa6 !important;
+        }
+      }
+    }
+  }
+}

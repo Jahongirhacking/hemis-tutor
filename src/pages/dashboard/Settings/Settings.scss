@@ -1,0 +1,24 @@
+.personal_info {
+  .ant-collapse-item {
+    .ant-collapse-header {
+      .ant-collapse-header-text {
+        strong {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .ant-table-row {
+    .ant-table-cell:nth-child(1) {
+      min-width: 80px;
+    }
+  }
+}
+
+.system-settings {
+  & > .ant-flex {
+    row-gap: 10px;
+    column-gap: 20px;
+  }
+}

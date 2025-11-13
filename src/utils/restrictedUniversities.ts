@@ -1,0 +1,28 @@
+const restrictedUniversities = [
+  '332.hemis.uz',
+  '408.hemis.uz/',
+  'hemis.astu.uz',
+  '410.hemis.uz/',
+  '417.hemis.uz/',
+  'hemis.msu.uz',
+  '419.hemis.uz/',
+  '421.hemis.uz/',
+  'hemis.mdis.uz',
+  '423.hemis.uz/',
+  '424.hemis.uz/',
+  '425.hemis.uz/',
+  '426.hemis.uz/',
+  '427.hemis.uz/',
+  '430.hemis.uz/',
+  'hemis.muctr.uz',
+  'hemis.pisa.uz',
+  'hemis.vgik-tashkent.uz',
+  '469.hemis.uz',
+  'hemis.ttu.uz',
+  'hemis.biu.uz',
+  '518.hemis.uz',
+  'hemis.mgimo.uz',
+  'hemis.aut-edu.uz',
+];
+
+export default restrictedUniversities;

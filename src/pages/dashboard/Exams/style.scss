@@ -1,0 +1,35 @@
+.exams__outlet {
+  row-gap: 12px;
+
+  .exams-actions-column {
+    @container (max-width: 1000px) {
+      width: 120px !important;
+    }
+  }
+
+  .secondary-text {
+    color: #00000073;
+  }
+}
+
+.dark-theme {
+  .exams__outlet {
+    .secondary-text {
+      color: #f3f3f373;
+    }
+  }
+}
+
+.dark-modal {
+  .ant-modal-content {
+    background-color: #292929;
+
+    * {
+      color: #fff;
+    }
+
+    .ant-btn-default {
+      background-color: #292929 !important;
+    }
+  }
+}

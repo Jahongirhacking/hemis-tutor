@@ -1,0 +1,197 @@
+$debtColor: #eb2f96;
+$overpaidColor: #52c41a;
+$infoColor: #007aff;
+$warningColor: #ffcc00;
+
+@mixin addConnectionEdge($color, $start) {
+  &::before {
+    content: '' !important;
+    position: absolute;
+    height: 79px;
+    border-left: 1px solid #{$color};
+    top: -80px;
+    left: 50%;
+    opacity: 0;
+    animation: makeAppear 0.4s ease #{$start}s forwards;
+  }
+
+  &::after {
+    content: '+' !important;
+    position: absolute;
+    color: #{$color};
+    width: 31px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 7px solid #{$color};
+    top: -54px;
+    left: 50%;
+    transform: translateX(-15px);
+    opacity: 0;
+    animation: makeAppear 0.6s ease #{$start + 1}s forwards;
+  }
+}
+
+.payment__info-cards {
+  flex: 1;
+  min-width: 150px;
+
+  .ant-card {
+    border-radius: 16px;
+  }
+
+  .payment__overall-info-card {
+    background: linear-gradient(
+        90deg,
+        rgba(158, 114, 186, 0.08) 29.83%,
+        rgba(214, 92, 103, 0.08) 56.87%,
+        rgba(214, 99, 92, 0.08) 72.11%
+      ),
+      #fff;
+    border: none;
+
+    .ant-card-body {
+      padding: 10px;
+    }
+  }
+
+  .payment__previous-debt-info-card {
+    border: 1px solid $debtColor;
+    @include addConnectionEdge($debtColor, 3);
+    max-width: fit-content;
+
+    & .ant-card-body > .ant-flex > span > strong {
+      color: $debtColor !important;
+    }
+
+    strong {
+      color: $debtColor;
+    }
+
+    @container (max-width: 429px) {
+      .debt-status {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px !important;
+      }
+    }
+    @container (max-width: 318px) {
+      .debt-status {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px !important;
+      }
+    }
+  }
+
+  .ant-card:nth-child(2) {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    box-shadow:
+      0px 2px 4px 0px #26262914,
+      0px 0px 2px 0px #26262914;
+    transition: box-shadow 0.4s ease;
+    animation: makeAppearAndMove 1s ease 2.5s forwards;
+    opacity: 0;
+
+    .ant-card-body {
+      padding: 16px !important;
+    }
+
+    &:hover {
+      box-shadow:
+        0px 2px 16px 0px #26262934,
+        0px 0px 8px 0px #26262934;
+    }
+  }
+
+  .ant-card:nth-child(3) {
+    width: 100%;
+    margin: auto;
+    box-shadow:
+      0px 2px 4px 0px #26262914,
+      0px 0px 2px 0px #26262914;
+    transition: box-shadow 0.4s ease;
+    animation: makeAppearAndMove 1s ease 3.5s forwards;
+    opacity: 0;
+
+    &:hover {
+      box-shadow:
+        0px 2px 16px 0px #26262934,
+        0px 0px 8px 0px #26262934;
+    }
+  }
+}
+
+.payment__current-info-card {
+  max-width: 650px;
+  border: 1px solid $overpaidColor !important;
+  @include addConnectionEdge($overpaidColor, 4);
+
+  .ant-card-body {
+    padding: 20px 16px;
+  }
+  .card-content {
+    column-gap: 40px;
+    row-gap: 20px;
+
+    .ant-progress {
+      width: 100%;
+
+      .ant-progress-steps-item {
+        flex: 1;
+        height: 12px !important;
+        width: 100% !important;
+      }
+    }
+
+    & > * {
+      flex: 1;
+      width: 100%;
+      min-width: 158px;
+
+      .ant-flex {
+        width: 100%;
+      }
+    }
+
+    @container (max-width: 486px) {
+      flex-direction: column;
+
+      .current-status {
+        flex-direction: row;
+        align-items: center;
+
+        & > .ant-flex {
+          width: calc(100% - 32px);
+
+          .ant-tag {
+            max-width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-progress-steps {
+    border-radius: 21px;
+    overflow: hidden;
+
+    &-item-active {
+      background-color: $overpaidColor;
+    }
+    &-outer {
+      width: 100% !important;
+    }
+  }
+
+  .ant-tag {
+    border: none;
+  }
+}

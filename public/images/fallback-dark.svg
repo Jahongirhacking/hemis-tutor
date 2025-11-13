@@ -1,0 +1,16 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 320" width="180" height="320">
+	<defs>
+		<image  width="180" height="320" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAFAAQMAAAAvd8TKAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAC5JREFUeJztyDENAAAMA6DVv+kZqIEmcJLr4r333nvvvffee++999577733fuof7g4BQRPi2hMAAAAASUVORK5CYII="/>
+		<image width="48" height="48" id="img2" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiAyNEMxOC42Mjc0IDI0IDI0IDE4LjYyNzQgMjQgMTJDMjQgNS4zNzI1OCAxOC42Mjc0IDAgMTIgMEM1LjM3MjU4IDAgMCA1LjM3MjU4IDAgMTJDMCAxOC42Mjc0IDUuMzcyNTggMjQgMTIgMjRaTTEyIDE4QzE1LjMxMzcgMTggMTggMTUuMzEzNyAxOCAxMkMxOCA4LjY4NjI5IDE1LjMxMzcgNiAxMiA2QzguNjg2MjkgNiA2IDguNjg2MjkgNiAxMkM2IDE1LjMxMzcgOC42ODYyOSAxOCAxMiAxOFoiIGZpbGw9IiMxNjc3RkYiLz4KPC9zdmc+Cg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 14px;fill: #ffffff;font-weight: 700;font-family: "Roboto-Bold", "Roboto" } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<text id="MY.HEMIS.UZ" style="transform: matrix(1,0,0,1,45.309,195.555)" >
+		<tspan x="0" y="0" class="t0">M</tspan><tspan  y="0" class="t0">Y</tspan><tspan  y="0" class="t0">.</tspan><tspan  y="0" class="t0">H</tspan><tspan  y="0" class="t0">E</tspan><tspan  y="0" class="t0">M</tspan><tspan  y="0" class="t0">I</tspan><tspan  y="0" class="t0">S</tspan><tspan  y="0" class="t0">.</tspan><tspan  y="0" class="t0">U</tspan><tspan  y="0" class="t0">Z</tspan><tspan  y="0" class="t0">
+</tspan>
+	</text>
+	<use id="hemis-icon" href="#img2" transform="matrix(1.083,0,0,1.083,64,122)"/>
+</svg>

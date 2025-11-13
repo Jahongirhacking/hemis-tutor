@@ -1,0 +1,362 @@
+@import './_Contract/CreditCard.scss';
+
+.payment-page {
+  .ant-tabs {
+    .ant-tabs-tab {
+      background-color: transparent !important;
+    }
+
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+
+    .ant-tabs-content-holder {
+      padding: 24px 0;
+      border-radius: 0 8px 8px 8px;
+
+      .contract-section,
+      .credit-section,
+      .accomodation-section {
+        align-items: flex-start;
+      }
+
+      .payment__card {
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 24px;
+        flex: 1;
+        width: 100%;
+        container-type: inline-size;
+        min-width: 200px;
+        overflow: hidden;
+        max-width: min(100%, 560px);
+        // margin: auto;
+
+        .payment__contract-text {
+          * {
+            font-size: 12pt !important;
+          }
+        }
+
+        @media screen and (min-width: 380px) {
+          min-width: 330px;
+        }
+
+        .ant-divider {
+          height: 16px;
+          border-bottom: 1px dashed #d9d9d9;
+          border-top: 1px dashed #d9d9d9;
+          margin: 0;
+        }
+
+        // .dashed-list {
+        //   .list__row {
+        //     .list__value {
+        //       width: fit-content;
+        //       text-align: right;
+        //     }
+
+        //     @container (max-width: 250px) {
+        //       flex-direction: column;
+
+        //       .list__value {
+        //         text-align: left;
+        //       }
+        //     }
+        //   }
+        // }
+      }
+
+      .edu-loan-card {
+        flex: 1;
+        width: 100%;
+        max-width: min(100%, 700px);
+        min-width: 200px;
+        border: none;
+      }
+
+      .contract__card {
+        border-radius: 8px;
+        // background-color: #fff;
+        padding: 24px;
+        flex: 1;
+        width: 100%;
+        container-type: inline-size;
+        min-width: 200px;
+        overflow: hidden;
+        max-width: min(100%, 700px);
+
+        @media screen and (min-width: 380px) {
+          min-width: 300px;
+        }
+      }
+
+      .chat-container {
+        position: relative;
+
+        & > * {
+          width: 100%;
+        }
+
+        @container (max-width: 290px) {
+          flex-direction: column;
+        }
+
+        .ant-image-img {
+          min-width: 32px;
+          max-width: 32px;
+          animation: spin 2s ease 0s 2;
+        }
+      }
+    }
+  }
+
+  .contracts-container {
+    flex: 1;
+    max-width: 100%;
+    min-width: min(300px, 100%);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: rgba(0, 0, 0, 0.425) transparent;
+
+    .contract__card {
+      position: relative;
+      border: none;
+      width: 100%;
+      max-width: 100%;
+
+      &::after {
+        content: '';
+        background-color: #efefef;
+        bottom: 0px;
+        transform: rotateX(180deg);
+        height: 10px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        clip-path: polygon(
+          0% 0%,
+          5% 100%,
+          10% 0%,
+          15% 100%,
+          20% 0%,
+          25% 100%,
+          30% 0%,
+          35% 100%,
+          40% 0%,
+          45% 100%,
+          50% 0%,
+          55% 100%,
+          60% 0%,
+          65% 100%,
+          70% 0%,
+          75% 100%,
+          80% 0%,
+          85% 100%,
+          90% 0%,
+          95% 100%,
+          100% 0%
+        );
+        -webkit-clip-path: polygon(
+          0% 0%,
+          5% 100%,
+          10% 0%,
+          15% 100%,
+          20% 0%,
+          25% 100%,
+          30% 0%,
+          35% 100%,
+          40% 0%,
+          45% 100%,
+          50% 0%,
+          55% 100%,
+          60% 0%,
+          65% 100%,
+          70% 0%,
+          75% 100%,
+          80% 0%,
+          85% 100%,
+          90% 0%,
+          95% 100%,
+          100% 0%
+        );
+      }
+
+      .ant-card-body {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.status-check {
+  & > .ant-tag {
+    margin: 0;
+    font-weight: 600;
+    padding: 2px 8px;
+    border: none;
+    border-radius: 16px 16px 16px 0px !important;
+  }
+
+  &.debt-status {
+    .status-tag {
+      color: $debtColor;
+      background-color: #fff0f6;
+    }
+    .status-text strong {
+      color: $debtColor !important;
+    }
+  }
+
+  &.paid-status {
+    .status-tag {
+      color: $overpaidColor;
+      background-color: #f6ffed;
+    }
+    .status-text strong {
+      color: $overpaidColor !important;
+    }
+  }
+}
+
+.ant-modal {
+  container-type: inline-size;
+
+  .payment__current-info-card {
+    border: none;
+    &::after,
+    &::before {
+      content: none;
+    }
+
+    .ant-card-body {
+      padding: 0;
+
+      .card-content {
+        align-items: flex-end;
+      }
+    }
+  }
+
+  .ant-steps {
+    .ant-card {
+      margin-bottom: 24px;
+
+      .ant-card-body {
+        padding: 14px 16px;
+      }
+    }
+
+    .ant-steps-item-title {
+      width: 100%;
+    }
+  }
+}
+
+.dark-theme {
+  .payment__card {
+    background-color: #141414 !important;
+
+    .overall-payment-amount {
+      span,
+      strong {
+        color: #fff;
+      }
+
+      h2 + span {
+        color: #ffffff73 !important;
+      }
+    }
+
+    .payment__current-info-card {
+      span {
+        color: #ffffff73 !important;
+      }
+
+      strong {
+        color: #ffffffd9 !important;
+      }
+
+      h3 {
+        span {
+          color: #fff !important;
+        }
+      }
+
+      .ant-tag {
+        strong {
+          color: $overpaidColor !important;
+        }
+      }
+    }
+
+    path {
+      fill: #fff;
+    }
+
+    .payment__overall-info-card {
+      background: linear-gradient(
+        90deg,
+        rgba(158, 114, 186, 0.08) 29.83%,
+        rgba(214, 92, 103, 0.08) 56.87%,
+        rgba(214, 99, 92, 0.08) 72.11%
+      ) !important;
+
+      strong {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .status-check {
+    &.debt-status {
+      .status-tag {
+        background-color: #fff0f6;
+      }
+    }
+
+    &.paid-status {
+      .status-tag {
+        background-color: #162312 !important;
+      }
+    }
+  }
+
+  .contract__card {
+    &::after {
+      background-color: #000 !important;
+    }
+  }
+}
+
+@keyframes makeAppearAndMove {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes makeAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

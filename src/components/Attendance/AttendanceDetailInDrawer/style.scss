@@ -1,0 +1,38 @@
+.attendance-detail-in-drawer {
+  .dashboard__details-list {
+    & > * {
+      font-size: 10pt;
+    }
+  }
+
+  .ant-divider {
+    span {
+      color: #9d9d9d;
+    }
+  }
+
+  .subject-type {
+    & > .ant-flex {
+      column-gap: 8px;
+      row-gap: 3px;
+    }
+
+    .dashboard__details-list {
+      margin-left: auto;
+    }
+  }
+
+  .dashed-list {
+    row-gap: 10px !important;
+
+    .list__value {
+      width: auto;
+    }
+
+    @media screen and (max-width: 220px) {
+      .list__row {
+        flex-direction: column !important;
+      }
+    }
+  }
+}

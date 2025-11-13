@@ -1,0 +1,126 @@
+$lightText: rgba(
+  $color: #000,
+  $alpha: 0.65,
+);
+$boldText: #000;
+
+.task-card {
+  cursor: pointer;
+  box-shadow: 0px 3px 2px 0px #00000008;
+  min-width: 250px;
+
+  &:hover {
+    .task__header {
+      .details-btn {
+        background-color: #1677ff !important;
+
+        span {
+          svg {
+            fill: #fff !important;
+            path {
+              fill: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > div {
+    padding: 12px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .task__header {
+    strong {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 22px;
+      color: $boldText;
+    }
+    span {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: $lightText;
+    }
+
+    .details-btn {
+      width: 18px;
+      height: 18px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+      transition: background-color 0.4s ease;
+
+      .span {
+        svg {
+          fill: #000;
+          path {
+            fill: inherit;
+          }
+        }
+      }
+    }
+  }
+
+  .task__body {
+    .status-tag,
+    .mark-tag {
+      padding: 1px 8px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      margin: 0;
+
+      &.bg-important {
+        background: radial-gradient(
+            98.78% 280.22% at 100% 0%,
+            #fcab14 0%,
+            #fa6641 15.91%,
+            #be40c0 40.21%,
+            rgba(80, 90, 221, 0) 100%
+          ),
+          radial-gradient(
+            107.24% 195.45% at 0% 100%,
+            #48cce0 0%,
+            #428beb 28.85%,
+            #505add 60.18%
+          );
+        border-radius: 4px;
+        border: none;
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        padding: 1px 8px;
+      }
+    }
+
+    .task-info {
+      margin-left: auto;
+      span {
+        color: $lightText;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+      }
+
+      .deadline-wrapper {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        font-size: 12px;
+        line-height: 16px;
+
+        .deadline-time {
+          font-weight: 600;
+          color: $boldText;
+        }
+      }
+    }
+  }
+}

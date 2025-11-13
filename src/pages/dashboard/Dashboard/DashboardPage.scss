@@ -1,0 +1,174 @@
+.dashboard__outlet {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  &:has(.swiper-wrapper) {
+    row-gap: 12px;
+  }
+
+  .dashboard__title {
+    .dashboard-controls {
+      gap: 16px;
+      .settings-btn {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          left: -8px;
+          bottom: 0;
+          height: 32px;
+          width: 1px;
+          background-color: #e6e6e6;
+        }
+        .ant-btn-icon {
+          width: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &--content {
+    .dashboard__card-wrapper {
+      display: flex;
+      column-gap: 24px;
+      row-gap: 24px;
+      align-items: stretch;
+
+      .ant-tag {
+        border: none;
+      }
+
+      .dashboard__card {
+        min-width: 316px;
+        flex: 1;
+        height: 500px;
+
+        .ant-empty {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        @media screen and (max-width: 1320px) {
+          height: auto;
+        }
+
+        & > .ant-card-body {
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          row-gap: 16px;
+          height: 100%;
+
+          &::after,
+          &::before {
+            content: none;
+          }
+
+          .details-btn {
+            width: 18px;
+            height: 18px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+
+            .span {
+              color: #000;
+            }
+          }
+
+          .card__header {
+            h4 {
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 28px;
+              margin: 0;
+            }
+          }
+
+          .card__body:not(.attendances__body) {
+            max-height: 400px;
+            min-height: 150px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #1677ff6e #4096ff0f;
+          }
+        }
+
+        &.attendances {
+          .ant-card-body {
+            row-gap: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dashboard__body {
+  @container (max-width: 730px) {
+    .dashboard__outlet {
+      &--content {
+        .dashboard__card-wrapper {
+          .dashboard__card {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+
+  @container (max-width: 376px) {
+    .dashboard__card-wrapper {
+      .dashboard__card {
+        min-width: 150px !important;
+
+        .task-card {
+          min-width: 100px !important;
+        }
+      }
+    }
+  }
+}
+
+.control-cards {
+  padding: 10px 0;
+
+  &.draggable > .control-card {
+    border: 1px dashed #0000008f;
+    cursor: move;
+    position: relative;
+    min-height: 80px;
+
+    &:hover,
+    &:active {
+      box-shadow: 0 0 10px #0000008f;
+    }
+  }
+
+  .control-card {
+    .ant-card-body {
+      padding: 16px !important;
+    }
+  }
+}
+
+.dark-theme {
+  .control-cards {
+    &.draggable > .control-card {
+      border: 1px dashed #ffffff68;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.dark-theme {
+  .attendances__active-day {
+    background-color: #000 !important;
+    color: #ffffff73 !important;
+  }
+
+  .attendances__body {
+    strong {
+      color: #fff !important;
+    }
+    span {
+      color: #ffffffd9 !important;
+    }
+  }
+}

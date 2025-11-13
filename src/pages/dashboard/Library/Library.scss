@@ -1,0 +1,261 @@
+.library {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  container-type: inline-size;
+
+  &__header {
+    column-gap: 25px;
+    row-gap: 12px;
+
+    & > * {
+      &.ant-image {
+        max-width: 106px;
+        min-width: 106px;
+        flex: 1;
+        width: 100%;
+        margin: auto;
+      }
+
+      &.ant-segmented {
+        width: max-content;
+        margin: auto;
+        max-width: 100%;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #a8a8a85d transparent;
+      }
+
+      &.ant-input-search {
+        min-width: 150px;
+        flex: 1;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+      }
+    }
+  }
+
+  .library__resources-wrapper {
+    padding: 0 24px 50px 24px;
+    min-height: 300px;
+
+    .library__resources {
+      flex: 1;
+      justify-content: space-between;
+
+      .resource-cards {
+        flex: 1;
+      }
+    }
+
+    .ant-image:has(.book-loading) {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .resource-card {
+      width: calc(16% - 15px);
+      min-width: 120px;
+      cursor: pointer;
+      box-shadow:
+        0px 9px 28px 8px #0000000d,
+        0px 3px 6px -4px #0000001f,
+        0px 6px 16px 0px #00000014;
+
+      &.inactive-book {
+        .ant-image {
+          filter: grayscale(1);
+        }
+      }
+
+      .ant-tag {
+        border: none;
+      }
+
+      .ant-image:has(.book-cover-img) {
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          top: -200px;
+          left: -200px;
+          width: 200px;
+          height: 200px;
+          background: rgba(14, 179, 201, 0.35);
+          box-shadow: 0 4px 8px 0 rgba(31, 97, 135, 0.37);
+          backdrop-filter: blur(3px);
+          -webkit-backdrop-filter: blur(3px);
+          border-radius: 50%;
+          z-index: 3;
+          transition: all 1.2s ease;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -150px;
+          right: -150px;
+          width: 150px;
+          height: 150px;
+          background: rgba(200, 8, 82, 0.35);
+          box-shadow: 0 -4px 8px 0 rgba(135, 31, 85, 0.37);
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
+          border-radius: 50%;
+          z-index: 3;
+          transition: all 0.8s ease;
+        }
+
+        .book-cover-img {
+          transition: transform 1s ease;
+        }
+      }
+
+      &:hover,
+      &:active {
+        .ant-image:has(.book-cover-img) {
+          &::before {
+            top: -100px;
+            left: -100px;
+          }
+          &::after {
+            bottom: -75px;
+            right: -75px;
+          }
+          .book-cover-img {
+            transform: scale(1.3) rotate(8deg);
+          }
+        }
+      }
+
+      @container (max-width: 1500px) {
+        width: calc(25% - 20px);
+      }
+      @container (max-width: 1100px) {
+        width: calc(33% - 16px);
+      }
+      @container (max-width: 800px) {
+        width: calc(50% - 14px);
+      }
+      @container (max-width: 500px) {
+        width: 100%;
+      }
+
+      .ant-tag {
+        margin: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .ant-card-body {
+        padding: 0;
+        height: 100%;
+
+        .ant-image {
+          min-height: 250px;
+          max-height: 250px;
+          height: 100%;
+          overflow: hidden;
+          border-radius: 8px 8px 0 0;
+          height: 100%;
+          flex-grow: 1;
+
+          &-img {
+            height: 100%;
+          }
+        }
+
+        & > .ant-flex {
+          height: 100%;
+
+          .resource-card__body {
+            padding: 12px 10px;
+            height: 100%;
+
+            .tags {
+              .ant-tag {
+                font-size: 8pt;
+              }
+            }
+          }
+        }
+      }
+
+      .authors-list {
+        .ant-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .anticon {
+            font-size: 9px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ant-drawer-body:has(.book-resource-in-drawer) {
+  container-type: inline-size;
+
+  .book-resource-in-drawer {
+    overflow-x: hidden;
+
+    @container (max-width: 250px) {
+      .book-header {
+        flex-direction: column;
+      }
+    }
+
+    .ant-image:has(.book-cover-img) {
+      border-radius: 6px;
+      overflow: hidden;
+      max-width: 60px;
+      min-width: 60px;
+
+      .book-cover-img {
+        width: 100%;
+      }
+    }
+
+    .ant-flex:has(.book-name) {
+      max-width: 100%;
+    }
+
+    .dashboard__details-list {
+      .anticon {
+        font-size: 12pt;
+      }
+    }
+
+    .expand-btn {
+      width: auto;
+      margin-right: auto;
+      padding: 3px 0;
+    }
+
+    .dashed-list {
+      .list__value {
+        width: auto;
+      }
+
+      @container (max-width: 200px) {
+        .list__row {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+.dark-theme {
+  .library {
+    background-color: #141414;
+  }
+}

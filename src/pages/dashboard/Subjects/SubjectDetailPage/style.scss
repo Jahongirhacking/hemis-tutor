@@ -1,0 +1,48 @@
+.subject__tabs {
+  .ant-tabs-nav {
+    margin: 0;
+
+    .ant-tabs-tab {
+      &:not(.ant-tabs-tab-active) {
+        background-color: transparent;
+      }
+    }
+  }
+  .ant-tabs-content-holder {
+    background-color: #fff;
+    border-radius: 0 8px 8px 8px;
+    padding: 24px 16px;
+
+    .ant-segmented {
+      width: fit-content;
+    }
+
+    .ant-table {
+      overflow-x: auto;
+
+      table {
+        min-width: 250px;
+      }
+    }
+  }
+}
+
+.dashboard__body {
+  @container (max-width: 670px) {
+    .subject-res_num_files-column {
+      display: none;
+    }
+  }
+
+  @container (max-width: 430px) {
+    .subject__tabs {
+      .ant-tabs-content-holder {
+        padding: 12px 8px;
+
+        .task-card {
+          min-width: 200px !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.attendance-board {
+  width: 100%;
+
+  .ant-skeleton {
+    width: 100%;
+
+    .ant-skeleton-button {
+      width: 100%;
+      min-width: auto !important;
+      border-radius: 8px !important;
+    }
+  }
+
+  .attendances__absent-info {
+    span {
+      color: #00000073 !important;
+    }
+  }
+}
+
+.dark-theme {
+  .attendances__absent-info {
+    span {
+      color: #ffffff73 !important;
+    }
+  }
+}

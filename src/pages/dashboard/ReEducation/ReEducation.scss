@@ -1,0 +1,16 @@
+// @import '../main.scss';
+
+.reeducation {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  .ant-tabs-content-holder {
+    min-height: max(calc(100dvh - 300px), 150px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+}

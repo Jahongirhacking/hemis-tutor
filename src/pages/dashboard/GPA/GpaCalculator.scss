@@ -1,0 +1,78 @@
+.gpa-calculator {
+  .grade-item-card {
+    .ant-card-body {
+      padding: 12px;
+
+      .subject-name {
+        flex: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+
+  .subject-list {
+    max-height: min(410px, 60dvh);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(22, 119, 255, 0.431372549)
+      rgba(64, 150, 255, 0.0588235294);
+    padding: 15px 8px 15px 5px;
+    border: 2px solid rgba(22, 119, 255, 0.431372549);
+    border-radius: 8px;
+  }
+
+  .gpa-result {
+    .ant-tag {
+      font-size: 13pt;
+      padding: 6px 12px;
+      text-align: center;
+    }
+  }
+
+  .marking-system-types {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+
+    .ant-radio-wrapper {
+      border: 1px solid #b8b8b844;
+      padding: 3px;
+      margin: 0;
+      border-radius: 50px;
+
+      &-checked {
+        background-color: rgba(0, 140, 255, 0.144);
+      }
+
+      span {
+        line-height: inherit;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .ant-table {
+    .credit-column {
+      min-width: 70px;
+    }
+    .grade-column {
+      min-width: 75px;
+    }
+    .multiply-column {
+      min-width: 60px;
+    }
+
+    * {
+      scrollbar-width: thin;
+    }
+  }
+}
+
+.ant-drawer-content-wrapper:has(.gpa-calculator) {
+  width: min(500px, 100%) !important;
+}

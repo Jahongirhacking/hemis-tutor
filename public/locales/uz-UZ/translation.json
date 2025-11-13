@@ -1,0 +1,489 @@
+{
+    "const": {
+        "day": "Kun",
+        "week": "Hafta",
+        "month": "Oy",
+        "hours_plural": "soat",
+        "hours_singular": "soat",
+        "today": "Bugun",
+        "credit_plural": "kredit",
+        "credit_singular": "kredit",
+        "tasks": "Topshiriqlar",
+        "resources": "Resurslar",
+        "thematic_tests": "Mavzulashtirilgan testlar",
+        "title": "Sarlavha",
+        "number_of_files": "Fayllar soni",
+        "actions": "Amallar",
+        "all": "Barchasi",
+        "not_found": "topilmadi",
+        "more_info": "Ko'proq ma'lumot",
+        "curriculum": "O‘quv reja",
+        "control_table": "Nazorat jadvali",
+        "appropriation": "O‘zlashtirish",
+        "gradebook": "Reyting daftarcha",
+        "exams": "Imtihonlar",
+        "subjects": "Fanlar",
+        "subject": "Fan",
+        "subject_type": "Fan turi",
+        "acload": "Yuklama",
+        "semester": "Semestr",
+        "close": "Yopish",
+        "subject_info": "Fan ma'lumotlari",
+        "teacher": "O'qituvchi",
+        "auditorium": "Auditoriya",
+        "control_data": "Nazorat ma'lumotlari",
+        "year_number": "{{year}}-yil",
+        "current_exam": "Joriy nazorat",
+        "midterm_exam": "Oraliq nazorat",
+        "final_exam": "Yakuniy",
+        "overall": "Umumiy",
+        "rating_score": "Reyting / Ball",
+        "mark": "Baho",
+        "in_detail": "Batafsil",
+        "staff": "Xodim",
+        "lesson_date": "Dars sanasi",
+        "training": "Mashg'ulot",
+        "explicable": "sababli",
+        "not_explicable": "sababsiz",
+        "no": "Yo'q",
+        "yes": "Ha",
+        "order": "Buyruq",
+        "document": "Hujjat",
+        "reference": "Ma’lumotnoma",
+        "academic_year": "O‘quv yili",
+        "course": "Kurs",
+        "file": "Fayl",
+        "download": "Yuklab olish",
+        "application": "Ariza",
+        "time_table": "Dars jadvali",
+        "save": "Saqlash",
+        "cancel": "Bekor qilish",
+        "edit": "Tahrirlash",
+        "firstname": "Ism",
+        "lastname": "Familiya",
+        "login": "Login",
+        "email": "Email",
+        "phone_number": "Telefon raqami",
+        "passport_number": "Pasport raqami",
+        "for_communication": "A'loqa uchun",
+        "password": "Parol",
+        "please": "Iltimos",
+        "academic_parameters": "O‘quv parametrlari",
+        "contract_payment": "Kontrakt to’lovi",
+        "student_dormitory": "Talabalar turar joyi",
+        "see": "Ko’rish",
+        "send": "Yuborish",
+        "search": "Qidirish",
+        "clean": "Tozalash",
+        "number_of": "{{name}} soni",
+        "number_count": "{{number}} ta",
+        "pairs_left": "Qoldirilgan darslar",
+        "marks": "Baholar",
+        "info": "Ma'lumot",
+        "score": "ball",
+        "sorry": "Kechirasiz",
+        "back_to_section": "{{section}} bo‘limiga qaytish",
+        "added": "Qo‘shilgan",
+        "add": "Qo‘shish",
+        "settings": "Sozlamalar",
+        "profile": "Profil",
+        "personal_info": "Shaxsiy ma’lumotlar",
+        "system_settings": "Tizim sozlamalari",
+        "not_calculated": "Hisoblanmagan",
+        "passport_info": "Pasport ma'lumoti",
+        "patronymic": "Otasining ismi",
+        "birth_date": "Tug‘ilgan sana",
+        "gender": "Jins",
+        "education_info": "Ta’lim ma’lumoti",
+        "expertise": "Mutaxassislik",
+        "faculty": "Fakultet",
+        "group": "Guruh",
+        "payment_form": "To‘lov shakli",
+        "education_type": "Ta’lim turi",
+        "education_form": "Ta’lim shakli",
+        "permanent_address_info": "Doimiy manzil ma'lumotlari",
+        "country": "Davlat",
+        "region": "Viloyat",
+        "district": "Tuman",
+        "home_address": "Uy manzili",
+        "current_address_info": "Joriy manzil ma'lumotlari",
+        "place_of_residence": "Yashash joyi",
+        "student_phone": "Talaba telefoni",
+        "additional_info": "Qo‘shimcha ma’lumotlar",
+        "social_class": "Ijtimoiy toifa",
+        "languages": "Tillar",
+        "language": "Til",
+        "change_language_settings": "Til sozlamalarini o‘zgartirish",
+        "theme": "Mavzu",
+        "change_theme_settings": "Tizim mavzusini o‘zgartirish",
+        "light": "Yorug’",
+        "dark": "Qorong’u",
+        "literature": "Adabiyotlar",
+        "articles": "Maqolalar",
+        "dissertations": "Dissertatsiyalar",
+        "monographs": "Monografiyalar",
+        "journals": "Jurnallar",
+        "downloading": "Yuklab olinmoqda...",
+        "keywords": "Kalit so’zlar",
+        "read_more": "Ko’proq o’qish",
+        "read_less": "Kamroq o’qish",
+        "category": "Kategoriya",
+        "type": "Tur",
+        "field": "Soha",
+        "type_of_file": "Fayl turi",
+        "total": "Jami",
+        "channel": "kanal",
+        "bot": "bot",
+        "building": "Bino",
+        "department": "Bo’lim",
+        "interval": "Interval",
+        "minute": "daqiqa",
+        "gpa_method": "GPA usuli",
+        "debt": "Qarz",
+        "total_gpa": "Umumiy GPA",
+        "annual_gpa": "Yillik GPA",
+        "main": "Asosiy",
+        "status": "Holat",
+        "attended": "qatnashilgan",
+        "waiting": "kutilmoqda",
+        "in_process": "jarayonda",
+        "enter_via_other_method": "Boshqa usul orqali kirish",
+        "contract": "Shartnoma",
+        "choose": "Tanlash",
+        "last_update_time": "Oxirgi yangilanish vaqti",
+        "uzs": "so‘m",
+        "fullname": "F.I.SH",
+        "pinfl": "JSHSHIR",
+        "information_on_education_credit": "Ta’lim krediti ma'lumotlari",
+        "check": "Tekshirish",
+        "bank_name": "Bank nomi",
+        "edu_loan_sum": "Ta’lim krediti summasi",
+        "comment": "Izoh",
+        "bank_number": "Bank raqami",
+        "daily_grades": "Kunlik baholar",
+        "average_daily_grade": "O’rtacha kunlik baho",
+        "by_science": "Fanlar kesimida",
+        "useful": "Foydali",
+        "aside": "Yon",
+        "bottom": "Pastki",
+        "menu": "Menyu",
+        "change_menu_settings": "Menyu ko‘rinishini o‘zgartirish",
+        "problem_with_server": "server bilan muammo",
+        "try_again_later": "keyinroq urinib ko'ring",
+        "statistics": "Statistika",
+        "certificate_id": "ID Guvohnomasi",
+        "student": "Talaba",
+        "wait": "Kutish",
+        "certificates": "Sertifikatlar",
+        "avg_gpa": "O‘rtacha GPA",
+        "attendance": "Davomat",
+        "gpa_appropriation": "GPA va o‘zlashtirish",
+        "recommended_courses": "Tavsiyaviy kurslar",
+        "plagiarism": "Plagiat tekshiruvi",
+        "financial_state": "Moliyaviy holat",
+        "discuss": "Muhokama qilish",
+        "active": "Faol",
+        "inactive": "Nofaol",
+        "start": "Boshlash",
+        "exam_interval": "Imtihon davri",
+        "question": "savol",
+        "attempt": "urinish",
+        "time": "Vaqt",
+        "questions": "Savollar"
+    },
+    "exam": {
+        "retry_title": "Testni qayta topshirasizmi?",
+        "retry_message": "<span>Siz ushbu testni avvalroq <strong>{{percent}}%</strong> natija bilantopshirgansiz.</span> <span>Testni qaytadan topshirmoqchi bo'lsangiz <strong>Davom etish</strong> tugmasini bosing, lekin bunda oldingi natijangiz bekor qilinadi. <br/><br/><hr /><br/>Agar <strong>Boshlash</strong> tugmasini tasodifan bosgan bo'lsangiz testni yechmasdan <strong>Bekor qilish</strong> tugmasini bosing. Shu holatda sizning avvalgi natijalaringiz saqlanadi.</span>",
+        "try_title": "Testni boshlashga tayyormisiz?",
+        "try_message": "<strong>Davom etish</strong> tugmasini bosganingizda tizim sizni imtihon sahifasiga o'tkazadi. Imtihon uchun sizga {{questionCount}} ta savol va {{durationMinutes}} daqiqa vaqt beriladi",
+        "finish_title": "Imtihonni yakunlamoqchimisiz?",
+        "finish_message": "Davom etish tugmasini bosish orqali siz belgilagan javoblaringizni tekshiruv uchun yuborasiz va imtihonni yakunlaganingizni tasdiqlagan hisoblanasiz"
+    },
+    "login": {
+        "root": {
+            "extra_options_text": "Qo’shimcha imkoniyatlar"
+        },
+        "extra_options": {
+            "cancel_password_text": "Parolni bekor qilish",
+            "check_diplom_text": "Diplom tekshirish",
+            "get_contract_text": "Shartnoma olish",
+            "statistics_dashboard_text": "Statistika dashbordi",
+            "login_text": "Kirish"
+        },
+        "steps": [
+            "Oliy ta’lim muassasasi",
+            "ID va parol"
+        ],
+        "university_form": {
+            "title": "Qaysi oliy ta’lim muassasasida o‘qiysiz?",
+            "input_placeholder": "Oliy ta’lim muassasasini tanlang",
+            "button_text": "Davom etish"
+        },
+        "student_form": {
+            "title": "Talaba ID va parolni kiriting",
+            "login_label": "Talaba ID",
+            "login_placeholder": "Loginni kiriting",
+            "password_label": "Parol",
+            "password_placeholder": "Parolni kiriting",
+            "remember_text": "Eslab qolish",
+            "button_text": "Kirish"
+        },
+        "success_message_text": "Siz tizimga muvaffaqiyatli kirdingiz!"
+    },
+    "cancel_password": {
+        "steps": [
+            {
+                "name": "1-qadam",
+                "title": "Foydalanuvchining ID kodi yoki loginini kiriting",
+                "input_label": "ID kodi",
+                "input_placeholder": "ID kodni kiriting",
+                "button_text": "Davom etish"
+            },
+            {
+                "name": "2-qadam",
+                "title": "Elektron pochtaga yoki telefonga yuborilgan PIN kodni kiriting",
+                "input_label": "PIN kod",
+                "input_placeholder": "PIN kodni kiriting",
+                "button_text": "Davom etish"
+            }
+        ]
+    },
+    "get_diplom": {
+        "title": "JSHSHIR ni kiriting",
+        "input_label": "JSHSHIR",
+        "input_placeholder": "JSHSHIR ni kiriting",
+        "code_label": "Tekshiruv kodi",
+        "code_placeholder": "Tekshiruv kodini kiriting",
+        "button_text": "Yuklab olish"
+    },
+    "get_contract": {
+        "title": "JSHSHIR ni kiriting",
+        "input_label": "JSHSHIR",
+        "input_placeholder": "JSHSHIR ni kiriting",
+        "code_label": "Tekshiruv kodi",
+        "code_placeholder": "Tekshiruv kodini kiriting",
+        "button_text": "Yuklab olish"
+    },
+    "dashboard": {
+        "expired_token_text": "Faollik muddati tugadi. Iltimos tizimga qaytadan kiring!",
+        "notifications_text": "Bildirishnomalar",
+        "navbar": {
+            "navbarList": [
+                "Dashboard",
+                "Dars jadvali",
+                "Fanlar",
+                "O‘quv parametrlari",
+                "Davomat",
+                "Moliyaviy to‘lov",
+                "Qayta o‘qish",
+                "Hujjatlar",
+                "Elektron kutubxona"
+            ],
+            "navbarBottom": [
+                "Sozlamalar",
+                "Yordam & yo‘riqnoma",
+                "Chiqish"
+            ]
+        },
+        "dashboard_page": {
+            "title": "Dashboard",
+            "edit_cards_text": "Kartalarni tahrirlash",
+            "manage_cards_button_text": "Boshqaruv",
+            "drag_cards_text": "Kartalarni surish",
+            "card_names": [
+                "Topshiriqlar",
+                "Dars jadvali",
+                "O‘zlashtirish",
+                "Davomat"
+            ],
+            "tasks": {
+                "title": "Topshiriqlar",
+                "drawer_title": "Qo’shimcha imkoniyatlar",
+                "empty_text": "Topshiriq hozircha yo'q"
+            },
+            "schedules": {
+                "title": "Dars jadvali",
+                "empty_text": "Ushbu sanada darslar mavjud emas"
+            },
+            "appropriations": {
+                "title": "O‘zlashtirish",
+                "empty_text": "O‘zlashtirish ma'lumotlari topilmadi"
+            },
+            "attendances": {
+                "title": "Davomat",
+                "empty_text": "Davomat topilmadi"
+            }
+        },
+        "subjects_page": {
+            "title": "Fanlar",
+            "subject_detail": {
+                "empty_task": "Topshiriq qolmagan",
+                "task_types": [
+                    "Muhim topshiriqlar",
+                    "Yangi topshiriqlar",
+                    "Yuborilgan topshiriqlar",
+                    "Baholangan topshiriqlar",
+                    "Muddati o'tgan topshiriqlar"
+                ]
+            }
+        },
+        "eduplan": {
+            "daily_average_grade_warning": "Eslatma: o'rtacha kunlik bahoni hisoblash ayrim muassasalarda turlicha bo'lishi mumkin"
+        },
+        "documents_page": {
+            "tabs": [
+                "Buyruqlar",
+                "Ma’lumotnomalar",
+                "Talaba hujjati"
+            ],
+            "orders": {
+                "order_number": "Buyruq raqami",
+                "order_name": "Buyruq nomi",
+                "order_date": "Buyruq sanasi",
+                "order_type": "Buyruq turi"
+            },
+            "references": {
+                "reference_number": "Hujjat raqami",
+                "reference_date": "Hujjat sanasi"
+            },
+            "get_reference": "Ma’lumotnoma olish"
+        },
+        "settings": {
+            "profile": {
+                "title": "Profil",
+                "info": "{{university}}, {{faculty}}, {{specialty}} yo‘nalishi, {{course}} {{group}} guruhi talabasi",
+                "personal_info_text": "Shaxsiy ma’lumotlar",
+                "edit_password": "Parolni o’zgartirish"
+            }
+        },
+        "contract": {
+            "contract_number": "Shartnoma raqami",
+            "contract_date": "Shartnoma sanasi",
+            "contract_type": "Shartnoma turi",
+            "mfo_bank": "Bank MFO raqami",
+            "organization_account": "Tashkilot hisob raqami",
+            "organization_inn": "Tashkilot STIR raqami",
+            "contract_sum": "Shartnoma summasi",
+            "paid_sum": "To‘langan summa",
+            "total_debt": "Jami qarzdorlik",
+            "education_organization": "Ta'lim tashkiloti",
+            "paid_information_text": "Hurmatli, <strong>{{fullname}}</strong>, siz <strong>{{year}}</strong> o‘quv yili uchun <strong>{{amount}} so‘m</strong> to‘lov qildingiz.",
+            "debt_information_text": "Siz o’tgan o’quv yilidan {{amount}} so’m miqdorda qarzdorsiz.",
+            "overpaid_information_text": "Siz joriy o’quv yilidan {{amount}} so’m miqdorda haqdorsiz.",
+            "no_debts_text": "Xushxabar, sizda o’tgan o’quv yilidan qolgan qarzdorliklar yo’q!",
+            "rest_amount_text": "Yana jami <strong>{{amount}} so‘m</strong> to‘lashingiz kerak.",
+            "debt_from_prev_year": "O‘tgan o‘quv yilidan qarzdorlik",
+            "not_paid": "To‘lanmagan",
+            "paid": "to‘langan",
+            "contract_sum_text": "Joriy o‘quv yili uchun to'lov kontrakt summasi",
+            "total_amount_unpaid": "Jami to‘lanishi kerak bo‘lgan summa",
+            "grant_message": "siz davlat granti asosida tahsil olayotganingiz sababli, sizga to'lov-shartnoma asosida o'qish majburiyati yo'q. Bu imkoniyat sizning mehnatingiz va intilishingizning natijasidir. Endi siz butun e'tiboringizni faqat bilim olishga va o'zingizni rivojlantirishga qaratishingiz mumkin!"
+        }
+    },
+    "components": {
+        "task": {
+            "deadline_text": "Muddati",
+            "types": [
+                "Tezroq topshiring",
+                "Yangi",
+                "Yuborilgan",
+                "Baholangan",
+                "Muddati tugagan",
+                "Kutilmoqda"
+            ],
+            "task_in_drawer": {
+                "empty_text": "Topshiriq topilmadi",
+                "max_score_text": "Maks ball",
+                "score_text": "Ball",
+                "result_text": "Natija",
+                "task_info_title": "Topshiriq uchun",
+                "task_info_comment_text": "O’qituvchi izohi:",
+                "task_submit_title": "Siz yuklagan topshiriq"
+            }
+        },
+        "file_list": {
+            "download_text": "Yuklash"
+        },
+        "attendance": {
+            "attendance_board": {
+                "drawer_title": "Davomat",
+                "absent_text": "Qoldirgan",
+                "overall_info": "Jami {{time}}lik qoldirilgan dars soati"
+            },
+            "attendance_in_drawer": {
+                "no_schedule_text": "Ushbu kunda dars soatlar mavjud emas",
+                "empty_text": "Davomat ma'lumoti bo’sh",
+                "session_number": "{{session}}-para",
+                "percentage_info": "Foiz dars jadvali yangilanishi hisobiga o'zgarishi mumkin. Sababsiz qoldirilgan soatlar +25% bo'lsa, baho olishda cheklovlar keltirib chiqarishi mumkin"
+            }
+        },
+        "time_table": {
+            "title": "Dars jadvali",
+            "empty_text": "Fan topilmadi"
+        },
+        "soon_card": {
+            "text": "Tizimning bu qismi ishlab chiqish jarayonida..."
+        },
+        "sorting": {
+            "subject_name": "Fan nomi bo'yicha saralash",
+            "date": "Sana bo‘yicha saralash",
+            "academic_year": "O‘quv yili bo‘yicha saralash",
+            "ordinal_number": "Tartib raqam bo'yicha saralash"
+        },
+        "searching": {
+            "by_name": "Nomi bo'yicha qidirish"
+        },
+        "message": {
+            "save_data_success": "Ma'lumotingiz muvaffaqiyatli saqlandi!",
+            "save_data_error": "Ma'lumot kiritishda xatolik!",
+            "email_warning_text": "Iltimos, to'g'ri email kiriting!",
+            "phone_warning_text": "Iltimos, to'g'ri telefon raqam kiriting!",
+            "password_warning_text": "Parol kamida 8 ta belgi va kamida 1 ta harf va 1 ta raqamdan iborat bo'lishi kerak!",
+            "enter_password_text": "parolni kiriting",
+            "confirm_password_text": "parolni tasdiqlang",
+            "no_matching_password_text": "Parollar mos kelmadi!",
+            "upload_files_success_text": "Fayl muvaffaqiyatli yuklandi!",
+            "number_of_attempts_warning_text": "Siz faylni yuborish uchun berilgan barcha urinishlardan foydalanib bo'ldingiz",
+            "error_on_file_upload_text": "Faylni yuklashda xatolik",
+            "error_on_file_download_text": "Faylni yuklab olishda xatolik. Iltimos, internet tarmog'i tezligi yoki uzilmaganligini tekshiring.",
+            "max_number_of_files_warning_text": "Mumkin bo'lgan maksimal fayllar soni",
+            "max_size_of_files_warning_text": "Mumkin bo'lgan maksimal fayl hajmi",
+            "extensions_warning_text": "Fayl faqat {{extensions}} formatlarida qabul qilinadi",
+            "drag_drop_info": "Kartalarni bosib turib surish orqali ularning joylashuvini o‘zgartirishingiz mumkin"
+        },
+        "notification": {
+            "empty_text": "Sizda yangi bildirishnomalar yo‘q!"
+        },
+        "file_uploader": {
+            "max_number_of_files_text": "Maxsimal yuklanadigan fayllar soni",
+            "max_size_of_files_text": "Max fayl o‘lchami",
+            "max_size_of_overall_text": "Maxsimal yuklanadigan jami fayllar o‘lchami",
+            "upload_file_text": "Topshiriqni yuklash"
+        }
+    },
+    "help": {
+        "tg_group_info": "«MY.HEMIS.UZ» sayti bo‘yicha muhokama, savol-javob va takliflar uchun yaratilgan Telegram guruh",
+        "tg_channel_info": "HEMIS tizimi bo‘yicha yangiliklar va foydali ma‘lumotlar berib boriladigan Telegram kanal",
+        "tg_bot_info": "«MY.HEMIS.UZ» sayti texnik muammolarni bartaraf etish uchun ishlab chiqilgan Telegram bot",
+        "yt_channel_info": "HEMIS tizmi bo‘yicha video darslar va yo‘riqnomalar taqdim etiladigan YouTube kanal"
+    },
+    "off_topic": {
+        "qa_chat": "Savol-javob chat",
+        "famous_questions": "Quyidagi ko'p beriladigan savollardan birini tanlang",
+        "forget_password": "Parolni unutdim",
+        "forget_login": "Talaba IDni unutdim",
+        "about_find_login": "Talaba ID ya'ni login - faqatgina ta'lim olayotgan muassasangiz tomonidan sizga taqdim etiladi. Login 12 xonali faqat raqamlardan iborat son bo'lib, o'zingiz mustaqil yaratolmaysiz va shuningdek o'zgartirolmaysiz!",
+        "about_find_password_title": "Sizga ushbu 4 qadam bo'yicha tekshirishingizni maslahat beraman:",
+        "about_find_password_1": "Parolni bekor qilish uchun bosing",
+        "about_find_password_2": "Parol o'rniga pasport seriya va raqamingizni kiritib ko'ring. Masalan: AB0123456 ko'rinishida (katta harf va bo'shliq-probellarsiz)",
+        "about_find_password_3": "Oliy ta'lim muassasasini o'zgartirish uchun bosing",
+        "about_find_password_4": "O'qish joyingizdagi ma'sul xodim ya'ni dekanatdan login va parolingizni tiklab berishini so'rang",
+        "hemis_more_info": "HEMIS tizimi bo'yicha batafsil ma'lumot",
+        "no_response_server_title": "OTM Serveri bilan aloqa yaxshi emas!",
+        "no_response_server_content": "Kechirasiz, OTM serveridan ma'lumot olib kelish kechikmoqda. Tizimdan chiqmoqchimisiz?",
+        "restricted_university_warning": "Kechirasiz, sizning ushbu tizimdan foydalanish imkoniyatingiz cheklangan. Sizning taʼlim muassasangiz HEMIS axborot tiziming \"LITE\" versiyasidan foydalanadi. Siz bu tizimning to'liq imkoniyatlaridan foydalanishingiz uchun taʼlim muassasangiz HEMIS axborot tiziming \"FULL\" versiyasiga oʻtishi kerak. Iltimos taʼlim muassasangiz rahbariyatiga bu to'g'risida murojaat qiling!",
+        "restricted_profile_warning": "Kechirasiz, sizning ushbu tizimdan foydalanish imkoniyatingiz cheklangan. HEMIS tizimidan foydalanishingiz uchun sizning statusingiz o'qiyotgan yoki bitirgan holatida bo'lishi zarur!",
+        "tech_maintenance": "Ayni vaqtda saytning ushbu qismida texnik ishlar olib borilmoqda",
+        "contract_links_info": "Agar davlat OTM talabasi bo'lsangiz <a target='_blank' href='https://kontrakt.edu.uz/'>kontrakt.edu.uz</a>, nodavlat OTM talabasi bo'lsangiz <a target='_blank' href='https://shartnoma.edu.uz/'>shartnoma.edu.uz</a> tizimi orqali moliyaviy to'lovlaringiz haqida ma'lumot olishingiz mumkin"
+    }
+}

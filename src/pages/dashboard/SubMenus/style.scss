@@ -1,0 +1,19 @@
+.sub-menus {
+  .menu-link {
+    background-color: #fff;
+    padding: 15px 10px;
+    border-radius: 8px;
+
+    .anticon-right {
+      color: #8c8c8c;
+    }
+  }
+}
+
+.dark-theme {
+  .sub-menus {
+    .menu-link {
+      background-color: #141414;
+    }
+  }
+}

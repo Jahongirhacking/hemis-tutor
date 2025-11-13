@@ -1,0 +1,92 @@
+.attendance {
+  &__table {
+    min-height: max(100dvh - 250px, 150px);
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    overflow-x: auto;
+
+    .skeleton-container {
+      .ant-table-wrapper {
+        width: 100%;
+      }
+
+      .actions-skeleton {
+        width: 60px;
+        .ant-skeleton-input {
+          width: 100%;
+          background-color: rgb(22, 119, 255);
+          min-width: 100%;
+        }
+      }
+
+      .explicable-skeleton {
+        width: 40px;
+        .ant-skeleton-input {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+
+      .not-explicable-skeleton {
+        width: 40px;
+        .ant-skeleton-input {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+    }
+
+    .dashboard__details-list {
+      row-gap: 5px;
+      span {
+        font-size: 13px !important;
+      }
+    }
+
+    .ant-table-content {
+      overflow-x: auto;
+
+      table {
+        min-width: 200px;
+      }
+    }
+
+    .semester-name {
+      color: #8c8c8c;
+      & > * {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.dashboard__body {
+  @container (max-width: 400px) {
+    .ant-table-content table .attendance-date-column {
+      display: none;
+    }
+  }
+  @container (max-width: 500px) {
+    .ant-table-content table .attendance-type-column {
+      display: none;
+    }
+  }
+  @container (max-width: 650px) {
+    .ant-table-content table .attendance-explicable-column {
+      display: none;
+    }
+  }
+  @container (max-width: 800px) {
+    .ant-table-content table .attendance-employee-column {
+      display: none;
+    }
+  }
+}
+
+.dark-theme {
+  .attendance__table {
+    background-color: #141414;
+  }
+}

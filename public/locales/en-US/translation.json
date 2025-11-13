@@ -1,0 +1,489 @@
+{
+    "const": {
+        "day": "Day",
+        "week": "Week",
+        "month": "Month",
+        "hours_plural": "hours",
+        "hours_singular": "hour",
+        "today": "Today",
+        "credit_plural": "credits",
+        "credit_singular": "credit",
+        "tasks": "Tasks",
+        "resources": "Resources",
+        "thematic_tests": "Thematic tests",
+        "title": "Title",
+        "number_of_files": "Number of files",
+        "actions": "Actions",
+        "all": "All",
+        "not_found": "not found",
+        "more_info": "More information",
+        "curriculum": "Curriculum",
+        "control_table": "Control table",
+        "appropriation": "Appropriation",
+        "gradebook": "Gradebook",
+        "exams": "Exams",
+        "subjects": "Subjects",
+        "subject": "Subject",
+        "subject_type": "Subject type",
+        "acload": "Load",
+        "semester": "Semester",
+        "close": "Close",
+        "subject_info": "Subject information",
+        "teacher": "Teacher",
+        "auditorium": "Auditorium",
+        "control_data": "Control data",
+        "year_number": "Year {{year}}",
+        "current_exam": "Current exam",
+        "midterm_exam": "Midterm exam",
+        "final_exam": "Final exam",
+        "overall": "Overall",
+        "rating_score": "Rating / Score",
+        "mark": "Grade",
+        "in_detail": "In detail",
+        "staff": "Staff",
+        "lesson_date": "Lesson date",
+        "training": "Training",
+        "explicable": "absent on",
+        "not_explicable": "absent off",
+        "no": "No",
+        "yes": "Yes",
+        "order": "Decree",
+        "document": "Document",
+        "reference": "Reference",
+        "academic_year": "Academic year",
+        "course": "Course",
+        "file": "File",
+        "download": "Download",
+        "application": "Application",
+        "time_table": "Timetable",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "firstname": "First name",
+        "lastname": "Last name",
+        "login": "Login",
+        "email": "Email",
+        "phone_number": "Phone number",
+        "passport_number": "Passport number",
+        "for_communication": "For communication",
+        "password": "Password",
+        "please": "Please",
+        "academic_parameters": "Academic parameters",
+        "contract_payment": "Contract payment",
+        "student_dormitory": "Student dormitory",
+        "see": "See",
+        "send": "Send",
+        "search": "Search",
+        "clean": "Clean",
+        "number_of": "Number of {{name}}",
+        "number_count": "{{number}}",
+        "pairs_left": "missed lessons",
+        "marks": "Marks",
+        "info": "Information",
+        "score": "score",
+        "sorry": "Sorry",
+        "back_to_section": "Back to {{section}} section",
+        "added": "Added",
+        "add": "Add",
+        "settings": "Settings",
+        "profile": "Profile",
+        "personal_info": "Personal information",
+        "system_settings": "System settings",
+        "not_calculated": "Not calculated",
+        "passport_info": "Passport information",
+        "patronymic": "Father's name",
+        "birth_date": "Date of birth",
+        "gender": "Gender",
+        "education_info": "Education information",
+        "expertise": "Specialization",
+        "faculty": "Faculty",
+        "group": "Group",
+        "payment_form": "Payment form",
+        "education_type": "Education type",
+        "education_form": "Education form",
+        "permanent_address_info": "Permanent address information",
+        "country": "Country",
+        "region": "Region",
+        "district": "District",
+        "home_address": "Home address",
+        "current_address_info": "Current address information",
+        "place_of_residence": "Place of residence",
+        "student_phone": "Student phone",
+        "additional_info": "Additional information",
+        "social_class": "Social class",
+        "languages": "Languages",
+        "language": "Language",
+        "change_language_settings": "Change language settings",
+        "theme": "Theme",
+        "change_theme_settings": "Change theme settings",
+        "light": "Light",
+        "dark": "Dark",
+        "literature": "Literature",
+        "articles": "Articles",
+        "dissertations": "Dissertations",
+        "monographs": "Monographs",
+        "journals": "Journals",
+        "downloading": "Downloading...",
+        "keywords": "Keywords",
+        "read_more": "Read more",
+        "read_less": "Read less",
+        "category": "Category",
+        "type": "Type",
+        "field": "Field",
+        "type_of_file": "File type",
+        "total": "Total",
+        "channel": "channel",
+        "bot": "bot",
+        "building": "Building",
+        "department": "Department",
+        "interval": "Interval",
+        "minute": "minutes",
+        "gpa_method": "GPA method",
+        "debt": "Debt",
+        "total_gpa": "Total GPA",
+        "annual_gpa": "Annual GPA",
+        "main": "Main",
+        "status": "status",
+        "attended": "attended",
+        "waiting": "waiting",
+        "in_process": "in process",
+        "enter_via_other_method": "Login by another method",
+        "contract": "Contract",
+        "choose": "Choose",
+        "last_update_time": "Last update time",
+        "uzs": "UZS",
+        "fullname": "Fullname",
+        "pinfl": "PINFL",
+        "information_on_education_credit": "Education loan information",
+        "check": "Check",
+        "bank_name": "Bank name",
+        "edu_loan_sum": "Education loan amount",
+        "comment": "Comment",
+        "bank_number": "Bank number",
+        "daily_grades": "Daily grades",
+        "average_daily_grade": "Average daily grade",
+        "by_science": "By science",
+        "useful": "Useful",
+        "aside": "Aside",
+        "bottom": "Bottom",
+        "menu": "Menu",
+        "change_menu_settings": "Change the menu view",
+        "problem_with_server": "problem with the server",
+        "try_again_later": "try again later",
+        "statistics": "Statistics",
+        "certificate_id": "ID Card",
+        "student": "Student",
+        "wait": "Wait",
+        "certificates": "Certificates",
+        "avg_gpa": "Average GPA",
+        "attendance": "Attendance",
+        "gpa_appropriation": "GPA and Academic Performance",
+        "recommended_courses": "Recommended Courses",
+        "plagiarism": "Plagiarism Check",
+        "financial_state": "Financial Status",
+        "discuss": "Discuss",
+        "active": "Active",
+        "inactive": "Inactive",
+        "start": "Start",
+        "exam_interval": "Exam period",
+        "question": "question",
+        "attempt": "attempt",
+        "time": "Time",
+        "questions": "Questions"
+    },
+    "exam": {
+        "retry_title": "Do you want to retake the test?",
+        "retry_message": "<span>You have previously taken this test with a result of <strong>{{percent}}%</strong>.</span> <span>If you want to retake the test, click the <strong>Continue</strong> button, but note that your previous result will be canceled. <br/><br/><hr /><br/>If you clicked the <strong>Start</strong> button by mistake, click the <strong>Cancel</strong> button without solving the test. In this case, your previous results will be saved.</span>",
+        "try_title": "Are you ready to start the test?",
+        "try_message": "When you click the <strong>Continue</strong> button, the system will take you to the exam page. You will have {{questionCount}} questions and {{durationMinutes}} minutes for the exam.",
+        "finish_title": "Do you want to finish the exam?",
+        "finish_message": "By clicking the <strong>Continue</strong> button, you send your selected answers for review and confirm that you have completed the exam."
+    },
+    "login": {
+        "root": {
+            "extra_options_text": "Additional features"
+        },
+        "extra_options": {
+            "cancel_password_text": "Cancel password",
+            "check_diplom_text": "Check diploma",
+            "get_contract_text": "Get contract",
+            "statistics_dashboard_text": "Statistics dashboard",
+            "login_text": "Login"
+        },
+        "steps": [
+            "Higher education institution",
+            "ID and password"
+        ],
+        "university_form": {
+            "title": "Which higher education institution do you study at?",
+            "input_placeholder": "Select higher education institution",
+            "button_text": "Continue"
+        },
+        "student_form": {
+            "title": "Enter Student ID and password",
+            "login_label": "Student ID",
+            "login_placeholder": "Enter login",
+            "password_label": "Password",
+            "password_placeholder": "Enter password",
+            "remember_text": "Remember me",
+            "button_text": "Login"
+        },
+        "success_message_text": "You have successfully logged in!"
+    },
+    "cancel_password": {
+        "steps": [
+            {
+                "name": "Step 1",
+                "title": "Enter user ID code or login",
+                "input_label": "ID code",
+                "input_placeholder": "Enter ID code",
+                "button_text": "Continue"
+            },
+            {
+                "name": "Step 2",
+                "title": "Enter the PIN code sent to your email or phone",
+                "input_label": "PIN code",
+                "input_placeholder": "Enter PIN code",
+                "button_text": "Continue"
+            }
+        ]
+    },
+    "get_diplom": {
+        "title": "Enter JSHSHIR",
+        "input_label": "JSHSHIR",
+        "input_placeholder": "Enter JSHSHIR",
+        "code_label": "Verification code",
+        "code_placeholder": "Enter verification code",
+        "button_text": "Download"
+    },
+    "get_contract": {
+        "title": "Enter JSHSHIR",
+        "input_label": "JSHSHIR",
+        "input_placeholder": "Enter JSHSHIR",
+        "code_label": "Verification code",
+        "code_placeholder": "Enter verification code",
+        "button_text": "Download"
+    },
+    "dashboard": {
+        "expired_token_text": "Session expired. Please log in again!",
+        "notifications_text": "Notifications",
+        "navbar": {
+            "navbarList": [
+                "Dashboard",
+                "Timetable",
+                "Subjects",
+                "Academic parameters",
+                "Attendance",
+                "Financial payment",
+                "Re-study",
+                "Documents",
+                "E-Library"
+            ],
+            "navbarBottom": [
+                "Settings",
+                "Help & instructions",
+                "Logout"
+            ]
+        },
+        "dashboard_page": {
+            "title": "Dashboard",
+            "edit_cards_text": "Edit cards",
+            "manage_cards_button_text": "Manage",
+            "drag_cards_text": "Drag cards",
+            "card_names": [
+                "Tasks",
+                "Timetable",
+                "Appropriation",
+                "Attendance"
+            ],
+            "tasks": {
+                "title": "Tasks",
+                "drawer_title": "Additional options",
+                "empty_text": "No tasks yet"
+            },
+            "schedules": {
+                "title": "Timetable",
+                "empty_text": "No classes scheduled on this date"
+            },
+            "appropriations": {
+                "title": "Appropriation",
+                "empty_text": "No appropriation data found"
+            },
+            "attendances": {
+                "title": "Attendance",
+                "empty_text": "No attendance data found"
+            }
+        },
+        "subjects_page": {
+            "title": "Subjects",
+            "subject_detail": {
+                "empty_task": "No tasks left",
+                "task_types": [
+                    "Important tasks",
+                    "New tasks",
+                    "Submitted tasks",
+                    "Graded tasks",
+                    "Expired tasks"
+                ]
+            }
+        },
+        "eduplan": {
+            "daily_average_grade_warning": "Note: the calculation of the average daily grade may vary at some institutions."
+        },
+        "documents_page": {
+            "tabs": [
+                "Orders",
+                "References",
+                "Student document"
+            ],
+            "orders": {
+                "order_number": "Order number",
+                "order_name": "Order name",
+                "order_date": "Order date",
+                "order_type": "Order type"
+            },
+            "references": {
+                "reference_number": "Document number",
+                "reference_date": "Document date"
+            },
+            "get_reference": "Get reference"
+        },
+        "settings": {
+            "profile": {
+                "title": "Profile",
+                "info": "{{university}}, {{faculty}}, {{specialty}} specialty, {{course}} {{group}} group student",
+                "personal_info_text": "Personal information",
+                "edit_password": "Change password"
+            }
+        },
+        "contract": {
+            "contract_number": "Contract number",
+            "contract_date": "Contract date",
+            "contract_type": "Contract type",
+            "mfo_bank": "Bank MFO number",
+            "organization_account": "Organization account number",
+            "organization_inn": "Organization tax identification number",
+            "contract_sum": "Contract amount",
+            "paid_sum": "Paid amount",
+            "total_debt": "Total debt",
+            "education_organization": "Educational organization",
+            "paid_information_text": "Dear <strong>{{fullname}}</strong>, you have paid <strong>{{amount}} UZS</strong> for the <strong>{{year}}</strong> academic year.",
+            "debt_information_text": "You owe {{amount}} UZS from the previous academic year.",
+            "overpaid_information_text": "You have an overpayment of {{amount}} UZS for the current academic year.",
+            "no_debts_text": "Good news, you have no outstanding debts from the previous academic year!",
+            "rest_amount_text": "You still need to pay a total of <strong>{{amount}} UZS</strong>.",
+            "debt_from_prev_year": "Debt from the previous academic year",
+            "not_paid": "Not paid",
+            "paid": "Paid",
+            "contract_sum_text": "Contract amount for the current academic year",
+            "total_amount_unpaid": "Total amount to be paid",
+            "grant_message": "since you are studying on a state grant, you are not obliged to study on a fee-based contract. This opportunity is the result of your hard work and desire. Now you can focus all your attention only on gaining knowledge and developing yourself!"
+        }
+    },
+    "components": {
+        "task": {
+            "deadline_text": "Deadline",
+            "types": [
+                "Submit faster",
+                "New",
+                "Submitted",
+                "Graded",
+                "Expired",
+                "Pending"
+            ],
+            "task_in_drawer": {
+                "empty_text": "No tasks found",
+                "max_score_text": "Max score",
+                "score_text": "Score",
+                "result_text": "Result",
+                "task_info_title": "For task",
+                "task_info_comment_text": "Teacher's comment:",
+                "task_submit_title": "Your submitted task"
+            }
+        },
+        "file_list": {
+            "download_text": "Download"
+        },
+        "attendance": {
+            "attendance_board": {
+                "drawer_title": "Attendance",
+                "absent_text": "Absent",
+                "overall_info": "Total {{time}} hours of missed lessons"
+            },
+            "attendance_in_drawer": {
+                "no_schedule_text": "No lessons scheduled on this day",
+                "empty_text": "Attendance data is empty",
+                "session_number": "{{session}}-session",
+                "percentage_info": "The percentage is subject to change due to schedule updates. +25% unexcused absences may result in grade restrictions"
+            }
+        },
+        "time_table": {
+            "title": "Timetable",
+            "empty_text": "Subject not found"
+        },
+        "soon_card": {
+            "text": "This part of the system is under development..."
+        },
+        "sorting": {
+            "subject_name": "Sort by subject name",
+            "date": "Sort by date",
+            "academic_year": "Sort by academic year",
+            "ordinal_number": "Sort by ordinal number"
+        },
+        "searching": {
+            "by_name": "Search by name"
+        },
+        "message": {
+            "save_data_success": "Your data has been successfully saved!",
+            "save_data_error": "Error in data entry!",
+            "email_warning_text": "Please enter a valid email!",
+            "phone_warning_text": "Please enter a valid phone number!",
+            "password_warning_text": "Password must be at least 8 characters long and contain at least 1 letter and 1 number!",
+            "enter_password_text": "Enter the password",
+            "confirm_password_text": "Confirm the password",
+            "no_matching_password_text": "Passwords do not match!",
+            "upload_files_success_text": "File uploaded successfully!",
+            "number_of_attempts_warning_text": "You have used all attempts to submit the file",
+            "error_on_file_upload_text": "Error uploading file",
+            "error_on_file_download_text": "Error downloading the file. Please check if the internet speed is sufficient or if the connection is not disconnected.",
+            "max_number_of_files_warning_text": "Maximum number of files allowed",
+            "max_size_of_files_warning_text": "Maximum file size allowed",
+            "extensions_warning_text": "File only accepted in {{extensions}} formats",
+            "drag_drop_info": "You can change the position of the cards by dragging and dropping them"
+        },
+        "notification": {
+            "empty_text": "You have no new notifications!"
+        },
+        "file_uploader": {
+            "max_number_of_files_text": "Maximum number of files",
+            "max_size_of_files_text": "Max file size",
+            "max_size_of_overall_text": "Maximum overall file size",
+            "upload_file_text": "Upload assignment"
+        }
+    },
+    "help": {
+        "tg_group_info": "A Telegram group created for discussions, questions and answers and suggestions about the site «MY.HEMIS.UZ»",
+        "tg_channel_info": "Telegram channel providing news and useful information about the HEMIS system",
+        "tg_bot_info": "Telegram bot developed to resolve technical issues within the «MY.HEMIS.UZ» system",
+        "yt_channel_info": "YouTube channel providing video tutorials and guides for the HEMIS system"
+    },
+    "off_topic": {
+        "qa_chat": "Q&A chat",
+        "famous_questions": "Choose one of the frequently asked questions below",
+        "forget_password": "Forgot password",
+        "forget_login": "Forgot student ID",
+        "about_find_login": "Student ID (login) is provided only by your educational institution. The login consists of 12 digits and cannot be created or changed independently by you!",
+        "about_find_password_title": "We recommend you check following these 4 steps:",
+        "about_find_password_1": "Click to reset your password",
+        "about_find_password_2": "Try entering your passport series and number instead of the password. For example: AB0123456 (uppercase letters and no spaces)",
+        "about_find_password_3": "Click to change your higher education institution",
+        "about_find_password_4": "Ask the responsible person (e.g., the dean's office) at your place of study to recover your login and password",
+        "hemis_more_info": "Detailed information about the HEMIS system",
+        "no_response_server_title": "Connection with the Higher Education Institution server is not good!",
+        "no_response_server_content": "Sorry, there is a delay in retrieving data from the Higher Education Institution server. Do you want to log out of the system?",
+        "restricted_university_warning": "Sorry, your access to this system is restricted. Your educational institution uses the \"LITE\" version of the HEMIS information system. To access the full features of the system, your institution needs to switch to the \"FULL\" version of HEMIS. Please contact the administration of your educational institution regarding this matter!",
+        "restricted_profile_warning": "Sorry, your access to this system is limited. To use the HEMIS system, your status must be in the student or graduate status!",
+        "tech_maintenance": "Technical maintenance is currently being carried out in this section of the site",
+        "contract_links_info": "If you are a student of a state higher educational institution, you can get information about financial payments through <a target='_blank' href='https://kontrakt.edu.uz/'>kontrakt.edu.uz</a>. If you are a student of a non-state higher educational institution, you can get information through the <a target='_blank' href='https://shartnoma.edu.uz/'>shartnoma.edu.uz</a> system."
+    }
+}
