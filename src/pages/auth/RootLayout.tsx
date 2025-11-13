@@ -16,8 +16,8 @@ const RootLayout = () => {
 
   return (
     <div className="login">
-      <div className="login__header">
-        <Link to={paths.login}>
+      <Flex align='center' justify='space-between' className="login__header">
+        <Link to={paths.login} style={{ height: 20 }}>
           {themeColor === 'dark' ? (
             <img
               className="big-logo"
@@ -39,7 +39,7 @@ const RootLayout = () => {
         )}
 
         <LanguageSelect />
-      </div>
+      </Flex>
 
       <div className="login__main upper-element">
         <div className="flex-center direction-column gap24">
