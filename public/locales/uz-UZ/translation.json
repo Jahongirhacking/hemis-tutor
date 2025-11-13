@@ -212,10 +212,10 @@
         },
         "steps": [
             "Oliy ta’lim muassasasi",
-            "ID va parol"
+            "Avtorizatsiya"
         ],
         "university_form": {
-            "title": "Qaysi oliy ta’lim muassasasida o‘qiysiz?",
+            "title": "Qaysi oliy ta’lim muassasasi xodimisiz?",
             "input_placeholder": "Oliy ta’lim muassasasini tanlang",
             "button_text": "Davom etish"
         },
