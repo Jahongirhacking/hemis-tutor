@@ -1,4 +1,5 @@
 import useNavbarList from '@/components/Navbar/useNavbarList';
+import { paths } from '@/router/paths';
 import { RightOutlined } from '@ant-design/icons';
 import { Flex, Skeleton, Typography } from 'antd';
 import { Link } from 'react-router-dom';
@@ -8,12 +9,11 @@ const UsefulMenus = () => {
 
   if (!navbarList || navbarList.length === 0) return <Skeleton active />;
   const menus = [
-    navbarList.find(n => n?.path === '/dashboard/eduplan'),
-    navbarList.find(n => n?.path === '/dashboard/attendance'),
-    navbarList.find(n => n?.path === '/dashboard/exams'),
-    navbarList.find(n => n?.path === '/dashboard/payment'),
-    navbarList.find(n => n?.path === '/dashboard/folders'),
-    navbarList.find(n => n?.path === '/dashboard/library'),
+    navbarList.find(n => n?.path === paths.private.performance),
+    navbarList.find(n => n?.path === paths.private.checkAddress),
+    navbarList.find(n => n?.path === paths.private.externalService),
+    navbarList.find(n => n?.path === paths.private.financial),
+    navbarList.find(n => n?.path === paths.private.messages),
   ]?.filter(m => !!m);
 
   return (
