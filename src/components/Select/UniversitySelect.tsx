@@ -66,7 +66,7 @@ const UniversitySelect = () => {
       );
       setUniversities(
         res?.data?.data?.filter(
-          (university: IUniversity) => university?.student_url
+          (university: IUniversity) => university?.employee_url
         )
       );
     })();
@@ -88,7 +88,7 @@ const UniversitySelect = () => {
       options={universities?.map(university => ({
         key: university?.name,
         label: university?.name,
-        value: university?.student_url,
+        value: university?.employee_url,
       }))}
       placeholder={t('login.university_form.input_placeholder')}
       value={value}

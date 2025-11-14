@@ -1,13 +1,14 @@
 import { LeftArrowSVG } from '@/assets/icon';
 import ControlledFlow from '@/components/ControlledFlow';
-import { register } from '@/store/slices/authSlice';
+import { useLoginMutation } from '@/services/auth';
+import { ILoginReq } from '@/services/auth/type';
 import { RootState } from '@/store/store';
 import { getLocalStorage, localStorageNames } from '@/utils/storageFunc';
 import { Button, Flex, Form, Steps } from 'antd';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import '../style.scss';
 import StudentForm from './StudentForm';
@@ -18,21 +19,21 @@ const LoginPage = () => {
     getLocalStorage(localStorageNames.universityApi) ? 1 : 0
   );
   const [form] = Form.useForm();
-  // const [login, { error, isSuccess, isLoading }] = useLoginMutation();
-  const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
 
   const { access } = useSelector((store: RootState) => store.authSlice);
   const { t } = useTranslation();
 
-  const submit = async () => {
-    dispatch(register('test'));
+  const submit = async (values: ILoginReq) => {
+    try {
+      await login({
+        login: values?.login,
+        password: values?.password
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
-
-  // const clearInstitution = () => {
-  //   localStorage.removeItem(localStorageNames.university);
-  //   localStorage.removeItem(localStorageNames.universityApi);
-  //   window.location.reload();
-  // };
 
   if (access) return <Navigate to="/dashboard" />;
 
@@ -81,7 +82,7 @@ const LoginPage = () => {
         data={{}}
       >
         <UniversityForm />
-        <StudentForm />
+        <StudentForm isLoading={isLoading} />
       </ControlledFlow>
     </>
   );

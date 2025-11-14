@@ -47,7 +47,7 @@ export const api = createApi({
    * If you want all endpoints defined in the same file, they could be included here instead
    */
   endpoints: () => ({}),
-  tagTypes: ['exams-list', 'exam'],
+  tagTypes: ['profile'],
 });
 
 export const enhancedApi = api.enhanceEndpoints({
