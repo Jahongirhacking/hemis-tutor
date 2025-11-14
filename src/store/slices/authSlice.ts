@@ -2,7 +2,8 @@ import { api } from '@/services/api';
 import { authApi } from '@/services/auth';
 import { profileApi } from '@/services/profile';
 import { IGetProfileRes } from '@/services/profile/type';
-import { IGroupDetails } from '@/services/student/type';
+import { studentApi } from '@/services/student';
+import { IGroupDetails, ISemester } from '@/services/student/type';
 import {
   getLocalStorage,
   localStorageNames,
@@ -10,6 +11,7 @@ import {
 } from '@/utils/storageFunc';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { message } from 'antd';
+import moment from 'moment';
 import { AppDispatch } from '../store';
 
 interface IAuth {
@@ -18,6 +20,7 @@ interface IAuth {
   isMobile: boolean;
   profile: IGetProfileRes;
   currentGroup: IGroupDetails;
+  currentSemester: ISemester;
 }
 
 const token = getLocalStorage(localStorageNames.HEMIS_TOKEN);
@@ -29,6 +32,22 @@ const initialState: IAuth = {
   isMobile: false,
   profile: null,
   currentGroup: null,
+  currentSemester: null,
+};
+
+const DATE_FORMAT = 'YYYY-MM-DD';
+
+export const getCurrentSemester = (semesters: ISemester[]) => {
+  return (
+    semesters?.find(s =>
+      moment().isBetween(
+        moment(s.start_date, DATE_FORMAT),
+        moment(s.end_date, DATE_FORMAT),
+        undefined,
+        '[]'
+      )
+    ) || semesters?.[0]
+  );
 };
 
 const authSlice = createSlice({
@@ -49,6 +68,12 @@ const authSlice = createSlice({
     },
     setStateIsMobile: (state, action: PayloadAction<boolean>) => {
       state.isMobile = action.payload;
+    },
+    setCurrentGroup: (state, action: PayloadAction<IGroupDetails>) => {
+      state.currentGroup = action?.payload;
+    },
+    setCurrentSemester: (state, action: PayloadAction<ISemester>) => {
+      state.currentSemester = action.payload;
     },
   },
   extraReducers: builder => {
@@ -75,6 +100,14 @@ const authSlice = createSlice({
           state.profile = payload?.result;
           state.currentGroup = payload?.result?.groups?.[0];
         }
+      )
+      .addMatcher(
+        studentApi.endpoints.getGroupSemesters.matchFulfilled,
+        (state, { payload }) => {
+          state.currentSemester = getCurrentSemester(
+            payload?.result?.semesters
+          );
+        }
       );
   },
 });
@@ -84,6 +117,12 @@ export const logoutThunk = () => (dispatch: AppDispatch) => {
   dispatch(api.util.resetApiState());
 };
 
-export const { logout, register, setMobileNavBottom, setStateIsMobile } =
-  authSlice.actions;
+export const {
+  logout,
+  register,
+  setMobileNavBottom,
+  setStateIsMobile,
+  setCurrentGroup,
+  setCurrentSemester,
+} = authSlice.actions;
 export default authSlice.reducer;

@@ -20,6 +20,8 @@ import {
   IGroupDetailsRes,
   IGroupListReq,
   IGroupListRes,
+  IGroupSemestersReq,
+  IGroupSemestersRes,
   IGroupStudentsReq,
   IGroupStudentsRes,
   IStudentGradeReq,
@@ -134,6 +136,16 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
+    getGroupSemesters: build.query<
+      IBaseDataRes<IGroupSemestersRes>,
+      IGroupSemestersReq
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/group/semesters')}`,
+        params,
+      }),
+    }),
+
     // Schedules
   }),
 });
@@ -150,4 +162,5 @@ export const {
   useGetGroupListQuery,
   useGetGroupStudentsQuery,
   useGetStudentGradeQuery,
+  useGetGroupSemestersQuery,
 } = studentApi;

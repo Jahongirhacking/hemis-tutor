@@ -15,6 +15,11 @@ export interface IGroupDetails extends IGroup {
 
 export interface ISemester {
   code: string;
+  name: string;
+  education_year: string;
+  start_date: string;
+  end_date: string;
+  position: number;
 }
 
 export interface ISubject {
@@ -243,4 +248,14 @@ export interface IGroupDetailsRes {
   group: IGroupDetails;
   statistics: IGroupStats;
   education_year: IEducationYear['name'];
+}
+
+export interface IGroupSemestersRes {
+  group: IGroup;
+  semesters: ISemester[];
+}
+
+export interface IGroupSemestersReq {
+  group_id: IGroup['id'];
+  education_year?: IEducationYear['code'];
 }

@@ -31,13 +31,13 @@ const StatisticsDashboard: React.FC = () => {
   const [univer, setUniver] = useState(
     getLocalStorage(localStorageNames.universityApi)
       ? {
-        label: getLocalStorage(localStorageNames?.university)?.name,
-        value: getLocalStorage(localStorageNames.universityApi),
-      }
+          label: getLocalStorage(localStorageNames?.university)?.name,
+          value: getLocalStorage(localStorageNames.universityApi),
+        }
       : {
-        label: 'Hemis Testlash',
-        value: 'https://student.hemis.uz/rest/v1',
-      }
+          label: 'Hemis Testlash',
+          value: 'https://student.hemis.uz/rest/v1',
+        }
   );
   const [univerInfo, setUniverInfo] = useState<any>();
   const [studentsInfo, setStudentsInfo] = useState<any>();
@@ -80,9 +80,10 @@ const StatisticsDashboard: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const { data }: { data: IBaseOldDataRes<IUniversity[]> } = await axios.get(
-        `https://student.hemis.uz/rest/v1/public/university-api-urls`
-      );
+      const { data }: { data: IBaseOldDataRes<IUniversity[]> } =
+        await axios.get(
+          `https://student.hemis.uz/rest/v1/public/university-api-urls`
+        );
       setUniversities(
         data?.data?.filter(university => university?.student_url)
       );

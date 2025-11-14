@@ -1,9 +1,12 @@
 import { useGetProfileQuery } from '@/services/profile';
+import { useGetGroupSemestersQuery } from '@/services/student';
+import { IGroup, ISemester } from '@/services/student/type';
+import { setCurrentGroup, setCurrentSemester } from '@/store/slices/authSlice';
 import { toggleThemeColor } from '@/store/slices/themeSlice';
 import { RootState } from '@/store/store';
 import { MenuOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
 import { Avatar, Badge, Button, Flex, Select, Switch, Typography } from 'antd';
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DashboardContext } from '..';
 
@@ -14,9 +17,37 @@ const DashboardHeader = () => {
   const { setIsNavbarActive, toggleMenuButtonRef, isMobile } =
     useContext(DashboardContext);
   const { data: profileData } = useGetProfileQuery();
-  const themeColor = useSelector((store: RootState) => store?.themeSlice?.color)
-  const { currentGroup } = useSelector((store: RootState) => store?.authSlice)
-  const dispatch = useDispatch()
+  const themeColor = useSelector(
+    (store: RootState) => store?.themeSlice?.color
+  );
+  const { currentGroup, currentSemester } = useSelector(
+    (store: RootState) => store?.authSlice
+  );
+  const { data: semestersData } = useGetGroupSemestersQuery(
+    { group_id: currentGroup?.id },
+    { skip: !currentGroup?.id, refetchOnMountOrArgChange: true }
+  );
+  const dispatch = useDispatch();
+
+  const handleGroupChange = useCallback(
+    (id: IGroup['id']) => {
+      dispatch(
+        setCurrentGroup(profileData?.result?.groups?.find(g => g?.id === id))
+      );
+    },
+    [profileData]
+  );
+
+  const handleSemesterChange = useCallback(
+    (code: ISemester['code']) => {
+      dispatch(
+        setCurrentSemester(
+          semestersData?.result?.semesters?.find(s => s?.code === code)
+        )
+      );
+    },
+    [semestersData]
+  );
 
   return (
     <Flex
@@ -27,15 +58,27 @@ const DashboardHeader = () => {
       wrap
     >
       {/* controls */}
-      <Flex gap={12}>
+      <Flex gap={12} align="center">
         <Select
           value={currentGroup?.id}
           options={profileData?.result?.groups?.map(g => ({
             label: g?.name,
-            value: g?.id
+            value: g?.id,
           }))}
           style={{ width: 150 }}
-          placeholder={"Guruh tanlang"}
+          placeholder={'Guruh tanlang'}
+          onChange={handleGroupChange}
+        />
+
+        <Select
+          value={currentSemester?.code}
+          options={semestersData?.result?.semesters?.map(g => ({
+            label: g?.name,
+            value: g?.code,
+          }))}
+          style={{ width: 100 }}
+          placeholder={'Semestr tanlang'}
+          onChange={handleSemesterChange}
         />
       </Flex>
 
@@ -49,16 +92,39 @@ const DashboardHeader = () => {
         />
 
         <Flex gap={12} align="center">
-          <Avatar src={profileData?.result?.tutor?.image} shape="circle" size="large" style={{ background: '#1677ff' }}>
+          <Avatar
+            src={profileData?.result?.tutor?.image}
+            shape="circle"
+            size="large"
+            style={{ background: '#1677ff' }}
+          >
             {`${profileData?.result?.tutor?.employee?.second_name?.[0]}${profileData?.result?.tutor?.employee?.first_name?.[0]}`}
           </Avatar>
           {!isMobile && (
             <Flex vertical gap={2}>
-              <Typography.Text strong>{(() => {
-                const temp = profileData?.result?.tutor?.employee;
-                return [temp?.second_name, temp?.first_name, temp?.third_name]?.filter(e => !!e)?.reduce((acc, curr, index) => `${acc} ${index === 0 ? curr : `${curr?.[0]}.`}`, '')
-              })()}</Typography.Text>
-              <Typography.Text><Badge status={profileData?.result?.tutor?.employee?.active ? "success" : 'default'} style={{ marginRight: 4 }} /> {profileData?.result?.tutor?.employee?.specialty}</Typography.Text>
+              <Typography.Text strong>
+                {(() => {
+                  const temp = profileData?.result?.tutor?.employee;
+                  return [temp?.second_name, temp?.first_name, temp?.third_name]
+                    ?.filter(e => !!e)
+                    ?.reduce(
+                      (acc, curr, index) =>
+                        `${acc} ${index === 0 ? curr : `${curr?.[0]}.`}`,
+                      ''
+                    );
+                })()}
+              </Typography.Text>
+              <Typography.Text>
+                <Badge
+                  status={
+                    profileData?.result?.tutor?.employee?.active
+                      ? 'success'
+                      : 'default'
+                  }
+                  style={{ marginRight: 4 }}
+                />{' '}
+                {profileData?.result?.tutor?.employee?.specialty}
+              </Typography.Text>
             </Flex>
           )}
         </Flex>

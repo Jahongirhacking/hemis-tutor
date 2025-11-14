@@ -15,7 +15,7 @@ import '../style.scss';
 import StudentForm from './StudentForm';
 import UniversityForm from './UniversityForm';
 
-const RECAPTCHA_KEY = "6LfTNQwsAAAAAAy2FCAkyKCik93JR84Hge9hWs6u";
+const RECAPTCHA_KEY = '6LfTNQwsAAAAAAy2FCAkyKCik93JR84Hge9hWs6u';
 
 const LoginPage = () => {
   const [step, setStep] = useState(
@@ -28,18 +28,18 @@ const LoginPage = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    loadRecaptcha(RECAPTCHA_KEY)
-  }, [])
+    loadRecaptcha(RECAPTCHA_KEY);
+  }, []);
 
   const submit = async (values: ILoginReq) => {
     try {
       const recaptcha = await window.grecaptcha.execute(RECAPTCHA_KEY, {
-        action: "tutorLogin",
+        action: 'tutorLogin',
       });
       await login({
         login: values?.login,
         password: values?.password,
-        reCaptcha: recaptcha
+        reCaptcha: recaptcha,
       });
     } catch (err) {
       console.error(err);
