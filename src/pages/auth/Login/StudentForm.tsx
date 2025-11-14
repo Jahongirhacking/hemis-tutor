@@ -1,8 +1,5 @@
 import { ControlledFlowContext } from '@/components/ControlledFlow';
-import {
-  LoadingOutlined,
-  LoginOutlined
-} from '@ant-design/icons';
+import { LoadingOutlined, LoginOutlined } from '@ant-design/icons';
 import { Button, Flex, Form, Input } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';

@@ -16,7 +16,7 @@ const RootLayout = () => {
 
   return (
     <div className="login">
-      <Flex align='center' justify='space-between' className="login__header">
+      <Flex align="center" justify="space-between" className="login__header">
         <Link to={paths.login} style={{ height: 20 }}>
           {themeColor === 'dark' ? (
             <img

@@ -28,7 +28,7 @@ const LoginPage = () => {
     try {
       await login({
         login: values?.login,
-        password: values?.password
+        password: values?.password,
       });
     } catch (err) {
       console.error(err);

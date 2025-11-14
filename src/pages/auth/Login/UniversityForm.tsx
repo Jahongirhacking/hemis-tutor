@@ -34,7 +34,7 @@ const UniversityForm = () => {
       if (university) {
         const universityApiUrl = `${university}rest/v1`;
         setLocalStorage(localStorageNames.universityApi, universityApiUrl);
-        const employeeApiUrl = `${university}rest/ver1/tutor`
+        const employeeApiUrl = `${university}rest/ver1/tutor`;
         setLocalStorage(localStorageNames.employeeApi, employeeApiUrl);
         const response = await axios.get(
           `${universityApiUrl}/public/university-profile`

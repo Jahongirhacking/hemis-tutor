@@ -1,7 +1,4 @@
-import {
-  CancelPasswordSVG, LoginIconSVG,
-  StatisticsSVG
-} from '@/assets/icon';
+import { CancelPasswordSVG, LoginIconSVG, StatisticsSVG } from '@/assets/icon';
 import { paths } from '@/router/paths';
 import { ReactElement, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
