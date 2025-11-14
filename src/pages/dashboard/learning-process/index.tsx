@@ -1,15 +1,12 @@
 import { SoonCard } from '@/components/Common/SoonCard';
 import { Flex, Tabs, Typography } from 'antd';
-import DashboardHeader from '../components/DashboardHeader';
 
 const LearningProcessPage = () => {
   return (
     <Flex vertical gap={18} className="dashboard__page learning-process-page">
-      <DashboardHeader>
-        <Typography.Title level={3} style={{ margin: 0 }}>
-          O‘quv jarayoni
-        </Typography.Title>
-      </DashboardHeader>
+      <Typography.Title level={2} style={{ margin: 0 }}>
+        O‘quv jarayoni
+      </Typography.Title>
       <Flex className="main-container">
         <Tabs
           type="card"

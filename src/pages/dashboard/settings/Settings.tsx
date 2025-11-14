@@ -7,7 +7,6 @@ import {
 import { Flex, Tabs, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import DashboardHeader from '../components/DashboardHeader';
 import ProfilePage from '../profile/Profile';
 import './Settings.scss';
 import SystemSettings from './_SystemSettings';
@@ -31,15 +30,13 @@ const SettingsPage = () => {
 
   return (
     <Flex vertical gap={5} className="settings-page upper-element">
-      <DashboardHeader>
-        <Typography.Title
-          level={2}
-          className="section_title"
-          style={{ marginBottom: 0 }}
-        >
-          {t('const.settings')}
-        </Typography.Title>
-      </DashboardHeader>
+      <Typography.Title
+        level={2}
+        className="section_title"
+        style={{ marginBottom: 0 }}
+      >
+        {t('const.settings')}
+      </Typography.Title>
       <Tabs
         defaultActiveKey="1"
         activeKey={activeTab}

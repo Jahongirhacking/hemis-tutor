@@ -1,5 +1,4 @@
 import { Flex, Tabs, Typography } from 'antd';
-import DashboardHeader from '../components/DashboardHeader';
 import AttendanceBySubject from './tabs/AttendanceBySubject';
 import AttendanceReport from './tabs/AttendanceReport';
 import AttendanceStatistics from './tabs/AttendanceStatistics';
@@ -7,11 +6,9 @@ import AttendanceStatistics from './tabs/AttendanceStatistics';
 const AttendancePage = () => {
   return (
     <Flex vertical gap={18} className="dashboard__page attendance-page">
-      <DashboardHeader>
-        <Typography.Title level={3} style={{ margin: 0 }}>
-          Davomat
-        </Typography.Title>
-      </DashboardHeader>
+      <Typography.Title level={2} style={{ margin: 0 }}>
+        Davomat
+      </Typography.Title>
       <Flex className="main-container">
         <Tabs
           type="card"

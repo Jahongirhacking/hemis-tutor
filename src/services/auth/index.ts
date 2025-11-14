@@ -5,7 +5,14 @@ import { ILoginReq } from './type';
 
 export const authApi = api.injectEndpoints({
   endpoints: build => ({
-    login: build.mutation<IBaseDataRes<{ token: string }>, ILoginReq>({
+    login: build.mutation<
+      IBaseDataRes<{
+        token: string;
+        refresh_token: string;
+        message: string;
+      }>,
+      ILoginReq
+    >({
       query: body => ({
         url: `${getBaseUrl('/auth/login', false)}`,
         method: 'POST',

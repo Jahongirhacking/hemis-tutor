@@ -72,3 +72,13 @@ export const testUniversities = [
   'student.pharmi.uz',
   'student.tdtutf.uz',
 ];
+
+export function loadRecaptcha(siteKey: string) {
+  return new Promise<void>(resolve => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.async = true;
+    script.onload = () => resolve();
+    document.body.appendChild(script);
+  });
+}

@@ -1,59 +1,68 @@
-import useNavbarList from '@/components/Navbar/useNavbarList';
+import { useGetProfileQuery } from '@/services/profile';
+import { toggleThemeColor } from '@/store/slices/themeSlice';
 import { RootState } from '@/store/store';
-import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { MenuOutlined } from '@ant-design/icons';
-import { Avatar, Breadcrumb, Button, Flex, FlexProps, Typography } from 'antd';
-import { useContext, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { MenuOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
+import { Avatar, Badge, Button, Flex, Select, Switch, Typography } from 'antd';
+import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { DashboardContext } from '..';
 
-const DashboardHeader = ({ children, ...props }: FlexProps) => {
-  const location = useLocation();
-  const pathNames = useMemo(
-    () => location.pathname.split('/').filter(name => name),
-    [location]
-  );
-  const { navbarList } = useNavbarList();
+const DashboardHeader = () => {
   const isMobileNavBottom = useSelector(
     (store: RootState) => store.authSlice.isMobileNavBottom
   );
   const { setIsNavbarActive, toggleMenuButtonRef, isMobile } =
     useContext(DashboardContext);
+  const { data: profileData } = useGetProfileQuery();
+  const themeColor = useSelector((store: RootState) => store?.themeSlice?.color)
+  const { currentGroup } = useSelector((store: RootState) => store?.authSlice)
+  const dispatch = useDispatch()
 
   return (
-    <Flex justify="space-between" gap={18} align="center">
-      <Flex gap={4} vertical {...props}>
-        <Breadcrumb
-          style={{ marginBottom: 16 }}
-          items={[
-            ...pathNames.map((name, index) => {
-              const fullPath = `/${pathNames.slice(0, index + 1).join('/')}`;
-              const navItem = navbarList.find(nav => nav.path === fullPath);
-              return {
-                title: (
-                  <Link to={fullPath}>
-                    {toFirstCapitalLetter((navItem && navItem.title) || name)}
-                  </Link>
-                ),
-              };
-            }),
-          ]}
+    <Flex
+      className="dashboard__header upper-element"
+      justify="space-between"
+      align="center"
+      gap={18}
+      wrap
+    >
+      {/* controls */}
+      <Flex gap={12}>
+        <Select
+          value={currentGroup?.id}
+          options={profileData?.result?.groups?.map(g => ({
+            label: g?.name,
+            value: g?.id
+          }))}
+          style={{ width: 150 }}
+          placeholder={"Guruh tanlang"}
         />
-        {children}
       </Flex>
+
+      {/* info */}
       <Flex gap={12} align="center">
+        <Switch
+          value={themeColor === 'dark'}
+          onChange={() => dispatch(toggleThemeColor())}
+          checkedChildren={<MoonOutlined />}
+          unCheckedChildren={<SunOutlined />}
+        />
+
         <Flex gap={12} align="center">
-          <Avatar shape="circle" size="large" style={{ background: '#1677ff' }}>
-            AB
+          <Avatar src={profileData?.result?.tutor?.image} shape="circle" size="large" style={{ background: '#1677ff' }}>
+            {`${profileData?.result?.tutor?.employee?.second_name?.[0]}${profileData?.result?.tutor?.employee?.first_name?.[0]}`}
           </Avatar>
           {!isMobile && (
             <Flex vertical gap={2}>
-              <Typography.Text strong>Admin Foydalanuvchi</Typography.Text>
-              <Typography.Text>Administrator</Typography.Text>
+              <Typography.Text strong>{(() => {
+                const temp = profileData?.result?.tutor?.employee;
+                return [temp?.second_name, temp?.first_name, temp?.third_name]?.filter(e => !!e)?.reduce((acc, curr, index) => `${acc} ${index === 0 ? curr : `${curr?.[0]}.`}`, '')
+              })()}</Typography.Text>
+              <Typography.Text><Badge status={profileData?.result?.tutor?.employee?.active ? "success" : 'default'} style={{ marginRight: 4 }} /> {profileData?.result?.tutor?.employee?.specialty}</Typography.Text>
             </Flex>
           )}
         </Flex>
+
         {!isMobileNavBottom && isMobile && (
           <Button
             icon={<MenuOutlined />}

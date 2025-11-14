@@ -3,9 +3,10 @@ import ControlledFlow from '@/components/ControlledFlow';
 import { useLoginMutation } from '@/services/auth';
 import { ILoginReq } from '@/services/auth/type';
 import { RootState } from '@/store/store';
+import { loadRecaptcha } from '@/utils/config';
 import { getLocalStorage, localStorageNames } from '@/utils/storageFunc';
 import { Button, Flex, Form, Steps } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -13,6 +14,8 @@ import { Navigate } from 'react-router-dom';
 import '../style.scss';
 import StudentForm from './StudentForm';
 import UniversityForm from './UniversityForm';
+
+const RECAPTCHA_KEY = "6LfTNQwsAAAAAAy2FCAkyKCik93JR84Hge9hWs6u";
 
 const LoginPage = () => {
   const [step, setStep] = useState(
@@ -24,15 +27,15 @@ const LoginPage = () => {
   const { access } = useSelector((store: RootState) => store.authSlice);
   const { t } = useTranslation();
 
-  const RECAPTCHA_KEY = "6LcD4lkpAAAAALM6E8CchIAwoWzUX2WaUqZLdrXL";
+  useEffect(() => {
+    loadRecaptcha(RECAPTCHA_KEY)
+  }, [])
 
   const submit = async (values: ILoginReq) => {
     try {
-      // reCAPTCHA tokenni olish
       const recaptcha = await window.grecaptcha.execute(RECAPTCHA_KEY, {
-        action: "login",
+        action: "tutorLogin",
       });
-
       await login({
         login: values?.login,
         password: values?.password,

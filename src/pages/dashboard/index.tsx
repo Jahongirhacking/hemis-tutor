@@ -13,6 +13,7 @@ import { Button, Flex } from 'antd';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import DashboardHeader from './components/DashboardHeader';
 import './main.scss';
 
 export interface IDashboardContext {
@@ -115,6 +116,7 @@ export const Dashboard = () => {
           )}
         </div>
         <div className={`dashboard__body`}>
+          <DashboardHeader />
           <div className="dashboard__body--box">
             <Flex vertical>
               <Outlet />

@@ -1,8 +1,15 @@
-export interface IBaseDataRes<TData> {
+export interface IBaseOldDataRes<TData> {
   code: number;
   error: null;
   success: boolean;
   data: TData;
+}
+
+export interface IBaseDataRes<TData> {
+  status_code: number;
+  ok: boolean;
+  description: string;
+  result: TData;
 }
 
 export interface IBaseDataEdu<TData> {

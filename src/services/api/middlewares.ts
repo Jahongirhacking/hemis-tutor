@@ -15,6 +15,8 @@ export const rtkQueryErrorLogger: Middleware =
     const status = action.payload?.originalStatus;
     const errors = action.payload?.data?.errors ?? action.payload?.data ?? '';
 
+    console.log(action, 'action');
+
     if (isRejectedWithValue(action)) {
       // ✅ Skip if flagged
       const headers = action?.meta?.baseQueryMeta?.request?.headers;
@@ -28,10 +30,8 @@ export const rtkQueryErrorLogger: Middleware =
       }
 
       const error_message =
-        action.payload?.data?.message ??
-        action.payload?.data?.msg ??
-        action.payload?.data?.err?.message ??
-        action.payload?.data?.error ??
+        action.payload?.data?.description ??
+        action.payload?.data?.exception?.message ??
         '';
 
       if (error_message && error_message !== 'A validation error occurred.') {
