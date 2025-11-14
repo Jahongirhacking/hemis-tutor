@@ -24,11 +24,19 @@ const LoginPage = () => {
   const { access } = useSelector((store: RootState) => store.authSlice);
   const { t } = useTranslation();
 
+  const RECAPTCHA_KEY = "6LcD4lkpAAAAALM6E8CchIAwoWzUX2WaUqZLdrXL";
+
   const submit = async (values: ILoginReq) => {
     try {
+      // reCAPTCHA tokenni olish
+      const recaptcha = await window.grecaptcha.execute(RECAPTCHA_KEY, {
+        action: "login",
+      });
+
       await login({
         login: values?.login,
         password: values?.password,
+        reCaptcha: recaptcha
       });
     } catch (err) {
       console.error(err);
