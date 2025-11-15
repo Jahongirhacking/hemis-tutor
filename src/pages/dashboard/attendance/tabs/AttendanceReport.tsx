@@ -1,15 +1,43 @@
 import { useGetAttendanceReportQuery } from '@/services/student';
-import { IStudent } from '@/services/student/type';
+import { IAttendance, IStudent } from '@/services/student/type';
 import { RootState } from '@/store/store';
-import { Flex, Table } from 'antd';
+import { Flex, Table, Tag } from 'antd';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 const AttendanceReport = () => {
-  const { currentGroup } = useSelector((store: RootState) => store?.authSlice);
+  const { currentGroup, currentSemester } = useSelector(
+    (store: RootState) => store?.authSlice
+  );
   const { data: attendanceData } = useGetAttendanceReportQuery(
-    { group_id: currentGroup?.id },
+    { group_id: currentGroup?.id, semester: currentSemester?.code },
     { skip: !currentGroup?.id }
   );
+
+  const attendanceReport: IAttendance[] = useMemo(
+    () =>
+      Array.from(
+        attendanceData?.result?.attendance
+          ?.reduce<Map<IStudent['student_id_number'], IAttendance>>(
+            (acc, curr) => {
+              if (acc.has(curr.student.student_id_number)) {
+                const attendance = acc.get(curr.student.student_id_number)!;
+                attendance.absent_off += curr.absent_off;
+                attendance.absent_on += curr.absent_on;
+              } else {
+                acc.set(curr.student.student_id_number, { ...curr });
+              }
+              return acc;
+            },
+            new Map()
+          )
+          ?.values()
+      ),
+    [attendanceData]
+  );
+
+  console.log(attendanceReport);
+
   return (
     <Flex vertical gap={12}>
       <Table
@@ -21,22 +49,28 @@ const AttendanceReport = () => {
             render: (student: IStudent) => student?.full_name,
           },
           {
-            title: 'Sana',
-            key: 'lesson_date',
-            dataIndex: 'lesson_date',
+            title: 'Sababli',
+            key: 'absent_on',
+            dataIndex: 'absent_on',
+            render: value => <Tag color="green">{value}</Tag>,
           },
           {
-            title: 'Davomat',
-            key: 'attendance_type',
-            dataIndex: 'attendance_type',
+            title: 'Sababsiz',
+            key: 'absent_off',
+            dataIndex: 'absent_off',
+            render: value => <Tag color="red">{value}</Tag>,
           },
           {
-            title: 'Sabab',
-            key: 'reason',
-            dataIndex: 'reason',
+            title: 'Jami',
+            render: (_, record) => (
+              <Tag color="magenta">
+                {record?.absent_off + record?.absent_on}
+              </Tag>
+            ),
+            fixed: 'right',
           },
         ]}
-        dataSource={attendanceData?.result?.attendance}
+        dataSource={attendanceReport}
         rowKey={'id'}
         scroll={{ x: 500 }}
       />

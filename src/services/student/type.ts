@@ -56,12 +56,13 @@ export interface IAttendance {
   subject: string;
   lesson_date: string;
   attendance_type: string;
-  reason: string;
+  absent_off: number;
+  absent_on: number;
 }
 
 export interface IAttendanceBySubjectReq {
   group_id: IGroup['id'];
-  semster?: ISemester['code'];
+  semester?: ISemester['code'];
 }
 
 export interface IAttendanceBySubjectRes {
