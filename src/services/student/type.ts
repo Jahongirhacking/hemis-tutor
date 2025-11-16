@@ -38,11 +38,14 @@ export interface IStudent {
   student_id_number: string;
   phone: string;
   image: string;
-  student_status: unknown;
-  payment_form: unknown;
-  education_type: unknown;
-  education_form: unknown;
-  semester: unknown;
+  student_status: {
+    code: number;
+    name: string;
+  };
+  payment_form: string;
+  education_type: string;
+  education_form: string;
+  group: IGroup;
 }
 
 export interface IEducationYear {
@@ -79,6 +82,31 @@ export interface IAttendanceReportRes {
   group_id: IGroup['id'];
   semester: ISemester['code'];
   count: number;
+}
+
+export interface IAttendanceStatisticsReq extends IAttendanceBySubjectReq {
+  subject_id?: ISubject['subject_id'];
+}
+
+export interface IStudentStats {
+  absent_sababli_count: number;
+  absent_sababli_percent: number;
+  absent_sababsiz_count: number;
+  absent_sababsiz_percent: number;
+  full_name: string;
+  present_count: number;
+  present_percent: number;
+  student_id: number;
+  student_id_number: string;
+  total_lessons: number;
+}
+
+export interface IAttendanceStatisticsRes {
+  summary: unknown;
+  students: IStudentStats[];
+  group_id: IGroup['id'];
+  semester: ISemester['name'];
+  subject_id: ISubject['subject_id'];
 }
 
 export interface IDebtorsReq {
@@ -259,4 +287,25 @@ export interface IGroupSemestersRes {
 export interface IGroupSemestersReq {
   group_id: IGroup['id'];
   education_year?: IEducationYear['code'];
+}
+
+export interface IPaginationProps {
+  search?: string;
+  page: number;
+  per_page: number;
+}
+
+export interface IStudentListReq extends IPaginationProps {
+  pinfl?: string;
+  level?: string;
+  group?: IGroup['id'];
+  specialty?: number;
+  student_status?: IStudent['student_status'];
+}
+
+export interface IPagination {
+  current_page: number;
+  per_page: number;
+  total_count: number;
+  total_pages: number;
 }

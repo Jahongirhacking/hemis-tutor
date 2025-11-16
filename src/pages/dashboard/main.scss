@@ -5,6 +5,12 @@
   width: 100px !important;
 }
 
+.academic-title {
+  .ant-flex {
+    max-width: 100%;
+  }
+}
+
 .bottom-info-message {
   z-index: 100;
   position: fixed;

@@ -6,6 +6,8 @@ import {
   IAttendanceBySubjectRes,
   IAttendanceReportReq,
   IAttendanceReportRes,
+  IAttendanceStatisticsReq,
+  IAttendanceStatisticsRes,
   IContractDetailsReq,
   IContractDetailsRes,
   IContractListReq,
@@ -24,8 +26,11 @@ import {
   IGroupSemestersRes,
   IGroupStudentsReq,
   IGroupStudentsRes,
+  IPagination,
+  IStudent,
   IStudentGradeReq,
   IStudentGradeRes,
+  IStudentListReq,
 } from './type';
 
 export const studentApi = api.injectEndpoints({
@@ -47,6 +52,16 @@ export const studentApi = api.injectEndpoints({
     >({
       query: params => ({
         url: `${getBaseUrl('/attendance/report')}`,
+        params,
+      }),
+    }),
+
+    getAttendanceStatistics: build.query<
+      IBaseDataRes<IAttendanceStatisticsRes>,
+      IAttendanceStatisticsReq
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/attendance/statistic')}`,
         params,
       }),
     }),
@@ -146,7 +161,16 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
-    // Schedules
+    // Students
+    getStudentList: build.query<
+      IBaseDataRes<{ students: IStudent[]; pagination: IPagination }>,
+      IStudentListReq
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/student/list')}`,
+        params,
+      }),
+    }),
   }),
 });
 
@@ -163,4 +187,6 @@ export const {
   useGetGroupStudentsQuery,
   useGetStudentGradeQuery,
   useGetGroupSemestersQuery,
+  useGetAttendanceStatisticsQuery,
+  useGetStudentListQuery,
 } = studentApi;

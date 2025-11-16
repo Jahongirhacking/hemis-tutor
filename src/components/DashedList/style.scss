@@ -13,6 +13,9 @@
   }
 
   .list__row {
+    gap: 4px;
+    flex-wrap: wrap;
+
     .list__label {
       width: auto;
       min-width: 45px;
@@ -28,7 +31,7 @@
     }
 
     .list__value {
-      width: 60%;
+      width: auto;
     }
   }
 }

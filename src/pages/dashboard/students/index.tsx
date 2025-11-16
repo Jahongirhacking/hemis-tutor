@@ -1,4 +1,5 @@
 import { Flex, Tabs, Typography } from 'antd';
+import AcademicTitle from '../components/AcademicTitle';
 import StudentAction from './tabs/StudentAction';
 import StudentList from './tabs/StudentList';
 import StudentPassport from './tabs/StudentPassport';
@@ -16,17 +17,29 @@ const StudentsPage = () => {
             {
               key: 'list',
               label: "Talabalar ro'yxati",
-              children: <StudentList />,
+              children: (
+                <AcademicTitle>
+                  <StudentList />
+                </AcademicTitle>
+              ),
             },
             {
               key: 'action',
               label: 'Talabalar harakati',
-              children: <StudentAction />,
+              children: (
+                <AcademicTitle>
+                  <StudentAction />
+                </AcademicTitle>
+              ),
             },
             {
               key: 'passport',
               label: 'Talaba pasporti',
-              children: <StudentPassport />,
+              children: (
+                <AcademicTitle>
+                  <StudentPassport />
+                </AcademicTitle>
+              ),
             },
           ]}
         />

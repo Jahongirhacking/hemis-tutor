@@ -8,10 +8,11 @@ const AttendanceBySubject = () => {
   const { currentGroup, currentSemester } = useSelector(
     (store: RootState) => store?.authSlice
   );
-  const { data: attendanceData } = useGetAttendanceBySubjectQuery(
+  const { data: attendanceData, isFetching } = useGetAttendanceBySubjectQuery(
     { group_id: currentGroup?.id, semester: currentSemester?.code },
-    { skip: !currentGroup?.id }
+    { skip: !currentGroup?.id || !currentSemester?.code }
   );
+
   return (
     <Flex vertical gap={12}>
       <Table
@@ -32,14 +33,10 @@ const AttendanceBySubject = () => {
             key: 'attendance_type',
             dataIndex: 'attendance_type',
           },
-          {
-            title: 'Sabab',
-            key: 'reason',
-            dataIndex: 'reason',
-          },
         ]}
         dataSource={attendanceData?.result?.subjects}
         rowKey={'id'}
+        loading={isFetching}
         scroll={{ x: 500 }}
       />
     </Flex>

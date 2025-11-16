@@ -1,4 +1,5 @@
 import { Flex, Tabs, Typography } from 'antd';
+import AcademicTitle from '../components/AcademicTitle';
 import AttendanceBySubject from './tabs/AttendanceBySubject';
 import AttendanceReport from './tabs/AttendanceReport';
 import AttendanceStatistics from './tabs/AttendanceStatistics';
@@ -16,17 +17,29 @@ const AttendancePage = () => {
             {
               key: 'report',
               label: 'Davomat hisoboti',
-              children: <AttendanceReport />,
+              children: (
+                <AcademicTitle>
+                  <AttendanceReport />
+                </AcademicTitle>
+              ),
             },
             {
               key: 'statistics',
               label: 'Statistik davomat',
-              children: <AttendanceStatistics />,
+              children: (
+                <AcademicTitle>
+                  <AttendanceStatistics />
+                </AcademicTitle>
+              ),
             },
             {
               key: 'subjects',
               label: 'Fanlar davomati',
-              children: <AttendanceBySubject />,
+              children: (
+                <AcademicTitle>
+                  <AttendanceBySubject />
+                </AcademicTitle>
+              ),
             },
           ]}
         />
