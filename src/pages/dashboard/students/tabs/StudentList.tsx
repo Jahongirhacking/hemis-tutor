@@ -1,37 +1,39 @@
-import DashedList from '@/components/DashedList';
 import { usePagination } from '@/hooks/usePagination';
 import { useGetStudentListQuery } from '@/services/student';
-import { IStudent } from '@/services/student/type';
-import { RootState } from '@/store/store';
-import { Button, Flex, Image, Table, Typography } from 'antd';
-import { useEffect, useState } from 'react';
+import { DrawerChildTypes, SearchParams } from '@/utils/config';
+import { Button, Flex, Table } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import CustomDrawer from '../../components/CustomDrawer';
 import CustomPagination from '../../components/CustomPagination';
+import useCustomTable from '../../components/hooks/useCustomTable';
 
 const StudentList = () => {
-  const { currentGroup } = useSelector((store: RootState) => store.authSlice);
-  const { pagination, setSearchParams } = usePagination();
-  const { data: studentsData, isFetching } = useGetStudentListQuery(
-    { ...pagination, group: currentGroup?.id },
-    { skip: !currentGroup?.id }
-  );
+  const { pagination, setSearchParams, searchParams } = usePagination();
+  const { data: studentsData, isFetching } = useGetStudentListQuery({
+    ...pagination,
+  });
   const { t } = useTranslation();
-  const [openDetails, setOpenDetails] =
-    useState<IStudent['student_id_number']>(null);
+  const { emptyText } = useCustomTable({});
 
-  useEffect(() => {
-    if (currentGroup?.id) {
-      const params = new URLSearchParams();
-      setSearchParams(params);
-    }
-  }, [currentGroup?.id]);
+  // useEffect(() => {
+  //   if (currentGroup?.id) {
+  //     setPagination({
+  //       page: undefined,
+  //       per_page: undefined,
+  //       search: undefined
+  //     })
+  //   }
+  // }, [currentGroup?.id]);
 
   return (
     <Flex vertical gap={12}>
       <Table
         columns={[
+          {
+            title: '#',
+            render: (_, __, index) =>
+              ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
+            width: 60,
+          },
           {
             title: 'Talaba',
             key: 'full_name',
@@ -55,13 +57,41 @@ const StudentList = () => {
           },
           {
             title: t('const.actions'),
-            dataIndex: 'student_id_number',
-            key: 'student_id_number',
             fixed: 'right',
-            render: id => (
-              <Button type="link" onClick={() => setOpenDetails(id)}>
-                {t('const.in_detail')}
-              </Button>
+            render: (_, record) => (
+              <Flex gap={8} wrap align="center" justify="center">
+                <Button
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams);
+                    params.set(
+                      SearchParams.Drawer,
+                      DrawerChildTypes.StudentDetails
+                    );
+                    params.set(SearchParams.DrawerProps, String(record?.id));
+                    setSearchParams(params);
+                  }}
+                >
+                  {t('const.in_detail')}
+                </Button>
+
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams);
+                    params.set(
+                      SearchParams.Drawer,
+                      DrawerChildTypes.StudentPassport
+                    );
+                    params.set(
+                      SearchParams.DrawerProps,
+                      String(record?.student_id_number)
+                    );
+                    setSearchParams(params);
+                  }}
+                >
+                  {'Talaba pasporti'}
+                </Button>
+              </Flex>
             ),
           },
         ]}
@@ -70,39 +100,9 @@ const StudentList = () => {
         loading={isFetching}
         scroll={{ x: 700 }}
         pagination={false}
+        locale={{ emptyText }}
       />
 
-      <CustomDrawer
-        open={!!openDetails}
-        onClose={() => setOpenDetails(null)}
-        children={(() => {
-          const student = studentsData?.result?.students?.find(
-            s => s?.student_id_number === openDetails
-          );
-          return (
-            <Flex vertical gap={12}>
-              <Image
-                src={student?.image}
-                fallback="/images/avatar.png"
-                width={120}
-                preview={false}
-              />
-              <Typography.Title level={5} style={{ margin: 0 }}>
-                {student?.full_name}
-              </Typography.Title>
-              <DashedList
-                list={[
-                  { label: 'Talaba ID', value: student?.student_id_number },
-                  { label: "Ta'lim turi", value: student?.education_type },
-                  { label: "To'lov shakli", value: student?.payment_form },
-                  { label: 'Guruh', value: student?.group?.name },
-                  { label: 'Telefon raqami', value: student?.phone },
-                ]}
-              />
-            </Flex>
-          );
-        })()}
-      />
       <CustomPagination total={studentsData?.result?.pagination?.total_count} />
     </Flex>
   );

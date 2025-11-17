@@ -1,8 +1,7 @@
-import { Flex, Tabs, Typography } from 'antd';
-import AcademicTitle from '../components/AcademicTitle';
+import { Flex, Typography } from 'antd';
+import CustomTabs from '../components/CustomTabs';
 import StudentAction from './tabs/StudentAction';
 import StudentList from './tabs/StudentList';
-import StudentPassport from './tabs/StudentPassport';
 
 const StudentsPage = () => {
   return (
@@ -11,35 +10,17 @@ const StudentsPage = () => {
         Talabalar
       </Typography.Title>
       <Flex className="main-container">
-        <Tabs
-          type="card"
+        <CustomTabs
           items={[
             {
               key: 'list',
               label: "Talabalar ro'yxati",
-              children: (
-                <AcademicTitle>
-                  <StudentList />
-                </AcademicTitle>
-              ),
+              children: <StudentList />,
             },
             {
               key: 'action',
               label: 'Talabalar harakati',
-              children: (
-                <AcademicTitle>
-                  <StudentAction />
-                </AcademicTitle>
-              ),
-            },
-            {
-              key: 'passport',
-              label: 'Talaba pasporti',
-              children: (
-                <AcademicTitle>
-                  <StudentPassport />
-                </AcademicTitle>
-              ),
+              children: <StudentAction />,
             },
           ]}
         />

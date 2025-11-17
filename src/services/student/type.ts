@@ -64,7 +64,7 @@ export interface IAttendance {
 }
 
 export interface IAttendanceBySubjectReq {
-  group_id: IGroup['id'];
+  group_id?: IGroup['id'];
   semester?: ISemester['code'];
 }
 
@@ -110,8 +110,8 @@ export interface IAttendanceStatisticsRes {
 }
 
 export interface IDebtorsReq {
-  group_id: IGroup['id'];
-  education_year: IEducationYear['code'];
+  group_id?: IGroup['id'];
+  education_year?: IEducationYear['code'];
 }
 
 export interface IDebtor {
@@ -308,4 +308,128 @@ export interface IPagination {
   per_page: number;
   total_count: number;
   total_pages: number;
+}
+
+export interface IDateTimeMeta {
+  date: string;
+  timezone_type: number;
+  timezone: string;
+}
+
+export interface ICodeName {
+  code: string;
+  name: string;
+}
+
+export interface IGroupMeta {
+  id: number;
+  name: string;
+  _department?: number;
+  _education_type?: string;
+  _education_form?: string;
+  _curriculum?: number;
+  position?: number | null;
+  active?: boolean;
+  _translations?: Record<string, string>;
+  updated_at?: IDateTimeMeta;
+  created_at?: IDateTimeMeta;
+  _education_lang?: string;
+  _specialty_id?: number;
+  _qid?: string | null;
+  _uid?: string;
+  _sync?: boolean;
+  _sync_diff?: unknown;
+  _sync_date?: IDateTimeMeta;
+  _sync_status?: string;
+}
+
+export interface IDepartmentMeta {
+  id: number;
+  code: string;
+  name: string;
+  _university?: number;
+  _structure_type?: string;
+  parent?: number | null;
+  position?: number | null;
+  active?: boolean;
+  _translations?: Record<string, string>;
+  updated_at?: IDateTimeMeta;
+  created_at?: IDateTimeMeta;
+  _type?: string;
+  _sync?: boolean;
+  _qid?: unknown;
+  _sync_diff?: unknown;
+  _sync_date?: IDateTimeMeta;
+  _sync_status?: string;
+}
+
+export interface ISpecialtyMeta {
+  id?: number;
+  code: string;
+  name: string;
+  parent_code?: string | null;
+  _department?: number;
+  _education_type?: string;
+  _knowledge_type?: unknown;
+  position?: number | null;
+  active?: boolean;
+  _translations?: Record<string, string>;
+  updated_at?: IDateTimeMeta;
+  created_at?: IDateTimeMeta;
+  _type?: string;
+  _bachelor_specialty?: string | null;
+  _master_specialty?: unknown;
+  _doctorate_specialty?: unknown;
+  _qid?: unknown;
+  _uid?: string;
+  _sync?: boolean;
+  _sync_diff?: unknown;
+  _sync_date?: IDateTimeMeta;
+  _sync_status?: string;
+  _ordinature_specialty?: unknown;
+  description?: string;
+}
+
+export interface ICurriculumMeta {
+  id: number;
+  name: string;
+  education_year: string;
+}
+
+export interface ISemesterMeta {
+  id?: number;
+  code: string;
+  name: string;
+  _curriculum?: number;
+  _education_year?: string;
+  start_date?: IDateTimeMeta;
+  end_date?: IDateTimeMeta;
+  accepted?: boolean;
+  position?: number;
+  active?: boolean;
+  _translations?: Record<string, string>;
+  updated_at?: IDateTimeMeta;
+  created_at?: IDateTimeMeta;
+  last?: boolean;
+  _level?: string;
+}
+
+export interface IStudentMeta {
+  id: number;
+  group: IGroupMeta;
+  department?: IDepartmentMeta;
+  specialty?: ISpecialtyMeta;
+  curriculum?: ICurriculumMeta;
+  education_year?: string;
+  education_type?: ICodeName;
+  education_form?: ICodeName;
+  payment_form?: ICodeName;
+  student_status?: ICodeName;
+  level?: ICodeName;
+  semester?: ISemesterMeta;
+}
+
+export interface IStudentDetailsRes {
+  student: IStudent;
+  meta: IStudentMeta;
 }

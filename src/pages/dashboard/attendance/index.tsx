@@ -1,45 +1,35 @@
-import { Flex, Tabs, Typography } from 'antd';
-import AcademicTitle from '../components/AcademicTitle';
+import { Flex, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
+import CustomTabs from '../components/CustomTabs';
 import AttendanceBySubject from './tabs/AttendanceBySubject';
 import AttendanceReport from './tabs/AttendanceReport';
 import AttendanceStatistics from './tabs/AttendanceStatistics';
 
 const AttendancePage = () => {
+  const { t } = useTranslation();
+
   return (
     <Flex vertical gap={18} className="dashboard__page attendance-page">
       <Typography.Title level={2} style={{ margin: 0 }}>
-        Davomat
+        {t('const.attendance')}
       </Typography.Title>
       <Flex className="main-container">
-        <Tabs
-          type="card"
+        <CustomTabs
           items={[
             {
               key: 'report',
               label: 'Davomat hisoboti',
-              children: (
-                <AcademicTitle>
-                  <AttendanceReport />
-                </AcademicTitle>
-              ),
+              children: <AttendanceReport />,
             },
             {
               key: 'statistics',
               label: 'Statistik davomat',
-              children: (
-                <AcademicTitle>
-                  <AttendanceStatistics />
-                </AcademicTitle>
-              ),
+              children: <AttendanceStatistics />,
             },
             {
               key: 'subjects',
               label: 'Fanlar davomati',
-              children: (
-                <AcademicTitle>
-                  <AttendanceBySubject />
-                </AcademicTitle>
-              ),
+              children: <AttendanceBySubject />,
             },
           ]}
         />

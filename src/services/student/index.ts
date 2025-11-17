@@ -28,6 +28,7 @@ import {
   IGroupStudentsRes,
   IPagination,
   IStudent,
+  IStudentDetailsRes,
   IStudentGradeReq,
   IStudentGradeRes,
   IStudentListReq,
@@ -171,6 +172,27 @@ export const studentApi = api.injectEndpoints({
         params,
       }),
     }),
+
+    getStudentDetails: build.query<
+      IBaseDataRes<IStudentDetailsRes>,
+      { id: IStudent['id'] }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/student/view`)}`,
+        params,
+      }),
+    }),
+
+    // Schedules
+    getSchedules: build.query<
+      IBaseDataRes<IStudentDetailsRes>,
+      { id: IStudent['id'] }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/student/view`)}`,
+        params,
+      }),
+    }),
   }),
 });
 
@@ -189,4 +211,5 @@ export const {
   useGetGroupSemestersQuery,
   useGetAttendanceStatisticsQuery,
   useGetStudentListQuery,
+  useGetStudentDetailsQuery,
 } = studentApi;

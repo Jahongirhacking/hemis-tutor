@@ -32,9 +32,10 @@ export const rtkQueryErrorLogger: Middleware =
       const error_message =
         action.payload?.data?.description ??
         action.payload?.data?.exception?.message ??
+        action.payload?.data?.errors?.[0]?.message ??
         '';
 
-      if (error_message && error_message !== 'A validation error occurred.') {
+      if (error_message) {
         message.destroy();
         message.warning(error_message);
         if (
@@ -59,8 +60,10 @@ export const rtkQueryErrorLogger: Middleware =
         );
       } else if (status === 401 || status === 403) {
         window.location.href = '/';
+        message.destroy();
         message.warning('Iltimos avval tizimga kiring!');
       } else if (action.payload.status === 'FETCH_ERROR') {
+        message.destroy();
         message.warning(
           `${t('const.sorry')}, ${t('const.problem_with_server')} ${t('const.try_again_later')}`
         );

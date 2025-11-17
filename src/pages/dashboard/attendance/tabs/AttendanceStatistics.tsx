@@ -1,8 +1,8 @@
 import { useGetAttendanceStatisticsQuery } from '@/services/student';
-import { RootState } from '@/store/store';
+import { toFirstCapitalLetter } from '@/utils/stringFunc';
 import { Flex, Table, Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import useCustomTable from '../../components/hooks/useCustomTable';
 
 const getAbsentColor = (percent: number) => {
   if (percent <= 15) return 'blue';
@@ -19,21 +19,18 @@ const getPresentColor = (percent: number) => {
 };
 
 const AttendanceStatistics = () => {
-  const { currentGroup, currentSemester } = useSelector(
-    (store: RootState) => store?.authSlice
-  );
   const { data: attendanceData, isFetching } = useGetAttendanceStatisticsQuery(
-    { group_id: currentGroup?.id, semester: currentSemester?.code },
-    { skip: !currentGroup?.id || !currentSemester?.code }
+    {}
   );
   const { t } = useTranslation();
+  const { emptyText } = useCustomTable({});
 
   return (
     <Flex vertical gap={12}>
       <Table
         columns={[
           {
-            title: 'Talaba',
+            title: t('const.student'),
             key: 'full_name',
             dataIndex: 'full_name',
           },
@@ -46,7 +43,7 @@ const AttendanceStatistics = () => {
             ),
           },
           {
-            title: 'Sababsiz (soni / foiz)',
+            title: `${toFirstCapitalLetter(t('const.not_explicable'))} (${t('const.hours_plural')})`,
             key: 'absent_off',
             render: (_, record) => (
               <Flex gap={8}>
@@ -58,7 +55,7 @@ const AttendanceStatistics = () => {
             ),
           },
           {
-            title: 'Sababli (soni / foiz)',
+            title: `${toFirstCapitalLetter(t('const.explicable'))} (${t('const.hours_plural')})`,
             key: 'absent_on',
             render: (_, record) => (
               <Flex gap={8}>
@@ -86,6 +83,7 @@ const AttendanceStatistics = () => {
         rowKey={'id'}
         loading={isFetching}
         scroll={{ x: 700 }}
+        locale={{ emptyText }}
       />
     </Flex>
   );

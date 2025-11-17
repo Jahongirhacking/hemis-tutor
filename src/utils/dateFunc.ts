@@ -277,7 +277,6 @@ export const getStartingDateUnixTimeStamp = (
   if (date.day() === 0) {
     date.add(1, 'day');
   }
-
   if (activeOption === 'day') {
     return date.startOf('day').unix();
   }
@@ -287,7 +286,6 @@ export const getStartingDateUnixTimeStamp = (
   if (activeOption === 'month') {
     return date.startOf('month').unix();
   }
-
   return;
 };
 

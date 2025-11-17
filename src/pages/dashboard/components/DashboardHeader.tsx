@@ -1,12 +1,9 @@
 import { useGetProfileQuery } from '@/services/profile';
-import { useGetGroupSemestersQuery } from '@/services/student';
-import { IGroup, ISemester } from '@/services/student/type';
-import { setCurrentGroup, setCurrentSemester } from '@/store/slices/authSlice';
 import { toggleThemeColor } from '@/store/slices/themeSlice';
 import { RootState } from '@/store/store';
 import { MenuOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
-import { Avatar, Badge, Button, Flex, Select, Switch, Typography } from 'antd';
-import { useCallback, useContext } from 'react';
+import { Avatar, Badge, Button, Flex, Switch, Typography } from 'antd';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DashboardContext } from '..';
 
@@ -20,69 +17,16 @@ const DashboardHeader = () => {
   const themeColor = useSelector(
     (store: RootState) => store?.themeSlice?.color
   );
-  const { currentGroup, currentSemester } = useSelector(
-    (store: RootState) => store?.authSlice
-  );
-  const { data: semestersData } = useGetGroupSemestersQuery(
-    { group_id: currentGroup?.id },
-    { skip: !currentGroup?.id, refetchOnMountOrArgChange: true }
-  );
   const dispatch = useDispatch();
-
-  const handleGroupChange = useCallback(
-    (id: IGroup['id']) => {
-      dispatch(
-        setCurrentGroup(profileData?.result?.groups?.find(g => g?.id === id))
-      );
-    },
-    [profileData]
-  );
-
-  const handleSemesterChange = useCallback(
-    (code: ISemester['code']) => {
-      dispatch(
-        setCurrentSemester(
-          semestersData?.result?.semesters?.find(s => s?.code === code)
-        )
-      );
-    },
-    [semestersData]
-  );
 
   return (
     <Flex
       className="dashboard__header upper-element"
-      justify="space-between"
+      justify="flex-end"
       align="center"
       gap={18}
       wrap
     >
-      {/* controls */}
-      <Flex gap={12} align="center">
-        <Select
-          value={currentGroup?.id}
-          options={profileData?.result?.groups?.map(g => ({
-            label: g?.name,
-            value: g?.id,
-          }))}
-          style={{ width: 150 }}
-          placeholder={'Guruh tanlang'}
-          onChange={handleGroupChange}
-        />
-
-        <Select
-          value={currentSemester?.code}
-          options={semestersData?.result?.semesters?.map(g => ({
-            label: g?.name,
-            value: g?.code,
-          }))}
-          style={{ width: 100 }}
-          placeholder={'Semestr tanlang'}
-          onChange={handleSemesterChange}
-        />
-      </Flex>
-
-      {/* info */}
       <Flex gap={12} align="center">
         <Switch
           value={themeColor === 'dark'}
@@ -123,7 +67,7 @@ const DashboardHeader = () => {
                   }
                   style={{ marginRight: 4 }}
                 />{' '}
-                {profileData?.result?.tutor?.employee?.specialty}
+                Tyutor
               </Typography.Text>
             </Flex>
           )}

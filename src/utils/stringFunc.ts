@@ -48,13 +48,7 @@ export const encodePinfl = (pinfl: string | undefined) => {
 
 export const encodeStudentId = (pinfl: string | undefined) => {
   const publicKeyPem = `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm30VPJA2d2kYgCN8saOa
-TmbiDQAFNdNx+w3b8tf3MlcFrEQvpXH453x2GZaZ7A3eSD/NKlPOngSk3WRdzwWz
-sMQOVWlltNbupAgNfs2xZDZaQrC51pgKQm0rIv831pxGylwXbh3qilTMZOudEpdg
-kg7hCGu0D17R0biKZ+3/wkhtCbGFN0h46IOyVocW0E5pRycEyGHvuzdhvkVvOLij
-xax5+0YQUHc02QzapGJPACQGDKSZomKF85vIyGSepftSXJ/khS2UbuFb0RBxrhOq
-h41raZgpYAB/F12OBbrR9RWudgMwBEUzAWY0wE/57Ylqx74pkEn7rkJzYWHCHPPx
-EQIDAQAB
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCEn4Lh15Wadgc1a1Gk/vG5Sz3qY4cY6MzgpPASbuk7XjAcp0zk+xAAuR9NIeTGcE+04EZCJsG5NhXBXgHhkI70g7FU1G2ZWpAv8AdQAOFKnFJtziZQu+6Ov/6U2/cAR/pSpbAL2Pj6wIgCsADEwxxbOkPwAmO+GWyBS2NzuDBTXwIDAQAB
 -----END PUBLIC KEY-----`;
 
   // PEM formatidagi ochiq kalitni olish

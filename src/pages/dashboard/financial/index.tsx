@@ -1,5 +1,7 @@
-import { SoonCard } from '@/components/Common/SoonCard';
-import { Flex, Tabs, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
+import CustomTabs from '../components/CustomTabs';
+import ContractDebtors from './tabs/ContractDebtors';
+import ContractList from './tabs/ContractList';
 
 const FinancialPage = () => {
   return (
@@ -8,13 +10,17 @@ const FinancialPage = () => {
         Moliyaviy holat
       </Typography.Title>
       <Flex className="main-container">
-        <Tabs
-          type="card"
+        <CustomTabs
           items={[
             {
-              key: 'rating',
+              key: 'list',
               label: "Kontraktlar ro'yxati",
-              children: <SoonCard />,
+              children: <ContractList />,
+            },
+            {
+              key: 'debtors',
+              label: 'Kontrakt qarzdorlik',
+              children: <ContractDebtors />,
             },
           ]}
         />

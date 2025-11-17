@@ -22,6 +22,7 @@ const CustomDrawer = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    console.log(Array.from(searchParams.entries()));
     if (searchParams.has(SearchParams.Drawer)) {
       dispatch(
         setDrawer({
@@ -46,14 +47,7 @@ const CustomDrawer = () => {
     if (searchParams.has(SearchParams.Drawer)) {
       const childType = searchParams.get(SearchParams.Drawer);
       if (
-        [
-          DrawerChildTypes.Attendance,
-          DrawerChildTypes.Schedule,
-          DrawerChildTypes.AttendanceDetail,
-          DrawerChildTypes.Appropriation,
-          DrawerChildTypes.GpaDetail,
-          DrawerChildTypes.Resource,
-        ].includes(childType as DrawerChildTypes)
+        [DrawerChildTypes.Attendance].includes(childType as DrawerChildTypes)
       ) {
         const newParams = new URLSearchParams(searchParams);
         newParams.delete(SearchParams.Drawer);
@@ -93,7 +87,7 @@ const CustomDrawer = () => {
         }
       >
         {childType ? (
-          React.cloneElement(getChildElement(childType), props)
+          React.cloneElement(getChildElement(childType), { props })
         ) : (
           <Skeleton active />
         )}

@@ -9,7 +9,7 @@ import {
   localStorageNames,
   setLocalStorage,
 } from '@/utils/storageFunc';
-import { Button, Flex } from 'antd';
+import { Button } from 'antd';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
@@ -118,9 +118,7 @@ export const Dashboard = () => {
         <div className={`dashboard__body`}>
           <DashboardHeader />
           <div className="dashboard__body--box">
-            <Flex vertical>
-              <Outlet />
-            </Flex>
+            <Outlet />
           </div>
           {isMobileNavBottom && <NavbarBottom />}
         </div>

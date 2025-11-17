@@ -1,5 +1,8 @@
 import { SoonCard } from '@/components/Common/SoonCard';
-import { Flex, Tabs, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
+import CustomTabs from '../components/CustomTabs';
+import Debtors from './tabs/Debtors';
+import Rating from './tabs/Rating';
 
 const PerformancePage = () => {
   return (
@@ -8,13 +11,12 @@ const PerformancePage = () => {
         O‘zlashtirish
       </Typography.Title>
       <Flex className="main-container">
-        <Tabs
-          type="card"
+        <CustomTabs
           items={[
             {
               key: 'rating',
               label: 'Reyting qaydnoma',
-              children: <SoonCard />,
+              children: <Rating />,
             },
             {
               key: 'collected',
@@ -22,7 +24,7 @@ const PerformancePage = () => {
               children: <SoonCard />,
             },
             { key: 'gpa', label: 'GPA ballar', children: <SoonCard /> },
-            { key: 'debt', label: 'Akademik qarzdor', children: <SoonCard /> },
+            { key: 'debt', label: 'Akademik qarzdor', children: <Debtors /> },
           ]}
         />
       </Flex>

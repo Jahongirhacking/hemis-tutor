@@ -11,6 +11,14 @@
   }
 }
 
+.ant-drawer {
+  &:has(.student-passport-page) {
+    .ant-drawer-content-wrapper {
+      width: min(700px, 100%) !important;
+    }
+  }
+}
+
 .bottom-info-message {
   z-index: 100;
   position: fixed;
@@ -94,6 +102,23 @@
   .ant-skeleton-input {
     width: 100% !important;
     min-width: 100% !important;
+  }
+}
+
+.dashboard__page {
+  max-height: 100%;
+
+  .ant-tabs {
+    height: max(300px, calc(100dvh - 200px));
+
+    .ant-tabs-content {
+      max-height: 100%;
+      overflow-y: auto;
+    }
+  }
+
+  .main-container {
+    flex: 1;
   }
 }
 

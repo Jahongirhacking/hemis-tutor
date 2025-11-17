@@ -1,26 +1,20 @@
 import DashedList from '@/components/DashedList';
 import { useGetAttendanceReportQuery } from '@/services/student';
 import { IAttendance, IStudent } from '@/services/student/type';
-import { RootState } from '@/store/store';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
 import { Button, Empty, Flex, Table, Tag, Typography } from 'antd';
 import moment from 'moment';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import CustomDrawer from '../../components/CustomDrawer';
+import useCustomTable from '../../components/hooks/useCustomTable';
 
 const AttendanceReport = () => {
-  const { currentGroup, currentSemester } = useSelector(
-    (store: RootState) => store?.authSlice
-  );
-  const { data: attendanceData, isFetching } = useGetAttendanceReportQuery(
-    { group_id: currentGroup?.id, semester: currentSemester?.code },
-    { skip: !currentGroup?.id || !currentSemester?.code }
-  );
+  const { data: attendanceData, isFetching } = useGetAttendanceReportQuery({});
   const { t } = useTranslation();
   const [openDetails, setOpenDetails] =
     useState<IStudent['student_id_number']>(null);
+  const { emptyText } = useCustomTable({});
 
   const attendanceReport: IAttendance[] = useMemo(
     () =>
@@ -49,13 +43,13 @@ const AttendanceReport = () => {
       <Table
         columns={[
           {
-            title: 'Talaba',
+            title: t('const.student'),
             key: 'student',
             dataIndex: 'student',
             render: (student: IStudent) => student?.full_name,
           },
           {
-            title: 'Sababli (soat)',
+            title: `${toFirstCapitalLetter(t('const.explicable'))} (${t('const.hours_plural')})`,
             key: 'absent_on',
             dataIndex: 'absent_on',
             render: value => (
@@ -63,7 +57,7 @@ const AttendanceReport = () => {
             ),
           },
           {
-            title: 'Sababsiz (soat)',
+            title: `${toFirstCapitalLetter(t('const.not_explicable'))} (${t('const.hours_plural')})`,
             key: 'absent_off',
             dataIndex: 'absent_off',
             render: value => (
@@ -71,7 +65,7 @@ const AttendanceReport = () => {
             ),
           },
           {
-            title: 'Jami',
+            title: t('const.total'),
             render: (_, record) => (
               <Tag color="magenta">
                 {`${record?.absent_off + record?.absent_on} ${t('const.hours_plural')}`}
@@ -97,6 +91,7 @@ const AttendanceReport = () => {
         rowKey={'id'}
         loading={isFetching}
         scroll={{ x: 700 }}
+        locale={{ emptyText }}
       />
 
       <CustomDrawer

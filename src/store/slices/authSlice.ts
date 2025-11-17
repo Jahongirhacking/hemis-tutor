@@ -2,8 +2,7 @@ import { api } from '@/services/api';
 import { authApi } from '@/services/auth';
 import { profileApi } from '@/services/profile';
 import { IGetProfileRes } from '@/services/profile/type';
-import { studentApi } from '@/services/student';
-import { IGroupDetails, ISemester } from '@/services/student/type';
+import { ISemester } from '@/services/student/type';
 import {
   getLocalStorage,
   localStorageNames,
@@ -19,8 +18,6 @@ interface IAuth {
   isMobileNavBottom: boolean;
   isMobile: boolean;
   profile: IGetProfileRes;
-  currentGroup: IGroupDetails;
-  currentSemester: ISemester;
 }
 
 const token = getLocalStorage(localStorageNames.HEMIS_TOKEN);
@@ -31,8 +28,6 @@ const initialState: IAuth = {
     getLocalStorage(localStorageNames.isMobileNavBottom) ?? false,
   isMobile: false,
   profile: null,
-  currentGroup: null,
-  currentSemester: null,
 };
 
 const DATE_FORMAT = 'YYYY-MM-DD';
@@ -69,12 +64,6 @@ const authSlice = createSlice({
     setStateIsMobile: (state, action: PayloadAction<boolean>) => {
       state.isMobile = action.payload;
     },
-    setCurrentGroup: (state, action: PayloadAction<IGroupDetails>) => {
-      state.currentGroup = action?.payload;
-    },
-    setCurrentSemester: (state, action: PayloadAction<ISemester>) => {
-      state.currentSemester = action.payload;
-    },
   },
   extraReducers: builder => {
     builder
@@ -98,15 +87,6 @@ const authSlice = createSlice({
         profileApi.endpoints.getProfile.matchFulfilled,
         (state, { payload }) => {
           state.profile = payload?.result;
-          state.currentGroup = payload?.result?.groups?.[0];
-        }
-      )
-      .addMatcher(
-        studentApi.endpoints.getGroupSemesters.matchFulfilled,
-        (state, { payload }) => {
-          state.currentSemester = getCurrentSemester(
-            payload?.result?.semesters
-          );
         }
       );
   },
@@ -117,12 +97,6 @@ export const logoutThunk = () => (dispatch: AppDispatch) => {
   dispatch(api.util.resetApiState());
 };
 
-export const {
-  logout,
-  register,
-  setMobileNavBottom,
-  setStateIsMobile,
-  setCurrentGroup,
-  setCurrentSemester,
-} = authSlice.actions;
+export const { logout, register, setMobileNavBottom, setStateIsMobile } =
+  authSlice.actions;
 export default authSlice.reducer;
