@@ -22,9 +22,9 @@ const getPresentColor = (percent: number) => {
 
 const AttendanceStatistics = () => {
   const { form, values } = useCustomFilter();
-  const { data: attendanceData, isFetching } = useGetAttendanceStatisticsQuery(
-    { ...values }
-  );
+  const { data: attendanceData, isFetching } = useGetAttendanceStatisticsQuery({
+    ...values,
+  });
   const { t } = useTranslation();
 
   return (

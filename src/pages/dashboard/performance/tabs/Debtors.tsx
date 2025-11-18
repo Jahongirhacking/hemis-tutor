@@ -1,23 +1,15 @@
 import { useGetGradeDebtorsQuery } from '@/services/student';
-import {
-  Card,
-  Collapse,
-  Flex, Skeleton,
-  Tag,
-  Typography
-} from 'antd';
+import { Card, Collapse, Flex, Skeleton, Tag, Typography } from 'antd';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import useCustomTable from '../../components/hooks/useCustomTable';
 
 const Debtors = () => {
   const { form, values } = useCustomFilter();
-  const { data: debtorsData, isFetching } = useGetGradeDebtorsQuery(
-    {
-      group_id: values?.[FilterKey.GroupId],
-      semester: values?.[FilterKey.Semester]
-    }
-  );
+  const { data: debtorsData, isFetching } = useGetGradeDebtorsQuery({
+    group_id: values?.[FilterKey.GroupId],
+    semester: values?.[FilterKey.Semester],
+  });
   const { emptyText } = useCustomTable({});
 
   return (

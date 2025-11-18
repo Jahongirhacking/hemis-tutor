@@ -15,7 +15,7 @@ const ProfileCard = () => {
     <Card style={{ overflowX: 'auto' }} className="profile-card">
       <Flex gap={24} vertical>
         <Flex gap={24} wrap>
-          <Flex vertical gap={8} align='center'>
+          <Flex vertical gap={8} align="center">
             <Avatar
               src={user?.tutor?.image ?? '/images/avatar.png'}
               style={{ backgroundColor: '#8381D8' }}
@@ -51,9 +51,11 @@ const ProfileCard = () => {
                 {user?.tutor?.full_name}
               </Typography.Title>
               <Flex gap={4}>
-                <Tag color="green" icon={<MailOutlined />}>{user?.tutor?.email || "-"}</Tag>
+                <Tag color="green" icon={<MailOutlined />}>
+                  {user?.tutor?.email || '-'}
+                </Tag>
                 <Tag color="magenta" icon={<PhoneOutlined />}>
-                  {user?.tutor?.telephone || "-"}
+                  {user?.tutor?.telephone || '-'}
                 </Tag>
               </Flex>
             </Flex>
@@ -77,11 +79,7 @@ const ProfileCard = () => {
             {t('const.group')}
           </Typography.Title>
           <Flex gap={8} wrap>
-            {
-              user?.groups?.map(g => (
-                <Tag>{g?.name}</Tag>
-              ))
-            }
+            {user?.groups?.map(g => <Tag>{g?.name}</Tag>)}
           </Flex>
         </Flex>
       </Flex>

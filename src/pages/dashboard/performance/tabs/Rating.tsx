@@ -8,12 +8,10 @@ import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const Rating = () => {
   const { form, values } = useCustomFilter();
-  const { data: ratingData, isFetching } = useGetGradeRatingQuery(
-    {
-      group_id: values?.[FilterKey.GroupId],
-      semester: values?.[FilterKey.Semester]
-    }
-  );
+  const { data: ratingData, isFetching } = useGetGradeRatingQuery({
+    group_id: values?.[FilterKey.GroupId],
+    semester: values?.[FilterKey.Semester],
+  });
   const { t } = useTranslation();
 
   return (

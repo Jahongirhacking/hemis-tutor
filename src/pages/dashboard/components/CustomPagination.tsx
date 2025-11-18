@@ -13,7 +13,9 @@ const CustomPagination = (props: PaginationProps) => {
       pageSizeOptions={page_sizes}
       onChange={(page, per_page) => setPagination({ page, per_page })}
       style={{ textAlign: 'center' }}
-      showTotal={(total) => `${t('const.total')}: ${t('const.number_count', { number: total })}`}
+      showTotal={total =>
+        `${t('const.total')}: ${t('const.number_count', { number: total })}`
+      }
       {...props}
     />
   );

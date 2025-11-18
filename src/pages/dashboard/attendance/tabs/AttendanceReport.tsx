@@ -14,7 +14,7 @@ import useCustomFilter from '../../components/forms/useCustomFilter';
 const AttendanceReport = () => {
   const { values, form } = useCustomFilter();
   const { data: attendanceData, isFetching } = useGetAttendanceReportQuery({
-    ...values
+    ...values,
   });
   const { t } = useTranslation();
   const [openDetails, setOpenDetails] =

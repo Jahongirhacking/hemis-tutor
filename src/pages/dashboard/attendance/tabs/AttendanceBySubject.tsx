@@ -8,9 +8,9 @@ import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const AttendanceBySubject = () => {
   const { values, form } = useCustomFilter();
-  const { data: attendanceData, isFetching } = useGetAttendanceBySubjectQuery(
-    { ...values }
-  );
+  const { data: attendanceData, isFetching } = useGetAttendanceBySubjectQuery({
+    ...values,
+  });
   const { t } = useTranslation();
 
   return (

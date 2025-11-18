@@ -8,7 +8,7 @@ import useCustomFilter from '../../components/forms/useCustomFilter';
 const ContractList = () => {
   const { form, values } = useCustomFilter();
   const { data: contractData, isFetching } = useGetContractListQuery({
-    ...values
+    ...values,
   });
   const { t } = useTranslation();
 
