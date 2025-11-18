@@ -1,58 +1,28 @@
-import { SoonCard } from '@/components/Common/SoonCard';
-import { Card } from 'antd';
+import { PencilIconSVG } from '@/assets/icon';
+import { ControlledFlowContext } from '@/components/ControlledFlow';
+import { useAppSelector } from '@/store/hooks';
+import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import { Avatar, Button, Card, Flex, Tag, Typography } from 'antd';
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ProfileCard = () => {
-  // const { setNextIndex } = useContext(ControlledFlowContext);
-  // const user = useAppSelector(state => state.authSlice.profile);
-  // const { t } = useTranslation();
+  const { setNextIndex } = useContext(ControlledFlowContext);
+  const user = useAppSelector(state => state.authSlice.profile);
+  const { t } = useTranslation();
 
   return (
     <Card style={{ overflowX: 'auto' }} className="profile-card">
-      <SoonCard />
-      {/* <Flex gap={24} wrap>
-        <Avatar
-          src={user?.data?.image ?? '/images/avatar.png'}
-          style={{ backgroundColor: '#8381D8' }}
-        >
-          {`${user?.data?.first_name[0]}${user?.data?.second_name[0]}`}
-        </Avatar>
-        <Flex
-          vertical
-          gap={16}
-          align="flex-start"
-          style={{
-            flex: 1,
-            minWidth: '180px',
-          }}
-        >
-          <Flex
-            gap={10}
-            wrap
-            justify="space-between"
-            align="center"
-            style={{ width: '100%' }}
-          >
-            <Typography.Title level={2} style={{ margin: 0 }}>
-              {user?.data?.full_name}
-            </Typography.Title>
-            <Flex gap={4}>
-              <Tag color="green">{user?.data?.level?.name}</Tag>
-              <Tag color="magenta">
-                {truncateString(user?.data?.group?.name, 35)}
-              </Tag>
-            </Flex>
-          </Flex>
+      <Flex gap={24} vertical>
+        <Flex gap={24} wrap>
+          <Flex vertical gap={8} align='center'>
+            <Avatar
+              src={user?.tutor?.image ?? '/images/avatar.png'}
+              style={{ backgroundColor: '#8381D8' }}
+            >
+              {`${user?.tutor?.full_name}`}
+            </Avatar>
 
-          <Flex vertical gap={2}>
-            <Typography.Title level={4} style={{ marginBottom: 0 }}>
-              {user?.data?.university}
-            </Typography.Title>
-            <Typography.Text strong style={{ color: '#000000A6' }}>
-              {user?.data?.faculty?.name}
-            </Typography.Text>
-            <Typography.Text style={{ color: '##000000A6' }}>
-              {user?.data?.specialty?.name}
-            </Typography.Text>
             <Button
               className="edit-btn"
               icon={<PencilIconSVG />}
@@ -61,8 +31,60 @@ const ProfileCard = () => {
               {t('const.edit')}
             </Button>
           </Flex>
+
+          <Flex
+            vertical
+            gap={16}
+            align="flex-start"
+            style={{
+              flex: 1,
+              minWidth: '180px',
+            }}
+          >
+            <Flex
+              gap={10}
+              vertical
+              justify="space-between"
+              style={{ width: '100%' }}
+            >
+              <Typography.Title level={2} style={{ margin: 0 }}>
+                {user?.tutor?.full_name}
+              </Typography.Title>
+              <Flex gap={4}>
+                <Tag color="green" icon={<MailOutlined />}>{user?.tutor?.email || "-"}</Tag>
+                <Tag color="magenta" icon={<PhoneOutlined />}>
+                  {user?.tutor?.telephone || "-"}
+                </Tag>
+              </Flex>
+            </Flex>
+
+            <Flex vertical gap={2}>
+              <Typography.Title level={5} style={{ marginBottom: 0 }}>
+                {user?.tutor?.university}
+              </Typography.Title>
+              <Typography.Text strong style={{ color: '#000000A6' }}>
+                {user?.tutor?.employee?.employee_id_number}
+              </Typography.Text>
+              <Typography.Text style={{ color: '##000000A6' }}>
+                {user?.tutor?.employee?.specialty}
+              </Typography.Text>
+            </Flex>
+          </Flex>
         </Flex>
-      </Flex> */}
+
+        <Flex vertical gap={12}>
+          <Typography.Title level={4} style={{ margin: 0 }}>
+            {t('const.group')}
+          </Typography.Title>
+          <Flex gap={8} wrap>
+            {
+              user?.groups?.map(g => (
+                <Tag>{g?.name}</Tag>
+              ))
+            }
+          </Flex>
+        </Flex>
+      </Flex>
     </Card>
   );
 };

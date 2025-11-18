@@ -433,3 +433,29 @@ export interface IStudentDetailsRes {
   student: IStudent;
   meta: IStudentMeta;
 }
+
+export interface IScheduleRes {}
+
+export interface IScheduleOptionRes {
+  faculties: Faculty[];
+  curriculums: Curriculum[];
+  educationYears: IEducationYear[];
+  semesters: ISemester[];
+  groups: IGroup[];
+  weeks: Week[];
+}
+
+export interface Faculty {
+  id: number;
+  name: string;
+}
+
+export interface Curriculum {
+  id: number;
+  name: string;
+}
+
+export interface Week {
+  id: number;
+  name: string;
+}

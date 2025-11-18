@@ -1,7 +1,7 @@
 import { encodeStudentId } from '@/utils/stringFunc';
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
 import { RootState } from 'src/store/store';
-import { IStudentPassportRes } from '../type';
+import { IStudentExtraInfoRes, IStudentPassportRes } from '../type';
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
@@ -18,10 +18,11 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 
-export const api = createApi({
+export const statApi = createApi({
   baseQuery: baseQueryWithRetry,
+  reducerPath: 'stat',
   endpoints: build => ({
-    getStudentPassport: build.query<
+    getStudentProfile: build.query<
       { data: IStudentPassportRes },
       { student_id_number: string }
     >({
@@ -32,8 +33,21 @@ export const api = createApi({
         },
       }),
     }),
+
+    getStudentExtraInfo: build.query<
+      IStudentExtraInfoRes,
+      { student_hash_number: string }
+    >({
+      query: ({ student_hash_number }) => ({
+        url: `https://stat.edu.uz/api/uzasbohemis/student-sync-data`,
+        params: {
+          hash: encodeStudentId(student_hash_number),
+        },
+      }),
+    }),
   }),
   tagTypes: [],
 });
 
-export const { useGetStudentPassportQuery } = api;
+export const { useGetStudentExtraInfoQuery, useGetStudentProfileQuery } =
+  statApi;

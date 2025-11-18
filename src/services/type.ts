@@ -148,3 +148,7 @@ export interface IStudentPassportRes {
   specialityName: string;
   gpas: IStudentGPA[];
 }
+
+export interface IStudentExtraInfoRes {
+  data: any;
+}

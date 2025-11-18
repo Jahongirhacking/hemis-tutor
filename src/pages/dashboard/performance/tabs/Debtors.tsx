@@ -1,51 +1,31 @@
 import { useGetGradeDebtorsQuery } from '@/services/student';
-import { RootState } from '@/store/store';
 import {
   Card,
   Collapse,
-  Flex,
-  Form,
-  Select,
-  Skeleton,
+  Flex, Skeleton,
   Tag,
-  Typography,
+  Typography
 } from 'antd';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
+import useCustomFilter from '../../components/forms/useCustomFilter';
 import useCustomTable from '../../components/hooks/useCustomTable';
 
 const Debtors = () => {
-  const [form] = Form.useForm();
-  const values = Form.useWatch([], form);
+  const { form, values } = useCustomFilter();
   const { data: debtorsData, isFetching } = useGetGradeDebtorsQuery(
-    { ...values },
-    { skip: !values?.group_id }
-  );
-  const { profile } = useSelector((store: RootState) => store.authSlice);
-  const { emptyText } = useCustomTable({});
-
-  useEffect(() => {
-    if (profile) {
-      form.setFieldValue('group_id', profile?.groups?.[0]?.id);
+    {
+      group_id: values?.[FilterKey.GroupId],
+      semester: values?.[FilterKey.Semester]
     }
-  }, [profile]);
+  );
+  const { emptyText } = useCustomTable({});
 
   return (
     <Flex vertical gap={18}>
-      <Form form={form} layout="vertical">
-        <Flex gap={8} align="center">
-          <Form.Item name={'group_id'} style={{ margin: 0 }}>
-            <Select
-              style={{ width: 180 }}
-              placeholder={'Guruh tanlang'}
-              options={profile?.groups?.map(g => ({
-                label: g?.name,
-                value: g?.id,
-              }))}
-            />
-          </Form.Item>
-        </Flex>
-      </Form>
+      <CustomFilter form={form}>
+        <CustomFilter.ByGroup />
+        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+      </CustomFilter>
 
       <Flex gap={12} vertical>
         {isFetching ? (

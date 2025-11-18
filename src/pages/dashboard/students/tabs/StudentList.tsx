@@ -1,32 +1,30 @@
 import { usePagination } from '@/hooks/usePagination';
 import { useGetStudentListQuery } from '@/services/student';
 import { DrawerChildTypes, SearchParams } from '@/utils/config';
-import { Button, Flex, Table } from 'antd';
+import { Button, Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
-import CustomPagination from '../../components/CustomPagination';
-import useCustomTable from '../../components/hooks/useCustomTable';
+import CustomTable from '../../components/CustomTable';
+import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
+import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const StudentList = () => {
+  const { form, values } = useCustomFilter();
   const { pagination, setSearchParams, searchParams } = usePagination();
   const { data: studentsData, isFetching } = useGetStudentListQuery({
     ...pagination,
+    ...values,
+    group: values?.[FilterKey.GroupId],
   });
   const { t } = useTranslation();
-  const { emptyText } = useCustomTable({});
-
-  // useEffect(() => {
-  //   if (currentGroup?.id) {
-  //     setPagination({
-  //       page: undefined,
-  //       per_page: undefined,
-  //       search: undefined
-  //     })
-  //   }
-  // }, [currentGroup?.id]);
 
   return (
     <Flex vertical gap={12}>
-      <Table
+      <CustomFilter form={form}>
+        <CustomFilter.BySearch />
+        <CustomFilter.ByGroup />
+        <CustomFilter.ByPinfl />
+      </CustomFilter>
+      <CustomTable
         columns={[
           {
             title: '#',
@@ -65,7 +63,7 @@ const StudentList = () => {
                     const params = new URLSearchParams(searchParams);
                     params.set(
                       SearchParams.Drawer,
-                      DrawerChildTypes.StudentDetails
+                      DrawerChildTypes.StudentInfo
                     );
                     params.set(SearchParams.DrawerProps, String(record?.id));
                     setSearchParams(params);
@@ -73,37 +71,15 @@ const StudentList = () => {
                 >
                   {t('const.in_detail')}
                 </Button>
-
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    const params = new URLSearchParams(searchParams);
-                    params.set(
-                      SearchParams.Drawer,
-                      DrawerChildTypes.StudentPassport
-                    );
-                    params.set(
-                      SearchParams.DrawerProps,
-                      String(record?.student_id_number)
-                    );
-                    setSearchParams(params);
-                  }}
-                >
-                  {'Talaba pasporti'}
-                </Button>
               </Flex>
             ),
           },
         ]}
         dataSource={studentsData?.result?.students}
-        rowKey={'id'}
         loading={isFetching}
-        scroll={{ x: 700 }}
         pagination={false}
-        locale={{ emptyText }}
+        paginationTotal={studentsData?.result?.pagination?.total_count}
       />
-
-      <CustomPagination total={studentsData?.result?.pagination?.total_count} />
     </Flex>
   );
 };

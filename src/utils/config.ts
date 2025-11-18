@@ -14,8 +14,7 @@ export const enum DrawerChildTypes {
   Attendance = 'attendance',
   Notifications = 'notifications',
   AuthExtraOptions = 'auth-extra-options',
-  StudentDetails = 'student-details',
-  StudentPassport = 'student-passport',
+  StudentInfo = 'student-info',
 }
 
 export const enum ChatTopic {

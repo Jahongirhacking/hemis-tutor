@@ -1,8 +1,10 @@
 import { useGetAttendanceStatisticsQuery } from '@/services/student';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { Flex, Table, Tag } from 'antd';
+import { Flex, Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
-import useCustomTable from '../../components/hooks/useCustomTable';
+import CustomTable from '../../components/CustomTable';
+import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
+import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const getAbsentColor = (percent: number) => {
   if (percent <= 15) return 'blue';
@@ -19,15 +21,20 @@ const getPresentColor = (percent: number) => {
 };
 
 const AttendanceStatistics = () => {
+  const { form, values } = useCustomFilter();
   const { data: attendanceData, isFetching } = useGetAttendanceStatisticsQuery(
-    {}
+    { ...values }
   );
   const { t } = useTranslation();
-  const { emptyText } = useCustomTable({});
 
   return (
     <Flex vertical gap={12}>
-      <Table
+      <CustomFilter form={form}>
+        <CustomFilter.ByGroup />
+        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+      </CustomFilter>
+
+      <CustomTable
         columns={[
           {
             title: t('const.student'),
@@ -80,10 +87,7 @@ const AttendanceStatistics = () => {
           },
         ]}
         dataSource={attendanceData?.result?.students}
-        rowKey={'id'}
         loading={isFetching}
-        scroll={{ x: 700 }}
-        locale={{ emptyText }}
       />
     </Flex>
   );

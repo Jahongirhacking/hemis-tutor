@@ -22,7 +22,6 @@ const CustomDrawer = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log(Array.from(searchParams.entries()));
     if (searchParams.has(SearchParams.Drawer)) {
       dispatch(
         setDrawer({

@@ -1,19 +1,26 @@
 import { useGetAttendanceBySubjectQuery } from '@/services/student';
 import { IStudent } from '@/services/student/type';
-import { Flex, Table } from 'antd';
+import { Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
-import useCustomTable from '../../components/hooks/useCustomTable';
+import CustomTable from '../../components/CustomTable';
+import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
+import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const AttendanceBySubject = () => {
+  const { values, form } = useCustomFilter();
   const { data: attendanceData, isFetching } = useGetAttendanceBySubjectQuery(
-    {}
+    { ...values }
   );
   const { t } = useTranslation();
-  const { emptyText } = useCustomTable({});
 
   return (
     <Flex vertical gap={12}>
-      <Table
+      <CustomFilter form={form}>
+        <CustomFilter.ByGroup />
+        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+      </CustomFilter>
+
+      <CustomTable
         columns={[
           {
             title: t('const.student'),
@@ -33,10 +40,7 @@ const AttendanceBySubject = () => {
           },
         ]}
         dataSource={attendanceData?.result?.subjects}
-        rowKey={'id'}
         loading={isFetching}
-        scroll={{ x: 500 }}
-        locale={{ emptyText }}
       />
     </Flex>
   );

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'sans-pro';
   src: url('./assets/font/SourceSansPro-Regular.woff') format('woff');
@@ -240,6 +244,14 @@ input[type='password'] {
     background-color: #fff !important;
     padding: 12px 24px;
     border-radius: 0 0 8px 8px;
+  }
+}
+
+.dark-theme {
+  .ant-tabs-card {
+    .ant-tabs-content {
+      background-color: #1b1b1b !important;
+    }
   }
 }
 

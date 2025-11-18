@@ -2,8 +2,9 @@ import { useGetProfileQuery } from '@/services/profile';
 import { toggleThemeColor } from '@/store/slices/themeSlice';
 import { RootState } from '@/store/store';
 import { MenuOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
-import { Avatar, Badge, Button, Flex, Switch, Typography } from 'antd';
+import { Avatar, Badge, Button, Flex, Switch, Tag, Typography } from 'antd';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { DashboardContext } from '..';
 
@@ -18,15 +19,19 @@ const DashboardHeader = () => {
     (store: RootState) => store?.themeSlice?.color
   );
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <Flex
       className="dashboard__header upper-element"
-      justify="flex-end"
+      justify="space-between"
       align="center"
       gap={18}
-      wrap
     >
+      <Flex gap={8} wrap>
+        <Tag color='magenta'>{`${t('const.group')}: ${t('const.number_count', { number: profileData?.result?.statistics?.groups_count })}`}</Tag>
+        <Tag color='blue'>{`${t('const.student')}: ${t('const.number_count', { number: `${profileData?.result?.statistics?.active_students} / ${profileData?.result?.statistics?.total_students}` })}`}</Tag>
+      </Flex>
       <Flex gap={12} align="center">
         <Switch
           value={themeColor === 'dark'}

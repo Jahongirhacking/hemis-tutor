@@ -2,19 +2,23 @@ import DashedList from '@/components/DashedList';
 import { useGetAttendanceReportQuery } from '@/services/student';
 import { IAttendance, IStudent } from '@/services/student/type';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { Button, Empty, Flex, Table, Tag, Typography } from 'antd';
+import { Button, Empty, Flex, Tag, Typography } from 'antd';
 import moment from 'moment';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDrawer from '../../components/CustomDrawer';
-import useCustomTable from '../../components/hooks/useCustomTable';
+import CustomTable from '../../components/CustomTable';
+import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
+import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const AttendanceReport = () => {
-  const { data: attendanceData, isFetching } = useGetAttendanceReportQuery({});
+  const { values, form } = useCustomFilter();
+  const { data: attendanceData, isFetching } = useGetAttendanceReportQuery({
+    ...values
+  });
   const { t } = useTranslation();
   const [openDetails, setOpenDetails] =
     useState<IStudent['student_id_number']>(null);
-  const { emptyText } = useCustomTable({});
 
   const attendanceReport: IAttendance[] = useMemo(
     () =>
@@ -40,7 +44,12 @@ const AttendanceReport = () => {
 
   return (
     <Flex vertical gap={12}>
-      <Table
+      <CustomFilter form={form}>
+        <CustomFilter.ByGroup />
+        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+      </CustomFilter>
+
+      <CustomTable
         columns={[
           {
             title: t('const.student'),
@@ -88,10 +97,7 @@ const AttendanceReport = () => {
           },
         ]}
         dataSource={attendanceReport || []}
-        rowKey={'id'}
         loading={isFetching}
-        scroll={{ x: 700 }}
-        locale={{ emptyText }}
       />
 
       <CustomDrawer

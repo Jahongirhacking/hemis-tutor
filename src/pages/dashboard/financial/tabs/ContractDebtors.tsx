@@ -1,16 +1,24 @@
 import { useGetDebtorsQuery } from '@/services/student';
-import { Flex, Table } from 'antd';
+import { Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
-import useCustomTable from '../../components/hooks/useCustomTable';
+import CustomTable from '../../components/CustomTable';
+import CustomFilter from '../../components/forms/CustomFilter';
+import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const ContractDebtors = () => {
-  const { data: contractData, isFetching } = useGetDebtorsQuery({});
+  const { form, values } = useCustomFilter();
+  const { data: contractData, isFetching } = useGetDebtorsQuery({
+    ...values
+  });
   const { t } = useTranslation();
-  const { emptyText } = useCustomTable({});
 
   return (
     <Flex vertical gap={12}>
-      <Table
+      <CustomFilter form={form}>
+        <CustomFilter.ByGroup />
+      </CustomFilter>
+
+      <CustomTable
         loading={isFetching}
         columns={[
           {
@@ -51,10 +59,7 @@ const ContractDebtors = () => {
             fixed: 'right',
           },
         ]}
-        scroll={{ x: 800 }}
         dataSource={contractData?.result?.debtors}
-        rowKey={'id'}
-        locale={{ emptyText }}
       />
     </Flex>
   );

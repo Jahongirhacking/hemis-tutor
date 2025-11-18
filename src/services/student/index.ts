@@ -14,10 +14,12 @@ import {
   IContractListRes,
   IDebtorsReq,
   IDebtorsRes,
+  IEducationYear,
   IGradeDebtorReq,
   IGradeDebtorRes,
   IGradeRatingReq,
   IGradeRatingRes,
+  IGroup,
   IGroupDetailsReq,
   IGroupDetailsRes,
   IGroupListReq,
@@ -27,6 +29,9 @@ import {
   IGroupStudentsReq,
   IGroupStudentsRes,
   IPagination,
+  IScheduleOptionRes,
+  IScheduleRes,
+  ISemester,
   IStudent,
   IStudentDetailsRes,
   IStudentGradeReq,
@@ -185,8 +190,24 @@ export const studentApi = api.injectEndpoints({
 
     // Schedules
     getSchedules: build.query<
-      IBaseDataRes<IStudentDetailsRes>,
-      { id: IStudent['id'] }
+      IBaseDataRes<IScheduleRes>,
+      { week_id: number; group_id?: IGroup['id'] }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/schedule/weekly`)}`,
+        params,
+      }),
+    }),
+
+    getScheduleOptions: build.query<
+      IBaseDataRes<IScheduleOptionRes>,
+      {
+        faculty_id?: number;
+        curriculum_id?: number;
+        education_year?: IEducationYear['code'];
+        semester?: ISemester['code'];
+        expand?: string;
+      }
     >({
       query: params => ({
         url: `${getBaseUrl(`/student/view`)}`,
