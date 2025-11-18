@@ -59,6 +59,7 @@ const StudentList = () => {
             render: (_, record) => (
               <Flex gap={8} wrap align="center" justify="center">
                 <Button
+                  type='primary'
                   onClick={() => {
                     const params = new URLSearchParams(searchParams);
                     params.set(
