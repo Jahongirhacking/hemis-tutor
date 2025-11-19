@@ -1,6 +1,6 @@
 import { Flex, Typography } from 'antd';
 import CustomTabs from '../components/CustomTabs';
-import StudentAction from './tabs/StudentAction';
+import StudentHistory from './tabs/StudentHistory';
 import StudentList from './tabs/StudentList';
 
 const StudentsPage = () => {
@@ -18,9 +18,9 @@ const StudentsPage = () => {
               children: <StudentList />,
             },
             {
-              key: 'action',
+              key: 'history',
               label: 'Talabalar harakati',
-              children: <StudentAction />,
+              children: <StudentHistory />,
             },
           ]}
         />

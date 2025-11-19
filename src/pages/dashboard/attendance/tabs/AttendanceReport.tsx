@@ -1,15 +1,14 @@
-import DashedList from '@/components/DashedList';
 import { useGetAttendanceReportQuery } from '@/services/student';
 import { IAttendance, IStudent } from '@/services/student/type';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { Button, Empty, Flex, Tag, Typography } from 'antd';
-import moment from 'moment';
+import { Button, Divider, Flex, Tag } from 'antd';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDrawer from '../../components/CustomDrawer';
-import CustomTable from '../../components/CustomTable';
+import { default as CustomTable } from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import AttendanceDetails from '../components/AttendanceDetails';
 
 const AttendanceReport = () => {
   const { values, form } = useCustomFilter();
@@ -17,8 +16,7 @@ const AttendanceReport = () => {
     ...values,
   });
   const { t } = useTranslation();
-  const [openDetails, setOpenDetails] =
-    useState<IStudent['student_id_number']>(null);
+  const [openDetails, setOpenDetails] = useState<IStudent>(null);
 
   const attendanceReport: IAttendance[] = useMemo(
     () =>
@@ -43,11 +41,13 @@ const AttendanceReport = () => {
   );
 
   return (
-    <Flex vertical gap={12}>
+    <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.ByGroup />
         <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
       </CustomFilter>
+
+      <Divider style={{ margin: 0 }} />
 
       <CustomTable
         columns={[
@@ -86,9 +86,7 @@ const AttendanceReport = () => {
             render: (_, record) => (
               <Button
                 type="link"
-                onClick={() =>
-                  setOpenDetails(record?.student?.student_id_number)
-                }
+                onClick={() => setOpenDetails(record?.student)}
               >
                 {t('const.in_detail')}
               </Button>
@@ -103,49 +101,12 @@ const AttendanceReport = () => {
       <CustomDrawer
         open={!!openDetails}
         onClose={() => setOpenDetails(null)}
-        children={(() => {
-          const studentAttendance = attendanceReport?.find(
-            r => r?.student?.student_id_number === openDetails
-          );
-          return (
-            <Flex vertical gap={18}>
-              <Typography.Title level={5} style={{ margin: 0 }}>
-                {studentAttendance?.student?.full_name}
-              </Typography.Title>
-              <Flex gap={4} wrap>
-                <Tag color="error">{`${toFirstCapitalLetter(t('const.not_explicable'))}: ${studentAttendance?.absent_off} ${t('const.hours_plural')}`}</Tag>
-                <Tag color="orange">{`${toFirstCapitalLetter(t('const.explicable'))}: ${studentAttendance?.absent_on} ${t('const.hours_plural')}`}</Tag>
-              </Flex>
-              <Flex
-                vertical
-                gap={8}
-                style={{ maxHeight: '100dvh - 190px', overflowY: 'auto' }}
-              >
-                {attendanceData?.result?.attendance?.length ? (
-                  <DashedList
-                    list={attendanceData?.result?.attendance
-                      ?.filter(d => d?.student?.student_id_number)
-                      ?.map(d => ({
-                        label: moment(d?.lesson_date, 'YYYY-MM-DD').format(
-                          'DD.MM.YYYY'
-                        ),
-                        value: (
-                          <Tag
-                            color={d?.absent_off ? 'error' : 'orange'}
-                          >{`${d?.attendance_type}: ${d?.absent_off || d?.absent_on} ${t('const.hours_plural')}`}</Tag>
-                        ),
-                      }))}
-                  />
-                ) : (
-                  <Empty
-                    image={Empty.PRESENTED_IMAGE_SIMPLE}
-                    description={`${t('const.info')} ${t('const.not_found')}`}
-                  />
-                )}
-              </Flex>
-            </Flex>
-          );
-        })()}
+        children={
+          <AttendanceDetails
+            attendanceData={attendanceData?.result}
+            student={openDetails}
+          />
+        }
       />
     </Flex>
   );

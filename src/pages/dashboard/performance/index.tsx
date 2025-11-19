@@ -1,14 +1,18 @@
-import { SoonCard } from '@/components/Common/SoonCard';
 import { Flex, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import CustomTabs from '../components/CustomTabs';
 import Debtors from './tabs/Debtors';
+import GPA from './tabs/GPA';
 import Rating from './tabs/Rating';
+import SummaryRating from './tabs/SummaryRating';
 
 const PerformancePage = () => {
+  const { t } = useTranslation();
+
   return (
     <Flex vertical gap={18} className="dashboard__page performance-page">
       <Typography.Title level={2} style={{ margin: 0 }}>
-        O‘zlashtirish
+        {t('const.appropriation')}
       </Typography.Title>
       <Flex className="main-container">
         <CustomTabs
@@ -21,9 +25,9 @@ const PerformancePage = () => {
             {
               key: 'collected',
               label: 'Jamlanma qaydnoma',
-              children: <SoonCard />,
+              children: <SummaryRating />,
             },
-            { key: 'gpa', label: 'GPA ballar', children: <SoonCard /> },
+            { key: 'gpa', label: 'GPA ballar', children: <GPA /> },
             { key: 'debt', label: 'Akademik qarzdor', children: <Debtors /> },
           ]}
         />

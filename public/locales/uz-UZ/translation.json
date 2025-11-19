@@ -189,7 +189,11 @@
         "question": "savol",
         "attempt": "urinish",
         "time": "Vaqt",
-        "questions": "Savollar"
+        "questions": "Savollar",
+        "date": "Sana",
+        "exam_type": "Nazorat turi",
+        "average_grade": "O'rtacha baho",
+        "registered_address": "Ro'yxatdan o'tgan manzil"
     },
     "exam": {
         "retry_title": "Testni qayta topshirasizmi?",

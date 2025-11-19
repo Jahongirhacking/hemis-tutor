@@ -1,7 +1,8 @@
 import { usePagination } from '@/hooks/usePagination';
 import { useGetStudentListQuery } from '@/services/student';
 import { DrawerChildTypes, SearchParams } from '@/utils/config';
-import { Button, Flex } from 'antd';
+import { Button, Divider, Flex } from 'antd';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
@@ -9,7 +10,8 @@ import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const StudentList = () => {
   const { form, values } = useCustomFilter();
-  const { pagination, setSearchParams, searchParams } = usePagination();
+  const { pagination, setSearchParams, searchParams, setPagination } =
+    usePagination();
   const { data: studentsData, isFetching } = useGetStudentListQuery({
     ...pagination,
     ...values,
@@ -17,13 +19,23 @@ const StudentList = () => {
   });
   const { t } = useTranslation();
 
+  useEffect(() => {
+    setPagination({
+      page: undefined,
+      per_page: undefined,
+    });
+  }, [values]);
+
   return (
-    <Flex vertical gap={12}>
+    <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.BySearch />
         <CustomFilter.ByGroup />
         <CustomFilter.ByPinfl />
       </CustomFilter>
+
+      <Divider style={{ margin: 0 }} />
+
       <CustomTable
         columns={[
           {
@@ -36,6 +48,7 @@ const StudentList = () => {
             title: 'Talaba',
             key: 'full_name',
             dataIndex: 'full_name',
+            width: 250,
           },
           {
             title: 'Talaba ID',
@@ -59,7 +72,7 @@ const StudentList = () => {
             render: (_, record) => (
               <Flex gap={8} wrap align="center" justify="center">
                 <Button
-                  type='primary'
+                  type="primary"
                   onClick={() => {
                     const params = new URLSearchParams(searchParams);
                     params.set(

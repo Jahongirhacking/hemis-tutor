@@ -51,6 +51,7 @@ export interface IStudent {
 export interface IEducationYear {
   code: string;
   name: string;
+  id?: string;
 }
 
 export interface IAttendance {
@@ -224,6 +225,36 @@ export interface IGradeRatingRes {
   count: number;
 }
 
+export interface IGradeSummarySubject {
+  subject: string;
+  exam_type: string;
+  grade: string;
+  total_point: number;
+  credit: number;
+}
+
+export interface IGradeSummaryStudent {
+  id: IStudent['id'];
+  full_name: IStudent['full_name'];
+  student_id_number: IStudent['student_id_number'];
+}
+
+export interface IGradeSummaryItem {
+  student: IGradeSummaryStudent;
+  subjects: IGradeSummarySubject[];
+  total_subjects: number;
+  total_credit: number;
+  average_grade: number;
+  status: string;
+}
+
+export interface IGradeSummaryRatingRes {
+  summary: IGradeSummaryItem[];
+  group_id: IGroup['id'];
+  semester: ISemester['code'];
+  total_students: number;
+}
+
 export interface IStudentGradeReq {
   id: IStudent['id'];
   semester?: ISemester['code'];
@@ -235,8 +266,27 @@ export interface IStudentGradeRes {
   semester: ISemester['code'];
 }
 
+export interface IStudentGpaRecord {
+  student: Pick<IStudent, 'id' | 'full_name' | 'student_id_number'>;
+  gpa: number;
+  credit: number;
+  total_subjects: number;
+  semester: ISemester['code'];
+  status: string;
+}
+
+export interface IStudentGpaRes {
+  gpa_records: IStudentGpaRecord[];
+  group_id: IGroup['id'];
+  semester: ISemester['code'];
+  total_students: number;
+}
+
 export interface IGroupListReq {
   education_year?: IEducationYear['code'];
+  semester?: ISemester['code'];
+  group_id?: IGroup['id'];
+  faculty_id?: Faculty['id'];
 }
 
 export interface IGroupListRes {
@@ -434,7 +484,46 @@ export interface IStudentDetailsRes {
   meta: IStudentMeta;
 }
 
-export interface IScheduleRes {}
+export interface IScheduleItem {
+  lesson_pair: string;
+  subject: string;
+  training_type: string;
+  employee: string;
+  auditorium: string;
+  lesson_date: string;
+}
+
+export interface IScheduleGroupDay {
+  day_id: number;
+  day_label: string;
+  items: IScheduleItem[];
+}
+
+export interface IScheduleGroup {
+  group_id: number;
+  group_name: string;
+  days: IScheduleGroupDay[];
+}
+
+export interface IScheduleWeekMeta {
+  id: number;
+  name: string;
+  curriculum_id: number;
+  semester: string;
+  start_date: string;
+  end_date: string;
+}
+
+export interface IScheduleWeekday {
+  day_id: number;
+  day_label: string;
+}
+
+export interface IScheduleByWeekRes {
+  week: IScheduleWeekMeta;
+  weekdays: IScheduleWeekday[];
+  groups: IScheduleGroup[];
+}
 
 export interface IScheduleOptionRes {
   faculties: Faculty[];
@@ -458,4 +547,69 @@ export interface Curriculum {
 export interface Week {
   id: number;
   name: string;
+}
+
+export interface IExam {
+  id: number;
+  group: string;
+  subject: string;
+  exam_type: string;
+  exam_name: string | null;
+  exam_date: string;
+  start_time: string;
+  finish_time: string;
+  auditorium: string;
+}
+
+export interface IExamsRes {
+  exams: IExam[];
+  pagination: IPagination;
+  semester: ISemester['code'];
+  group_semesters: Record<string, ISemester['code']>;
+  groups_count: number;
+}
+
+export interface ICheckedAddress {
+  full_address?: string;
+  province?: string;
+  district?: string;
+}
+
+export interface IVerification {
+  status: boolean;
+  status_text?: string;
+  match_percentage?: number;
+}
+
+export interface ICheckedStudent {
+  student: Pick<IStudent, 'id' | 'full_name' | 'student_id_number' | 'image'>;
+  group: Pick<IGroup, 'id' | 'name'>;
+  registered_address?: ICheckedAddress;
+  current_address?: { full_address?: string };
+  verification: IVerification;
+  phone?: string;
+}
+
+export interface ICheckAddressRes {
+  students: ICheckedStudent[];
+  group_id: IGroup['id'] | string;
+  total: number;
+  matching: number;
+  not_matching: number;
+}
+
+export interface IHistory {
+  id: number;
+  full_name: string;
+  group: string;
+  level: string;
+  status_change: string;
+  date: string;
+  comment: string;
+  active: boolean;
+}
+
+export interface IStudentHistoryRes {
+  history: IHistory[];
+  pagination: IPagination;
 }

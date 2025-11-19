@@ -8,6 +8,7 @@ import {
   IAttendanceReportRes,
   IAttendanceStatisticsReq,
   IAttendanceStatisticsRes,
+  ICheckAddressRes,
   IContractDetailsReq,
   IContractDetailsRes,
   IContractListReq,
@@ -15,10 +16,12 @@ import {
   IDebtorsReq,
   IDebtorsRes,
   IEducationYear,
+  IExamsRes,
   IGradeDebtorReq,
   IGradeDebtorRes,
   IGradeRatingReq,
   IGradeRatingRes,
+  IGradeSummaryRatingRes,
   IGroup,
   IGroupDetailsReq,
   IGroupDetailsRes,
@@ -29,13 +32,15 @@ import {
   IGroupStudentsReq,
   IGroupStudentsRes,
   IPagination,
+  IScheduleByWeekRes,
   IScheduleOptionRes,
-  IScheduleRes,
   ISemester,
   IStudent,
   IStudentDetailsRes,
+  IStudentGpaRes,
   IStudentGradeReq,
   IStudentGradeRes,
+  IStudentHistoryRes,
   IStudentListReq,
 } from './type';
 
@@ -119,12 +124,32 @@ export const studentApi = api.injectEndpoints({
       }
     ),
 
+    getGradeSummaryRating: build.query<
+      IBaseDataRes<IGradeSummaryRatingRes>,
+      IGradeRatingReq
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/grade/summary')}`,
+        params,
+      }),
+    }),
+
     getStudentGrade: build.query<
       IBaseDataRes<IStudentGradeRes>,
       IStudentGradeReq
     >({
       query: ({ id, ...params }) => ({
         url: `${getBaseUrl(`/grade/student/${id}`)}`,
+        params,
+      }),
+    }),
+
+    getStudentGpa: build.query<
+      IBaseDataRes<IStudentGpaRes>,
+      { group_id: IGroup['id']; semester: ISemester['code'] }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/grade/gpa`)}`,
         params,
       }),
     }),
@@ -151,8 +176,8 @@ export const studentApi = api.injectEndpoints({
       IBaseDataRes<IGroupDetailsRes>,
       IGroupDetailsReq
     >({
-      query: ({ id, ...params }) => ({
-        url: `${getBaseUrl(`/group/view/${id}`)}`,
+      query: ({ ...params }) => ({
+        url: `${getBaseUrl(`/group/view`)}`,
         params,
       }),
     }),
@@ -188,9 +213,28 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
+    getStudentHistoryList: build.query<
+      IBaseDataRes<IStudentHistoryRes>,
+      {
+        search?: string;
+        pinfl?: string;
+        level?: string;
+        group?: IGroup['id'];
+        specialty?: number;
+        education_year?: IEducationYear['code'];
+        page?: number;
+        per_page?: number;
+      }
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/student/history-list')}`,
+        params,
+      }),
+    }),
+
     // Schedules
-    getSchedules: build.query<
-      IBaseDataRes<IScheduleRes>,
+    getSchedulesByWeek: build.query<
+      IBaseDataRes<IScheduleByWeekRes>,
       { week_id: number; group_id?: IGroup['id'] }
     >({
       query: params => ({
@@ -203,14 +247,42 @@ export const studentApi = api.injectEndpoints({
       IBaseDataRes<IScheduleOptionRes>,
       {
         faculty_id?: number;
-        curriculum_id?: number;
+        group_id?: number;
         education_year?: IEducationYear['code'];
         semester?: ISemester['code'];
         expand?: string;
       }
     >({
       query: params => ({
-        url: `${getBaseUrl(`/student/view`)}`,
+        url: `${getBaseUrl(`/schedule/filter-options`)}`,
+        params,
+      }),
+    }),
+
+    getExams: build.query<
+      IBaseDataRes<IExamsRes>,
+      {
+        group_id?: IGroup['id'];
+        semester?: ISemester['code'];
+        page?: number;
+        per_page?: number;
+      }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/schedule/exams`)}`,
+        params,
+      }),
+    }),
+
+    // address
+    checkAddress: build.query<
+      IBaseDataRes<ICheckAddressRes>,
+      {
+        group_id?: IGroup['id'];
+      }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/student/address`)}`,
         params,
       }),
     }),
@@ -233,4 +305,11 @@ export const {
   useGetAttendanceStatisticsQuery,
   useGetStudentListQuery,
   useGetStudentDetailsQuery,
+  useGetScheduleOptionsQuery,
+  useGetSchedulesByWeekQuery,
+  useGetExamsQuery,
+  useGetStudentGpaQuery,
+  useGetGradeSummaryRatingQuery,
+  useCheckAddressQuery,
+  useGetStudentHistoryListQuery,
 } = studentApi;

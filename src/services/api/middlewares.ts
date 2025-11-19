@@ -12,8 +12,7 @@ export const rtkQueryErrorLogger: Middleware =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   () => next => (action: any) => {
     // RTK Query uses createAsyncThunk from redux-toolkit under the hood, so we're able to utilize these matchers!
-    const status = action.payload?.originalStatus;
-    const errors = action.payload?.data?.errors ?? action.payload?.data ?? '';
+    const status = action.payload?.status;
 
     console.log(action, 'action');
 
@@ -35,6 +34,8 @@ export const rtkQueryErrorLogger: Middleware =
         action.payload?.data?.errors?.[0]?.message ??
         '';
 
+      console.log(error_message, 'err');
+
       if (error_message) {
         message.destroy();
         message.warning(error_message);
@@ -47,14 +48,8 @@ export const rtkQueryErrorLogger: Middleware =
         }
       }
 
-      if (errors.length > 0) {
-        errors?.forEach((item: string) => {
-          message.destroy();
-          item && message.warning(item);
-        });
-      }
-
-      if (status === 500) {
+      message.destroy();
+      if (status === 500 || status === 422) {
         message.warning(
           "Server bilan bog'liq xatolik. Iltimos bu haqida ma'sul xodimlarga xabar bering"
         );

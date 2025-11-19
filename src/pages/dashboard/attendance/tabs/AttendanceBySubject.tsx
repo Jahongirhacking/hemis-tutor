@@ -1,6 +1,6 @@
 import { useGetAttendanceBySubjectQuery } from '@/services/student';
 import { IStudent } from '@/services/student/type';
-import { Flex } from 'antd';
+import { Divider, Flex } from 'antd';
 import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
@@ -14,11 +14,13 @@ const AttendanceBySubject = () => {
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={12}>
+    <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.ByGroup />
         <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
       </CustomFilter>
+
+      <Divider style={{ margin: 0 }} />
 
       <CustomTable
         columns={[

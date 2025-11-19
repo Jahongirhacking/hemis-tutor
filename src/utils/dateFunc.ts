@@ -8,6 +8,9 @@ interface ILangResource {
   short: LangValues;
 }
 
+export const CURRENT_DATE_FORMAT = 'YYYY-MM-DD';
+export const CORRECT_DATE_FORMAT = 'DD.MM.YYYY';
+
 const getTranslation = (args: LangValues, lang?: LangType): string => {
   switch (lang || getLocalStorage(localStorageNames.language)) {
     case 'uz-UZ':
@@ -74,7 +77,7 @@ export const monthNames: ILangResource[] = [
   },
 ];
 
-const dayNames: ILangResource[] = [
+export const dayNames: ILangResource[] = [
   {
     short: ['Yak', 'Якш', 'Sun', 'Вос'],
     long: ['Yakshanba', 'Якшанба', 'Sunday', 'Воскресенье'],

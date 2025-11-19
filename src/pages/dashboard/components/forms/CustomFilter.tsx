@@ -1,9 +1,27 @@
 import { useGetGroupSemestersQuery } from '@/services/student';
 import { IGroup } from '@/services/student/type';
 import { RootState } from '@/store/store';
-import { Flex, Form, FormProps, Input, Select } from 'antd';
-import { Children, cloneElement, ReactElement } from 'react';
+import {
+  Flex,
+  Form,
+  FormInstance,
+  FormProps,
+  Input,
+  Select,
+  SelectProps,
+} from 'antd';
+import {
+  Children,
+  cloneElement,
+  createContext,
+  ReactElement,
+  useCallback,
+  useContext,
+  useMemo,
+} from 'react';
 import { useSelector } from 'react-redux';
+
+export const CustomFilterContext = createContext<{ form: FormInstance }>(null);
 
 const CustomFilter = ({
   children,
@@ -11,11 +29,13 @@ const CustomFilter = ({
 }: FormProps & { children: ReactElement | ReactElement[] }) => {
   return (
     <Form layout="vertical" {...props}>
-      <Flex gap={8} align="center" wrap>
-        {Children.map(children, child =>
-          cloneElement(child, { ...child.props })
-        )}
-      </Flex>
+      <CustomFilterContext.Provider value={{ form: props?.form }}>
+        <Flex gap={8} align="center" wrap>
+          {Children.map(children, child =>
+            cloneElement(child, { ...child.props })
+          )}
+        </Flex>
+      </CustomFilterContext.Provider>
     </Form>
   );
 };
@@ -28,18 +48,25 @@ export enum FilterKey {
   SubjectId = 'subject_id',
 }
 
-const ByGroup = ({ key }: { key?: string }) => {
-  const profile = useSelector((store: RootState) => store?.authSlice?.profile);
+const ByGroup = ({
+  field,
+  ...props
+}: { field?: string } & SelectProps<{ label: string; value: number }>) => {
+  const profile = useSelector((store: RootState) => store.authSlice?.profile);
+
   return (
-    <Form.Item name={key || FilterKey.GroupId} style={{ margin: 0 }}>
-      <Select
+    <Form.Item name={field || FilterKey.GroupId} style={{ margin: 0 }}>
+      <Select<{ label: string; value: number }>
         style={{ width: 180 }}
-        placeholder={'Guruh tanlang'}
-        options={profile?.groups?.map(g => ({
-          label: g?.name,
-          value: g?.id,
-        }))}
+        placeholder="Guruh tanlang"
+        options={
+          profile?.groups?.map(g => ({
+            label: g.name,
+            value: g.id,
+          })) ?? []
+        }
         allowClear
+        {...props}
       />
     </Form.Item>
   );
@@ -47,17 +74,17 @@ const ByGroup = ({ key }: { key?: string }) => {
 
 const BySemester = ({
   group_id,
-  key,
+  field,
 }: {
   group_id?: IGroup['id'];
-  key?: string;
+  field?: string;
 }) => {
   const { data: semestersData, isFetching } = useGetGroupSemestersQuery(
     { group_id },
     { skip: !group_id }
   );
   return (
-    <Form.Item name={key || FilterKey.Semester} style={{ margin: 0 }}>
+    <Form.Item name={field || FilterKey.Semester} style={{ margin: 0 }}>
       <Select
         loading={isFetching}
         style={{ width: 180 }}
@@ -72,18 +99,65 @@ const BySemester = ({
   );
 };
 
-const ByPinfl = ({ key }: { key?: string }) => {
+const ByPinfl = ({ field }: { field?: string }) => {
+  const form = useContext(CustomFilterContext)?.form;
+  const filterKey = useMemo(() => field || FilterKey.Pinfl, [field]);
+  const handleSearch = useCallback(
+    (val: string) => {
+      form?.setFieldValue(filterKey, val || undefined);
+    },
+    [filterKey, form]
+  );
+
   return (
-    <Form.Item name={key || FilterKey.Pinfl} style={{ margin: 0 }}>
-      <Input placeholder="JShShIR kiriting" allowClear width={200} />
-    </Form.Item>
+    <>
+      <Form.Item name={filterKey} style={{ display: 'none' }}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item style={{ margin: 0 }}>
+        <Input.Search
+          placeholder="JShShIR kiriting"
+          allowClear
+          onSearch={handleSearch}
+        />
+      </Form.Item>
+    </>
   );
 };
 
-const BySearch = ({ key }: { key?: string }) => {
+const BySearch = ({ field }: { field?: string }) => {
+  const form = useContext(CustomFilterContext)?.form;
+  const filterKey = useMemo(() => field || FilterKey.Search, [field]);
+  const handleSearch = useCallback(
+    (val: string) => {
+      form?.setFieldValue(filterKey, val || undefined);
+    },
+    [filterKey, form]
+  );
+
   return (
-    <Form.Item name={key || FilterKey.Search} style={{ margin: 0 }}>
-      <Input.Search enterButton placeholder="Qidirish" allowClear width={200} />
+    <>
+      <Form.Item name={filterKey} style={{ display: 'none' }}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item style={{ margin: 0 }}>
+        <Input.Search
+          enterButton
+          placeholder="Qidirish"
+          allowClear
+          onSearch={handleSearch}
+        />
+      </Form.Item>
+    </>
+  );
+};
+
+const BySelect = ({ field, ...props }: SelectProps & { field: string }) => {
+  return (
+    <Form.Item name={field} style={{ margin: 0, minWidth: 'min(100%, 180px)' }}>
+      <Select allowClear {...props} />
     </Form.Item>
   );
 };
@@ -92,4 +166,5 @@ CustomFilter.ByGroup = ByGroup;
 CustomFilter.BySemester = BySemester;
 CustomFilter.ByPinfl = ByPinfl;
 CustomFilter.BySearch = BySearch;
+CustomFilter.BySelect = BySelect;
 export default CustomFilter;

@@ -91,7 +91,7 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                     </div>
 
                     {/* Card Body - Talaba ma'lumotlari va Kontakt ma'lumotlari */}
-                    <div className="flex gap-10 p-6 flex-wrap">
+                    <div className="flex gap-10 p-6 [@media(max-width:600px)]:flex-wrap">
                       {/* Talaba ma'lumotlari */}
                       <div>
                         {/* Talaba ma'lumotlari Button */}

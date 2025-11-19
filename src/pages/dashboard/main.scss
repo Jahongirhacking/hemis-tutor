@@ -129,7 +129,8 @@
 
 .ant-collapse-item {
   .ant-collapse-header {
-    background-color: #fff;
+    // background-color: #fff;
+    user-select: none;
     border-radius: 8px !important;
   }
 
@@ -157,6 +158,18 @@
 
     .list__value {
       width: auto;
+    }
+  }
+}
+
+.ant-drawer-content-wrapper {
+  width: min(100%, 600px) !important;
+
+  .attendance-details {
+    .ant-card {
+      .ant-card-body {
+        padding: 12px;
+      }
     }
   }
 }

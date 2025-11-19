@@ -1,6 +1,7 @@
-import { SoonCard } from '@/components/Common/SoonCard';
 import { Flex, Typography } from 'antd';
 import CustomTabs from '../components/CustomTabs';
+import Exams from './tabs/Exams';
+import Timetable from './tabs/Timetable';
 
 const LearningProcessPage = () => {
   return (
@@ -14,12 +15,12 @@ const LearningProcessPage = () => {
             {
               key: 'timetable',
               label: "Dars jadvalini ko'rish",
-              children: <SoonCard />,
+              children: <Timetable />,
             },
             {
               key: 'exam-table',
               label: "Nazorat jadvalini ko'rish",
-              children: <SoonCard />,
+              children: <Exams />,
             },
           ]}
         />

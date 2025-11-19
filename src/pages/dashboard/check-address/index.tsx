@@ -1,5 +1,5 @@
-import { SoonCard } from '@/components/Common/SoonCard';
 import { Flex, Tabs, Typography } from 'antd';
+import CheckAddress from './tabs/CheckAddress';
 
 const CheckAddressPage = () => {
   return (
@@ -14,7 +14,7 @@ const CheckAddressPage = () => {
             {
               key: 'check',
               label: 'Manzil tekshiruvi',
-              children: <SoonCard />,
+              children: <CheckAddress />,
             },
           ]}
         />

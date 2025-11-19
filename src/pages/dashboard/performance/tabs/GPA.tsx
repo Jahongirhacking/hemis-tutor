@@ -1,4 +1,4 @@
-import { useGetGradeRatingQuery } from '@/services/student';
+import { useGetStudentGpaQuery } from '@/services/student';
 import { getExamMark } from '@/utils/markFunc';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
 import { Divider, Flex } from 'antd';
@@ -9,9 +9,9 @@ import useCustomFilter from '../../components/forms/useCustomFilter';
 
 const MAX_BALL = 5;
 
-const Rating = () => {
+const GPA = () => {
   const { form, values } = useCustomFilter();
-  const { data: ratingData, isFetching } = useGetGradeRatingQuery({
+  const { data: gpaData, isFetching } = useGetStudentGpaQuery({
     group_id: values?.[FilterKey.GroupId],
     semester: values?.[FilterKey.Semester],
   });
@@ -37,40 +37,47 @@ const Rating = () => {
             render: student => student?.full_name,
           },
           {
-            title: t('const.subject'),
-            dataIndex: 'subject',
-            key: 'subject',
-          },
-          {
             title: toFirstCapitalLetter(t('const.credit_plural')),
             dataIndex: 'credit',
             key: 'credit',
           },
           {
-            title: t('const.overall'),
-            dataIndex: 'total_point',
-            key: 'total',
+            title: toFirstCapitalLetter(t('const.semester')),
+            dataIndex: 'semester',
+            key: 'semester',
           },
           {
-            title: t('const.mark'),
-            dataIndex: 'grade',
-            key: 'grade',
-            render: grade =>
+            title: t('const.subjects'),
+            dataIndex: 'total_subjects',
+            key: 'total_subjects',
+            render: total => t('const.number_count', { number: total }),
+          },
+          {
+            title: toFirstCapitalLetter(t('const.status')),
+            dataIndex: 'status',
+            key: 'status',
+          },
+          {
+            title: 'GPA',
+            dataIndex: 'gpa',
+            key: 'gpa',
+            render: gpa =>
               getExamMark(
                 {
-                  grade: Number(grade),
+                  grade: gpa,
                   max_ball: MAX_BALL,
-                  percent: (Number(grade) / MAX_BALL) * 100,
+                  percent: (gpa / MAX_BALL) * 100,
                 },
-                t('const.mark'),
+                'GPA',
                 false
               ),
+            fixed: 'right',
           },
         ]}
-        dataSource={ratingData?.result?.ratings}
+        dataSource={gpaData?.result?.gpa_records}
       />
     </Flex>
   );
 };
 
-export default Rating;
+export default GPA;

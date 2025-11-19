@@ -1,5 +1,5 @@
 import { useGetGradeDebtorsQuery } from '@/services/student';
-import { Card, Collapse, Flex, Skeleton, Tag, Typography } from 'antd';
+import { Card, Collapse, Divider, Flex, Skeleton, Tag, Typography } from 'antd';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import useCustomTable from '../../components/hooks/useCustomTable';
@@ -18,6 +18,8 @@ const Debtors = () => {
         <CustomFilter.ByGroup />
         <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
       </CustomFilter>
+
+      <Divider style={{ margin: 0 }} />
 
       <Flex gap={12} vertical>
         {isFetching ? (
