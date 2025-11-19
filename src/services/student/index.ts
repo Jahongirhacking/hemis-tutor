@@ -32,6 +32,7 @@ import {
   IGroupStudentsReq,
   IGroupStudentsRes,
   IPagination,
+  IProfileHistoryRes,
   IScheduleByWeekRes,
   IScheduleOptionRes,
   ISemester,
@@ -203,6 +204,16 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
+    getStudentHistory: build.query<
+      IBaseDataRes<IProfileHistoryRes>,
+      { id: IStudent['id'] }
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/student/history')}`,
+        params,
+      }),
+    }),
+
     getStudentDetails: build.query<
       IBaseDataRes<IStudentDetailsRes>,
       { id: IStudent['id'] }
@@ -312,4 +323,5 @@ export const {
   useGetGradeSummaryRatingQuery,
   useCheckAddressQuery,
   useGetStudentHistoryListQuery,
+  useGetStudentHistoryQuery,
 } = studentApi;

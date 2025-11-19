@@ -613,3 +613,25 @@ export interface IStudentHistoryRes {
   history: IHistory[];
   pagination: IPagination;
 }
+
+export interface IProfileHistoryItem {
+  id: number;
+  group: string;
+  department: string;
+  specialty: string;
+  curriculum: string;
+  education_year: string;
+  education_type: string;
+  education_form: string;
+  payment_form: string;
+  student_status: string;
+  level: string;
+  semester: string;
+  active: boolean;
+  created_at: string;
+}
+
+export interface IProfileHistoryRes {
+  student: Pick<IStudent, 'id' | 'full_name' | 'student_id_number'>;
+  history: IProfileHistoryItem[];
+}

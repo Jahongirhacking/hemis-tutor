@@ -1,8 +1,9 @@
 import { Tabs } from 'antd';
 import StudentDetails from './StudentDetails';
+import StudentHistory from './StudentHistory';
 import StudentPassport from './StudentPassport';
 
-const StudentInfo = props => {
+const StudentInfo = (props: any) => {
   return (
     <Tabs
       defaultActiveKey="passport"
@@ -16,6 +17,11 @@ const StudentInfo = props => {
           key: 'details',
           label: "Talaba ma'lumoti",
           children: <StudentDetails {...props} />,
+        },
+        {
+          key: 'history',
+          label: 'Talaba tarixi',
+          children: <StudentHistory {...props} />,
         },
       ]}
     />

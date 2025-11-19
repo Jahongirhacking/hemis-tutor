@@ -262,3 +262,11 @@ input[type='password'] {
 .grecaptcha-badge {
   visibility: hidden;
 }
+
+.time-table {
+  .time-column {
+    .table-cell {
+      border: 1px solid #f0f0f0;
+    }
+  }
+}
