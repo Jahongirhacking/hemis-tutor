@@ -471,6 +471,11 @@
         "tg_bot_info": "«TUTOR.HEMIS.UZ» sayti texnik muammolarni bartaraf etish uchun ishlab chiqilgan Telegram bot",
         "yt_channel_info": "HEMIS tizmi bo‘yicha video darslar va yo‘riqnomalar taqdim etiladigan YouTube kanal"
     },
+    "landing": {
+        "title": "HEMIS Tutor",
+        "description": "Talabalar uchun barcha kerakli ma'lumotlar va xizmatlar bir joyda",
+        "loginButton": "Kirish"
+    },
     "off_topic": {
         "qa_chat": "Savol-javob chat",
         "famous_questions": "Quyidagi ko'p beriladigan savollardan birini tanlang",

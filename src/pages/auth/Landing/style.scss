@@ -1,0 +1,24 @@
+// Landing page uchun font override'ni bekor qilish
+.landing-page-wrapper {
+  * {
+    font-family: inherit !important;
+  }
+  
+  // Tailwind font class'lari ishlashi uchun
+  .font-display {
+    font-family: 'Bebas Neue', sans-serif !important;
+  }
+  
+  .font-accent {
+    font-family: 'Anton', sans-serif !important;
+  }
+  
+  .font-brand {
+    font-family: 'TikTok Sans', 'Roboto', sans-serif !important;
+  }
+  
+  .font-body {
+    font-family: 'Inter', 'Roboto', sans-serif !important;
+  }
+}
+

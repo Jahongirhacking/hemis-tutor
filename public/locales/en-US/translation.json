@@ -467,6 +467,11 @@
         "tg_bot_info": "Telegram bot developed to resolve technical issues within the «TUTOR.HEMIS.UZ» system",
         "yt_channel_info": "YouTube channel providing video tutorials and guides for the HEMIS system"
     },
+    "landing": {
+        "title": "HEMIS Tutor",
+        "description": "All necessary information and services for students in one place",
+        "loginButton": "Login"
+    },
     "off_topic": {
         "qa_chat": "Q&A chat",
         "famous_questions": "Choose one of the frequently asked questions below",
