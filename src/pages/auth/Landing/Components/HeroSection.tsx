@@ -1,6 +1,6 @@
 import { paths } from '@/router/paths';
-import { GradientButton } from './ui/GradientButton';
 import { useNavigate } from 'react-router-dom';
+import { GradientButton } from './ui/GradientButton';
 
 type HeroSectionProps = {
   heroImage: string;
@@ -11,7 +11,7 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
   return (
     <section
       id="asosiy"
-      className="mx-auto grid max-w-6xl gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-12"
+      className="mx-auto grid max-w-6xl gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-12 lg:items-start"
     >
       <div className="space-y-6 text-slate-900">
         <h1 className="font-brand text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
@@ -57,12 +57,12 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
           />
         </div>
         <button
-          className="absolute left-[50%] top-[50%] flex h-[70px] w-[70px] -translate-x-[50%] -translate-y-[50%] items-center justify-center rounded-full bg-white/85 shadow-[0_20px_45px_rgba(15,23,42,0.35)]"
+          className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 shadow-[0_20px_45px_rgba(15,23,42,0.35)] sm:h-[60px] sm:w-[60px] lg:h-[70px] lg:w-[70px]"
           aria-label="Play video"
         >
           <img
             alt="Play"
-            className="h-[32px] w-[32px]"
+            className="h-6 w-6 sm:h-[26px] sm:w-[26px] lg:h-[32px] lg:w-[32px]"
             src="/icons/player.svg"
           />
         </button>
