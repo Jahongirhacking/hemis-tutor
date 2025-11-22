@@ -99,7 +99,7 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-slate-800 sm:text-xl">
-              Kasbiy maqsad
+              Kasbiy maqsadlari
             </h3>
           </div>
           <div className="space-y-3 sm:space-y-4">
