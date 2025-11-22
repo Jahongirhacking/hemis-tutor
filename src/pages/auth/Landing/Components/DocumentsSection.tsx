@@ -46,7 +46,7 @@ export function DocumentsSection({
             <p className="text-xs uppercase tracking-[0.4em] text-slate-400">
               {index === 0 ? 'lex.uz' : 'nizom'}
             </p>
-            <div className="mt-5 flex flex-col gap-3">
+            <div className="mt-5 flex flex-row justify-between gap-3">
               <button className="rounded-full border border-[#4ce54a] px-4 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:text-sm">
                 Ko‘rish
               </button>
