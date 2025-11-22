@@ -298,6 +298,7 @@ export const studentApi = api.injectEndpoints({
       {
         group_id?: IGroup['id'];
         page?: number;
+        student_id?: IStudent['id'];
         per_page?: number;
         search?: string;
         _student_living_status?: string;
@@ -318,10 +319,11 @@ export const studentApi = api.injectEndpoints({
     }),
 
     createVisit: build.mutation<void, ICreateVisitReq>({
-      query: params => ({
+      query: ({ id, ...body }) => ({
         url: `/student/visit-create`,
-        params,
         method: 'POST',
+        params: { id },
+        body,
       }),
       invalidatesTags: ['visits'],
     }),
@@ -329,13 +331,13 @@ export const studentApi = api.injectEndpoints({
     // classifiers
     getCountries: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/countries`)}`,
+        url: `${getBaseUrl(`/reference/countries`)}`,
       }),
     }),
 
     getAccommodations: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/accommodations`)}`,
+        url: `${getBaseUrl(`/reference/accommodations`)}`,
       }),
     }),
 
@@ -344,50 +346,54 @@ export const studentApi = api.injectEndpoints({
       { province: number }
     >({
       query: params => ({
-        url: `${getBaseUrl(`reference/districts`)}`,
+        url: `${getBaseUrl(`/reference/districts`)}`,
         params,
       }),
     }),
 
     getEducationYears: build.query<void, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/education-years`)}`,
+        url: `${getBaseUrl(`/reference/education-years`)}`,
       }),
     }),
 
     getProvinces: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/provinces`)}`,
+        url: `${getBaseUrl(`/reference/provinces`)}`,
       }),
     }),
 
     getSpecalities: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/specialties`)}`,
+        url: `${getBaseUrl(`/reference/specialties`)}`,
       }),
     }),
 
     getLivingStatuses: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/student-living-statuses`)}`,
+        url: `${getBaseUrl(`/reference/student-living-statuses`)}`,
       }),
     }),
 
     getRoommateTypes: build.query<void, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/student-roommate-types`)}`,
+        url: `${getBaseUrl(`/reference/student-roommate-types`)}`,
       }),
     }),
 
     getStudentStatuses: build.query<void, void>({
       query: () => ({
-        url: `${getBaseUrl(`reference/student-statuses`)}`,
+        url: `${getBaseUrl(`/reference/student-statuses`)}`,
       }),
     }),
 
-    getTerrains: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
-      query: () => ({
-        url: `${getBaseUrl(`reference/terrains`)}`,
+    getTerrains: build.query<
+      IBaseDataRes<{ items: ICodeName[] }>,
+      { district: number }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/reference/terrains`)}`,
+        params,
       }),
     }),
   }),

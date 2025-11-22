@@ -18,13 +18,12 @@ import {
     Form,
     Input,
     message,
-    Row,
-    Select,
-    Typography,
+    Row, Typography
 } from 'antd';
 import { t } from 'i18next';
 import { RefreshCcw, Send } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
+import CustomSelect from '../../components/CustomSelect';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 
 enum FormNames {
@@ -68,13 +67,13 @@ const CreateVisit = ({
         useGetProvincesQuery();
     const { data: accomodationsData, isFetching: isAccomodationFetching } =
         useGetAccommodationsQuery();
-    const { data: terrainsData, isFetching: isTerrainsFetching } =
-        useGetTerrainsQuery();
     const { data: districtData, isFetching: isDistrictFetching } =
         useGetDistrictsQuery(
             { province: values?.[FormNames.PROVINCE] },
             { skip: !values?.[FormNames.PROVINCE] }
         );
+    const { data: terrainsData, isFetching: isTerrainsFetching } =
+        useGetTerrainsQuery({ district: values?.[FormNames.DISTRICT] }, { skip: !values?.[FormNames.DISTRICT] });
     const { location, handleLocate } = useUserLocation();
 
     const handleSubmit = useCallback(
@@ -101,6 +100,12 @@ const CreateVisit = ({
         }
     }, [isSuccess]);
 
+    useEffect(() => {
+        if (location) {
+            form.setFieldValue(FormNames.GEO, `${location?.lat},${location?.lng}`)
+        }
+    }, [location])
+
     return (
         <Flex vertical className="mt-3 mb-5">
             <Form form={form} onFinish={handleSubmit} layout="vertical">
@@ -112,7 +117,7 @@ const CreateVisit = ({
                                 name={FormNames.ACCOMMADATION}
                                 rules={[{ required: true, message: 'Turar joy majburiy' }]}
                             >
-                                <Select
+                                <CustomSelect
                                     allowClear
                                     loading={isAccomodationFetching}
                                     style={{ minWidth: 200 }}
@@ -131,7 +136,7 @@ const CreateVisit = ({
                                 name={FormNames.PROVINCE}
                                 rules={[{ required: true, message: 'Viloyat majburiy' }]}
                             >
-                                <Select
+                                <CustomSelect
                                     allowClear
                                     loading={isProvinceFetching}
                                     style={{ minWidth: 200 }}
@@ -140,6 +145,12 @@ const CreateVisit = ({
                                         value: i?.code,
                                     }))}
                                     placeholder="Viloyat tanlang"
+                                    onChange={() => {
+                                        form.setFieldsValue({
+                                            [FormNames.DISTRICT]: undefined,
+                                            [FormNames.TERRAIN]: undefined
+                                        })
+                                    }}
                                 />
                             </Form.Item>
                         </Col>
@@ -150,7 +161,7 @@ const CreateVisit = ({
                                 name={FormNames.DISTRICT}
                                 rules={[{ required: true, message: 'Tuman majburiy' }]}
                             >
-                                <Select
+                                <CustomSelect
                                     allowClear
                                     loading={isDistrictFetching}
                                     style={{ minWidth: 200 }}
@@ -160,17 +171,22 @@ const CreateVisit = ({
                                     }))}
                                     disabled={!values?.[FormNames.PROVINCE]}
                                     placeholder="Tuman tanlang"
+                                    onChange={() => {
+                                        form.setFieldsValue({
+                                            [FormNames.TERRAIN]: undefined
+                                        })
+                                    }}
                                 />
                             </Form.Item>
                         </Col>
 
                         <Col {...ADDRESS_COL_PROPS}>
                             <Form.Item
-                                label="Hudud"
+                                label="Mahalla"
                                 name={FormNames.TERRAIN}
-                                rules={[{ required: true, message: 'Hudud majburiy' }]}
+                                rules={[{ required: true, message: 'Mahalla majburiy' }]}
                             >
-                                <Select
+                                <CustomSelect
                                     allowClear
                                     loading={isTerrainsFetching}
                                     style={{ minWidth: 200 }}
@@ -178,7 +194,8 @@ const CreateVisit = ({
                                         label: i?.name,
                                         value: i?.code,
                                     }))}
-                                    placeholder="Hudud tanlang"
+                                    placeholder="Mahalla tanlang"
+                                    disabled={!values?.[FormNames.DISTRICT]}
                                 />
                             </Form.Item>
                         </Col>
@@ -189,7 +206,7 @@ const CreateVisit = ({
                                 name={FormNames.LIVING_STATUS}
                                 rules={[{ required: true, message: 'Yashash holati majburiy' }]}
                             >
-                                <Select
+                                <CustomSelect
                                     allowClear
                                     loading={isLivingStatusFetching}
                                     style={{ minWidth: 200 }}
@@ -239,6 +256,7 @@ const CreateVisit = ({
                         </Col>
 
                         <Col {...COMMENT_COL_PROPS}>
+                            <Form.Item name={FormNames.GEO} style={{ display: 'none' }} />
                             <Flex vertical gap={4} align="flex-start">
                                 {location ? (
                                     <YandexMap
