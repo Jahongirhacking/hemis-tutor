@@ -86,6 +86,7 @@ const CreateVisit = ({
         if (isLoading) return;
         if (!location) {
           message.warning("Joylashuvingizni ko'rsating!");
+          return;
         }
         if (studentId) {
           await createVisit({ ...values, id: studentId })?.unwrap();
