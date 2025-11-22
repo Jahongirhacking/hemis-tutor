@@ -1,11 +1,12 @@
 import {
     useGetVisitListQuery
 } from '@/services/student';
-import { IStudent, ITutorVisit } from '@/services/student/type';
+import { getLivingStatusName, IStudent, ITutorVisit } from '@/services/student/type';
 import { Flex } from 'antd';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
+import LivingStatusTag from './LivingStatusTag';
 import LocationButton from './LocationButton';
 
 const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
@@ -40,7 +41,14 @@ const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
                         key: 'created_at',
                         dataIndex: 'created_at',
                         render: date =>
-                            moment(date, 'YYYY-MM-DD HH:mm:ss').format('DD.MM.YYYY'),
+                            moment(date, 'YYYY-MM-DD HH:mm:ss').format('DD.MM.YYYY')
+                    },
+                    {
+                        title: t('const.status'),
+                        key: '_student_living_status',
+                        dataIndex: '_student_living_status',
+                        render: student_living_status => <LivingStatusTag livingStatus={{ code: student_living_status, name: getLivingStatusName(student_living_status) }} />,
+                        fixed: 'right'
                     },
                 ]}
                 dataSource={visitData?.result?.items?.[0]?.tutorVisits || []}

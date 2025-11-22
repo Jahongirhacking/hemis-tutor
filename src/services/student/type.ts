@@ -645,6 +645,17 @@ export enum StudentLivingStatus {
   RED = '13',
 }
 
+export const getLivingStatusName = (code: StudentLivingStatus) => {
+  switch (code) {
+    case StudentLivingStatus.GREEN:
+      return 'Yashil hudud';
+    case StudentLivingStatus.YELLOW:
+      return 'Sariq hudud';
+    case StudentLivingStatus.RED:
+      return 'Qizil hudud';
+  }
+};
+
 export interface ICheckAddressRes {
   items: {
     id: number;
