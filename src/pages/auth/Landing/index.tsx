@@ -4,7 +4,6 @@ import {
     handbookCover,
     handbookImage,
     handbookTexture,
-    heroImage,
     navLinks,
     newsCards,
     responsibilities,
@@ -103,7 +102,7 @@ export default function App() {
             navLinks={navLinks}
             onNavigate={handleNavigate}
           />
-          <HeroSection heroImage={heroImage} />
+          <HeroSection />
         </div>
       </section>
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12">

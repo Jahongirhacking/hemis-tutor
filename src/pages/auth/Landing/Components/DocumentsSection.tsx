@@ -1,14 +1,39 @@
+import { FilePdfIcon } from '@/assets/icon';
+import { saveAs } from 'file-saver';
 import { LexLogo } from '../../../../../public/icons/LexLogo';
 
+type DocumentCard = {
+  title: string;
+  number: string;
+  pdfUrl: string;
+};
+
 type DocumentsSectionProps = {
-  documents: string[];
+  documents: DocumentCard[];
   documentImage: string;
 };
 
-export function DocumentsSection({
-  documents,
-  documentImage,
-}: DocumentsSectionProps) {
+const gradientColors = [
+  'from-[#c6ff7c] to-[#e3ffc4]',
+  'from-[#fdf170] to-[#ffeeb0]',
+  'from-[#c8caff] to-[#f0ebff]',
+  'from-[#f6c2f4] to-[#ffe5fb]',
+];
+
+export function DocumentsSection({ documents }: DocumentsSectionProps) {
+  const handleDownload = async (pdfUrl: string, title: string) => {
+    try {
+      const response = await fetch(pdfUrl);
+      const blob = await response.blob();
+      saveAs(blob, `${title}.pdf`);
+    } catch (error) {
+      console.error('PDF yuklab olishda xatolik:', error);
+    }
+  };
+
+  const handleView = (pdfUrl: string) => {
+    window.open(pdfUrl, '_blank');
+  };
   return (
     <section
       id="hujjatlar"
@@ -23,34 +48,46 @@ export function DocumentsSection({
             Buyruqlar, nizomlar va ko‘rsatmalar to‘plami
           </p>
         </div>
-        <button className="rounded-full border border-[#4ce54a] px-5 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:px-6 sm:py-3 sm:text-sm">
+        {/* <button className="rounded-full border border-[#4ce54a] px-5 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:px-6 sm:py-3 sm:text-sm">
           Barchasi
-        </button>
+        </button> */}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {documents.map((title, index) => (
+        {documents.map((doc, index) => (
           <article
-            key={title}
+            key={doc.title}
             className="group relative flex flex-col rounded-[28px] border border-[#d6f4ff] bg-white/90 p-5 shadow-[0_15px_40px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 sm:p-6"
           >
-            <div className="relative overflow-hidden rounded-[22px] border border-[#ecf6ff] bg-slate-50">
+            <div
+              className={`relative flex h-44 items-center justify-center overflow-hidden rounded-[22px] bg-gradient-to-br p-4 ${gradientColors[index % gradientColors.length]}`}
+            >
               <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-white/60 opacity-0 transition group-hover:opacity-100" />
-              <img
-                alt={title}
-                className="h-44 w-full object-cover"
-                src={documentImage}
-              />
+              <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-center">
+                <img
+                  src={FilePdfIcon}
+                  alt="PDF"
+                  className="h-10 w-10 object-contain mb-1"
+                />
+                <p className="text-xs font-semibold text-slate-800 leading-tight line-clamp-4 px-2">
+                  {doc.title}
+                </p>
+              </div>
               <div className="absolute inset-2 rounded-[18px] border border-white/50" />
             </div>
-            <p className="mt-4 text-lg font-semibold text-slate-900">{title}</p>
-            <p className="text-xs uppercase tracking-[0.4em] text-slate-400">
-              {index === 0 ? 'lex.uz' : 'nizom'}
+            <p className="text-[16px] font-[500] leading-[24px] text-black mt-1">
+              {doc.number}
             </p>
             <div className="mt-5 flex flex-row justify-between gap-3">
-              <button className="rounded-full border border-[#4ce54a] px-4 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:text-sm">
+              <button
+                onClick={() => handleView(doc.pdfUrl)}
+                className="rounded-full border border-[#4ce54a] px-4 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:text-sm"
+              >
                 Ko‘rish
               </button>
-              <button className="rounded-full border border-[#4ce54a] bg-white px-4 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:text-sm">
+              <button
+                onClick={() => handleDownload(doc.pdfUrl, doc.title)}
+                className="rounded-full border border-[#4ce54a] bg-white px-4 py-2 text-xs font-medium text-[#4ce54a] transition hover:bg-[#4ce54a] hover:text-white sm:text-sm"
+              >
                 Yuklash
               </button>
             </div>
@@ -66,7 +103,8 @@ export function DocumentsSection({
               tartibi toʻgʻrisidagi nizomni tasdiqlash haqida
             </p>
             <a
-              href="#"
+              target="_blank"
+              href="https://www.lex.uz/docs/-7774756"
               className="text-sm text-[#4ce54a] cursor-pointer hover:underline"
             >
               Oʻzbekiston Respublikasi Vazirlar Mahkamasining qarori, 17.10.2025
