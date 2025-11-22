@@ -1,14 +1,12 @@
 import {
-    documentCards,
-    documentImage,
-    handbookCover,
-    handbookImage,
-    handbookTexture,
-    heroImage,
-    navLinks,
-    newsCards,
-    responsibilities,
-    speakerCards,
+  documentCards,
+  handbookCover,
+  handbookImage,
+  handbookTexture,
+  navLinks,
+  newsCards,
+  responsibilities,
+  speakerCards,
 } from '@/utils/landingSiteContent';
 import { useEffect, useMemo, useState } from 'react';
 import { AboutSection } from './Components/AboutSection';
@@ -103,7 +101,7 @@ export default function App() {
             navLinks={navLinks}
             onNavigate={handleNavigate}
           />
-          <HeroSection heroImage={heroImage} />
+          <HeroSection />
         </div>
       </section>
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12">
@@ -115,10 +113,7 @@ export default function App() {
           handbookImage={handbookImage}
           handbookTexture={handbookTexture}
         />
-        <DocumentsSection
-          documents={documentCards}
-          documentImage={documentImage}
-        />
+        <DocumentsSection documents={documentCards} />
       </main>
       <Footer />
     </div>

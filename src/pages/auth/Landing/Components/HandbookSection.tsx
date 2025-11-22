@@ -5,6 +5,9 @@ type HandbookSectionProps = {
 }
 
 export function HandbookSection({ handbookImage, handbookCover, handbookTexture }: HandbookSectionProps) {
+  const handleDownload = () => {
+    window.open('/pdf/qo\'llanma.pdf', '_blank');
+  };
   return (
     <section
       id="maqolalar"
@@ -30,7 +33,10 @@ export function HandbookSection({ handbookImage, handbookCover, handbookTexture 
               Oliy ta’lim muassasalarida tyutorlik faoliyatini tashkil etish bo‘yicha takliflar, tavsiyalar va
               uslubiy ko‘rsatmalar jamlanmasi.
             </p>
-            <button className="mt-2 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-[0_10px_25px_rgba(0,0,0,0.15)] transition hover:-translate-y-0.5">
+            <button
+              onClick={handleDownload}
+              className="mt-2 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-[0_10px_25px_rgba(0,0,0,0.15)] transition hover:-translate-y-0.5"
+            >
               Yuklab olish
             </button>
           </div>

@@ -1,13 +1,14 @@
 import { paths } from '@/router/paths';
+import { heroVideoUrl } from '@/utils/landingSiteContent';
 import { useNavigate } from 'react-router-dom';
 import { GradientButton } from './ui/GradientButton';
 
-type HeroSectionProps = {
-  heroImage: string;
-};
-
-export function HeroSection({ heroImage }: HeroSectionProps) {
+export function HeroSection() {
   const navigate = useNavigate();
+
+  const handlePlayVideo = () => {
+    window.open(heroVideoUrl, '_blank');
+  };
   return (
     <section
       id="asosiy"
@@ -42,30 +43,27 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="relative">
-        <div className="absolute inset-0 rounded-[32px] bg-gradient-to-b from-white/40 to-transparent blur-2xl" />
-        <div className="relative overflow-hidden rounded-[32px] border border-white/50 bg-white/70 shadow-2xl backdrop-blur">
-          <div className="absolute inset-4 flex gap-3 opacity-70">
-            <div className="flex-1 rounded-[28px] bg-gradient-to-b from-[#94f78b] via-[#9bf6d5] to-[#7be1ff]" />
-            <div className="flex-1 rounded-[28px] bg-gradient-to-b from-[#66d9ff] via-[#97e1ff] to-[#b6c6ff]" />
-            <div className="flex-1 rounded-[28px] bg-gradient-to-b from-[#c1c2ff] via-[#c4f1ff] to-[#ffe3f5]" />
+      <div className="relative w-full">
+        <div className="relative w-full rounded-[32px] sm:mx-auto sm:max-w-md lg:max-w-none">
+          <div className="relative aspect-square w-full rounded-[32px] sm:h-[400px] sm:w-[400px] lg:h-[450px] lg:w-[450px]">
+            <img
+              src="/images/HeroBackImage.png"
+              alt="Hero background"
+              className="absolute left-[10px] top-[10px] h-full w-full object-cover sm:left-[15px] sm:top-[15px] lg:left-[20px] lg:top-[20px]"
+            />
+            <img
+              src="/images/HeroImage.png"
+              alt="Tyutor darsi"
+              className="relative z-10 h-full w-full object-cover"
+            />
           </div>
           <img
-            alt="Tyutor darsi"
-            className="relative z-10 h-full w-full object-cover"
-            src={heroImage}
+            alt="Play"
+            className="absolute left-1/2 top-1/2 z-20 h-10 w-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer sm:h-12 sm:w-12 lg:h-[70px] lg:w-[70px]"
+            src="/images/Player.png"
+            onClick={handlePlayVideo}
           />
         </div>
-        <button
-          className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 shadow-[0_20px_45px_rgba(15,23,42,0.35)] sm:h-[60px] sm:w-[60px] lg:h-[70px] lg:w-[70px]"
-          aria-label="Play video"
-        >
-          <img
-            alt="Play"
-            className="h-6 w-6 sm:h-[26px] sm:w-[26px] lg:h-[32px] lg:w-[32px]"
-            src="/icons/player.svg"
-          />
-        </button>
       </div>
     </section>
   );
