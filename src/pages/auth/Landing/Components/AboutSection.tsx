@@ -14,17 +14,13 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
       className="space-y-8 rounded-[36px] bg-gradient-to-r from-[#f1ffe1] via-white to-[#e8fafe] p-6 shadow-card sm:p-8"
     >
       <div>
-        <span className="inline-block rounded-full bg-[#4ce54a] px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.4em] text-white">
+        <p className="font-display text-3xl tracking-wide text-slate-900 sm:text-4xl">
           Tyutor haqida
-        </span>
-        <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl lg:text-4xl">
-          Tyutorlar – talabaning o‘qish jarayonini individual tarzda
-          qo‘llab-quvvatlaydigan, yo‘naltiradigan va o‘rgatadigan mutaxassis.
-        </h2>
+        </p>
       </div>
 
-      <div className="flex flex-col gap-10 lg:flex-row">
-        <div className="flex flex-col gap-4 lg:w-1/2">
+      <div className="space-y-10">
+        <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#4ce54a]/20 to-[#4ce54a]/10">
               <svg
@@ -45,7 +41,7 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
               Tyutorning bir kunlik vazifalari
             </h3>
           </div>
-          <div className="space-y-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             {responsibilities.map((item, index) => (
               <div
                 key={index}
@@ -81,7 +77,7 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
             ))}
           </div>
         </div>
-        <div className="flex flex-1 flex-col gap-6 rounded-[28px]">
+        <div className="flex flex-col gap-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#4ce54a]/20 to-[#4ce54a]/10">
               <svg
@@ -102,7 +98,7 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
               Kasbiy maqsadlari
             </h3>
           </div>
-          <div className="space-y-3 sm:space-y-4">
+          <div className="grid gap-3 sm:grid-cols-2">
             <div className="flex items-start gap-3 rounded-xl border-l-4 border-[#ffe066] bg-white p-3 transition-all sm:gap-4 sm:p-4">
               <div className="flex-shrink-0">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#ffe066]/20 to-[#ffe066]/10">
@@ -134,6 +130,17 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
               <p className="flex-1 text-sm font-medium leading-snug text-slate-800">
                 Ta'lim tarbiya jarayonlariga moslashuvini qo'llab-quvvatlash
                 hamda bo'sh vaqtlarini mazmunli tashkil etish
+              </p>
+            </div>
+            <div className="flex items-start gap-3 rounded-xl border-l-4 border-[#f6c2f4] bg-white p-3 transition-all sm:gap-4 sm:p-4">
+              <div className="flex-shrink-0">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#f6c2f4]/20 to-[#f6c2f4]/10">
+                  <span className="text-xs font-bold text-[#f6c2f4]">4</span>
+                </div>
+              </div>
+              <p className="flex-1 text-sm font-medium leading-snug text-slate-800">
+                Talabalarning akademik muvaffaqiyatini oshirish va ularga
+                professional yo'nalishda yordam ko'rsatish
               </p>
             </div>
           </div>

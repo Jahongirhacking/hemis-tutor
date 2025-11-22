@@ -29,6 +29,11 @@ export const navLinks = [
 export const responsibilities = [
   {
     title:
+      "Ish joyiga o'z vaqtida yetib kelish, kundalik reja asosida ishlarni tashkil etish choralarini ko'rish, davomat jurnali va hujjatlarni tayyorlash",
+    time: '08:30 - 09:00',
+  },
+  {
+    title:
       "Ta'labalarning darsdagi ishtirokini tekshirish, davomatini aniqlash, sababsiz kelmaganlar bilan bog'lanish",
     time: '09:00 - 10:00',
   },
@@ -45,12 +50,12 @@ export const responsibilities = [
   {
     title:
       "Talabaning bo'sh vaqtini mazmunli tashkil etishga qaratilgan ijtimoiy-ma'naviy tadbirlar, uchrashuvlar, davra suhbatari tashkil etish",
-    time: '14:00 - 16:30',
+    time: '14:00 - 14:30',
   },
   {
     title:
       "Ma'muriy ishlar: hisobot yozish, hujjatlarni to'ldirish, ota-onalar bilan aloqa",
-    time: '16:30 - 15:00',
+    time: '14:30 - 15:00',
   },
   {
     title: "Ijara xonadonlari hamda TTJlarni o'rganish",
