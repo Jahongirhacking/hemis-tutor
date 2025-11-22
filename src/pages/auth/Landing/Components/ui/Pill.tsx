@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 type PillProps = {
-  children: ReactNode
-  className?: string
-}
+  children: ReactNode;
+  className?: string;
+};
 
 export function Pill({ children, className = '' }: PillProps) {
   return (
@@ -12,6 +12,5 @@ export function Pill({ children, className = '' }: PillProps) {
     >
       {children}
     </span>
-  )
+  );
 }
-

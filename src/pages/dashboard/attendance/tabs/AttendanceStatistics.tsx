@@ -56,9 +56,9 @@ const AttendanceStatistics = () => {
             key: 'absent_off',
             render: (_, record) => (
               <Flex gap={8}>
-                <Tag color="error">{`${t('const.number_count', { number: record?.absent_sababsiz_count })}`}</Tag>
-                <Tag color={getAbsentColor(record?.absent_sababsiz_percent)}>
-                  {record?.absent_sababsiz_percent}%
+                <Tag color="error">{`${t('const.number_count', { number: record?.absent_without_reason_count })}`}</Tag>
+                <Tag color={getAbsentColor(record?.absent_without_reason_percent)}>
+                  {record?.absent_without_reason_percent}%
                 </Tag>
               </Flex>
             ),
@@ -68,9 +68,9 @@ const AttendanceStatistics = () => {
             key: 'absent_on',
             render: (_, record) => (
               <Flex gap={8}>
-                <Tag color="orange">{`${t('const.number_count', { number: record?.absent_sababli_count })}`}</Tag>
-                <Tag color={getAbsentColor(record?.absent_sababli_percent)}>
-                  {record?.absent_sababli_percent}%
+                <Tag color="orange">{`${t('const.number_count', { number: record?.absent_with_reason_count })}`}</Tag>
+                <Tag color={getAbsentColor(record?.absent_with_reason_percent)}>
+                  {record?.absent_with_reason_percent}%
                 </Tag>
               </Flex>
             ),

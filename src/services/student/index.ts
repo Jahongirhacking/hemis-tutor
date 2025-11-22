@@ -9,10 +9,12 @@ import {
   IAttendanceStatisticsReq,
   IAttendanceStatisticsRes,
   ICheckAddressRes,
+  ICodeName,
   IContractDetailsReq,
   IContractDetailsRes,
   IContractListReq,
   IContractListRes,
+  ICreateVisitReq,
   IDebtorsReq,
   IDebtorsRes,
   IEducationYear,
@@ -303,6 +305,81 @@ export const studentApi = api.injectEndpoints({
         url: `${getBaseUrl(`/student/visit-list`)}`,
         params,
       }),
+      providesTags: ['visits'],
+    }),
+
+    createVisit: build.mutation<void, ICreateVisitReq>({
+      query: params => ({
+        url: `/student/visit-create`,
+        params,
+        method: 'POST',
+      }),
+      invalidatesTags: ['visits'],
+    }),
+
+    // classifiers
+    getCountries: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/countries`)}`,
+      }),
+    }),
+
+    getAccommodations: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/accommodations`)}`,
+      }),
+    }),
+
+    getDistricts: build.query<
+      IBaseDataRes<{ items: ICodeName[] }>,
+      { province: number }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`reference/districts`)}`,
+        params,
+      }),
+    }),
+
+    getEducationYears: build.query<void, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/education-years`)}`,
+      }),
+    }),
+
+    getProvinces: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/provinces`)}`,
+      }),
+    }),
+
+    getSpecalities: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/specialties`)}`,
+      }),
+    }),
+
+    getLivingStatuses: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/student-living-statuses`)}`,
+      }),
+    }),
+
+    getRoommateTypes: build.query<void, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/student-roommate-types`)}`,
+      }),
+    }),
+
+    getStudentStatuses: build.query<void, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/student-statuses`)}`,
+      }),
+    }),
+
+    getTerrains: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`reference/terrains`)}`,
+      }),
     }),
   }),
 });
@@ -331,4 +408,15 @@ export const {
   useGetVisitListQuery,
   useGetStudentHistoryListQuery,
   useGetStudentHistoryQuery,
+  useCreateVisitMutation,
+  useGetLivingStatusesQuery,
+  useGetCountriesQuery,
+  useGetDistrictsQuery,
+  useGetEducationYearsQuery,
+  useGetProvincesQuery,
+  useGetSpecalitiesQuery,
+  useGetRoommateTypesQuery,
+  useGetStudentStatusesQuery,
+  useGetTerrainsQuery,
+  useGetAccommodationsQuery,
 } = studentApi;

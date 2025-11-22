@@ -20,7 +20,7 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 export const api = createApi({
   baseQuery: baseQueryWithRetry,
   endpoints: () => ({}),
-  tagTypes: ['profile'],
+  tagTypes: ['profile', 'visits'],
 });
 
 export const enhancedApi = api.enhanceEndpoints({

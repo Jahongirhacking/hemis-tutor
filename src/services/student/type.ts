@@ -122,15 +122,15 @@ export interface IAttendanceStatisticsReq extends IAttendanceBySubjectReq {
 }
 
 export interface IStudentStats {
-  absent_sababli_count: number;
-  absent_sababli_percent: number;
-  absent_sababsiz_count: number;
-  absent_sababsiz_percent: number;
+  absent_with_reason_count: number;
+  absent_with_reason_percent: number;
+  absent_without_reason_count: number;
+  absent_without_reason_percent: number;
   full_name: string;
   present_count: number;
   present_percent: number;
   student_id: number;
-  student_id_number: string;
+  student_id_number: IStudent['student_id_number'];
   total_lessons: number;
 }
 
@@ -731,4 +731,16 @@ export interface IProfileHistoryItem {
 export interface IProfileHistoryRes {
   student: Pick<IStudent, 'id' | 'full_name' | 'student_id_number'>;
   history: IProfileHistoryItem[];
+}
+
+export interface ICreateVisitReq {
+  id: IStudent['id'];
+  _student_living_status?: string;
+  _accommodation?: string;
+  _current_province?: string;
+  _current_district?: string;
+  _current_terrain?: string;
+  current_address?: string;
+  geolocation?: string;
+  comment?: string;
 }

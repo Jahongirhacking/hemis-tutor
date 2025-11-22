@@ -29,7 +29,7 @@ export function NewsSection({ cards }: NewsSectionProps) {
         </button>
       </div>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
-        {cards.map((card) => (
+        {cards.map(card => (
           <article
             key={card.title}
             className="flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-card"
