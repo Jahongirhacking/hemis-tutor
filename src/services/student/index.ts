@@ -320,7 +320,7 @@ export const studentApi = api.injectEndpoints({
 
     createVisit: build.mutation<void, ICreateVisitReq>({
       query: ({ id, ...body }) => ({
-        url: `/student/visit-create`,
+        url: `${getBaseUrl(`/student/visit-create`)}`,
         method: 'POST',
         params: { id },
         body,

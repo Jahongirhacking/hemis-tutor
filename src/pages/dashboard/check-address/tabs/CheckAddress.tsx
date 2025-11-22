@@ -100,7 +100,7 @@ const CheckAddress = () => {
             title: t('const.actions'),
             dataIndex: 'id',
             key: 'actions',
-            width: 200,
+            width: 150,
             render: id => (
               <Flex vertical gap={4}>
                 <Button
