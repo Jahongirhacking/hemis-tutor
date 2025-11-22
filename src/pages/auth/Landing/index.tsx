@@ -1,13 +1,12 @@
 import {
-    documentCards,
-    documentImage,
-    handbookCover,
-    handbookImage,
-    handbookTexture,
-    navLinks,
-    newsCards,
-    responsibilities,
-    speakerCards,
+  documentCards,
+  handbookCover,
+  handbookImage,
+  handbookTexture,
+  navLinks,
+  newsCards,
+  responsibilities,
+  speakerCards,
 } from '@/utils/landingSiteContent';
 import { useEffect, useMemo, useState } from 'react';
 import { AboutSection } from './Components/AboutSection';
@@ -114,10 +113,7 @@ export default function App() {
           handbookImage={handbookImage}
           handbookTexture={handbookTexture}
         />
-        <DocumentsSection
-          documents={documentCards}
-          documentImage={documentImage}
-        />
+        <DocumentsSection documents={documentCards} />
       </main>
       <Footer />
     </div>

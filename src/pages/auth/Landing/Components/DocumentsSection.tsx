@@ -10,7 +10,6 @@ type DocumentCard = {
 
 type DocumentsSectionProps = {
   documents: DocumentCard[];
-  documentImage: string;
 };
 
 const gradientColors = [
