@@ -193,7 +193,9 @@
         "date": "Sana",
         "exam_type": "Nazorat turi",
         "average_grade": "O'rtacha baho",
-        "registered_address": "Ro'yxatdan o'tgan manzil"
+        "registered_address": "Ro'yxatdan o'tgan manzil",
+        "student_id": "Talaba ID",
+        "create": "Yaratish"
     },
     "exam": {
         "retry_title": "Testni qayta topshirasizmi?",

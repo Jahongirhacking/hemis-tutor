@@ -286,14 +286,21 @@ export const studentApi = api.injectEndpoints({
     }),
 
     // address
-    checkAddress: build.query<
+    getVisitList: build.query<
       IBaseDataRes<ICheckAddressRes>,
       {
         group_id?: IGroup['id'];
+        page: number;
+        per_page: number;
+        search?: string;
+        _student_living_status?: string;
+        _current_district?: string;
+        expand?: string;
+        fields?: string;
       }
     >({
       query: params => ({
-        url: `${getBaseUrl(`/student/address`)}`,
+        url: `${getBaseUrl(`/student/visit-list`)}`,
         params,
       }),
     }),
@@ -321,7 +328,7 @@ export const {
   useGetExamsQuery,
   useGetStudentGpaQuery,
   useGetGradeSummaryRatingQuery,
-  useCheckAddressQuery,
+  useGetVisitListQuery,
   useGetStudentHistoryListQuery,
   useGetStudentHistoryQuery,
 } = studentApi;

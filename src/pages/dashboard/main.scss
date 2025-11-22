@@ -162,15 +162,23 @@
   }
 }
 
-.ant-drawer-content-wrapper {
-  width: min(100%, 600px) !important;
+.ant-drawer-right {
+  .ant-drawer-content-wrapper {
+    width: min(100%, 600px) !important;
 
-  .attendance-details {
-    .ant-card {
-      .ant-card-body {
-        padding: 12px;
+    .attendance-details {
+      .ant-card {
+        .ant-card-body {
+          padding: 12px;
+        }
       }
     }
+  }
+}
+
+.ant-drawer-bottom {
+  .ant-drawer-content-wrapper {
+    min-height: 80dvh;
   }
 }
 

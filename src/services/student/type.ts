@@ -34,18 +34,50 @@ export interface ISubject {
 
 export interface IStudent {
   id: number;
+  first_name: string;
+  second_name: string;
+  third_name: string;
   full_name: string;
   student_id_number: string;
+  email: string;
   phone: string;
-  image: string;
-  student_status: {
-    code: number;
+  person_phone: string;
+  parent_phone: string;
+  passport_number: string;
+  passport_pin: string;
+  birth_date: string;
+  gender: ICodeName;
+  image: string | null;
+  home_address: string;
+  current_address: string;
+  geo_location: string;
+  roommate_count: number | null;
+  student_roommate_type: string | null;
+  accommodation: ICodeName;
+  province: ICodeName & { _parent: string };
+  district: ICodeName & { _parent: string };
+  current_province: ICodeName & { _parent: string };
+  current_district: ICodeName & { _parent: string };
+  terrain: ICodeName;
+  current_terrain: ICodeName;
+  country: ICodeName;
+  social_category: ICodeName;
+  student_living_status: {
     name: string;
+    code: StudentLivingStatus;
   };
-  payment_form: string;
-  education_type: string;
-  education_form: string;
-  group: IGroup;
+  student_status?: ICodeName;
+  _accommodation: string;
+  _country: string;
+  _province: string;
+  _district: string;
+  _current_province: string;
+  _current_district: string;
+  _current_terrain: string;
+  _terrain: string;
+  _social_category: string;
+  _student_living_status: string;
+  _student_roommate_type: string | null;
 }
 
 export interface IEducationYear {
@@ -590,12 +622,77 @@ export interface ICheckedStudent {
   phone?: string;
 }
 
+export interface ITutorVisit {
+  id: number;
+  _student: number;
+  _student_living_status: string;
+  _accommodation: string;
+  _current_province: string;
+  _current_district: string;
+  _current_terrain: string;
+  current_address: string;
+  geolocation: string;
+  comment: string;
+  position: number;
+  active: boolean;
+  updated_at: string;
+  created_at: string;
+}
+
+export enum StudentLivingStatus {
+  GREEN = '11',
+  YELLOW = '12',
+  RED = '13',
+}
+
 export interface ICheckAddressRes {
-  students: ICheckedStudent[];
-  group_id: IGroup['id'] | string;
-  total: number;
-  matching: number;
-  not_matching: number;
+  items: {
+    id: number;
+    first_name: string;
+    second_name: string;
+    third_name: string;
+    _accommodation: string;
+    _student_living_status: string;
+    group: {
+      name: string;
+    };
+    tutorVisits: ITutorVisit[];
+    currentProvince: {
+      code: string;
+      name: string;
+      _parent: string;
+    };
+    currentDistrict: {
+      code: string;
+      name: string;
+      _parent: string;
+    };
+    currentTerrain: {
+      code: string;
+      name: string;
+    };
+    accommodation: {
+      code: string;
+      name: string;
+    };
+    studentLivingStatus: {
+      code: string;
+      name: string;
+    };
+  }[];
+
+  _links: {
+    self: { href: string };
+    first: { href: string };
+    last: { href: string };
+    [key: string]: { href: string } | undefined;
+  };
+  _meta: {
+    totalCount: number;
+    pageCount: number;
+    currentPage: number;
+    perPage: number;
+  };
 }
 
 export interface IHistory {
