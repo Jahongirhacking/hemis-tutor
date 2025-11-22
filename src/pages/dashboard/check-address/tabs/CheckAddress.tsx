@@ -8,21 +8,14 @@ import { useSearchParams } from 'react-router-dom';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
-import CreateVisit, { CREATE_VISIT_DRAWER } from '../CreateVisit';
+import CreateVisit, { CREATE_VISIT_DRAWER } from '../CreateVisitPage';
 import LivingStatusTag from '../components/LivingStatusTag';
 import LocationButton from '../components/LocationButton';
-
-const DEFAULT_EXPAND =
-  'tutorVisits,group,currentProvince,currentDistrict,currentTerrain,studentLivingStatus,accommodation';
-const DEFAULT_FIELDS =
-  'id,first_name,second_name,third_name,group.name,_student_living_status,current_province,_accommodation';
 
 const CheckAddress = () => {
   const { form, values } = useCustomFilter();
   const { data: addressData, isFetching } = useGetVisitListQuery({
     ...values,
-    expand: DEFAULT_EXPAND,
-    fields: DEFAULT_FIELDS,
   });
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -110,15 +103,12 @@ const CheckAddress = () => {
             width: 200,
             render: id => (
               <Flex vertical gap={4}>
-                <Button onClick={() => console.log(id)}>
-                  {t('const.in_detail')}
-                </Button>
                 <Button
                   type="primary"
                   icon={<PlusOutlined />}
                   onClick={() => handleVisitDrawer({ id: String(id) })}
                 >
-                  {t('const.create')}
+                  Qayd etish
                 </Button>
               </Flex>
             ),

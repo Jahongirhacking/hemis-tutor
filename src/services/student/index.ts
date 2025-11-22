@@ -47,6 +47,11 @@ import {
   IStudentListReq,
 } from './type';
 
+const DEFAULT_EXPAND =
+  'tutorVisits,group,currentProvince,currentDistrict,currentTerrain,studentLivingStatus,accommodation';
+const DEFAULT_FIELDS =
+  'id,first_name,second_name,third_name,group.name,_student_living_status,current_province,_accommodation';
+
 export const studentApi = api.injectEndpoints({
   endpoints: build => ({
     // Attendance
@@ -292,8 +297,8 @@ export const studentApi = api.injectEndpoints({
       IBaseDataRes<ICheckAddressRes>,
       {
         group_id?: IGroup['id'];
-        page: number;
-        per_page: number;
+        page?: number;
+        per_page?: number;
         search?: string;
         _student_living_status?: string;
         _current_district?: string;
@@ -303,7 +308,11 @@ export const studentApi = api.injectEndpoints({
     >({
       query: params => ({
         url: `${getBaseUrl(`/student/visit-list`)}`,
-        params,
+        params: {
+          fields: DEFAULT_FIELDS,
+          expand: DEFAULT_EXPAND,
+          ...params,
+        },
       }),
       providesTags: ['visits'],
     }),

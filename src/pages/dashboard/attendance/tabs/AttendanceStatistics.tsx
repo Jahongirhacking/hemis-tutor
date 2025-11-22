@@ -57,7 +57,9 @@ const AttendanceStatistics = () => {
             render: (_, record) => (
               <Flex gap={8}>
                 <Tag color="error">{`${t('const.number_count', { number: record?.absent_without_reason_count })}`}</Tag>
-                <Tag color={getAbsentColor(record?.absent_without_reason_percent)}>
+                <Tag
+                  color={getAbsentColor(record?.absent_without_reason_percent)}
+                >
                   {record?.absent_without_reason_percent}%
                 </Tag>
               </Flex>
