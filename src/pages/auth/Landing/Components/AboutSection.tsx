@@ -4,10 +4,7 @@ type AboutSectionProps = {
 
 export function AboutSection({}: AboutSectionProps) {
   return (
-    <section
-      id="tanlovlar"
-      className="space-y-8 bg-white p-6 sm:p-8"
-    >
+    <section id="tanlovlar" className="space-y-8 bg-white">
       <div>
         <span className="inline-block rounded-full bg-[#4ce54a] px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.4em] text-white">
           Tyutor haqida
