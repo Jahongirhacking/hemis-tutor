@@ -52,14 +52,14 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
                 className="group flex flex-col gap-3 rounded-xl border-l-4 border-[#4ce54a] bg-white p-3 transition-all sm:flex-row sm:items-start sm:gap-4 sm:p-4"
               >
                 <div className="flex items-center gap-3 sm:flex-shrink-0">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#4ce54a]/10 to-[#4ce54a]/20">
-                    <span className="text-sm font-bold text-[#4ce54a]">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white border-2 border-slate-300">
+                    <span className="text-sm font-bold text-slate-700">
                       {index + 1}
                     </span>
                   </div>
                   <div className="flex-shrink-0 sm:hidden">
-                    <div className="rounded-lg bg-gradient-to-br from-[#4ce54a]/10 to-[#4ce54a]/20 px-3 py-1.5">
-                      <p className="text-xs font-semibold text-[#4ce54a] whitespace-nowrap">
+                    <div className="rounded-lg bg-white border-2 border-slate-300 px-3 py-1.5">
+                      <p className="text-xs font-semibold text-slate-700 whitespace-nowrap">
                         {item.time}
                       </p>
                     </div>
@@ -71,8 +71,8 @@ export function AboutSection({ responsibilities }: AboutSectionProps) {
                   </p>
                 </div>
                 <div className="hidden flex-shrink-0 pt-0.5 sm:block">
-                  <div className="rounded-lg bg-gradient-to-br from-[#4ce54a]/10 to-[#4ce54a]/20 px-3 py-1.5">
-                    <p className="text-xs font-semibold text-[#4ce54a] whitespace-nowrap">
+                  <div className="rounded-lg bg-white border-2 border-slate-300 px-3 py-1.5">
+                    <p className="text-xs font-semibold text-slate-700 whitespace-nowrap">
                       {item.time}
                     </p>
                   </div>
