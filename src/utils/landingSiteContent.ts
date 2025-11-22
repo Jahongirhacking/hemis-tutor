@@ -51,7 +51,7 @@ export const responsibilities = [
     time: "14:00 - 16:30",
   },
   {
-    title: "Ma'muriy ishlar: hisobot yozish, hujjatlarni to'ldirish, ota-nalar bilan aloqa",
+    title: "Ma'muriy ishlar: hisobot yozish, hujjatlarni to'ldirish, ota-onalar bilan aloqa",
     time: "16:30 - 15:00",
   },
   {
