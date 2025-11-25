@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { GradientButton } from './ui/GradientButton';
 import { paths } from '@/router/paths';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GradientButton } from './ui/GradientButton';
 
 type HeaderProps = {
   navLinks: string[];
@@ -23,8 +23,15 @@ export function Header({ navLinks, activeLink, onNavigate }: HeaderProps) {
     setIsMenuOpen(false);
   };
   return (
-    <header className="relative overflow-hidden">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 pb-8 pt-6 sm:px-6 lg:gap-8 lg:pt-10">
+    <>
+      <header
+        className="fixed inset-x-0 top-0 z-50"
+        style={{
+          backgroundImage:
+            'linear-gradient(82.079deg, rgba(196,255,254,1) 0%, rgba(228,254,221,1) 50%, rgba(238,247,251,1) 100%)',
+        }}
+      >
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 pb-6 pt-4 sm:px-6 lg:gap-8 lg:pt-6">
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <p className="font-accent text-xl tracking-wide text-slate-900 sm:text-2xl">
             <span className="text-[#4ce54a]">tyutor</span>.hemis
@@ -107,7 +114,9 @@ export function Header({ navLinks, activeLink, onNavigate }: HeaderProps) {
             </div>
           </div>
         )}
-      </div>
-    </header>
+        </div>
+      </header>
+      <div className="h-[120px] sm:h-[140px] lg:h-[156px]" />
+    </>
   );
 }
