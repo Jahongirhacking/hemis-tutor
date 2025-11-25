@@ -54,9 +54,8 @@ export const rtkQueryErrorLogger: Middleware =
           "Server bilan bog'liq xatolik. Iltimos bu haqida ma'sul xodimlarga xabar bering"
         );
       } else if (status === 401 || status === 403) {
-        window.location.href = '/';
         message.destroy();
-        message.warning('Iltimos avval tizimga kiring!');
+        message.warning(error_message || 'Iltimos avval tizimga kiring!');
       } else if (action.payload.status === 'FETCH_ERROR') {
         message.destroy();
         message.warning(

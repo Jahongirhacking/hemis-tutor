@@ -9,10 +9,12 @@ import {
   IAttendanceStatisticsReq,
   IAttendanceStatisticsRes,
   ICheckAddressRes,
+  ICodeName,
   IContractDetailsReq,
   IContractDetailsRes,
   IContractListReq,
   IContractListRes,
+  ICreateVisitReq,
   IDebtorsReq,
   IDebtorsRes,
   IEducationYear,
@@ -44,6 +46,11 @@ import {
   IStudentHistoryRes,
   IStudentListReq,
 } from './type';
+
+const DEFAULT_EXPAND =
+  'tutorVisits,group,currentProvince,currentDistrict,currentTerrain,studentLivingStatus,accommodation';
+const DEFAULT_FIELDS =
+  'id,first_name,second_name,third_name,group.name,_student_living_status,current_province,_accommodation';
 
 export const studentApi = api.injectEndpoints({
   endpoints: build => ({
@@ -286,14 +293,106 @@ export const studentApi = api.injectEndpoints({
     }),
 
     // address
-    checkAddress: build.query<
+    getVisitList: build.query<
       IBaseDataRes<ICheckAddressRes>,
       {
         group_id?: IGroup['id'];
+        page?: number;
+        student_id?: IStudent['id'];
+        per_page?: number;
+        search?: string;
+        _student_living_status?: string;
+        _current_district?: string;
+        expand?: string;
+        fields?: string;
       }
     >({
       query: params => ({
-        url: `${getBaseUrl(`/student/address`)}`,
+        url: `${getBaseUrl(`/student/visit-list`)}`,
+        params: {
+          fields: DEFAULT_FIELDS,
+          expand: DEFAULT_EXPAND,
+          ...params,
+        },
+      }),
+      providesTags: ['visits'],
+    }),
+
+    createVisit: build.mutation<void, ICreateVisitReq>({
+      query: ({ id, ...body }) => ({
+        url: `${getBaseUrl(`/student/visit-create`)}`,
+        method: 'POST',
+        params: { id },
+        body,
+      }),
+      invalidatesTags: ['visits'],
+    }),
+
+    // classifiers
+    getCountries: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/countries`)}`,
+      }),
+    }),
+
+    getAccommodations: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/accommodations`)}`,
+      }),
+    }),
+
+    getDistricts: build.query<
+      IBaseDataRes<{ items: ICodeName[] }>,
+      { province: number }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/reference/districts`)}`,
+        params,
+      }),
+    }),
+
+    getEducationYears: build.query<void, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/education-years`)}`,
+      }),
+    }),
+
+    getProvinces: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/provinces`)}`,
+      }),
+    }),
+
+    getSpecalities: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/specialties`)}`,
+      }),
+    }),
+
+    getLivingStatuses: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/student-living-statuses`)}`,
+      }),
+    }),
+
+    getRoommateTypes: build.query<void, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/student-roommate-types`)}`,
+      }),
+    }),
+
+    getStudentStatuses: build.query<void, void>({
+      query: () => ({
+        url: `${getBaseUrl(`/reference/student-statuses`)}`,
+      }),
+    }),
+
+    getTerrains: build.query<
+      IBaseDataRes<{ items: ICodeName[] }>,
+      { district: number }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/reference/terrains`)}`,
         params,
       }),
     }),
@@ -321,7 +420,18 @@ export const {
   useGetExamsQuery,
   useGetStudentGpaQuery,
   useGetGradeSummaryRatingQuery,
-  useCheckAddressQuery,
+  useGetVisitListQuery,
   useGetStudentHistoryListQuery,
   useGetStudentHistoryQuery,
+  useCreateVisitMutation,
+  useGetLivingStatusesQuery,
+  useGetCountriesQuery,
+  useGetDistrictsQuery,
+  useGetEducationYearsQuery,
+  useGetProvincesQuery,
+  useGetSpecalitiesQuery,
+  useGetRoommateTypesQuery,
+  useGetStudentStatusesQuery,
+  useGetTerrainsQuery,
+  useGetAccommodationsQuery,
 } = studentApi;

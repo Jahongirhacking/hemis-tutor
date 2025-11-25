@@ -1,12 +1,16 @@
 type HandbookSectionProps = {
-  handbookImage: string
-  handbookCover: string
-  handbookTexture: string
-}
+  handbookImage: string;
+  handbookCover: string;
+  handbookTexture: string;
+};
 
-export function HandbookSection({ handbookImage, handbookCover, handbookTexture }: HandbookSectionProps) {
+export function HandbookSection({
+  handbookImage,
+  handbookCover,
+  handbookTexture,
+}: HandbookSectionProps) {
   const handleDownload = () => {
-    window.open('/pdf/qo\'llanma.pdf', '_blank');
+    window.open("/pdf/qo'llanma.pdf", '_blank');
   };
   return (
     <section
@@ -30,8 +34,8 @@ export function HandbookSection({ handbookImage, handbookCover, handbookTexture 
               Oliy ta’lim maussasalarida tyutorlik faoliyatini amalga oshirish
             </h3>
             <p className="text-sm text-white/85 sm:text-base">
-              Oliy ta’lim muassasalarida tyutorlik faoliyatini tashkil etish bo‘yicha takliflar, tavsiyalar va
-              uslubiy ko‘rsatmalar jamlanmasi.
+              Oliy ta’lim muassasalarida tyutorlik faoliyatini tashkil etish
+              bo‘yicha takliflar, tavsiyalar va uslubiy ko‘rsatmalar jamlanmasi.
             </p>
             <button
               onClick={handleDownload}
@@ -46,8 +50,16 @@ export function HandbookSection({ handbookImage, handbookCover, handbookTexture 
             <div className="relative overflow-visible rounded-[18px] shadow-[0_25px_70px_rgba(15,23,42,0.35)]">
               <div className="absolute -left-3 top-3 h-full w-full rounded-[20px] bg-white/30 blur-xl" />
               <div className="relative overflow-hidden rounded-[18px] border border-white/20">
-                <img alt="Handbook cover" className="h-full w-full object-cover" src={handbookCover} />
-                <img alt="" className="absolute inset-0 mix-blend-multiply opacity-80" src={handbookTexture} />
+                <img
+                  alt="Handbook cover"
+                  className="h-full w-full object-cover"
+                  src={handbookCover}
+                />
+                <img
+                  alt=""
+                  className="absolute inset-0 mix-blend-multiply opacity-80"
+                  src={handbookTexture}
+                />
                 <div className="absolute inset-0 rounded-[18px] shadow-[inset_0_20px_40px_rgba(255,255,255,0.35)]" />
               </div>
             </div>
@@ -55,6 +67,5 @@ export function HandbookSection({ handbookImage, handbookCover, handbookTexture 
         </div>
       </div>
     </section>
-  )
+  );
 }
-
