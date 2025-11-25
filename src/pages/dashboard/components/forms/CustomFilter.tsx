@@ -10,6 +10,7 @@ import {
   Select,
   SelectProps,
 } from 'antd';
+import { SearchProps } from 'antd/es/input';
 import {
   Children,
   cloneElement,
@@ -28,7 +29,7 @@ const CustomFilter = ({
   ...props
 }: FormProps & { children: ReactElement | ReactElement[] }) => {
   return (
-    <Form layout="vertical" {...props}>
+    <Form layout="vertical" className="w-full" {...props}>
       <CustomFilterContext.Provider value={{ form: props?.form }}>
         <Flex gap={8} align="center" wrap>
           {Children.map(children, child =>
@@ -53,7 +54,6 @@ const ByGroup = ({
   ...props
 }: { field?: string } & SelectProps<{ label: string; value: number }>) => {
   const profile = useSelector((store: RootState) => store.authSlice?.profile);
-
   return (
     <Form.Item name={field || FilterKey.GroupId} style={{ margin: 0 }}>
       <Select<{ label: string; value: number }>
@@ -126,7 +126,7 @@ const ByPinfl = ({ field }: { field?: string }) => {
   );
 };
 
-const BySearch = ({ field }: { field?: string }) => {
+const BySearch = ({ field, ...props }: { field?: string } & SearchProps) => {
   const form = useContext(CustomFilterContext)?.form;
   const filterKey = useMemo(() => field || FilterKey.Search, [field]);
   const handleSearch = useCallback(
@@ -148,16 +148,21 @@ const BySearch = ({ field }: { field?: string }) => {
           placeholder="Qidirish"
           allowClear
           onSearch={handleSearch}
+          {...props}
         />
       </Form.Item>
     </>
   );
 };
 
-const BySelect = ({ field, ...props }: SelectProps & { field: string }) => {
+const BySelect = ({
+  render,
+  field,
+  ...props
+}: SelectProps & { field: string } & { render?: ReactElement }) => {
   return (
     <Form.Item name={field} style={{ margin: 0, minWidth: 'min(100%, 180px)' }}>
-      <Select allowClear {...props} />
+      {render || <Select allowClear {...props} />}
     </Form.Item>
   );
 };

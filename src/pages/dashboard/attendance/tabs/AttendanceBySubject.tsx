@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../../students/components/CustomLink';
 
 const AttendanceBySubject = () => {
   const { values, form } = useCustomFilter();
@@ -28,7 +29,9 @@ const AttendanceBySubject = () => {
             title: t('const.student'),
             key: 'student',
             dataIndex: 'student',
-            render: (student: IStudent) => student?.full_name,
+            render: (student: IStudent) => (
+              <CustomLink.Student student={student} />
+            ),
           },
           {
             title: t('const.lesson_date'),

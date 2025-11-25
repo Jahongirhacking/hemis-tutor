@@ -19,13 +19,17 @@ import {
   Input,
   message,
   Row,
+  Select,
   Typography,
 } from 'antd';
 import { t } from 'i18next';
 import { RefreshCcw, Send } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import CustomSelect from '../../components/CustomSelect';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import { CREATE_VISIT_DRAWER } from '../CreateVisitPage';
+import LivingStatusTag from './LivingStatusTag';
 
 enum FormNames {
   PROVINCE = '_current_province',
@@ -61,6 +65,7 @@ const CreateVisit = ({
 }) => {
   const { form, values } = useCustomFilter();
   const [createVisit, { isLoading, isSuccess }] = useCreateVisitMutation();
+  const [searchParams] = useSearchParams();
 
   const { data: livingStatusData, isFetching: isLivingStatusFetching } =
     useGetLivingStatusesQuery();
@@ -111,6 +116,12 @@ const CreateVisit = ({
       form.setFieldValue(FormNames.GEO, `${location?.lat},${location?.lng}`);
     }
   }, [location]);
+
+  useEffect(() => {
+    if (!searchParams.has(CREATE_VISIT_DRAWER)) {
+      form.resetFields();
+    }
+  }, [searchParams]);
 
   return (
     <Flex vertical className="mt-3 mb-5">
@@ -212,12 +223,19 @@ const CreateVisit = ({
                 name={FormNames.LIVING_STATUS}
                 rules={[{ required: true, message: 'Yashash holati majburiy' }]}
               >
-                <CustomSelect
+                <Select
                   allowClear
                   loading={isLivingStatusFetching}
                   style={{ minWidth: 200 }}
                   options={livingStatusData?.result?.items?.map(i => ({
-                    label: i?.name,
+                    label: (
+                      <LivingStatusTag
+                        livingStatus={{
+                          code: i?.code,
+                          name: i?.name,
+                        }}
+                      />
+                    ),
                     value: String(i?.code),
                   }))}
                   placeholder="Yashash holatini tanlang"
@@ -263,7 +281,12 @@ const CreateVisit = ({
 
             <Col {...COMMENT_COL_PROPS}>
               <Form.Item name={FormNames.GEO} style={{ display: 'none' }} />
-              <Flex vertical gap={4} align="flex-start">
+              <Flex
+                vertical
+                gap={4}
+                align="flex-start"
+                style={{ overflow: 'hidden' }}
+              >
                 {location ? (
                   <YandexMap
                     style={{ width: '100%', height: '100px' }}

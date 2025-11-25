@@ -22,7 +22,12 @@ const LocationButton = ({
         };
       })()}
       icon={<MapPin size={16} />}
-      style={{ whiteSpace: 'normal', height: 'auto', padding: 0 }}
+      style={{
+        whiteSpace: 'normal',
+        height: 'auto',
+        padding: 0,
+        textAlign: 'left',
+      }}
     >
       {current_address}
     </Button>

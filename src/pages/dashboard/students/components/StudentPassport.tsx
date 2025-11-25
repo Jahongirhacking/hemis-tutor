@@ -1,5 +1,5 @@
 import { convertIfCyrillic } from '@/utils/stringFunc';
-import { Button, Flex, Image, Skeleton } from 'antd';
+import { Button, Card, Flex, Image, Skeleton } from 'antd';
 import { Printer, User } from 'lucide-react';
 import useStudentPassport from './useStudentPassport';
 
@@ -41,7 +41,9 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
             <div className="px-6 py-4 w-full">
               {/* Talaba ma'lumotlari - Bitta katta card */}
               {isLoading ? (
-                <Skeleton active />
+                <Card className="mb-4">
+                  <Skeleton active />
+                </Card>
               ) : (
                 <>
                   <div

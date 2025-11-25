@@ -4,11 +4,31 @@ export interface IGroup {
 }
 
 export interface IGroupDetails extends IGroup {
-  department: unknown;
-  education_lang: unknown;
-  education_type: unknown;
-  education_form: unknown;
-  curriculum: unknown;
+  department: IDepartmentMeta;
+  education_lang: ICodeName;
+  education_type: ICodeName;
+  education_form: ICodeName;
+  curriculum: ICurriculumMeta & {
+    _department?: number;
+    _education_type?: string;
+    _education_form?: string;
+    _marking_system?: string;
+    _education_year?: string;
+    semester_count?: number;
+    education_period?: number;
+    autumn_start_date?: IDateTimeMeta;
+    autumn_end_date?: IDateTimeMeta;
+    spring_start_date?: IDateTimeMeta;
+    spring_end_date?: IDateTimeMeta;
+    accepted?: boolean;
+    position?: number | null;
+    active?: boolean;
+    _translations?: Record<string, string>;
+    updated_at?: IDateTimeMeta;
+    created_at?: IDateTimeMeta;
+    _specialty_id?: number;
+    _qualification?: number;
+  };
   students_count: number;
   active_students_count: number;
 }
@@ -625,7 +645,7 @@ export interface ICheckedStudent {
 export interface ITutorVisit {
   id: number;
   _student: number;
-  _student_living_status: string;
+  _student_living_status: StudentLivingStatus;
   _accommodation: string;
   _current_province: string;
   _current_district: string;

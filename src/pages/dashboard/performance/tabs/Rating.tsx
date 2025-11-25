@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../../students/components/CustomLink';
 
 const MAX_BALL = 5;
 
@@ -34,7 +35,7 @@ const Rating = () => {
             dataIndex: 'student',
             key: 'name',
             width: 250,
-            render: student => student?.full_name,
+            render: student => <CustomLink.Student student={student} />,
           },
           {
             title: t('const.subject'),

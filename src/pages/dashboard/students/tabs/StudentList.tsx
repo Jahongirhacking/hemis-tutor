@@ -1,23 +1,20 @@
 import { usePagination } from '@/hooks/usePagination';
 import { useGetStudentListQuery } from '@/services/student';
-import { DrawerChildTypes, SearchParams } from '@/utils/config';
-import { Button, Divider, Flex } from 'antd';
+import { Divider, Flex } from 'antd';
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../components/CustomLink';
 
 const StudentList = () => {
   const { form, values } = useCustomFilter();
-  const { pagination, setSearchParams, searchParams, setPagination } =
-    usePagination();
+  const { pagination, setPagination } = usePagination();
   const { data: studentsData, isFetching } = useGetStudentListQuery({
     ...pagination,
     ...values,
     group: values?.[FilterKey.GroupId],
   });
-  const { t } = useTranslation();
 
   useEffect(() => {
     setPagination({
@@ -48,6 +45,7 @@ const StudentList = () => {
             title: 'Talaba',
             key: 'full_name',
             dataIndex: 'full_name',
+            render: (_, record) => <CustomLink.Student student={record} />,
             width: 250,
           },
           {
@@ -59,35 +57,35 @@ const StudentList = () => {
             title: 'Guruh',
             key: 'group',
             dataIndex: 'group',
-            render: group => group?.name,
+            render: group => <CustomLink.Group group={group} />,
           },
           {
             title: 'JShShIR',
             key: 'passport_pin',
             dataIndex: 'passport_pin',
           },
-          {
-            title: t('const.actions'),
-            fixed: 'right',
-            render: (_, record) => (
-              <Flex gap={8} wrap align="center" justify="center">
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    const params = new URLSearchParams(searchParams);
-                    params.set(
-                      SearchParams.Drawer,
-                      DrawerChildTypes.StudentInfo
-                    );
-                    params.set(SearchParams.DrawerProps, String(record?.id));
-                    setSearchParams(params);
-                  }}
-                >
-                  {t('const.in_detail')}
-                </Button>
-              </Flex>
-            ),
-          },
+          // {
+          //   title: t('const.actions'),
+          //   fixed: 'right',
+          //   render: (_, record) => (
+          //     <Flex gap={8} wrap align="center" justify="center">
+          //       <Button
+          //         type="primary"
+          //         onClick={() => {
+          //           const params = new URLSearchParams(searchParams);
+          //           params.set(
+          //             SearchParams.Drawer,
+          //             DrawerChildTypes.StudentInfo
+          //           );
+          //           params.set(SearchParams.DrawerProps, String(record?.id));
+          //           setSearchParams(params);
+          //         }}
+          //       >
+          //         {t('const.in_detail')}
+          //       </Button>
+          //     </Flex>
+          //   ),
+          // },
         ]}
         dataSource={studentsData?.result?.students}
         loading={isFetching}

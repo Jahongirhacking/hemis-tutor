@@ -8,6 +8,7 @@ import CustomDrawer from '../../components/CustomDrawer';
 import { default as CustomTable } from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../../students/components/CustomLink';
 import AttendanceDetails from '../components/AttendanceDetails';
 
 const AttendanceReport = () => {
@@ -55,7 +56,9 @@ const AttendanceReport = () => {
             title: t('const.student'),
             key: 'student',
             dataIndex: 'student',
-            render: (student: IStudent) => student?.full_name,
+            render: (_, record) => (
+              <CustomLink.Student student={record?.student} />
+            ),
           },
           {
             title: `${toFirstCapitalLetter(t('const.explicable'))} (${t('const.hours_plural')})`,

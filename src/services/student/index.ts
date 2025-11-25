@@ -45,6 +45,7 @@ import {
   IStudentGradeRes,
   IStudentHistoryRes,
   IStudentListReq,
+  StudentLivingStatus,
 } from './type';
 
 const DEFAULT_EXPAND =
@@ -369,7 +370,10 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
-    getLivingStatuses: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+    getLivingStatuses: build.query<
+      IBaseDataRes<{ items: { name: string; code: StudentLivingStatus }[] }>,
+      void
+    >({
       query: () => ({
         url: `${getBaseUrl(`/reference/student-living-statuses`)}`,
       }),

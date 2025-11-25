@@ -3,6 +3,7 @@ import { Card, Collapse, Divider, Flex, Skeleton, Tag, Typography } from 'antd';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import useCustomTable from '../../components/hooks/useCustomTable';
+import CustomLink from '../../students/components/CustomLink';
 
 const Debtors = () => {
   const { form, values } = useCustomFilter();
@@ -34,7 +35,7 @@ const Debtors = () => {
                   label: (
                     <Flex justify="space-between" gap={8}>
                       <Typography.Text strong>
-                        {d?.student?.full_name}
+                        <CustomLink.Student student={d?.student} />
                       </Typography.Text>
                       <Tag color="error">{d?.total_debts}</Tag>
                     </Flex>

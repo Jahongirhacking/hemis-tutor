@@ -8,6 +8,7 @@ export const enum SearchParams {
   Story = 'story',
   StudentId = 'student-id',
   ActiveTab = 'active-tab',
+  DrawerTab = 'drawer-tab',
 }
 
 export const enum DrawerChildTypes {
@@ -15,6 +16,7 @@ export const enum DrawerChildTypes {
   Notifications = 'notifications',
   AuthExtraOptions = 'auth-extra-options',
   StudentInfo = 'student-info',
+  GroupInfo = 'group-info',
 }
 
 export const enum ChatTopic {

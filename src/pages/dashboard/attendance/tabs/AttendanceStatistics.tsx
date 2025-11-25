@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../../students/components/CustomLink';
 
 const getAbsentColor = (percent: number) => {
   if (percent <= 15) return 'blue';
@@ -42,6 +43,14 @@ const AttendanceStatistics = () => {
             title: t('const.student'),
             key: 'full_name',
             dataIndex: 'full_name',
+            render: (_, record) => (
+              <CustomLink.Student
+                student={{
+                  full_name: record?.full_name,
+                  id: record?.student_id,
+                }}
+              />
+            ),
           },
           {
             title: 'Jami darslar soni',
