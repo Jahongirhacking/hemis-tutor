@@ -68,7 +68,7 @@ const ProfileCard = () => {
               <Typography.Text strong style={{ color: '#000000A6' }}>
                 {user?.tutor?.employee?.employee_id_number}
               </Typography.Text>
-              <Typography.Text style={{ color: '##000000A6' }}>
+              <Typography.Text style={{ color: '#000000A6' }}>
                 {user?.tutor?.employee?.specialty}
               </Typography.Text>
             </Flex>
