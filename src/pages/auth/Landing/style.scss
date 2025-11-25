@@ -3,7 +3,7 @@
   * {
     font-family: inherit !important;
   }
-  
+
   // Anchor scroll offset so fixed header doesn't cover sections
   section {
     scroll-margin-top: clamp(72px, 10vw, 128px);
@@ -13,17 +13,16 @@
   .font-display {
     font-family: 'Bebas Neue', sans-serif !important;
   }
-  
+
   .font-accent {
     font-family: 'Anton', sans-serif !important;
   }
-  
+
   .font-brand {
     font-family: 'TikTok Sans', 'Roboto', sans-serif !important;
   }
-  
+
   .font-body {
     font-family: 'Inter', 'Roboto', sans-serif !important;
   }
 }
-
