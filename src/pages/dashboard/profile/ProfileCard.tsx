@@ -5,6 +5,7 @@ import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Flex, Tag, Typography } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import CustomLink from '../students/components/CustomLink';
 
 const ProfileCard = () => {
   const { setNextIndex } = useContext(ControlledFlowContext);
@@ -79,7 +80,7 @@ const ProfileCard = () => {
             {t('const.group')}
           </Typography.Title>
           <Flex gap={8} wrap>
-            {user?.groups?.map(g => <Tag>{g?.name}</Tag>)}
+            {user?.groups?.map(g => <Tag color={'blue'}><CustomLink.Group group={g} /></Tag>)}
           </Flex>
         </Flex>
       </Flex>

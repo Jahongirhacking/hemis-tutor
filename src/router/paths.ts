@@ -19,6 +19,7 @@ export const paths = {
     externalService: '/dashboard/external-service',
     checkAddress: '/dashboard/check-address',
     messages: '/dashboard/messages',
+    settings: '/dashboard/settings',
   },
 };
 

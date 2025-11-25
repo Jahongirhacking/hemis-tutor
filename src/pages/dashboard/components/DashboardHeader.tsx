@@ -1,3 +1,4 @@
+import { paths } from '@/router/paths';
 import { useGetProfileQuery } from '@/services/profile';
 import { toggleThemeColor } from '@/store/slices/themeSlice';
 import { RootState } from '@/store/store';
@@ -6,6 +7,7 @@ import { Avatar, Badge, Button, Flex, Switch, Tag, Typography } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { DashboardContext } from '..';
 
 const DashboardHeader = () => {
@@ -41,14 +43,16 @@ const DashboardHeader = () => {
         />
 
         <Flex gap={12} align="center">
-          <Avatar
-            src={profileData?.result?.tutor?.image}
-            shape="circle"
-            size="large"
-            style={{ background: '#1677ff' }}
-          >
-            {`${profileData?.result?.tutor?.employee?.second_name?.[0]}${profileData?.result?.tutor?.employee?.first_name?.[0]}`}
-          </Avatar>
+          <Link to={paths.private.settings}>
+            <Avatar
+              src={profileData?.result?.tutor?.image}
+              shape="circle"
+              size="large"
+              style={{ background: '#1677ff' }}
+            >
+              {`${profileData?.result?.tutor?.employee?.second_name?.[0]}${profileData?.result?.tutor?.employee?.first_name?.[0]}`}
+            </Avatar>
+          </Link>
           {!isMobile && (
             <Flex vertical gap={2}>
               <Typography.Text strong>
