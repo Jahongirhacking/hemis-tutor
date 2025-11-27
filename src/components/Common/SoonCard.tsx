@@ -7,7 +7,7 @@ export const SoonCard = () => {
 
   return (
     <Result
-      icon={<SettingOutlined spin />}
+      icon={<SettingOutlined spin style={{ color: '#3bb139' }} />}
       title={t('components.soon_card.text')}
     />
   );

@@ -1,5 +1,7 @@
 import { SoonCard } from '@/components/Common/SoonCard';
-import { Flex, Tabs, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
+import CustomTabs from '../components/CustomTabs';
+import MessageList from './tabs/MessageList';
 
 const MessagesPage = () => {
   return (
@@ -8,15 +10,18 @@ const MessagesPage = () => {
         Xabarlar
       </Typography.Title>
       <Flex className="main-container">
-        <Tabs
-          type="card"
+        <CustomTabs
           items={[
             {
-              key: 'synch',
+              key: 'my-messages',
               label: 'Mening xabarlarim',
+              children: <MessageList />,
+            },
+            {
+              key: 'create-message',
+              label: 'Xabar yaratish',
               children: <SoonCard />,
             },
-            { key: 'defense', label: 'Xabar yaratish', children: <SoonCard /> },
           ]}
         />
       </Flex>

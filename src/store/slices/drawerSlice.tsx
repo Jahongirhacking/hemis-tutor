@@ -1,6 +1,6 @@
 import Notifications from '@/components/Notifications';
 import ExtraOptions from '@/pages/auth/ExtraOptions';
-import StudentInfo from '@/pages/dashboard/students/components/StudentInfo';
+import CustomInfo from '@/pages/dashboard/students/components/CustomInfo';
 import { DrawerChildTypes } from '@/utils/config';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReactElement } from 'react';
@@ -41,7 +41,9 @@ export const getChildElement = (childType: IChildType): ReactElement | null => {
     case DrawerChildTypes.AuthExtraOptions:
       return <ExtraOptions />;
     case DrawerChildTypes.StudentInfo:
-      return <StudentInfo />;
+      return <CustomInfo.Student />;
+    case DrawerChildTypes.GroupInfo:
+      return <CustomInfo.Group />;
     default:
       return null;
   }

@@ -5,6 +5,7 @@ import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Flex, Tag, Typography } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import CustomLink from '../students/components/CustomLink';
 
 const ProfileCard = () => {
   const { setNextIndex } = useContext(ControlledFlowContext);
@@ -64,10 +65,10 @@ const ProfileCard = () => {
               <Typography.Title level={5} style={{ marginBottom: 0 }}>
                 {user?.tutor?.university}
               </Typography.Title>
-              <Typography.Text strong style={{ color: '#000000A6' }}>
+              <Typography.Text strong style={{ color: '#777' }}>
                 {user?.tutor?.employee?.employee_id_number}
               </Typography.Text>
-              <Typography.Text style={{ color: '##000000A6' }}>
+              <Typography.Text style={{ color: '#777' }}>
                 {user?.tutor?.employee?.specialty}
               </Typography.Text>
             </Flex>
@@ -79,7 +80,11 @@ const ProfileCard = () => {
             {t('const.group')}
           </Typography.Title>
           <Flex gap={8} wrap>
-            {user?.groups?.map(g => <Tag>{g?.name}</Tag>)}
+            {user?.groups?.map(g => (
+              <Tag color={'blue'}>
+                <CustomLink.Group group={g} />
+              </Tag>
+            ))}
           </Flex>
         </Flex>
       </Flex>

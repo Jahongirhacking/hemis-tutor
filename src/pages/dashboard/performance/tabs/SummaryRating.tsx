@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../../students/components/CustomLink';
 
 const SummaryRating = () => {
   const { form, values } = useCustomFilter();
@@ -30,7 +31,7 @@ const SummaryRating = () => {
             dataIndex: 'student',
             key: 'name',
             width: 250,
-            render: student => student?.full_name,
+            render: student => <CustomLink.Student student={student} />,
           },
           {
             title: t('const.subjects'),

@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import CustomLink from '../components/CustomLink';
 
 enum FilterItem {
   GROUP_ID = 'group',
@@ -33,8 +34,8 @@ const StudentHistory = () => {
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.BySearch />
-        <CustomFilter.ByPinfl />
         <CustomFilter.ByGroup field={FilterItem.GROUP_ID} />
+        <CustomFilter.ByPinfl />
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />
@@ -42,9 +43,16 @@ const StudentHistory = () => {
       <CustomTable
         columns={[
           {
+            title: '#',
+            render: (_, __, index) =>
+              ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
+            width: 60,
+          },
+          {
             title: t('const.student'),
             key: 'full_name',
             dataIndex: 'full_name',
+            render: (_, record) => <CustomLink.Student student={record} />,
             width: 250,
           },
           {

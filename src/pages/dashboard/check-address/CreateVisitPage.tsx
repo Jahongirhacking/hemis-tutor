@@ -1,11 +1,21 @@
-import { Flex, Tabs } from 'antd';
+import { useGetVisitListQuery } from '@/services/student';
+import { SearchParams } from '@/utils/config';
+import { Badge, Flex } from 'antd';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import CustomTabs from '../components/CustomTabs';
+import StudentFullInfo, {
+  StudentInfoTypes,
+} from '../components/StudentFullInfo';
 import CreateVisit from './components/CreateVisit';
-import StudentAddressInfo from './components/StudentAddressInfo';
 import VisitDetails from './components/VisitDetails';
 
 export const CREATE_VISIT_DRAWER = 'visit-drawer';
+
+export enum DrawerTabKeys {
+  CREATE = 'create',
+  HISTORY = 'history',
+}
 
 const CreateVisitPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,15 +23,22 @@ const CreateVisitPage = () => {
     () => Number(searchParams.get(CREATE_VISIT_DRAWER)),
     [searchParams]
   );
+  const { data: visitData } = useGetVisitListQuery(
+    { student_id: studentId },
+    { skip: !studentId }
+  );
 
   return (
     <Flex vertical gap={12}>
-      <StudentAddressInfo studentId={studentId} />
-
-      <Tabs
+      <StudentFullInfo
+        studentId={studentId}
+        infoTypes={[StudentInfoTypes.ADDRESS]}
+      />
+      <CustomTabs
+        field={SearchParams.DrawerTab}
         items={[
           {
-            key: 'create',
+            key: DrawerTabKeys.CREATE,
             label: 'Tashrifni qayd etish',
             children: (
               <CreateVisit
@@ -35,11 +52,22 @@ const CreateVisitPage = () => {
             ),
           },
           {
-            key: 'history',
-            label: 'Tashriflar tarixi',
+            key: DrawerTabKeys.HISTORY,
+            label: (
+              <Flex gap={6} align="center">
+                Tashriflar tarixi{' '}
+                {visitData?.result?.items?.[0] && (
+                  <Badge
+                    color="blue"
+                    count={visitData?.result?.items?.[0]?.tutorVisits?.length}
+                  />
+                )}
+              </Flex>
+            ),
             children: <VisitDetails studentId={studentId} />,
           },
         ]}
+        type="line"
       />
     </Flex>
   );

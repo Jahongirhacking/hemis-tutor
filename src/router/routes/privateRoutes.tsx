@@ -10,7 +10,6 @@ import HelpPage from '@/pages/dashboard/help/HelpPage';
 import LearningProcessPage from '@/pages/dashboard/learning-process';
 import MessagesPage from '@/pages/dashboard/messages';
 import PerformancePage from '@/pages/dashboard/performance';
-import ProfilePage from '@/pages/dashboard/profile/Profile';
 import Restricted from '@/pages/dashboard/restricted';
 import SettingsPage from '@/pages/dashboard/settings/Settings';
 import StudentsPage from '@/pages/dashboard/students';
@@ -61,11 +60,7 @@ export const privateRoutes: RouteObject[] = [
         element: <MessagesPage />,
       },
       {
-        path: 'profile',
-        element: <ProfilePage />,
-      },
-      {
-        path: 'settings',
+        path: paths.private.settings,
         element: <SettingsPage />,
       },
       {

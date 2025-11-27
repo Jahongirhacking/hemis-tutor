@@ -9,11 +9,13 @@ const LivingStatusTag = ({
   return (
     <Tag
       color={
-        livingStatus?.code === StudentLivingStatus.GREEN
-          ? 'success'
-          : livingStatus?.code === StudentLivingStatus.RED
-            ? 'error'
-            : 'orange'
+        livingStatus?.code == StudentLivingStatus.GREEN
+          ? 'green'
+          : livingStatus?.code == StudentLivingStatus.RED
+            ? 'red'
+            : livingStatus?.code == StudentLivingStatus.YELLOW
+              ? 'orange'
+              : 'default'
       }
     >
       {livingStatus?.name}
