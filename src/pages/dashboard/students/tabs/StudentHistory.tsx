@@ -34,8 +34,8 @@ const StudentHistory = () => {
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.BySearch />
-        <CustomFilter.ByPinfl />
         <CustomFilter.ByGroup field={FilterItem.GROUP_ID} />
+        <CustomFilter.ByPinfl />
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />

@@ -33,6 +33,7 @@ import {
   IGroupSemestersRes,
   IGroupStudentsReq,
   IGroupStudentsRes,
+  IMessageListRes,
   IPagination,
   IProfileHistoryRes,
   IScheduleByWeekRes,
@@ -400,6 +401,17 @@ export const studentApi = api.injectEndpoints({
         params,
       }),
     }),
+
+    // Messages
+    getMessages: build.query<
+      IBaseDataRes<IMessageListRes>,
+      { type: string; search?: string; page: number; per_page: number }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/message/list`)}`,
+        params,
+      }),
+    }),
   }),
 });
 
@@ -438,4 +450,5 @@ export const {
   useGetStudentStatusesQuery,
   useGetTerrainsQuery,
   useGetAccommodationsQuery,
+  useGetMessagesQuery,
 } = studentApi;

@@ -48,7 +48,7 @@ const DashboardHeader = () => {
               src={profileData?.result?.tutor?.image}
               shape="circle"
               size="large"
-              style={{ background: '#1677ff' }}
+              style={{ background: '#3bb139' }}
             >
               {`${profileData?.result?.tutor?.employee?.second_name?.[0]}${profileData?.result?.tutor?.employee?.first_name?.[0]}`}
             </Avatar>

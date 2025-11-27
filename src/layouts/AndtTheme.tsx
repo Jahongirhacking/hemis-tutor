@@ -14,6 +14,9 @@ function AntConfigProvider({ children }: ProviderProps) {
       theme={{
         algorithm:
           themeColor === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#3bb139',
+        },
       }}
     >
       {children}

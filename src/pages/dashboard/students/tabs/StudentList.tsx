@@ -42,6 +42,11 @@ const StudentList = () => {
             width: 60,
           },
           {
+            title: 'JShShIR',
+            key: 'passport_pin',
+            dataIndex: 'passport_pin',
+          },
+          {
             title: 'Talaba',
             key: 'full_name',
             dataIndex: 'full_name',
@@ -49,9 +54,27 @@ const StudentList = () => {
             width: 250,
           },
           {
-            title: 'Talaba ID',
-            key: 'student_id_number',
-            dataIndex: 'student_id_number',
+            title: "Yo'nalishi",
+            key: 'specialty',
+            dataIndex: 'specialty',
+            render: specialty => `${specialty?.code} - ${specialty?.name}`,
+          },
+          {
+            title: "O'quv yili",
+            key: 'education_year',
+            dataIndex: 'education_year',
+          },
+          {
+            title: "Ta'lim turi / shakli",
+            key: 'edu_type',
+            render: (_, record) =>
+              `${record?.education_type} / ${record?.education_form}`,
+          },
+          {
+            title: 'Kurs',
+            key: 'level',
+            dataIndex: 'level',
+            render: level => level?.name,
           },
           {
             title: 'Guruh',
@@ -59,38 +82,12 @@ const StudentList = () => {
             dataIndex: 'group',
             render: group => <CustomLink.Group group={group} />,
           },
-          {
-            title: 'JShShIR',
-            key: 'passport_pin',
-            dataIndex: 'passport_pin',
-          },
-          // {
-          //   title: t('const.actions'),
-          //   fixed: 'right',
-          //   render: (_, record) => (
-          //     <Flex gap={8} wrap align="center" justify="center">
-          //       <Button
-          //         type="primary"
-          //         onClick={() => {
-          //           const params = new URLSearchParams(searchParams);
-          //           params.set(
-          //             SearchParams.Drawer,
-          //             DrawerChildTypes.StudentInfo
-          //           );
-          //           params.set(SearchParams.DrawerProps, String(record?.id));
-          //           setSearchParams(params);
-          //         }}
-          //       >
-          //         {t('const.in_detail')}
-          //       </Button>
-          //     </Flex>
-          //   ),
-          // },
         ]}
         dataSource={studentsData?.result?.students}
         loading={isFetching}
         pagination={false}
         paginationTotal={studentsData?.result?.pagination?.total_count}
+        scroll={{ x: 1100, y: 'max(calc(100dvh - 450px), 300px)' }}
       />
     </Flex>
   );

@@ -775,3 +775,43 @@ export interface ICreateVisitReq {
   geolocation?: string;
   comment?: string;
 }
+export enum MessageType {
+  INBOX = 'inbox',
+  OUTBOX = 'outbox',
+  DRAFT = 'draft',
+  TRASH = 'trash',
+}
+
+export interface IMessageUser {
+  id: number;
+  name: string;
+}
+
+export interface IMessage {
+  id: number;
+  title: string;
+  type: MessageType;
+  opened: boolean;
+  starred: boolean;
+  deleted: boolean;
+  created_at: string;
+  opened_at: string | null;
+  message_preview: string;
+  sender: IMessageUser;
+  recipient: IMessageUser;
+}
+
+export interface IMessageCounters {
+  inbox: number;
+  outbox: number;
+  draft: number;
+  trash: number;
+  unread_inbox: number;
+  [key: string]: number;
+}
+
+export interface IMessageListRes {
+  messages: IMessage[];
+  pagination: IPagination;
+  counters: IMessageCounters;
+}
