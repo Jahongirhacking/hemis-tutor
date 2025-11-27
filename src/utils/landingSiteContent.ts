@@ -1,18 +1,5 @@
 export const heroVideoUrl = 'https://youtu.be/YP84SIaoNig?si=yoIDrbV0mDmrAN2H';
 
-export const newsImages = [
-  '/images/news1.png',
-  '/images/news2.png',
-  '/images/news3.png',
-];
-
-export const speakerImages = [
-  '/images/speaker1.png',
-  '/images/speaker2.png',
-  '/images/speaker3.png',
-  '/images/speaker4.png',
-];
-
 export const handbookImage = '/images/handbookImage.gif';
 export const handbookCover = '/images/handbookCover.png';
 export const handbookTexture = '/images/handbookTextTure.jpg';
@@ -70,80 +57,15 @@ export const responsibilities = [
 
 export const speakerCards = [
   {
-    title: 'Tyutorlik faoliyatini “yengillashtirgan” qaror va buyruqlar haqida',
-    author: 'Salimova Nodira Otajonova',
-    org: 'Toshkent kimyo texnologiya instituti',
     color: 'from-[#c6ff7c] to-[#e3ffc4]',
-    image: speakerImages[0],
   },
   {
-    title: 'Tyutorlik faoliyatini “yengillashtirgan” qaror va buyruqlar haqida',
-    author: 'Alimov Bahrom Otajonovich',
-    org: 'Toshkent kimyo texnologiya instituti',
     color: 'from-[#fdf170] to-[#ffeeb0]',
-    image: speakerImages[1],
   },
   {
-    title: 'Tyutorlar – yuksak mas’uliyat egalari!',
-    author: 'Alimov Bahrom Otajonovich',
-    org: 'Toshkent kimyo texnologiya instituti',
     color: 'from-[#c8caff] to-[#f0ebff]',
-    image: speakerImages[2],
   },
   {
-    title: 'Tyutorlar – yuksak mas’uliyat egalari!',
-    author: 'Alimov Bahrom Otajonovich',
-    org: 'Toshkent kimyo texnologiya instituti',
     color: 'from-[#f6c2f4] to-[#ffe5fb]',
-    image: speakerImages[3],
-  },
-];
-
-export const newsCards = [
-  {
-    title:
-      'Oliygohlarda ish boshlayotgan “Tyutor”lar kim? Ular nima ish qiladi?',
-    tag: '#yangilik',
-    date: '17 noyabr 2025',
-    image: newsImages[0],
-  },
-  {
-    title: 'Yuksak masʼuliyat egalari — “tyutorlar” haqida',
-    tag: '#e’lon',
-    date: '17 noyabr 2025',
-    image: newsImages[1],
-  },
-  {
-    title: 'Tyutor kim va ushbu faoliyatdan ko‘zlangan asosiy maqsad nima?',
-    tag: '#yangilik',
-    date: '17 noyabr 2025',
-    image: newsImages[2],
-  },
-];
-
-export const documentCards = [
-  {
-    title:
-      "OTMlarda tyutorlik faoliyatini tashkil etish tartibi to'g'risidagi Namunaviy nizom",
-    number: 'Buyruq 412 1-ilova',
-    pdfUrl: '/pdf/Буйруқ 412 1-илова.pdf',
-  },
-  {
-    title:
-      'Oliy ta\'lim muassasalarida tyutor lavozimining "Tarmoq tarif malaka ma\'lumotnomasi"',
-    number: 'Buyruq 412 2-ilova',
-    pdfUrl: '/pdf/Буйруқ 412  2,3,4-илова.pdf',
-  },
-  {
-    title:
-      'Oliy ta\'lim muasssalarida tyutor lavozimining "Tarmoq tarif-malaka ma\'lumotnomasi"',
-    number: 'Buyruq 412 2-3-4 ilova',
-    pdfUrl: '/pdf/Буйруқ 412  2,3,4-илова.pdf',
-  },
-  {
-    title:
-      "Vazirlikning 412-son buyrug'iga o'zgartirish kiritish to'g'risida buyrug'i",
-    number: 'Buyruq 411',
-    pdfUrl: '/pdf/411-буйрук..pdf',
   },
 ];

@@ -1,3 +1,7 @@
+import { useGetTutorDeskQuery } from '@/services/api/public';
+import { speakerCards as speakerColorConfigs } from '@/utils/landingSiteContent';
+import { useMemo } from 'react';
+
 type SpeakerCard = {
   title: string;
   author: string;
@@ -6,11 +10,27 @@ type SpeakerCard = {
   image: string;
 };
 
-type SpeakersSectionProps = {
-  cards: SpeakerCard[];
-};
+const gradientPalette = speakerColorConfigs.map(card => card.color);
+export function SpeakersSection() {
+  const { data, isFetching, isError } = useGetTutorDeskQuery();
 
-export function SpeakersSection({ cards }: SpeakersSectionProps) {
+  const cards = useMemo<SpeakerCard[]>(() => {
+    if (!data || data.length === 0) {
+      return [];
+    }
+
+    return data.map((item, index) => ({
+      title: item.title ?? 'Tyutorlar minbari',
+      author: item.full_name ?? 'Maʼlumot topilmadi',
+      org: item.workplace ?? '',
+      color:
+        gradientPalette[index % gradientPalette.length] ??
+        gradientPalette[0] ??
+        'from-white',
+      image: item.avatar ?? '',
+    }));
+  }, [data]);
+
   return (
     <section id="tyutorlar-minbari" className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -22,6 +42,11 @@ export function SpeakersSection({ cards }: SpeakersSectionProps) {
         </button>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
+        {!isFetching && (isError || cards.length === 0) && (
+          <div className="col-span-full rounded-[24px] bg-white p-6 text-center text-slate-500">
+            Tyutorlar minbari mavjud emas
+          </div>
+        )}
         {cards.map((card, index) => (
           <article
             key={`${card.title}-${card.author}-${index}`}

@@ -1,12 +1,9 @@
 import {
-  documentCards,
   handbookCover,
   handbookImage,
   handbookTexture,
   navLinks,
-  newsCards,
   responsibilities,
-  speakerCards,
 } from '@/utils/landingSiteContent';
 import { useEffect, useMemo, useState } from 'react';
 import { AboutSection } from './Components/AboutSection';
@@ -106,14 +103,14 @@ export default function App() {
       </section>
       <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12">
         <AboutSection responsibilities={responsibilities} />
-        <SpeakersSection cards={speakerCards} />
-        <NewsSection cards={newsCards} />
+        <SpeakersSection />
+        <NewsSection />
         <HandbookSection
           handbookCover={handbookCover}
           handbookImage={handbookImage}
           handbookTexture={handbookTexture}
         />
-        <DocumentsSection documents={documentCards} />
+        <DocumentsSection />
       </main>
       <Footer />
     </div>

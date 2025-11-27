@@ -1,16 +1,7 @@
 import { FilePdfIcon } from '@/assets/icon';
-import { saveAs } from 'file-saver';
+import { useGetFilesQuery } from '@/services/api/public';
+import { useMemo } from 'react';
 import { LexLogo } from '../../../../../public/icons/LexLogo';
-
-type DocumentCard = {
-  title: string;
-  number: string;
-  pdfUrl: string;
-};
-
-type DocumentsSectionProps = {
-  documents: DocumentCard[];
-};
 
 const gradientColors = [
   'from-[#c6ff7c] to-[#e3ffc4]',
@@ -19,19 +10,55 @@ const gradientColors = [
   'from-[#f6c2f4] to-[#ffe5fb]',
 ];
 
-export function DocumentsSection({ documents }: DocumentsSectionProps) {
-  const handleDownload = async (pdfUrl: string, title: string) => {
-    try {
-      const response = await fetch(pdfUrl);
-      const blob = await response.blob();
-      saveAs(blob, `${title}.pdf`);
-    } catch (error) {
-      console.error('PDF yuklab olishda xatolik:', error);
-    }
+const ensureHttps = (url: string) => {
+  if (url.startsWith('http://tyutor-api.hemis.uz')) {
+    return url.replace('http://', 'https://');
+  }
+  return url;
+};
+
+const getFileName = (url: string, title: string) => {
+  const sanitizedTitle = title.replace(/[\\/:*?"<>|]/g, '').trim() || 'file';
+  const cleanUrl = ensureHttps(url).split('?')[0] ?? '';
+  const lastSegment = cleanUrl.split('/').filter(Boolean).pop() ?? '';
+  const extension = lastSegment.includes('.')
+    ? lastSegment
+        .split('.')
+        .pop()
+        ?.replace(/[^a-zA-Z0-9]/g, '')
+    : null;
+  return extension ? `${sanitizedTitle}.${extension}` : `${sanitizedTitle}.pdf`;
+};
+
+export function DocumentsSection() {
+  const { data, isFetching, isError } = useGetFilesQuery();
+
+  const documents = useMemo(() => {
+    if (!data || data.length === 0) return [];
+
+    return data
+      .filter(item => Boolean(item.file))
+      .map(item => ({
+        title: item.title ?? item.order_name ?? 'Hujjat',
+        number: item.order_name ?? item.title ?? '',
+        pdfUrl: item.file as string,
+      }));
+  }, [data]);
+
+  const handleDownload = (pdfUrl: string, title: string) => {
+    const safeUrl = ensureHttps(pdfUrl);
+    const anchor = document.createElement('a');
+    anchor.href = safeUrl;
+    anchor.download = getFileName(safeUrl, title);
+    anchor.rel = 'noopener noreferrer';
+    anchor.target = '_blank';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   };
 
   const handleView = (pdfUrl: string) => {
-    window.open(pdfUrl, '_blank');
+    window.open(ensureHttps(pdfUrl), '_blank');
   };
   return (
     <section
@@ -52,6 +79,11 @@ export function DocumentsSection({ documents }: DocumentsSectionProps) {
         </button> */}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {!isFetching && (isError || documents.length === 0) && (
+          <div className="col-span-full rounded-[28px] border border-dashed border-slate-200 bg-white/70 p-8 text-center text-slate-500">
+            Hujjat mavjud emas
+          </div>
+        )}
         {documents.map((doc, index) => (
           <article
             key={doc.title}

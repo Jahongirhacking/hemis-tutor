@@ -1,5 +1,6 @@
 import { api } from '@/services/api';
 import { rtkQueryErrorLogger } from '@/services/api/middlewares';
+import { publicApi } from '@/services/api/public';
 import { statApi } from '@/services/api/statApi.ts';
 import { storyBaseApi } from '@/services/stories/storyBaseApi.ts';
 import { configureStore } from '@reduxjs/toolkit';
@@ -11,6 +12,7 @@ export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
     [statApi.reducerPath]: statApi.reducer,
+    [publicApi.reducerPath]: publicApi.reducer,
     [storyBaseApi.reducerPath]: storyBaseApi.reducer,
     themeSlice,
     authSlice,
@@ -21,6 +23,7 @@ export const store = configureStore({
       api.middleware,
       storyBaseApi.middleware,
       statApi.middleware,
+      publicApi.middleware,
       rtkQueryErrorLogger
     ),
 });

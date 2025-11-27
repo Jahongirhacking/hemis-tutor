@@ -1,3 +1,6 @@
+import { useGetNewsQuery } from '@/services/api/public';
+import { useMemo } from 'react';
+
 type NewsCard = {
   title: string;
   tag: string;
@@ -5,11 +8,20 @@ type NewsCard = {
   image: string;
 };
 
-type NewsSectionProps = {
-  cards: NewsCard[];
-};
+export function NewsSection() {
+  const { data, isFetching, isError } = useGetNewsQuery();
 
-export function NewsSection({ cards }: NewsSectionProps) {
+  const cards = useMemo<NewsCard[]>(() => {
+    if (!data || data.length === 0) return [];
+
+    return data.map(item => ({
+      title: item.title ?? 'Yangilik',
+      tag: item.hashtag ?? '#yangilik',
+      date: item.created_at ?? '',
+      image: item.image ?? '',
+    }));
+  }, [data]);
+
   return (
     <section
       id="yangiliklar"
@@ -29,6 +41,11 @@ export function NewsSection({ cards }: NewsSectionProps) {
         </button>
       </div>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
+        {!isFetching && (isError || cards.length === 0) && (
+          <div className="col-span-full rounded-[24px] bg-white p-6 text-center text-slate-500">
+            Yangiliklar mavjud emas
+          </div>
+        )}
         {cards.map(card => (
           <article
             key={card.title}
