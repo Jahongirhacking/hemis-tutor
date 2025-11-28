@@ -48,9 +48,5 @@ export const publicApi = createApi({
   tagTypes: ['Files', 'News', 'TutorDesk'],
 });
 
-export const {
-  useGetFilesQuery,
-  useGetNewsQuery,
-  useGetTutorDeskQuery,
-} = publicApi;
-
+export const { useGetFilesQuery, useGetNewsQuery, useGetTutorDeskQuery } =
+  publicApi;

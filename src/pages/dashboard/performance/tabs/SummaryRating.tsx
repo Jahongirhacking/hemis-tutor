@@ -27,6 +27,12 @@ const SummaryRating = () => {
         loading={isFetching}
         columns={[
           {
+            title: '#',
+            dataIndex: 'index',
+            key: 'index',
+            width: 60
+          },
+          {
             title: t('const.student'),
             dataIndex: 'student',
             key: 'name',
@@ -50,7 +56,7 @@ const SummaryRating = () => {
             key: 'status',
           },
         ]}
-        dataSource={ratingData?.result?.summary}
+        dataSource={ratingData?.result?.summary?.map((elem, index) => ({ ...elem, index: index + 1 }))}
       />
     </Flex>
   );
