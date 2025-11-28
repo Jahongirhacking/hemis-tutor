@@ -33,9 +33,12 @@ import {
   IGroupSemestersRes,
   IGroupStudentsReq,
   IGroupStudentsRes,
+  IMessage,
+  IMessageDetail,
   IMessageListRes,
   IPagination,
   IProfileHistoryRes,
+  IRecipientsRes,
   IScheduleByWeekRes,
   IScheduleOptionRes,
   ISemester,
@@ -46,6 +49,7 @@ import {
   IStudentGradeRes,
   IStudentHistoryRes,
   IStudentListReq,
+  RecipientType,
   StudentLivingStatus,
 } from './type';
 
@@ -411,6 +415,43 @@ export const studentApi = api.injectEndpoints({
         url: `${getBaseUrl(`/message/list`)}`,
         params,
       }),
+      providesTags: ['messages'],
+    }),
+
+    getMessageDetails: build.query<
+      IBaseDataRes<IMessageDetail>,
+      { id: string }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/message/view`)}`,
+        params,
+      }),
+      providesTags: (_, __, { id }) => [{ type: 'messages', id }],
+    }),
+
+    markAsRead: build.mutation<void, { id: IMessage['id'] }>({
+      query: body => ({
+        url: `${getBaseUrl(`/message/mark-as-read`)}`,
+        body,
+        method: 'POST',
+      }),
+    }),
+
+    getRecipients: build.query<
+      IBaseDataRes<IRecipientsRes>,
+      {
+        type?: RecipientType;
+        search?: string;
+        group_id?: IGroup['id'];
+        department_id?: number;
+        page?: number;
+        per_page?: number;
+      }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/message/recipients`)}`,
+        params,
+      }),
     }),
   }),
 });
@@ -451,4 +492,8 @@ export const {
   useGetTerrainsQuery,
   useGetAccommodationsQuery,
   useGetMessagesQuery,
+  useGetMessageDetailsQuery,
+  useMarkAsReadMutation,
+  useGetRecipientsQuery,
+  useLazyGetRecipientsQuery,
 } = studentApi;

@@ -11,7 +11,7 @@ const CustomTable = ({
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={24}>
+    <Flex vertical gap={24} className='w-full'>
       <Table
         rowKey={'id'}
         scroll={{ x: 800, y: 'max(calc(100dvh - 450px), 300px)' }}

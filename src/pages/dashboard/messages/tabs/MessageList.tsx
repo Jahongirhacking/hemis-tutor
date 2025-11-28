@@ -1,7 +1,8 @@
 import NotFoundAnimation from '@/components/SpecialComponents/NotFoundAnimation';
 import { usePagination } from '@/hooks/usePagination';
 import { useGetMessagesQuery } from '@/services/student';
-import { MessageType } from '@/services/student/type';
+import { IMessage, MessageType } from '@/services/student/type';
+import { getRightTimeString } from '@/utils/dateFunc';
 import {
   Badge,
   Card,
@@ -12,11 +13,13 @@ import {
   Skeleton,
   Typography,
 } from 'antd';
-import { Asterisk, CheckCheck, Inbox, NotepadText, Send, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { Asterisk, CheckCheck, Clock, Inbox, NotepadText, Send, Trash2 } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import CustomPagination from '../../components/CustomPagination';
 import CustomFilter from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import { MESSAGE_MODAL } from '../components/MessageModal';
 
 const MessageList = () => {
   const { form, values } = useCustomFilter();
@@ -27,6 +30,15 @@ const MessageList = () => {
     ...values,
     type,
   });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [readedMessages, setReadedMessages] = useState<IMessage['id'][]>([]);
+
+  const handleMessageCardClick = useCallback((id: IMessage['id']) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(MESSAGE_MODAL, String(id));
+    setSearchParams(params);
+    setReadedMessages(prev => [...prev, id]);
+  }, [searchParams, setSearchParams, readedMessages, setReadedMessages])
 
   return (
     <Flex vertical gap={18} className="messages-page">
@@ -95,26 +107,39 @@ const MessageList = () => {
           <Skeleton active />
         ) : messageData?.result?.messages?.length ? (
           <Flex vertical gap={24} className="w-full">
-            <Flex vertical gap={12} className="w-full">
+            <Flex vertical gap={18} className="w-full">
               {messageData?.result?.messages?.map(m => (
-                <Card key={m?.id} hoverable className="message-card">
+                <Card key={m?.id} hoverable className="message-card" onClick={() => handleMessageCardClick(m?.id)}>
                   <Flex gap={12} className='w-full'>
                     <Rate count={1} value={m?.starred ? 1 : 0} className="mt-1" />
                     <Flex vertical gap={8} className='w-full'>
                       <Flex gap={8} align='center' justify='space-between' className='w-full'>
                         <Typography.Text type="success">
-                          {m?.sender?.name}
+                          {
+                            (m?.type === MessageType.OUTBOX || m?.type === MessageType.DRAFT
+                              ? m?.recipient?.name
+                              : m?.sender?.name) || m?.sender?.name || m?.recipient?.name
+                          }
                         </Typography.Text>
                         {
-                          m?.opened
+                          m?.opened || readedMessages?.includes(m?.id)
                             ? <CheckCheck color='#3bb139' size={18} />
                             : <Asterisk color='#3bb139' size={18} />
                         }
                       </Flex>
-                      <Typography.Text strong>{m?.title}</Typography.Text>
-                      <Typography.Text type="secondary">
-                        {m?.message_preview}
-                      </Typography.Text>
+                      {
+                        m?.title && (
+                          <Typography.Text strong>{m?.title}</Typography.Text>
+                        )
+                      }
+                      {
+                        m?.message_preview && (
+                          <Typography.Text type="secondary" className='line-clamp-2'>
+                            {m?.message_preview}
+                          </Typography.Text>
+                        )
+                      }
+                      <Typography.Text type='secondary' className='flex items-center gap-1 ml-auto'><Clock size={14} /> {getRightTimeString(m?.created_at)}</Typography.Text>
                     </Flex>
                   </Flex>
                 </Card>

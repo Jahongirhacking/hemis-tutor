@@ -364,3 +364,19 @@ export const formatTime = (seconds: number | null) => {
     .toString()
     .padStart(2, '0')}`;
 };
+
+export const getRightTimeString = (date: string, format?: string): string => {
+  const dateTime = moment(date, format || CURRENT_DATE_FORMAT);
+  const now = moment();
+  if (now.clone().startOf('day').isBefore(dateTime))
+    return dateTime.format('HH:mm');
+  if (now.clone().subtract(1, 'day').isBefore(dateTime))
+    return `${now.diff(dateTime, 'hours')} soat oldin`;
+  if (now.clone().subtract(1, 'week').isBefore(dateTime))
+    return `${now.diff(dateTime, 'days')} kun oldin`;
+  if (now.clone().subtract(1, 'months').isBefore(dateTime))
+    return `${now.diff(dateTime, 'weeks')} hafta oldin`;
+  if (now.clone().subtract(1, 'years').isBefore(dateTime))
+    return `${now.diff(dateTime, 'months')} oy oldin`;
+  return `${now.diff(dateTime, 'years')} yil oldin`;
+};

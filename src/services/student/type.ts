@@ -815,3 +815,38 @@ export interface IMessageListRes {
   pagination: IPagination;
   counters: IMessageCounters;
 }
+
+export interface IMessageDetail {
+  id: number;
+  title: string;
+  type: MessageType;
+  opened: boolean;
+  starred: boolean;
+  deleted: boolean;
+  created_at: string;
+  opened_at: string | null;
+  message: string;
+  files: unknown;
+  recipients: IMessageUser[];
+  send_on: string;
+  sender: IMessageUser;
+  recipient: IMessageUser;
+}
+
+export enum RecipientType {
+  ALL = 'all',
+  STUDENT = 'student',
+  EMPLOYEE = 'employee',
+}
+
+export interface IRecipient {
+  id: number;
+  name: string;
+  label: string;
+  type: RecipientType;
+}
+
+export interface IRecipientsRes {
+  recipients: IRecipient[];
+  pagination: IPagination;
+}

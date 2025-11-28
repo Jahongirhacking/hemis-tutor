@@ -1,14 +1,12 @@
 import {
-  AppropriationIconSVG,
-  BookIconSVG,
-  CalendarIconSVG,
+  AppropriationIconSVG, CalendarIconSVG,
   DocumentIconSVG,
   LogOutIconSVG,
   MoneyIconSVG,
   PlanIconSVG,
   SearchIconSVG,
   SettingIconSVG,
-  StudentIconSVG,
+  StudentIconSVG
 } from '@/assets/icon';
 import { paths } from '@/router/paths';
 import { ReactElement, useEffect, useState } from 'react';
@@ -68,13 +66,13 @@ const useNavbarList = () => {
         path: paths.private.financial,
         isPrivatePath: true,
       },
-      {
-        title: (
-          t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
-        )[5],
-        icon: <BookIconSVG />,
-        path: paths.private.externalService,
-      },
+      // {
+      //   title: (
+      //     t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
+      //   )[5],
+      //   icon: <BookIconSVG />,
+      //   path: paths.private.externalService,
+      // },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
