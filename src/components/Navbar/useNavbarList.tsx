@@ -47,6 +47,14 @@ const useNavbarList = () => {
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
+        )[7],
+        icon: <SearchIconSVG />,
+        path: paths.private.checkAddress,
+        isPrivatePath: true,
+      },
+      {
+        title: (
+          t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
         )[1],
         icon: <CalendarIconSVG />,
         path: paths.private.learningProcess,
@@ -83,14 +91,6 @@ const useNavbarList = () => {
       //   icon: <BookIconSVG />,
       //   path: paths.private.externalService,
       // },
-      {
-        title: (
-          t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
-        )[7],
-        icon: <SearchIconSVG />,
-        path: paths.private.checkAddress,
-        isPrivatePath: true,
-      },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
