@@ -1,14 +1,11 @@
-import { PencilIconSVG } from '@/assets/icon';
-import { ControlledFlowContext } from '@/components/ControlledFlow';
 import { useAppSelector } from '@/store/hooks';
 import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Avatar, Button, Card, Flex, Tag, Typography } from 'antd';
-import { useContext } from 'react';
+import { Avatar, Card, Flex, Tag, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import CustomLink from '../students/components/CustomLink';
 
 const ProfileCard = () => {
-  const { setNextIndex } = useContext(ControlledFlowContext);
+  // const { setNextIndex } = useContext(ControlledFlowContext);
   const user = useAppSelector(state => state.authSlice.profile);
   const { t } = useTranslation();
 
@@ -24,13 +21,13 @@ const ProfileCard = () => {
               {`${user?.tutor?.full_name}`}
             </Avatar>
 
-            <Button
+            {/* <Button
               className="edit-btn"
               icon={<PencilIconSVG />}
               onClick={setNextIndex}
             >
               {t('const.edit')}
-            </Button>
+            </Button> */}
           </Flex>
 
           <Flex

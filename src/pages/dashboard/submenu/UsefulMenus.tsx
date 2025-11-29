@@ -9,9 +9,9 @@ const UsefulMenus = () => {
 
   if (!navbarList || navbarList.length === 0) return <Skeleton active />;
   const menus = [
+    navbarList.find(n => n?.path === paths.private.learningProcess),
     navbarList.find(n => n?.path === paths.private.performance),
     navbarList.find(n => n?.path === paths.private.checkAddress),
-    navbarList.find(n => n?.path === paths.private.externalService),
     navbarList.find(n => n?.path === paths.private.financial),
     navbarList.find(n => n?.path === paths.private.messages),
   ]?.filter(m => !!m);
