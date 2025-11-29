@@ -7,6 +7,7 @@ import { useAppDispatch } from '@/store/hooks';
 import { logoutThunk } from '@/store/slices/authSlice';
 import { Flex } from 'antd';
 import { useContext, useEffect, useRef } from 'react';
+import TutorLogo from '../TutorLogo';
 import useNavbarList from './useNavbarList';
 
 export const Navbar = () => {
@@ -70,23 +71,16 @@ export const Navbar = () => {
           isMobile && setIsNavbarActive(false);
         }}
       >
-        <p className="big-logo font-accent text-lg tracking-wide text-slate-900 sm:text-xl">
-          <span className="text-[#4ce54a]">tyutor</span>.hemis
-        </p>
+        <TutorLogo className='big-logo' />
 
-        <img
-          className="small-logo"
-          src="/images/hemis-icon.svg"
-          alt="hemis logo"
-        />
+        <TutorLogo.Small className='small-logo' />
       </Link>
 
       <div className="navbar__list">
         {navbarList.map(item => (
           <Flex
-            className={`navbar__item ${
-              pathLocation.pathname == item.path ? 'navbar__item-active' : ''
-            }`}
+            className={`navbar__item ${pathLocation.pathname == item.path ? 'navbar__item-active' : ''
+              }`}
             gap={8}
             key={item.title}
             // check restricted university click

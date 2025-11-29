@@ -8,7 +8,8 @@ import {
 import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
 import { SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Drawer, Flex } from 'antd';
+import { Badge, Button, Card, Drawer, Flex, Space, Typography } from 'antd';
+import { Calendar, MapPin, User } from 'lucide-react';
 import moment from 'moment';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +24,7 @@ import CreateVisit, {
 } from '../CreateVisitPage';
 import LivingStatusTag from '../components/LivingStatusTag';
 import LocationButton from '../components/LocationButton';
+import "./CheckAddress.scss";
 
 enum FilterItem {
   StudentStatus = '_student_living_status',
@@ -77,8 +79,15 @@ const CheckAddress = () => {
   );
 
   return (
-    <Flex vertical gap={18} className="check-address-page">
-      <Flex gap={12} align="center" justify="space-between" wrap>
+    <Flex vertical gap={20} className="check-address-page">
+      {/* Filters Card */}
+      <Card
+        className="shadow-sm"
+        style={{
+          borderRadius: '12px',
+          border: '1px solid #e8e8e8',
+        }}
+      >
         <CustomFilter form={form}>
           <CustomFilter.ByGroup />
           <CustomFilter.BySelect
@@ -118,78 +127,104 @@ const CheckAddress = () => {
           />
           <CustomFilter.BySearch />
         </CustomFilter>
-      </Flex>
+      </Card>
 
-      <Divider style={{ margin: 0 }} />
-
-      <CustomTable
-        loading={isFetching}
-        columns={[
-          {
-            title: '#',
-            render: (_, __, index) =>
-              ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
-            width: 60,
-          },
-          // {
-          //   title: t('const.pinfl'),
-          //   dataIndex: 'passport_pin',
-          //   key: 'passport_pin',
-          // },
-          {
-            title: t('const.student'),
-            key: 'name',
-            width: 250,
-            render: (_, record) => (
-              <CustomLink.Student
-                student={{
-                  full_name: `${record?.second_name} ${record?.first_name} ${record?.third_name}`,
-                  id: record?.id,
-                }}
-              />
-            ),
-          },
-          {
-            title: t('const.group'),
-            dataIndex: 'group',
-            key: 'group',
-            render: group => group?.name,
-          },
-          {
-            title: t('const.registered_address'),
-            key: 'address',
-            render: (_, record: ICheckStudentAddressItem) => (
-              <Flex gap={6} wrap align="center">
-                {record?.currentDistrict || record?.currentTerrain ? (
-                  <LocationButton
-                    geolocation={record?.tutorVisits?.[0]?.geolocation}
-                    current_address={`${[record?.currentDistrict?.name, record?.currentTerrain?.name]?.join(', ')}`}
-                  />
-                ) : (
-                  '-'
-                )}
-              </Flex>
-            ),
-          },
-          {
-            title: `${t('const.living_status')}`,
-            dataIndex: 'studentLivingStatus',
-            key: 'studentLivingStatus',
-            render: status =>
-              status ? (
-                <Flex vertical gap={4} align="flex-start">
-                  <LivingStatusTag livingStatus={status} />
-                </Flex>
-              ) : (
-                '-'
+      {/* Table Card */}
+      <Card
+        className="shadow-sm"
+        style={{
+          borderRadius: '12px',
+          border: '1px solid #e8e8e8',
+        }}
+      >
+        <CustomTable
+          loading={isFetching}
+          columns={[
+            {
+              title: '#',
+              render: (_, __, index) =>
+                ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
+              width: 60,
+              align: 'center',
+            },
+            {
+              title: (
+                <Space size={4}>
+                  <User size={14} />
+                  <span>{t('const.student')}</span>
+                </Space>
               ),
-          },
-          ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
-            title: `${index + 1}-${t('const.visit')}`,
-            dataIndex: 'tutorVisits',
-            key: `visit-${index}`,
-            render: (visits: ITutorVisit[], record) => (
-              <Flex vertical gap={2} align="flex-start">
+              key: 'name',
+              width: 250,
+              render: (_, record) => (
+                <CustomLink.Student
+                  student={{
+                    full_name: `${record?.second_name} ${record?.first_name} ${record?.third_name}`,
+                    id: record?.id,
+                  }}
+                />
+              ),
+            },
+            {
+              title: t('const.group'),
+              dataIndex: 'group',
+              key: 'group',
+              render: group => (
+                <Badge
+                  color="blue"
+                  text={
+                    <Typography.Text style={{ fontSize: '13px' }}>
+                      {group?.name}
+                    </Typography.Text>
+                  }
+                />
+              ),
+            },
+            {
+              title: (
+                <Space size={4}>
+                  <MapPin size={14} />
+                  <span>{t('const.registered_address')}</span>
+                </Space>
+              ),
+              key: 'address',
+              render: (_, record: ICheckStudentAddressItem) => (
+                <Flex gap={6} wrap align="center">
+                  {record?.currentDistrict || record?.currentTerrain ? (
+                    <LocationButton
+                      geolocation={record?.tutorVisits?.[0]?.geolocation}
+                      current_address={`${[record?.currentDistrict?.name, record?.currentTerrain?.name]?.join(', ')}`}
+                    />
+                  ) : (
+                    <Typography.Text type="secondary">-</Typography.Text>
+                  )}
+                </Flex>
+              ),
+            },
+            {
+              title: t('const.living_status'),
+              dataIndex: 'studentLivingStatus',
+              key: 'studentLivingStatus',
+              render: status =>
+                status ? (
+                  <Flex vertical gap={4} align="flex-start">
+                    <LivingStatusTag livingStatus={status} />
+                  </Flex>
+                ) : (
+                  <Typography.Text type="secondary">-</Typography.Text>
+                ),
+            },
+            ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
+              title: (
+                <Space size={4}>
+                  <Calendar size={14} />
+                  <span>{`${index + 1}-${t('const.visit')}`}</span>
+                </Space>
+              ),
+              dataIndex: 'tutorVisits',
+              key: `visit-${index}`,
+              align: 'center' as const,
+              render: (visits: ITutorVisit[], record) => (
                 <Button
                   type="link"
                   className="p-0"
@@ -205,50 +240,67 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                            visits?.[index]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                          visits?.[index]?.created_at,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />
                 </Button>
-              </Flex>
-            ),
-          })),
-          {
-            title: t('const.actions'),
-            dataIndex: 'id',
-            key: 'actions',
-            className: 'actions-column',
-            render: id => (
-              <Flex vertical gap={4}>
+              ),
+            })),
+            {
+              title: t('const.actions'),
+              dataIndex: 'id',
+              key: 'actions',
+              className: 'actions-column',
+              align: 'center',
+              render: id => (
                 <Button
-                  className="visit-btn"
                   type="primary"
                   icon={<PlusOutlined />}
                   onClick={() => handleVisitDrawer({ id: String(id) })}
+                  className="!rounded-lg"
+                  style={{
+                    fontWeight: 500,
+                  }}
                 >
-                  <span className="visit-btn__text">Tashrif</span>
+                  Tashrif
                 </Button>
-              </Flex>
-            ),
-            fixed: 'right',
-          },
-        ]}
-        dataSource={addressData?.result?.items}
-        paginationTotal={addressData?.result?._meta?.totalCount}
-        pagination={false}
-        scroll={{ x: '1200px' }}
-      />
+              ),
+              fixed: 'right',
+              width: 140,
+            },
+          ]}
+          dataSource={addressData?.result?.items}
+          paginationTotal={addressData?.result?._meta?.totalCount}
+          pagination={false}
+          scroll={{ x: '1200px' }}
+        />
+      </Card>
 
       <Drawer
         placement="bottom"
         open={searchParams.has(CREATE_VISIT_DRAWER)}
         closable
         onClose={() => handleVisitDrawer({ action: 'close' })}
-        title="Manzilga tashrifni qayd etish"
-        children={<CreateVisit />}
-      />
+        title={
+          <Space size={8}>
+            <MapPin size={20} className="text-blue-600" />
+            <Typography.Title level={4} style={{ margin: 0 }}>
+              Manzilga tashrifni qayd etish
+            </Typography.Title>
+          </Space>
+        }
+        height="90vh"
+        styles={{
+          body: {
+            padding: '0 24px',
+          }
+        }}
+      >
+        <CreateVisit />
+      </Drawer>
     </Flex>
   );
 };

@@ -35,6 +35,16 @@ export const profileApi = api.injectEndpoints({
       }),
       invalidatesTags: ['profile'],
     }),
+
+    getDashboardStatistics: build.query<
+      IBaseDataRes<void>,
+      { education_year: string; semester: string }
+    >({
+      query: params => ({
+        url: `${getBaseUrl('/statistics/dashboard')}`,
+        params,
+      }),
+    }),
   }),
 });
 
@@ -42,4 +52,5 @@ export const {
   useGetGroupsQuery,
   useGetProfileQuery,
   useUpdateProfileMutation,
+  useGetDashboardStatisticsQuery,
 } = profileApi;

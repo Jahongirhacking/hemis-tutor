@@ -56,7 +56,7 @@ const StoryContent = forwardRef<StoryContentHandle, StoryContentProps>(
               maxHeight: 170,
               overflowY: 'auto',
               scrollbarWidth: 'thin',
-              scrollbarColor: '#3bb13960 transparent',
+              scrollbarColor: '#14b8a660 transparent',
             }}
             onClick={e => e.stopPropagation()}
           >

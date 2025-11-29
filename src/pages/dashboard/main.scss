@@ -43,7 +43,7 @@
     scrollbar-width: thin;
 
     .ant-btn-primary:disabled {
-      background-color: #3bb1391a;
+      background-color: #14b8a61a;
     }
 
     .message-text {
@@ -197,10 +197,6 @@
   }
 }
 
-.big-logo {
-  height: 20px !important;
-}
-
 .dashboard {
   display: flex;
   align-items: flex-start;
@@ -254,7 +250,9 @@
       display: none;
     }
     .big-logo {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .navbar {
@@ -292,7 +290,7 @@
       position: relative;
 
       .small-logo {
-        display: block;
+        display: flex;
       }
 
       .big-logo {
@@ -575,7 +573,7 @@
     bottom: 0;
     transform: translateX(-12px);
     animation: topToBottom 1s ease-in-out infinite alternate;
-    color: #3bb139ab;
+    color: #14b8a6ab;
   }
 }
 
@@ -598,7 +596,9 @@
         display: none;
       }
       .big-logo {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .navbar {

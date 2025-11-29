@@ -22,7 +22,7 @@ const DocumentCardSkeleton = ({
             <Skeleton.Button
               className="document-download-btn-skeleton"
               active
-              style={{ backgroundColor: '#3bb139' }}
+              style={{ backgroundColor: '#14b8a6' }}
             />
           )}
         </Flex>
@@ -36,7 +36,7 @@ const DocumentCardSkeleton = ({
             <Skeleton.Button
               className="document-download-btn-skeleton"
               active
-              style={{ backgroundColor: '#3bb139' }}
+              style={{ backgroundColor: '#14b8a6' }}
             />
           )}
         </Flex>
