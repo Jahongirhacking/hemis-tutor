@@ -269,15 +269,16 @@
         "notifications_text": "Notifications",
         "navbar": {
             "navbarList": [
-                "Dashboard",
-                "Timetable",
-                "Subjects",
-                "Academic parameters",
+                "Students",
+                "Educational process",
                 "Attendance",
-                "Financial payment",
-                "Re-study",
-                "Documents",
-                "E-Library"
+                "Academic performance",
+                "Financial status",
+                "External services",
+                "Student passport",
+                "Visit",
+                "Messages",
+                "Dashboard"
             ],
             "navbarBottom": [
                 "Settings",

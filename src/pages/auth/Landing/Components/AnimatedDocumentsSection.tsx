@@ -80,9 +80,15 @@ export function AnimatedDocumentsSection() {
   };
 
   return (
-    <section id="documents" ref={docsRef} className="py-12 bg-slate-50 relative">
+    <section
+      id="documents"
+      ref={docsRef}
+      className="py-12 bg-slate-50 relative"
+    >
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`text-center max-w-3xl mx-auto mb-12 ${docsInView ? 'slide-in-up' : 'opacity-0'}`}>
+        <div
+          className={`text-center max-w-3xl mx-auto mb-12 ${docsInView ? 'slide-in-up' : 'opacity-0'}`}
+        >
           <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-semibold rounded-full mb-4">
             Hujjatlar
           </span>
@@ -142,9 +148,12 @@ export function AnimatedDocumentsSection() {
             </div>
             <div>
               <h4 className="text-white font-semibold group-hover:text-teal-300 transition-colors">
-                Oliy ta'lim tashkilotlarida tyutorlik faoliyatini tashkil etish tartibi
+                Oliy ta'lim tashkilotlarida tyutorlik faoliyatini tashkil etish
+                tartibi
               </h4>
-              <p className="text-slate-400 text-sm">To'g'risidagi nizomni tasdiqlash haqida</p>
+              <p className="text-slate-400 text-sm">
+                To'g'risidagi nizomni tasdiqlash haqida
+              </p>
             </div>
           </div>
           <a
@@ -161,4 +170,3 @@ export function AnimatedDocumentsSection() {
     </section>
   );
 }
-

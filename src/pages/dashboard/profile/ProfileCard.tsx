@@ -81,7 +81,7 @@ const ProfileCard = () => {
           </Typography.Title>
           <Flex gap={8} wrap>
             {user?.groups?.map(g => (
-              <Tag color={'blue'}>
+              <Tag color={'cyan'}>
                 <CustomLink.Group group={g} />
               </Tag>
             ))}

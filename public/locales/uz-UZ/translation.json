@@ -196,7 +196,8 @@
         "registered_address": "Ro'yxatdan o'tgan manzil",
         "student_id": "Talaba ID",
         "create": "Yaratish",
-        "visit": "Tashrif"
+        "visit": "Tashrif",
+        "living_status": "Yashash toifasi"
     },
     "exam": {
         "retry_title": "Testni qayta topshirasizmi?",
@@ -284,7 +285,8 @@
                 "Tashqi xizmatlar",
                 "Talaba pasporti",
                 "Tashrif",
-                "Xabarlar"
+                "Xabarlar",
+                "Dashboard"
             ],
             "navbarBottom": [
                 "Sozlamalar",

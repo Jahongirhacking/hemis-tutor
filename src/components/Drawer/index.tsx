@@ -81,7 +81,7 @@ const CustomDrawer = () => {
       <Suspense
         fallback={
           <LoadingOutlined
-            style={{ fontSize: '50pt', color: '#3bb139', display: 'block' }}
+            style={{ fontSize: '50pt', color: '#14b8a6', display: 'block' }}
           />
         }
       >

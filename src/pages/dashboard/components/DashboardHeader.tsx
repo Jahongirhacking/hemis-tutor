@@ -29,13 +29,41 @@ const DashboardHeader = () => {
       justify="space-between"
       align="center"
       gap={18}
+      style={{
+        background:
+          themeColor === 'dark'
+            ? 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)'
+            : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+        borderBottom:
+          themeColor === 'dark'
+            ? '1px solid rgba(20, 184, 166, 0.1)'
+            : '1px solid rgba(20, 184, 166, 0.08)',
+      }}
     >
       <Flex gap={8} wrap>
         {profileData?.result?.statistics?.groups_count && (
-          <Tag color="magenta">{`${t('const.group')}: ${t('const.number_count', { number: profileData?.result?.statistics?.groups_count })}`}</Tag>
+          <Tag
+            color="cyan"
+            style={{
+              borderRadius: 8,
+              padding: '4px 12px',
+              fontWeight: 500,
+            }}
+          >
+            {`${t('const.group')}: ${t('const.number_count', { number: profileData?.result?.statistics?.groups_count })}`}
+          </Tag>
         )}
         {profileData?.result?.statistics?.total_students && (
-          <Tag color="blue">{`${t('const.student')}: ${t('const.number_count', { number: `${profileData?.result?.statistics?.active_students} / ${profileData?.result?.statistics?.total_students}` })}`}</Tag>
+          <Tag
+            color="blue"
+            style={{
+              borderRadius: 8,
+              padding: '4px 12px',
+              fontWeight: 500,
+            }}
+          >
+            {`${t('const.student')}: ${t('const.number_count', { number: `${profileData?.result?.statistics?.active_students} / ${profileData?.result?.statistics?.total_students}` })}`}
+          </Tag>
         )}
       </Flex>
       <Flex gap={12} align="center" className="ml-auto">
@@ -44,6 +72,9 @@ const DashboardHeader = () => {
           onChange={() => dispatch(toggleThemeColor())}
           checkedChildren={<MoonOutlined />}
           unCheckedChildren={<SunOutlined />}
+          style={{
+            background: themeColor === 'dark' ? '#14b8a6' : '#cbd5e1',
+          }}
         />
 
         <Flex gap={12} align="center">
@@ -52,7 +83,11 @@ const DashboardHeader = () => {
               src={profileData?.result?.tutor?.image}
               shape="circle"
               size="large"
-              style={{ background: '#3bb139' }}
+              style={{
+                background: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)',
+                border: '2px solid rgba(20, 184, 166, 0.2)',
+                boxShadow: '0 2px 8px rgba(20, 184, 166, 0.15)',
+              }}
             >
               {`${profileData?.result?.tutor?.employee?.second_name?.[0]}${profileData?.result?.tutor?.employee?.first_name?.[0]}`}
             </Avatar>
@@ -71,7 +106,7 @@ const DashboardHeader = () => {
                     );
                 })()}
               </Typography.Text>
-              <Typography.Text>
+              <Typography.Text style={{ fontSize: 13, opacity: 0.7 }}>
                 <Badge
                   status={
                     profileData?.result?.tutor?.employee?.active
@@ -91,6 +126,9 @@ const DashboardHeader = () => {
             icon={<MenuOutlined />}
             onClick={() => setIsNavbarActive(prev => !prev)}
             ref={toggleMenuButtonRef}
+            style={{
+              borderRadius: 10,
+            }}
           />
         )}
       </Flex>

@@ -710,41 +710,43 @@ export const getLivingStatusName = (code: StudentLivingStatus) => {
   }
 };
 
+export interface ICheckStudentAddressItem {
+  id: number;
+  first_name: string;
+  second_name: string;
+  third_name: string;
+  _accommodation: string;
+  _student_living_status: string;
+  group: {
+    name: string;
+  };
+  tutorVisits: ITutorVisit[];
+  currentProvince: {
+    code: string;
+    name: string;
+    _parent: string;
+  };
+  currentDistrict: {
+    code: string;
+    name: string;
+    _parent: string;
+  };
+  currentTerrain: {
+    code: string;
+    name: string;
+  };
+  accommodation: {
+    code: string;
+    name: string;
+  };
+  studentLivingStatus: {
+    code: string;
+    name: string;
+  };
+}
+
 export interface ICheckAddressRes {
-  items: {
-    id: number;
-    first_name: string;
-    second_name: string;
-    third_name: string;
-    _accommodation: string;
-    _student_living_status: string;
-    group: {
-      name: string;
-    };
-    tutorVisits: ITutorVisit[];
-    currentProvince: {
-      code: string;
-      name: string;
-      _parent: string;
-    };
-    currentDistrict: {
-      code: string;
-      name: string;
-      _parent: string;
-    };
-    currentTerrain: {
-      code: string;
-      name: string;
-    };
-    accommodation: {
-      code: string;
-      name: string;
-    };
-    studentLivingStatus: {
-      code: string;
-      name: string;
-    };
-  }[];
+  items: ICheckStudentAddressItem[];
 
   _links: {
     self: { href: string };

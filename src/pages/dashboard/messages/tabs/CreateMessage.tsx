@@ -242,7 +242,7 @@ const CreateMessagePage = () => {
                     {
                       label: (
                         <Typography.Text
-                          style={{ color: '#3bb139' }}
+                          style={{ color: '#14b8a6' }}
                           className="flex gap-2 items-center line-clamp-1"
                         >
                           <SquareCheck size={14} /> {`${t('const.all')}`}

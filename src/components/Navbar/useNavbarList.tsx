@@ -7,6 +7,7 @@ import {
   PlanIconSVG,
   SearchIconSVG,
   SettingIconSVG,
+  StatisticsIconSVG,
   StudentIconSVG,
 } from '@/assets/icon';
 import { paths } from '@/router/paths';
@@ -27,6 +28,14 @@ const useNavbarList = () => {
 
   useEffect(() => {
     setNavbarList([
+      {
+        title: (
+          t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
+        )[9],
+        icon: <StatisticsIconSVG />,
+        path: paths.private.statistics,
+        isPrivatePath: true,
+      },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]

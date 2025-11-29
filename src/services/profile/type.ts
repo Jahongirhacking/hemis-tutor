@@ -116,3 +116,125 @@ export interface IUpdateProfileRes {
   message: string;
   tutor: ITutor;
 }
+
+export interface IDashboardStatisticsRes {
+  education_year: string;
+  semester: string;
+  groups: {
+    total_groups: number;
+    groups_list: IDashboardGroup[];
+  };
+  students: {
+    total_students: number;
+    active_students: number;
+    inactive_students: number;
+  };
+  attendance: IAttendanceStats;
+  performance: IPerformanceStats;
+  contracts: IContractsStats;
+  education_form_statistics: IEducationFormStat[];
+  course_statistics: ICourseStat[];
+  social_statistics: ISocialStat[];
+  terrain_statistics: ITerrainStat[];
+  living_status_statistics: ILivingStatusStat[];
+  district_statistics: IDistrictStat[];
+  geo_location_statistics: IGeoLocationStatistics;
+}
+
+export interface IDashboardGroup {
+  group_id: number;
+  group_name: string;
+  students_count: number;
+  semester: string;
+}
+
+export interface IAttendanceStats {
+  total_lessons: number;
+  total_attendance_records: number;
+  present_count: number;
+  absent_count: number;
+  attendance_rate: number;
+}
+
+export interface IPerformanceStats {
+  total_grades: number;
+  average_grade: number;
+  excellent_count: number;
+  good_count: number;
+  satisfactory_count: number;
+  poor_count: number;
+}
+
+export interface IContractsStats {
+  total_contracts: number;
+  active_contracts: number;
+  paid_count: number;
+  debt_count: number;
+  total_summa: number;
+  paid_summa: number;
+  debt_summa: number;
+}
+
+export interface IEducationFormStat {
+  education_form_code: string;
+  education_form_name: string;
+  count: number;
+  percent: number;
+}
+
+export interface ICourseStat {
+  course_code: string;
+  course_name: string;
+  count: number;
+  percent: number;
+}
+
+export interface ISocialStat {
+  category_code: string;
+  category_name: string;
+  count: number;
+  percent: number;
+}
+
+export interface ITerrainStat {
+  terrain_code: string;
+  terrain_name: string;
+  count: number;
+  percent: number;
+}
+
+export interface ILivingStatusStat {
+  living_status_code: string;
+  living_status_name: string;
+  count: number;
+  percent: number;
+}
+
+export interface IDistrictStat {
+  district_code: string;
+  district_name: string;
+  count: number;
+  percent: number;
+}
+
+export interface IGeoLocationStudent {
+  id: number;
+  full_name: string;
+  student_id_number: string;
+}
+
+export interface IGeoLocation {
+  geo_location: string;
+  latitude: number;
+  longitude: number;
+  count: number;
+  students: IGeoLocationStudent[];
+}
+
+export interface IGeoLocationStatistics {
+  locations: IGeoLocation[];
+  with_location: number;
+  without_location: number;
+  with_location_percent: number;
+  without_location_percent: number;
+}

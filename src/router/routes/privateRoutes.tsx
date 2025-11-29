@@ -12,6 +12,7 @@ import MessagesPage from '@/pages/dashboard/messages';
 import PerformancePage from '@/pages/dashboard/performance';
 import Restricted from '@/pages/dashboard/restricted';
 import SettingsPage from '@/pages/dashboard/settings/Settings';
+import DashboardPage from '@/pages/dashboard/statistics/DashboardPage';
 import StudentsPage from '@/pages/dashboard/students';
 import SubMenus from '@/pages/dashboard/submenu';
 import ProfileMenus from '@/pages/dashboard/submenu/ProfileMenus';
@@ -25,7 +26,11 @@ export const privateRoutes: RouteObject[] = [
     children: [
       {
         path: '/dashboard',
-        element: <Navigate to={paths.private.students} />,
+        element: <Navigate to={paths.private.statistics} />,
+      },
+      {
+        path: paths.private.statistics, // New dashboard route
+        element: <DashboardPage />,
       },
       {
         path: paths.private.students,

@@ -1,8 +1,9 @@
+import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
 import NotFoundAnimation from '@/components/SpecialComponents/NotFoundAnimation';
 import { usePagination } from '@/hooks/usePagination';
 import { useGetMessagesQuery } from '@/services/student';
 import { IMessage, MessageType } from '@/services/student/type';
-import { Badge, Divider, Flex, Segmented, Skeleton } from 'antd';
+import { Badge, Card, Divider, Flex, Segmented, Skeleton } from 'antd';
 import { Inbox, NotepadText, Send } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -98,7 +99,11 @@ const MessageList = () => {
 
       <Flex vertical gap={12} className="w-full">
         {isFetching ? (
-          <Skeleton active />
+          <GenerateSkeleton numberOfRepetition={3} vertical>
+            <Card>
+              <Skeleton active />
+            </Card>
+          </GenerateSkeleton>
         ) : messageData?.result?.messages?.length ? (
           <Flex vertical gap={24} className="w-full">
             <Flex vertical gap={18} className="w-full">

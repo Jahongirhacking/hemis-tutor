@@ -33,16 +33,20 @@ const kunlikVazifalar = responsibilities.map((item, index) => ({
 
 const kasbiyMaqsadlar = [
   'Talaba yoshlarni vatanparvarlik va milliy qadriyatlarini sinfga rivojlantirish',
-  'Ta\'lim tizimi jarayonlariga ma\'naviyatlarni qo\'llab-quvvatlash hamda tuzli mustahkamlash',
+  "Ta'lim tizimi jarayonlariga ma'naviyatlarni qo'llab-quvvatlash hamda tuzli mustahkamlash",
   'Ularning shuning hamada kasbiy rangsizlarning yoqonlar yoshish',
-  'Talabalarning akademik muvaffaqiyatlarini oshirish va ularga professional yondan ko\'rsatish',
+  "Talabalarning akademik muvaffaqiyatlarini oshirish va ularga professional yondan ko'rsatish",
 ];
 
 export function AnimatedAboutSection() {
   const [aboutRef, aboutInView] = useInView();
 
   return (
-    <section id="about" ref={aboutRef} className="py-12 relative overflow-hidden">
+    <section
+      id="about"
+      ref={aboutRef}
+      className="py-12 relative overflow-hidden"
+    >
       <div className="absolute inset-0 pattern-dots opacity-30"></div>
 
       <div className="absolute top-20 right-10 w-20 h-20 bg-teal-200 rounded-full opacity-20 animate-float"></div>
@@ -168,4 +172,3 @@ export function AnimatedAboutSection() {
     </section>
   );
 }
-

@@ -294,7 +294,7 @@ const Timetable = () => {
                         <LoadingOutlined
                           style={{
                             fontSize: 60,
-                            color: '#3bb139',
+                            color: '#14b8a6',
                             zIndex: '999',
                           }}
                           className="absolute top-[50%] left-[50%]"

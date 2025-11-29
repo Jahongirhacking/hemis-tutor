@@ -1,15 +1,13 @@
 import LanguageSelect from '@/components/Select/LanguageSelect';
+import TutorLogo from '@/components/TutorLogo';
 import { paths } from '@/router/paths';
-import { RootState } from '@/store/store';
 import { Flex, Typography } from 'antd';
 import moment from 'moment';
-import { useSelector } from 'react-redux';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import useOptions from './useOptions';
 
 const RootLayout = () => {
   const extraOptions = useOptions();
-  const themeColor = useSelector((store: RootState) => store.themeSlice?.color);
   const location = useLocation();
   const pathName = location.pathname;
   const activeOption = extraOptions.find(option => option.link === pathName);
@@ -18,15 +16,7 @@ const RootLayout = () => {
     <div className="login">
       <Flex align="center" justify="space-between" className="login__header">
         <Link to={paths.login} style={{ height: 20 }}>
-          {themeColor === 'dark' ? (
-            <img
-              className="big-logo"
-              src="/images/logo-dark.svg"
-              alt="hemis logo"
-            />
-          ) : (
-            <img className="big-logo" src="/images/logo.svg" alt="hemis logo" />
-          )}
+          <TutorLogo />
         </Link>
 
         {activeOption?.link !== paths.base && (

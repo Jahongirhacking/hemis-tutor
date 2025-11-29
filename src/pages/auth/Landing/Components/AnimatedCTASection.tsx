@@ -1,9 +1,13 @@
-import { handbookCover, handbookImage, handbookTexture } from '@/utils/landingSiteContent';
+import {
+  handbookCover,
+  handbookImage,
+  handbookTexture,
+} from '@/utils/landingSiteContent';
 import { Download } from 'lucide-react';
 
 export function AnimatedCTASection() {
   const handleDownload = () => {
-    window.open('/pdf/qo\'llanma.pdf', '_blank');
+    window.open("/pdf/qo'llanma.pdf", '_blank');
   };
 
   return (
@@ -24,11 +28,13 @@ export function AnimatedCTASection() {
                   O'quv qo'llanma
                 </div>
                 <h2 className="font-display text-3xl font-bold leading-snug sm:text-4xl">
-                  Oliy ta'lim muassasalarida tyutorlik faoliyatini amalga oshirish
+                  Oliy ta'lim muassasalarida tyutorlik faoliyatini amalga
+                  oshirish
                 </h2>
                 <p className="text-sm text-white/85 sm:text-base">
                   Oliy ta'lim muassasalarida tyutorlik faoliyatini tashkil etish
-                  bo'yicha takliflar, tavsiyalar va uslubiy ko'rsatmalar jamlanmasi.
+                  bo'yicha takliflar, tavsiyalar va uslubiy ko'rsatmalar
+                  jamlanmasi.
                 </p>
                 <button
                   onClick={handleDownload}
@@ -65,4 +71,3 @@ export function AnimatedCTASection() {
     </section>
   );
 }
-
