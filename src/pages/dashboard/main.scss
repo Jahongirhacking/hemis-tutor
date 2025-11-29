@@ -190,7 +190,7 @@ $accent: #38bdf8;
 }
 
 .check-address-page {
-  @container (max-width: 700px) {
+  @container (max-width: 900px) {
     .ant-table {
       .actions-column {
         width: 80px !important;
@@ -457,6 +457,16 @@ $accent: #38bdf8;
       @container (max-width: 365px) {
         display: none;
       }
+    }
+  }
+}
+
+.dashboard-masonry {
+  & > div {
+    gap: 18px !important;
+
+    & > div {
+      gap: 18px !important;
     }
   }
 }

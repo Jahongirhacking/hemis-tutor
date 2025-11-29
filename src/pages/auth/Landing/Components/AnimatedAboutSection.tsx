@@ -53,7 +53,9 @@ export function AnimatedAboutSection() {
       <div className="absolute bottom-20 left-10 w-32 h-32 bg-cyan-200 rounded-full opacity-20 animate-float-reverse"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative">
-        <div className={`space-y-8 rounded-[36px] bg-gradient-to-r from-teal-50 via-white to-cyan-50 p-6 shadow-lg sm:p-8 ${aboutInView ? 'slide-in-up' : 'opacity-0'}`}>
+        <div
+          className={`space-y-8 rounded-[36px] bg-gradient-to-r from-teal-50 via-white to-cyan-50 p-6 shadow-lg sm:p-8 ${aboutInView ? 'slide-in-up' : 'opacity-0'}`}
+        >
           <div>
             <p className="font-display text-3xl tracking-wide text-slate-900 sm:text-4xl">
               Tyutor haqida
@@ -142,10 +144,38 @@ export function AnimatedAboutSection() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {kasbiyMaqsadlar.map((item, i) => {
                   const colors = [
-                    { border: 'border-teal-400', hoverBorder: 'hover:border-teal-500', bg: 'from-teal-400/20 to-teal-400/10', hoverBg: 'group-hover:from-teal-400/30 group-hover:to-teal-400/20', text: 'text-teal-500' },
-                    { border: 'border-cyan-400', hoverBorder: 'hover:border-cyan-500', bg: 'from-cyan-400/20 to-cyan-400/10', hoverBg: 'group-hover:from-cyan-400/30 group-hover:to-cyan-400/20', text: 'text-cyan-500' },
-                    { border: 'border-teal-500', hoverBorder: 'hover:border-teal-600', bg: 'from-teal-500/20 to-teal-500/10', hoverBg: 'group-hover:from-teal-500/30 group-hover:to-teal-500/20', text: 'text-teal-600' },
-                    { border: 'border-cyan-500', hoverBorder: 'hover:border-cyan-600', bg: 'from-cyan-500/20 to-cyan-500/10', hoverBg: 'group-hover:from-cyan-500/30 group-hover:to-cyan-500/20', text: 'text-cyan-600' },
+                    {
+                      border: 'border-teal-400',
+                      hoverBorder: 'hover:border-teal-500',
+                      bg: 'from-teal-400/20 to-teal-400/10',
+                      hoverBg:
+                        'group-hover:from-teal-400/30 group-hover:to-teal-400/20',
+                      text: 'text-teal-500',
+                    },
+                    {
+                      border: 'border-cyan-400',
+                      hoverBorder: 'hover:border-cyan-500',
+                      bg: 'from-cyan-400/20 to-cyan-400/10',
+                      hoverBg:
+                        'group-hover:from-cyan-400/30 group-hover:to-cyan-400/20',
+                      text: 'text-cyan-500',
+                    },
+                    {
+                      border: 'border-teal-500',
+                      hoverBorder: 'hover:border-teal-600',
+                      bg: 'from-teal-500/20 to-teal-500/10',
+                      hoverBg:
+                        'group-hover:from-teal-500/30 group-hover:to-teal-500/20',
+                      text: 'text-teal-600',
+                    },
+                    {
+                      border: 'border-cyan-500',
+                      hoverBorder: 'hover:border-cyan-600',
+                      bg: 'from-cyan-500/20 to-cyan-500/10',
+                      hoverBg:
+                        'group-hover:from-cyan-500/30 group-hover:to-cyan-500/20',
+                      text: 'text-cyan-600',
+                    },
                   ];
                   const color = colors[i] || colors[0];
                   return (
@@ -154,8 +184,14 @@ export function AnimatedAboutSection() {
                       className={`group flex items-start gap-3 rounded-xl border-l-4 ${color.border} ${color.hoverBorder} bg-white p-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 sm:gap-4 sm:p-4`}
                     >
                       <div className="flex-shrink-0">
-                        <div className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${color.bg} ${color.hoverBg} transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}>
-                          <span className={`text-xs font-bold ${color.text} transition-transform duration-300`}>{i + 1}</span>
+                        <div
+                          className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${color.bg} ${color.hoverBg} transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                        >
+                          <span
+                            className={`text-xs font-bold ${color.text} transition-transform duration-300`}
+                          >
+                            {i + 1}
+                          </span>
                         </div>
                       </div>
                       <p className="flex-1 text-sm font-medium leading-snug text-slate-800 transition-colors duration-300 group-hover:text-slate-900">

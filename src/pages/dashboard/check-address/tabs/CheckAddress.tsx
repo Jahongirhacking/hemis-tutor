@@ -9,7 +9,7 @@ import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
 import { SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
 import { Badge, Button, Card, Drawer, Flex, Space, Typography } from 'antd';
-import { Calendar, MapPin, User } from 'lucide-react';
+import { Calendar, Filter, MapPin, User } from 'lucide-react';
 import moment from 'moment';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +24,7 @@ import CreateVisit, {
 } from '../CreateVisitPage';
 import LivingStatusTag from '../components/LivingStatusTag';
 import LocationButton from '../components/LocationButton';
-import './CheckAddress.scss';
+// import './CheckAddress.scss';
 
 enum FilterItem {
   StudentStatus = '_student_living_status',
@@ -34,6 +34,7 @@ enum FilterItem {
 }
 
 const LAST_VISITS = 3;
+const PRIMARY_COLOR = '#14b8a6';
 
 const CheckAddress = () => {
   const { form, values: filterValues } = useCustomFilter();
@@ -79,62 +80,135 @@ const CheckAddress = () => {
   );
 
   return (
-    <Flex vertical gap={20} className="check-address-page">
+    <Flex vertical gap={24} className="check-address-page">
+      {/* Header Section */}
+      <Card
+        style={{
+          background: `linear-gradient(135deg, ${PRIMARY_COLOR} 0%, #0d9488 100%)`,
+          border: 'none',
+          borderRadius: '16px',
+        }}
+      >
+        <Flex
+          justify="space-between"
+          align="center"
+          className="lg:justify-between justify-center"
+          wrap
+          gap={16}
+        >
+          <Flex vertical gap={8}>
+            <Typography.Title
+              level={3}
+              style={{
+                margin: 0,
+                color: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+              }}
+            >
+              <MapPin size={28} />
+              Manzillarni tekshirish
+            </Typography.Title>
+            <Typography.Text style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              Talabalarning yashash manzillari va tashrif tarixi
+            </Typography.Text>
+          </Flex>
+          <Flex gap={12} wrap>
+            <Card
+              style={{
+                background: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: '12px',
+              }}
+            >
+              <Flex vertical align="center" gap={4}>
+                <Typography.Text
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontSize: '12px',
+                  }}
+                >
+                  Jami talabalar
+                </Typography.Text>
+                <Typography.Title
+                  level={4}
+                  style={{ margin: 0, color: '#fff' }}
+                >
+                  {addressData?.result?._meta?.totalCount || 0}
+                </Typography.Title>
+              </Flex>
+            </Card>
+          </Flex>
+        </Flex>
+      </Card>
+
       {/* Filters Card */}
       <Card
         className="shadow-sm"
         style={{
-          borderRadius: '12px',
-          border: '1px solid #e8e8e8',
+          borderRadius: '16px',
+          border: `1px solid ${PRIMARY_COLOR}20`,
+          boxShadow: `0 4px 24px ${PRIMARY_COLOR}10`,
         }}
       >
-        <CustomFilter form={form}>
-          <CustomFilter.ByGroup />
-          <CustomFilter.BySelect
-            field={FilterItem.StudentStatus}
-            options={livingStatusData?.result?.items?.map(i => ({
-              label: LivingStatusTag({
-                livingStatus: {
-                  code: i?.code,
-                  name: i?.name,
-                },
-              }),
-              value: i?.code,
-            }))}
-            placeholder="Yashash holati"
-            loading={isLivingStatusFetching}
-          />
-          <CustomFilter.BySelect
-            field={FilterItem.ProvinceCode}
-            options={provinceData?.result?.items?.map(i => ({
-              label: i?.name,
-              value: i?.code,
-            }))}
-            placeholder="Viloyat"
-            loading={isProvinceFetching}
-            onChange={() => {
-              form.setFieldValue(FilterItem.DistictCode, undefined);
-            }}
-          />
-          <CustomFilter.BySelect
-            field={FilterItem.DistictCode}
-            options={districtData?.result?.items?.map(i => ({
-              label: i?.name,
-              value: i?.code,
-            }))}
-            placeholder="Tuman"
-            loading={isDistrictFetching}
-          />
-          <CustomFilter.BySearch />
-        </CustomFilter>
+        <Flex vertical gap={16}>
+          <Flex align="center" gap={8}>
+            <Filter size={20} style={{ color: PRIMARY_COLOR }} />
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              Filtrlar
+            </Typography.Title>
+          </Flex>
+          <CustomFilter form={form}>
+            <CustomFilter.ByGroup />
+            <CustomFilter.BySelect
+              field={FilterItem.StudentStatus}
+              options={livingStatusData?.result?.items?.map(i => ({
+                label: LivingStatusTag({
+                  livingStatus: {
+                    code: i?.code,
+                    name: i?.name,
+                  },
+                }),
+                value: i?.code,
+              }))}
+              placeholder="Yashash holati"
+              loading={isLivingStatusFetching}
+            />
+            <CustomFilter.BySelect
+              field={FilterItem.ProvinceCode}
+              options={provinceData?.result?.items?.map(i => ({
+                label: i?.name,
+                value: i?.code,
+              }))}
+              placeholder="Viloyat"
+              loading={isProvinceFetching}
+              onChange={() => {
+                form.setFieldValue(FilterItem.DistictCode, undefined);
+              }}
+            />
+            <CustomFilter.BySelect
+              field={FilterItem.DistictCode}
+              options={districtData?.result?.items?.map(i => ({
+                label: i?.name,
+                value: i?.code,
+              }))}
+              placeholder="Tuman"
+              loading={isDistrictFetching}
+            />
+            <CustomFilter.BySearch />
+          </CustomFilter>
+        </Flex>
       </Card>
 
       {/* Table Card */}
       <Card
         className="shadow-sm"
         style={{
-          borderRadius: '12px',
-          border: '1px solid #e8e8e8',
+          borderRadius: '16px',
+          border: `1px solid ${PRIMARY_COLOR}20`,
+          boxShadow: `0 4px 24px ${PRIMARY_COLOR}10`,
         }}
       >
         <CustomTable
@@ -151,8 +225,8 @@ const CheckAddress = () => {
             },
             {
               title: (
-                <Space size={4}>
-                  <User size={14} />
+                <Space size={6}>
+                  <User size={16} style={{ color: PRIMARY_COLOR }} />
                   <span>{t('const.student')}</span>
                 </Space>
               ),
@@ -173,9 +247,11 @@ const CheckAddress = () => {
               key: 'group',
               render: group => (
                 <Badge
-                  color="blue"
+                  color={PRIMARY_COLOR}
                   text={
-                    <Typography.Text style={{ fontSize: '13px' }}>
+                    <Typography.Text
+                      style={{ fontSize: '13px', fontWeight: 500 }}
+                    >
                       {group?.name}
                     </Typography.Text>
                   }
@@ -184,8 +260,8 @@ const CheckAddress = () => {
             },
             {
               title: (
-                <Space size={4}>
-                  <MapPin size={14} />
+                <Space size={6}>
+                  <MapPin size={16} style={{ color: PRIMARY_COLOR }} />
                   <span>{t('const.registered_address')}</span>
                 </Space>
               ),
@@ -207,9 +283,20 @@ const CheckAddress = () => {
               title: t('const.living_status'),
               dataIndex: 'studentLivingStatus',
               key: 'studentLivingStatus',
-              render: status =>
+              render: (status, record) =>
                 status ? (
-                  <Flex vertical gap={4} align="flex-start">
+                  <Flex
+                    vertical
+                    gap={4}
+                    align="flex-start"
+                    className="cursor-pointer"
+                    onClick={() =>
+                      handleVisitDrawer({
+                        id: record?.id,
+                        field: DrawerTabKeys.HISTORY,
+                      })
+                    }
+                  >
                     <LivingStatusTag livingStatus={status} />
                   </Flex>
                 ) : (
@@ -218,9 +305,9 @@ const CheckAddress = () => {
             },
             ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
               title: (
-                <Space size={4}>
-                  <Calendar size={14} />
-                  <span>{`${index + 1}-${t('const.visit')}`}</span>
+                <Space size={6}>
+                  <Calendar size={16} style={{ color: PRIMARY_COLOR }} />
+                  <span>{`${t('const.visit')}`}</span>
                 </Space>
               ),
               dataIndex: 'tutorVisits',
@@ -236,6 +323,10 @@ const CheckAddress = () => {
                       field: DrawerTabKeys.HISTORY,
                     })
                   }
+                  style={{
+                    padding: 0,
+                    height: 'auto',
+                  }}
                 >
                   <LivingStatusTag
                     livingStatus={{
@@ -260,18 +351,22 @@ const CheckAddress = () => {
               render: id => (
                 <Button
                   type="primary"
+                  className="visit-btn"
                   icon={<PlusOutlined />}
                   onClick={() => handleVisitDrawer({ id: String(id) })}
-                  className="!rounded-lg"
                   style={{
+                    background: `linear-gradient(135deg, ${PRIMARY_COLOR} 0%, #0d9488 100%)`,
+                    border: 'none',
+                    borderRadius: '8px',
                     fontWeight: 500,
+                    boxShadow: `0 2px 8px ${PRIMARY_COLOR}40`,
                   }}
                 >
-                  Tashrif
+                  <span className="visit-btn__text">Tashrif</span>
                 </Button>
               ),
               fixed: 'right',
-              width: 140,
+              width: 120,
             },
           ]}
           dataSource={addressData?.result?.items}
@@ -287,17 +382,33 @@ const CheckAddress = () => {
         closable
         onClose={() => handleVisitDrawer({ action: 'close' })}
         title={
-          <Space size={8}>
-            <MapPin size={20} className="text-blue-600" />
+          <Flex align="center" gap={12}>
+            <div
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '10px',
+                background: `${PRIMARY_COLOR}20`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <MapPin size={20} style={{ color: PRIMARY_COLOR }} />
+            </div>
             <Typography.Title level={4} style={{ margin: 0 }}>
               Manzilga tashrifni qayd etish
             </Typography.Title>
-          </Space>
+          </Flex>
         }
         height="90vh"
         styles={{
           body: {
             padding: '0 24px',
+            background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+          },
+          header: {
+            borderBottom: `2px solid ${PRIMARY_COLOR}20`,
           },
         }}
       >

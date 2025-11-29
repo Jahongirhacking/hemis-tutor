@@ -58,7 +58,7 @@ const CreateVisitPage = () => {
                 Tashriflar tarixi{' '}
                 {visitData?.result?.items?.[0] && (
                   <Badge
-                    color="blue"
+                    color="cyan"
                     count={visitData?.result?.items?.[0]?.tutorVisits?.length}
                   />
                 )}

@@ -48,7 +48,7 @@ const LocationButton = ({
           }
           style={{ flexShrink: 0 }}
         />
-        <Typography.Text
+        <Typography.Link
           style={{
             color: hasGeolocation ? '#1890ff' : '#8c8c8c',
             fontSize: '13px',
@@ -56,7 +56,7 @@ const LocationButton = ({
           }}
         >
           {current_address || "Manzil ko'rsatilmagan"}
-        </Typography.Text>
+        </Typography.Link>
       </Space>
     </Button>
   );

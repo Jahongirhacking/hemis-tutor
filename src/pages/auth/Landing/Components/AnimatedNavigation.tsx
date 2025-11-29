@@ -73,14 +73,15 @@ export function AnimatedNavigation({
                   key={i}
                   href={`#${getSectionId(item)}`}
                   onClick={e => handleNavClick(e, item, onNavigate)}
-                  className={`nav-link text-sm font-medium transition-all hover:scale-105 ${scrollY > 50
-                    ? isActive
-                      ? 'text-teal-600'
-                      : 'text-slate-600 hover:text-slate-900'
-                    : isActive
-                      ? 'text-teal-300'
-                      : 'text-white/80 hover:text-white'
-                    }`}
+                  className={`nav-link text-sm font-medium transition-all hover:scale-105 ${
+                    scrollY > 50
+                      ? isActive
+                        ? 'text-teal-600'
+                        : 'text-slate-600 hover:text-slate-900'
+                      : isActive
+                        ? 'text-teal-300'
+                        : 'text-white/80 hover:text-white'
+                  }`}
                 >
                   {item}
                 </a>
@@ -123,10 +124,11 @@ export function AnimatedNavigation({
                     handleNavClick(e, item, onNavigate);
                     setMobileMenuOpen(false);
                   }}
-                  className={`block py-2 font-medium transition-all hover:translate-x-2 ${isActive
-                    ? 'text-teal-600'
-                    : 'text-slate-600 hover:text-teal-600'
-                    }`}
+                  className={`block py-2 font-medium transition-all hover:translate-x-2 ${
+                    isActive
+                      ? 'text-teal-600'
+                      : 'text-slate-600 hover:text-teal-600'
+                  }`}
                   style={{ animationDelay: `${i * 0.1}s` }}
                 >
                   {item}

@@ -1,5 +1,7 @@
+import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
+import NotFoundAnimation from '@/components/SpecialComponents/NotFoundAnimation';
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
-import { Flex, Skeleton, Typography } from 'antd';
+import { Card, Flex, Skeleton } from 'antd';
 import Dashboard from './components/Dashboard';
 
 const DashboardPage = () => {
@@ -9,33 +11,32 @@ const DashboardPage = () => {
     <Flex vertical gap={18} className="dashboard__page main-dashboard-page">
       {isFetching ? (
         <Flex vertical gap={24}>
-          <Skeleton.Button active style={{ width: 200, height: 40 }} />
-          <Flex gap={16}>
-            <Skeleton.Button active style={{ width: '100%', height: 100 }} />
-            <Skeleton.Button active style={{ width: '100%', height: 100 }} />
-            <Skeleton.Button active style={{ width: '100%', height: 100 }} />
-            <Skeleton.Button active style={{ width: '100%', height: 100 }} />
-          </Flex>
-          <Skeleton active paragraph={{ rows: 6 }} />
-          <Skeleton active paragraph={{ rows: 6 }} />
+          <Card>
+            <GenerateSkeleton numberOfRepetition={2}>
+              <Skeleton.Button active style={{ width: 200, height: 40 }} />
+            </GenerateSkeleton>
+          </Card>
+          <Card>
+            <Flex gap={16}>
+              <GenerateSkeleton numberOfRepetition={4}>
+                <Skeleton.Button
+                  active
+                  className="flex-1"
+                  style={{ width: '100%', height: 100 }}
+                />
+              </GenerateSkeleton>
+            </Flex>
+          </Card>
+          <GenerateSkeleton numberOfRepetition={1} vertical>
+            <Card>
+              <Skeleton active paragraph={{ rows: 6 }} />
+            </Card>
+          </GenerateSkeleton>
         </Flex>
       ) : statsData?.result ? (
         <Dashboard data={statsData.result} />
       ) : (
-        <Flex
-          vertical
-          gap={12}
-          align="center"
-          justify="center"
-          style={{ minHeight: '60vh' }}
-        >
-          <Typography.Title
-            level={3}
-            style={{ color: 'rgba(255, 255, 255, 0.7)' }}
-          >
-            Ma'lumot topilmadi
-          </Typography.Title>
-        </Flex>
+        <NotFoundAnimation.Card />
       )}
     </Flex>
   );

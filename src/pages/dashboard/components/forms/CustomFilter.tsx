@@ -55,9 +55,13 @@ const ByGroup = ({
 }: { field?: string } & SelectProps<{ label: string; value: number }>) => {
   const profile = useSelector((store: RootState) => store.authSlice?.profile);
   return (
-    <Form.Item name={field || FilterKey.GroupId} style={{ margin: 0 }}>
+    <Form.Item
+      className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1"
+      name={field || FilterKey.GroupId}
+      style={{ margin: 0 }}
+    >
       <Select<{ label: string; value: number }>
-        style={{ width: 180 }}
+        className="w-full"
         placeholder="Guruh tanlang"
         options={
           profile?.groups?.map(g => ({
@@ -84,10 +88,14 @@ const BySemester = ({
     { skip: !group_id }
   );
   return (
-    <Form.Item name={field || FilterKey.Semester} style={{ margin: 0 }}>
+    <Form.Item
+      className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1"
+      name={field || FilterKey.Semester}
+      style={{ margin: 0 }}
+    >
       <Select
         loading={isFetching}
-        style={{ width: 180 }}
+        className="w-full"
         placeholder={'Semestr tanlang'}
         options={semestersData?.result?.semesters?.map(s => ({
           label: s?.name,
@@ -115,7 +123,10 @@ const ByPinfl = ({ field }: { field?: string }) => {
         <Input />
       </Form.Item>
 
-      <Form.Item style={{ margin: 0 }}>
+      <Form.Item
+        className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1"
+        style={{ margin: 0 }}
+      >
         <Input.Search
           placeholder="JShShIR kiriting"
           allowClear
@@ -142,7 +153,10 @@ const BySearch = ({ field, ...props }: { field?: string } & SearchProps) => {
         <Input />
       </Form.Item>
 
-      <Form.Item style={{ margin: 0 }}>
+      <Form.Item
+        className="min-w-full max-w-[400px] sm:min-w-[300px] flex-1"
+        style={{ margin: 0 }}
+      >
         <Input.Search
           enterButton
           placeholder="Qidirish"
@@ -162,7 +176,10 @@ const BySelect = ({
   ...props
 }: SelectProps & { field: string } & { render?: ReactElement }) => {
   return (
-    <Form.Item name={field} style={{ margin: 0, minWidth: 'min(100%, 180px)' }}>
+    <Form.Item
+      className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1 m-0"
+      name={field}
+    >
       {render || (
         <Select allowClear disabled={disabled && props?.loading} {...props} />
       )}

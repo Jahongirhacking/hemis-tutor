@@ -43,7 +43,9 @@ export function AnimatedNewsSection() {
   return (
     <section id="news" ref={newsRef} className="py-12 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`rounded-[32px] bg-gradient-to-r from-cyan-50 via-teal-50 to-cyan-50 p-6 shadow-lg sm:p-8 ${newsInView ? 'slide-in-up' : 'opacity-0'}`}>
+        <div
+          className={`rounded-[32px] bg-gradient-to-r from-cyan-50 via-teal-50 to-cyan-50 p-6 shadow-lg sm:p-8 ${newsInView ? 'slide-in-up' : 'opacity-0'}`}
+        >
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="font-display text-3xl tracking-wide text-slate-900 sm:text-4xl">
@@ -93,7 +95,9 @@ export function AnimatedNewsSection() {
                   </p>
                 </div>
                 <div className="flex items-center justify-between px-5 py-3 text-sm font-medium text-slate-500 sm:px-6">
-                  <span className="transition-colors duration-300 group-hover:text-slate-700">{item.date}</span>
+                  <span className="transition-colors duration-300 group-hover:text-slate-700">
+                    {item.date}
+                  </span>
                   <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-700 sm:text-sm transition-all duration-300 group-hover:bg-teal-500 group-hover:text-white group-hover:scale-105">
                     {item.category}
                   </span>
