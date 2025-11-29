@@ -1,6 +1,7 @@
 export const paths = {
   // auth
   base: '/',
+  landing: '/landing',
   login: '/login',
   cancelPassword: '/cancel-password',
   checkDiplom: '/check-diplom',
