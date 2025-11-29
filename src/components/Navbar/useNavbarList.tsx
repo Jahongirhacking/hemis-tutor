@@ -1,6 +1,5 @@
 import {
   AppropriationIconSVG,
-  BookIconSVG,
   CalendarIconSVG,
   DocumentIconSVG,
   LogOutIconSVG,
@@ -68,13 +67,13 @@ const useNavbarList = () => {
         path: paths.private.financial,
         isPrivatePath: true,
       },
-      {
-        title: (
-          t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
-        )[5],
-        icon: <BookIconSVG />,
-        path: paths.private.externalService,
-      },
+      // {
+      //   title: (
+      //     t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
+      //   )[5],
+      //   icon: <BookIconSVG />,
+      //   path: paths.private.externalService,
+      // },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]

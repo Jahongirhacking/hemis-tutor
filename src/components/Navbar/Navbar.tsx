@@ -5,15 +5,12 @@ import { useParamActions } from '@/hooks/useParam';
 import { DashboardContext } from '@/pages/dashboard';
 import { useAppDispatch } from '@/store/hooks';
 import { logoutThunk } from '@/store/slices/authSlice';
-import { RootState } from '@/store/store';
 import { Flex } from 'antd';
 import { useContext, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import useNavbarList from './useNavbarList';
 
 export const Navbar = () => {
   const dispatch = useAppDispatch();
-  const themeColor = useSelector((store: RootState) => store.themeSlice?.color);
   const { navigate, pathLocation } = useParamActions();
   const { isMobile, setIsNavbarActive, toggleButtonRef, toggleMenuButtonRef } =
     useContext(DashboardContext);
@@ -73,15 +70,9 @@ export const Navbar = () => {
           isMobile && setIsNavbarActive(false);
         }}
       >
-        {themeColor === 'dark' ? (
-          <img
-            className="big-logo"
-            src="/images/logo-dark.svg"
-            alt="hemis logo"
-          />
-        ) : (
-          <img className="big-logo" src="/images/logo.svg" alt="hemis logo" />
-        )}
+        <p className="big-logo font-accent text-lg tracking-wide text-slate-900 sm:text-xl">
+          <span className="text-[#4ce54a]">tyutor</span>.hemis
+        </p>
 
         <img
           className="small-logo"

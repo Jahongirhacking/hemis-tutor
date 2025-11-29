@@ -1,0 +1,13 @@
+.create-message-page {
+  .ant-select-selector {
+    max-height: 180px;
+    overflow-y: auto;
+  }
+
+  .editor {
+    .menu {
+      overflow-y: hidden;
+      overflow-x: auto;
+    }
+  }
+}

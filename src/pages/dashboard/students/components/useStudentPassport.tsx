@@ -9,8 +9,6 @@ import moment from 'moment';
 import { ReactNode, useMemo, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
-const DEFAULT_STUDENT_HASH_ID = 'a36eccd9-ea44-f98c-826c-e0c46d814380';
-
 const PLACEHOLDER_AVATAR =
   'https://ui-avatars.com/api/?name=Talaba&background=1f2937&color=fff&rounded=true';
 
@@ -58,7 +56,7 @@ const useStudentPassport = ({ id }: { id: string }) => {
   });
   const { data: studentInfoData, isFetching: isStudentLoading } =
     useGetStudentExtraInfoQuery(
-      { student_hash_number: DEFAULT_STUDENT_HASH_ID },
+      { student_hash_number: student?.id },
       { skip: !student?.id }
     );
   const studentInfo = useMemo(() => studentInfoData?.data, [studentInfoData]);

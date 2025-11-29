@@ -337,6 +337,26 @@
     }
   }
 
+  .ant-segmented {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+
+    .ant-segmented-item-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+
+  .messages-page {
+    .message-card {
+      .ant-card-body {
+        padding: 10px 12px;
+      }
+    }
+  }
+
   &__body {
     position: relative;
     width: calc(100% - 264px);
@@ -605,6 +625,30 @@
 }
 
 .dark-theme {
+  .timetable-page {
+    .table-header {
+      & > .ant-flex {
+        h3 {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+
+  .create-message-page {
+    .editor {
+      .menu {
+        background-color: #303030;
+        border-color: #424242;
+      }
+
+      .tiptap.ProseMirror {
+        background-color: #151515;
+        border-color: #424242;
+      }
+    }
+  }
+
   .tasks__cards-wrapper {
     background-color: #000 !important;
   }

@@ -1,6 +1,7 @@
-import { SoonCard } from '@/components/Common/SoonCard';
 import { Flex, Typography } from 'antd';
 import CustomTabs from '../components/CustomTabs';
+import MessageModal from './components/MessageModal';
+import CreateMessagePage from './tabs/CreateMessage';
 import MessageList from './tabs/MessageList';
 
 const MessagesPage = () => {
@@ -20,11 +21,13 @@ const MessagesPage = () => {
             {
               key: 'create-message',
               label: 'Xabar yaratish',
-              children: <SoonCard />,
+              children: <CreateMessagePage />,
             },
           ]}
         />
       </Flex>
+
+      <MessageModal />
     </Flex>
   );
 };

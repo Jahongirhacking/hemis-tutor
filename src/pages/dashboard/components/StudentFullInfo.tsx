@@ -63,7 +63,9 @@ const StudentFullInfo = ({
                     <Descriptions
                       className="w-full"
                       column={{ xs: 1, sm: 1, md: 2, lg: 2, xl: 2, xxl: 2 }}
-                      bordered
+                      // bordered
+
+                      layout="vertical"
                       items={[
                         {
                           label: 'Talaba ID',
@@ -113,7 +115,8 @@ const StudentFullInfo = ({
                   label: "Manzil ma'lumoti",
                   children: (
                     <Descriptions
-                      bordered
+                      // bordered
+                      layout="vertical"
                       style={{ width: '100%' }}
                       items={[
                         {

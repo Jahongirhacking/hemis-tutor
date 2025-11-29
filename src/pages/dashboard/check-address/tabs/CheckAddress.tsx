@@ -149,7 +149,7 @@ const CheckAddress = () => {
               ),
           },
           ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
-            title: `${index + 1}-tashrif (oxirgi)`,
+            title: `Oxirgi ${index + 1}-${t('const.visit')}`,
             dataIndex: 'tutorVisits',
             key: `visit-${index}`,
             render: (visits: ITutorVisit[], record) => (

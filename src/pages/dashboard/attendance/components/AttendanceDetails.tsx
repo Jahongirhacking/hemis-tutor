@@ -4,12 +4,28 @@ import {
   IAttendanceReportRes,
   IStudent,
 } from '@/services/student/type';
-import { formatUnixTimestampToDate, LangType } from '@/utils/dateFunc';
+import { RootState } from '@/store/store';
+import {
+  CURRENT_DATE_FORMAT,
+  formatUnixTimestampToDate,
+  LangType,
+} from '@/utils/dateFunc';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { Card, Col, Empty, Flex, Row, Switch, Tag, Typography } from 'antd';
+import {
+  Badge,
+  Card,
+  Divider,
+  Empty,
+  Flex,
+  Switch,
+  Tag,
+  Typography,
+} from 'antd';
 import { t } from 'i18next';
 import moment from 'moment';
 import { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const AttendanceDetails = ({
   attendanceData,
@@ -48,11 +64,12 @@ const AttendanceDetails = ({
     [studentAttendance]
   );
   const [inDetail, setInDetail] = useState(false);
+  const themeColor = useSelector((store: RootState) => store.themeSlice.color);
 
   return (
     <Flex vertical gap={18} className="attendance-details">
       <Flex
-        gap={8}
+        gap={12}
         align="center"
         className="w-full flex-wrap"
         justify="space-between"
@@ -69,34 +86,47 @@ const AttendanceDetails = ({
           </Flex>
         </Flex>
 
-        <Flex gap={8}>
-          <Typography.Text>{t('const.in_detail')}</Typography.Text>
+        <Flex gap={8} className="ml-auto">
+          <Typography.Text>{t('const.by_science')}</Typography.Text>
           <Switch onChange={value => setInDetail(value)} />
         </Flex>
       </Flex>
 
-      <Flex vertical gap={8} className="mt-3">
+      <Divider className="m-0" />
+
+      <Flex vertical gap={8}>
         {attendanceByDate?.length ? (
-          <Row gutter={[18, 18]}>
-            {attendanceByDate?.map(attendance => (
-              <Col span={24} sm={24} md={12} key={attendance?.[0]}>
-                <Card hoverable>
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{
+              150: 1,
+              380: 2,
+            }}
+          >
+            <Masonry gutter="20px">
+              {attendanceByDate?.map(attendance => (
+                <Card
+                  hoverable
+                  className={`w-full bg-zinc-${themeColor === 'dark' ? 900 : 100}`}
+                >
                   <Flex vertical gap={8}>
                     <Typography.Title level={5} style={{ margin: 0 }}>
-                      {formatUnixTimestampToDate(
-                        moment(attendance?.[0], 'YYYY-MM-DD').unix(),
+                      {`${formatUnixTimestampToDate(
+                        moment(attendance?.[0], CURRENT_DATE_FORMAT).unix(),
                         '-',
                         'long',
                         i18n?.language as LangType
-                      )}
+                      )}, ${moment(attendance?.[0], CURRENT_DATE_FORMAT)?.year()}`}
                     </Typography.Title>
 
                     {inDetail ? (
-                      <Flex vertical gap={6}>
+                      <Flex gap={6} wrap>
                         {attendance?.[1]?.map(a => (
-                          <Tag
-                            color={a?.absent_off ? 'red' : 'orange'}
-                          >{`${toFirstCapitalLetter(a?.subject)}: ${a?.absent_off || a?.absent_on} ${t('const.hours_plural')}`}</Tag>
+                          <Tag className="w-fit flex gap-2">
+                            <Badge
+                              status={a?.absent_on ? 'warning' : 'error'}
+                            />{' '}
+                            {`${toFirstCapitalLetter(a?.subject)}: ${a?.absent_off || a?.absent_on} ${t('const.hours_plural')}`}
+                          </Tag>
                         ))}
                       </Flex>
                     ) : (
@@ -116,10 +146,16 @@ const AttendanceDetails = ({
                           return (
                             <Flex vertical gap={6}>
                               {!!total?.absent_off && (
-                                <Tag color="red">{`${t('const.not_explicable')}: ${total?.absent_off} ${t('const.hours_plural')}`}</Tag>
+                                <Tag className="w-fit flex gap-2 items-center">
+                                  <Badge status="error" />
+                                  {`${toFirstCapitalLetter(t('const.not_explicable'))}: ${total?.absent_off} ${t('const.hours_plural')}`}
+                                </Tag>
                               )}
                               {!!total?.absent_on && (
-                                <Tag color="orange">{`${t('const.explicable')}: ${total?.absent_on} ${t('const.hours_plural')}`}</Tag>
+                                <Tag className="w-fit flex gap-2 items-center">
+                                  <Badge status="warning" />{' '}
+                                  {`${toFirstCapitalLetter(t('const.explicable'))}: ${total?.absent_on} ${t('const.hours_plural')}`}
+                                </Tag>
                               )}
                             </Flex>
                           );
@@ -128,9 +164,9 @@ const AttendanceDetails = ({
                     )}
                   </Flex>
                 </Card>
-              </Col>
-            ))}
-          </Row>
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
         ) : (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}

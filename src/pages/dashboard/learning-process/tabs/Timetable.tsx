@@ -14,16 +14,12 @@ import {
   LangType,
 } from '@/utils/dateFunc';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
-  Button,
-  Card,
-  Collapse,
-  Divider,
-  Flex,
-  Skeleton,
-  Typography,
-} from 'antd';
+  LeftOutlined,
+  LoadingOutlined,
+  RightOutlined,
+} from '@ant-design/icons';
+import { Button, Collapse, Divider, Flex, Typography } from 'antd';
 import { TimeTable as CustomTimetable, ISchedule } from 'lesson-schedule-react';
 import moment from 'moment';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -131,7 +127,7 @@ const Timetable = () => {
   }, [week_id, optionsData?.result?.weeks, getWeekInfo]);
 
   return (
-    <Flex vertical gap={18}>
+    <Flex vertical gap={18} className="timetable-page">
       <CustomFilter form={form}>
         <CustomFilter.BySelect
           field={FilterItem.FACULTY_ID}
@@ -212,7 +208,7 @@ const Timetable = () => {
                     <Flex justify="space-between" gap={8} wrap>
                       <Typography.Text
                         strong
-                      >{`${[toFirstCapitalLetter(group?.group_name), `(${weekInterval?.map((w: number) => formatUnixTimestampToDate(w, ' ', 'long', i18n?.language as LangType))?.join(' - ')})`].join(' ')}`}</Typography.Text>
+                      >{`${[toFirstCapitalLetter(group?.group_name), `(${weekInterval?.map((w: number) => formatUnixTimestampToDate(w, ' ', 'long', i18n?.language as LangType))?.join(' - ') || ''})`].join(' ')}`}</Typography.Text>
                       <Flex gap={8}>
                         <Button
                           size="small"
@@ -244,59 +240,64 @@ const Timetable = () => {
                     </Flex>
                   ),
                   children: (
-                    <Flex vertical gap={12}>
-                      {isSchedulesFetching ? (
-                        <Card>
-                          <Skeleton />
-                        </Card>
-                      ) : (
-                        <CustomTimetable
-                          pixelsForOneCellHeight={90}
-                          activeDate={getLatestMondayUnixTimestamp(
-                            moment(
-                              group?.days?.find(d => !!d?.items?.length)
-                                ?.items?.[0]?.lesson_date,
-                              CURRENT_DATE_FORMAT
-                            ).unix() || moment().unix()
+                    <Flex vertical gap={12} className="relative">
+                      <CustomTimetable
+                        key={Math.random()}
+                        pixelsForOneCellHeight={90}
+                        activeDate={getLatestMondayUnixTimestamp(
+                          moment(
+                            group?.days?.find(d => !!d?.items?.length)
+                              ?.items?.[0]?.lesson_date,
+                            CURRENT_DATE_FORMAT
+                          ).unix() || moment().unix()
+                        )}
+                        activeOption="week"
+                        schedules={group?.days
+                          ?.reduce<IScheduleItem[]>(
+                            (acc, curr) => [...acc, ...curr?.items],
+                            []
+                          )
+                          ?.map(
+                            d =>
+                              ({
+                                lesson_date: moment(
+                                  d?.lesson_date,
+                                  CURRENT_DATE_FORMAT
+                                ).unix(),
+                                lessonPair: (() => {
+                                  const lessonPair = (
+                                    d?.lesson_pair?.split(' ')?.[1] || ''
+                                  )?.split('-');
+                                  return {
+                                    start_time: lessonPair?.[0],
+                                    end_time: lessonPair?.[1],
+                                  } as ISchedule['lessonPair'];
+                                })(),
+                                subject: {
+                                  name: d?.subject,
+                                },
+                                auditorium: {
+                                  name: d?.auditorium,
+                                },
+                                employee: {
+                                  name: d?.employee,
+                                },
+                                trainingType: {
+                                  name: d?.training_type,
+                                },
+                              }) as ISchedule
                           )}
-                          activeOption="week"
-                          schedules={group?.days
-                            ?.reduce<IScheduleItem[]>(
-                              (acc, curr) => [...acc, ...curr?.items],
-                              []
-                            )
-                            ?.map(
-                              d =>
-                                ({
-                                  lesson_date: moment(
-                                    d?.lesson_date,
-                                    CURRENT_DATE_FORMAT
-                                  ).unix(),
-                                  lessonPair: (() => {
-                                    const lessonPair = (
-                                      d?.lesson_pair?.split(' ')?.[1] || ''
-                                    )?.split('-');
-                                    return {
-                                      start_time: lessonPair?.[0],
-                                      end_time: lessonPair?.[1],
-                                    } as ISchedule['lessonPair'];
-                                  })(),
-                                  subject: {
-                                    name: d?.subject,
-                                  },
-                                  auditorium: {
-                                    name: d?.auditorium,
-                                  },
-                                  employee: {
-                                    name: d?.employee,
-                                  },
-                                  trainingType: {
-                                    name: d?.training_type,
-                                  },
-                                }) as ISchedule
-                            )}
-                          activeWeekNumber={Number(weekNumber) || 0}
-                          weekNames={weekNames}
+                        activeWeekNumber={Number(weekNumber) || 0}
+                        weekNames={weekNames}
+                      />
+                      {isSchedulesFetching && (
+                        <LoadingOutlined
+                          style={{
+                            fontSize: 60,
+                            color: '#3bb139',
+                            zIndex: '999',
+                          }}
+                          className="absolute top-[50%] left-[50%]"
                         />
                       )}
                     </Flex>

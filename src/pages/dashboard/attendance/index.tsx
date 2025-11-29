@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import CustomTabs from '../components/CustomTabs';
 import AttendanceBySubject from './tabs/AttendanceBySubject';
 import AttendanceReport from './tabs/AttendanceReport';
-import AttendanceStatistics from './tabs/AttendanceStatistics';
 
 const AttendancePage = () => {
   const { t } = useTranslation();
@@ -21,11 +20,11 @@ const AttendancePage = () => {
               label: 'Davomat hisoboti',
               children: <AttendanceReport />,
             },
-            {
-              key: 'statistics',
-              label: 'Statistik davomat',
-              children: <AttendanceStatistics />,
-            },
+            // {
+            //   key: 'statistics',
+            //   label: 'Statistik davomat',
+            //   children: <AttendanceStatistics />,
+            // },
             {
               key: 'subjects',
               label: 'Fanlar davomati',
