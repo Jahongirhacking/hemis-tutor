@@ -1,18 +1,20 @@
 import { usePagination } from '@/hooks/usePagination';
 import {
+  useGetDistrictsQuery,
   useGetLivingStatusesQuery,
+  useGetProvincesQuery,
   useGetVisitListQuery,
 } from '@/services/student';
-import { ITutorVisit } from '@/services/student/type';
+import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
 import { SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Drawer, Flex } from 'antd';
 import moment from 'moment';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import CustomTable from '../../components/CustomTable';
-import CustomFilter from '../../components/forms/CustomFilter';
+import { default as CustomFilter } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import CustomLink from '../../students/components/CustomLink';
 import CreateVisit, {
@@ -25,12 +27,18 @@ import LocationButton from '../components/LocationButton';
 enum FilterItem {
   StudentStatus = '_student_living_status',
   StudentId = 'student_id',
+  ProvinceCode = 'province_code',
+  DistictCode = '_current_district',
 }
 
 const LAST_VISITS = 3;
 
 const CheckAddress = () => {
-  const { form, values } = useCustomFilter();
+  const { form, values: filterValues } = useCustomFilter();
+  const { [FilterItem.ProvinceCode]: province_code, ...values } = useMemo(
+    () => ({ ...filterValues }),
+    [filterValues]
+  );
   const { pagination } = usePagination();
   const { data: addressData, isFetching } = useGetVisitListQuery({
     ...values,
@@ -40,7 +48,10 @@ const CheckAddress = () => {
     useGetLivingStatusesQuery();
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  // const isMobile = useSelector((store: RootState) => store.authSlice.isMobile);
+  const { data: provinceData, isFetching: isProvinceFetching } =
+    useGetProvincesQuery();
+  const { data: districtData, isFetching: isDistrictFetching } =
+    useGetDistrictsQuery({ province: province_code }, { skip: !province_code });
 
   const handleVisitDrawer = useCallback(
     ({
@@ -69,7 +80,6 @@ const CheckAddress = () => {
     <Flex vertical gap={18} className="check-address-page">
       <Flex gap={12} align="center" justify="space-between" wrap>
         <CustomFilter form={form}>
-          <CustomFilter.BySearch />
           <CustomFilter.ByGroup />
           <CustomFilter.BySelect
             field={FilterItem.StudentStatus}
@@ -85,6 +95,28 @@ const CheckAddress = () => {
             placeholder="Yashash holati"
             loading={isLivingStatusFetching}
           />
+          <CustomFilter.BySelect
+            field={FilterItem.ProvinceCode}
+            options={provinceData?.result?.items?.map(i => ({
+              label: i?.name,
+              value: i?.code,
+            }))}
+            placeholder="Viloyat"
+            loading={isProvinceFetching}
+            onChange={() => {
+              form.setFieldValue(FilterItem.DistictCode, undefined);
+            }}
+          />
+          <CustomFilter.BySelect
+            field={FilterItem.DistictCode}
+            options={districtData?.result?.items?.map(i => ({
+              label: i?.name,
+              value: i?.code,
+            }))}
+            placeholder="Tuman"
+            loading={isDistrictFetching}
+          />
+          <CustomFilter.BySearch />
         </CustomFilter>
       </Flex>
 
@@ -99,6 +131,11 @@ const CheckAddress = () => {
               ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
             width: 60,
           },
+          // {
+          //   title: t('const.pinfl'),
+          //   dataIndex: 'passport_pin',
+          //   key: 'passport_pin',
+          // },
           {
             title: t('const.student'),
             key: 'name',
@@ -120,14 +157,13 @@ const CheckAddress = () => {
           },
           {
             title: t('const.registered_address'),
-            dataIndex: 'tutorVisits',
-            key: 'tutorVisits',
-            render: (visits: ITutorVisit[]) => (
+            key: 'address',
+            render: (_, record: ICheckStudentAddressItem) => (
               <Flex gap={6} wrap align="center">
-                {visits?.length ? (
+                {record?.currentDistrict || record?.currentTerrain ? (
                   <LocationButton
-                    geolocation={visits?.[0]?.geolocation}
-                    current_address={visits?.[0]?.current_address}
+                    geolocation={record?.tutorVisits?.[0]?.geolocation}
+                    current_address={`${[record?.currentDistrict?.name, record?.currentTerrain?.name]?.join(', ')}`}
                   />
                 ) : (
                   '-'
@@ -136,7 +172,7 @@ const CheckAddress = () => {
             ),
           },
           {
-            title: `${t('const.status')} / ${t('const.comment')}`,
+            title: `${t('const.living_status')}`,
             dataIndex: 'studentLivingStatus',
             key: 'studentLivingStatus',
             render: status =>
@@ -149,7 +185,7 @@ const CheckAddress = () => {
               ),
           },
           ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
-            title: `Oxirgi ${index + 1}-${t('const.visit')}`,
+            title: `${index + 1}-${t('const.visit')}`,
             dataIndex: 'tutorVisits',
             key: `visit-${index}`,
             render: (visits: ITutorVisit[], record) => (

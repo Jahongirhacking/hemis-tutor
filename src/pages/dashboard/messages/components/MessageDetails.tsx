@@ -30,15 +30,15 @@ const MessageDetails = ({
       <Flex gap={8} className="w-full" align="center">
         <Rate count={1} value={messageDetails?.starred ? 1 : 0} />
         <Typography.Title level={4} style={{ margin: 0 }}>
-          {messageDetails?.title}
+          {messageDetails?.title || ''}
         </Typography.Title>
       </Flex>
       <Flex vertical gap={6}>
-        <Typography.Text type="secondary">{`Kimdan: ${messageDetails?.sender?.name}`}</Typography.Text>
+        <Typography.Text type="secondary">{`Kimdan: ${messageDetails?.sender?.name || ''}`}</Typography.Text>
         <Typography.Text
           type="secondary"
           className="line-clamp-1"
-        >{`Kimga: ${messageDetails?.recipients?.map(r => r?.name)?.join(', ')}`}</Typography.Text>
+        >{`Kimga: ${messageDetails?.recipients?.map(r => r?.name)?.join(', ') || ''}`}</Typography.Text>
         <Button
           type="text"
           icon={<Calendar1 size={15} />}
@@ -53,7 +53,7 @@ const MessageDetails = ({
       <span
         className="message-content"
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(messageDetails?.message),
+          __html: DOMPurify.sanitize(messageDetails?.message || ''),
         }}
       />
     </Flex>

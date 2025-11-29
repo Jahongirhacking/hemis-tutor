@@ -124,20 +124,31 @@ const CreateVisit = ({
   }, [searchParams]);
 
   return (
-    <Flex vertical className="mt-3 mb-5">
-      <Form form={form} onFinish={handleSubmit} layout="vertical">
-        <Flex vertical gap={12} align="center">
+    <Flex
+      vertical
+      className="mt-3 mb-5 bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6"
+    >
+      <Form
+        form={form}
+        onFinish={handleSubmit}
+        layout="vertical"
+        className="w-full"
+      >
+        <Flex vertical gap={16} align="center" className="w-full">
+          {/* ==== FORM FIELDS ==== */}
           <Row gutter={[12, 4]} className="w-full">
             <Col {...ADDRESS_COL_PROPS}>
               <Form.Item
                 label="Turar joy turi"
                 name={FormNames.ACCOMMADATION}
                 rules={[{ required: true, message: 'Turar joy majburiy' }]}
+                className="font-semibold"
               >
                 <CustomSelect
                   allowClear
                   loading={isAccomodationFetching}
                   style={{ minWidth: 200 }}
+                  className="!rounded-lg"
                   options={accomodationsData?.result?.items?.map(i => ({
                     label: i?.name,
                     value: String(i?.code),
@@ -152,11 +163,13 @@ const CreateVisit = ({
                 label="Viloyat"
                 name={FormNames.PROVINCE}
                 rules={[{ required: true, message: 'Viloyat majburiy' }]}
+                className="font-semibold"
               >
                 <CustomSelect
                   allowClear
                   loading={isProvinceFetching}
                   style={{ minWidth: 200 }}
+                  className="!rounded-lg"
                   options={provincesData?.result?.items?.map(i => ({
                     label: i?.name,
                     value: String(i?.code),
@@ -177,11 +190,13 @@ const CreateVisit = ({
                 label="Tuman"
                 name={FormNames.DISTRICT}
                 rules={[{ required: true, message: 'Tuman majburiy' }]}
+                className="font-semibold"
               >
                 <CustomSelect
                   allowClear
                   loading={isDistrictFetching}
                   style={{ minWidth: 200 }}
+                  className="!rounded-lg"
                   options={districtData?.result?.items?.map(i => ({
                     label: i?.name,
                     value: String(i?.code),
@@ -202,11 +217,13 @@ const CreateVisit = ({
                 label="Mahalla"
                 name={FormNames.TERRAIN}
                 rules={[{ required: true, message: 'Mahalla majburiy' }]}
+                className="font-semibold"
               >
                 <CustomSelect
                   allowClear
                   loading={isTerrainsFetching}
                   style={{ minWidth: 200 }}
+                  className="!rounded-lg"
                   options={terrainsData?.result?.items?.map(i => ({
                     label: i?.name,
                     value: String(i?.code),
@@ -222,11 +239,13 @@ const CreateVisit = ({
                 label="Yashash holati"
                 name={FormNames.LIVING_STATUS}
                 rules={[{ required: true, message: 'Yashash holati majburiy' }]}
+                className="font-semibold"
               >
                 <Select
                   allowClear
                   loading={isLivingStatusFetching}
                   style={{ minWidth: 200 }}
+                  className="!rounded-lg"
                   options={livingStatusData?.result?.items?.map(i => ({
                     label: (
                       <LivingStatusTag
@@ -244,8 +263,9 @@ const CreateVisit = ({
             </Col>
           </Row>
 
-          <Divider className="w-full" style={{ margin: 0 }} />
+          <Divider className="w-full !my-2" />
 
+          {/* ==== ADDRESS & COMMENT ==== */}
           <Row gutter={[12, 4]} className="w-full">
             <Col {...COMMENT_COL_PROPS}>
               <Form.Item
@@ -257,8 +277,10 @@ const CreateVisit = ({
                     message: t('const.current_address_info') + ' majburiy',
                   },
                 ]}
+                className="font-semibold"
               >
                 <Input.TextArea
+                  className="!rounded-lg border-gray-300"
                   placeholder={`${t('const.current_address_info')}...`}
                 />
               </Form.Item>
@@ -269,39 +291,45 @@ const CreateVisit = ({
                 label={t('const.comment')}
                 name={FormNames.COMMENT}
                 rules={[
-                  {
-                    required: true,
-                    message: t('const.comment') + ' majburiy',
-                  },
+                  { required: true, message: t('const.comment') + ' majburiy' },
                 ]}
+                className="font-semibold"
               >
-                <Input.TextArea placeholder={`${t('const.comment')}...`} />
+                <Input.TextArea
+                  className="!rounded-lg border-gray-300"
+                  placeholder={`${t('const.comment')}...`}
+                />
               </Form.Item>
             </Col>
 
+            {/* ==== MAP ==== */}
             <Col {...COMMENT_COL_PROPS}>
               <Form.Item name={FormNames.GEO} style={{ display: 'none' }} />
+
               <Flex
                 vertical
-                gap={4}
+                gap={6}
                 align="flex-start"
-                style={{ overflow: 'hidden' }}
+                className="overflow-hidden"
               >
                 {location ? (
-                  <YandexMap
-                    style={{ width: '100%', height: '100px' }}
-                    lat={location?.lat}
-                    lng={location?.lng}
-                  />
+                  <div className="rounded-xl overflow-hidden shadow-md border border-gray-200">
+                    <YandexMap
+                      style={{ width: '200px', height: '120px' }}
+                      lat={location?.lat}
+                      lng={location?.lng}
+                    />
+                  </div>
                 ) : (
-                  <Typography.Text strong>
+                  <Typography.Text strong className="text-red-600">
                     Tizimga joylashuv olish uchun ruxsat bering!
                   </Typography.Text>
                 )}
+
                 <Button
                   type="link"
                   icon={<RefreshCcw size={16} />}
-                  style={{ padding: 0 }}
+                  className="!p-0 text-blue-600 hover:text-blue-800"
                   onClick={handleLocate}
                 >
                   Joylashuvni yangilash
@@ -310,11 +338,12 @@ const CreateVisit = ({
             </Col>
           </Row>
 
+          {/* ==== SUBMIT BUTTON ==== */}
           <Button
             type="primary"
             htmlType="submit"
             icon={isLoading ? <LoadingOutlined /> : <Send size={16} />}
-            style={{ marginLeft: 'auto' }}
+            className="ml-auto px-5 py-2 rounded-lg shadow-sm hover:shadow-md transition"
             disabled={isLoading}
           >
             Yuborish

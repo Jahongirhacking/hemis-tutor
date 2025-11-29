@@ -27,6 +27,10 @@ import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
+// Fix TS for react-responsive-masonry
+const ResponsiveMasonryFixed = ResponsiveMasonry as unknown as React.FC<any>;
+const MasonryFixed = Masonry as unknown as React.FC<any>;
+
 const AttendanceDetails = ({
   attendanceData,
   student,
@@ -96,13 +100,13 @@ const AttendanceDetails = ({
 
       <Flex vertical gap={8}>
         {attendanceByDate?.length ? (
-          <ResponsiveMasonry
+          <ResponsiveMasonryFixed
             columnsCountBreakPoints={{
               150: 1,
               380: 2,
             }}
           >
-            <Masonry gutter="20px">
+            <MasonryFixed gutter="20px">
               {attendanceByDate?.map(attendance => (
                 <Card
                   hoverable
@@ -165,8 +169,8 @@ const AttendanceDetails = ({
                   </Flex>
                 </Card>
               ))}
-            </Masonry>
-          </ResponsiveMasonry>
+            </MasonryFixed>
+          </ResponsiveMasonryFixed>
         ) : (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}

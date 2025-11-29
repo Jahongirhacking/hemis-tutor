@@ -1,6 +1,6 @@
 import { IMessage, MessageType } from '@/services/student/type';
 import { getRightTimeString } from '@/utils/dateFunc';
-import { Card, Flex, Rate, Typography } from 'antd';
+import { Rate } from 'antd';
 import { Asterisk, CheckCheck, Clock } from 'lucide-react';
 
 const MessageCard = ({
@@ -12,46 +12,61 @@ const MessageCard = ({
   readedMessages: IMessage['id'][];
   handleClick: () => void;
 }) => {
+  const isRead = m?.opened || readedMessages?.includes(m?.id);
+
+  const senderName =
+    (m?.type === MessageType.OUTBOX || m?.type === MessageType.DRAFT
+      ? m?.recipient?.name
+      : m?.sender?.name) ||
+    m?.sender?.name ||
+    m?.recipient?.name;
+
   return (
-    <Card key={m?.id} hoverable className="message-card" onClick={handleClick}>
-      <Flex gap={12} className="w-full">
+    <div
+      onClick={handleClick}
+      className="
+        w-full cursor-pointer select-none
+        rounded-xl border border-gray-200 bg-white
+        p-4 shadow-sm
+        hover:shadow-md hover:bg-gray-50
+        transition-all duration-150
+      "
+    >
+      <div className="flex gap-3">
         <Rate count={1} value={m?.starred ? 1 : 0} className="mt-1" />
-        <Flex vertical gap={8} className="w-full">
-          <Flex
-            gap={8}
-            align="center"
-            justify="space-between"
-            className="w-full"
-          >
-            <Typography.Text type="success">
-              {(m?.type === MessageType.OUTBOX || m?.type === MessageType.DRAFT
-                ? m?.recipient?.name
-                : m?.sender?.name) ||
-                m?.sender?.name ||
-                m?.recipient?.name}
-            </Typography.Text>
+
+        <div className="flex flex-col gap-1 w-full">
+          {/* Top Row */}
+          <div className="flex items-center justify-between w-full">
+            <span className="font-medium text-green-600">{senderName}</span>
+
             {m?.type === MessageType.INBOX &&
-              (m?.opened || readedMessages?.includes(m?.id) ? (
-                <CheckCheck color="#3bb139" size={18} />
+              (isRead ? (
+                <CheckCheck className="text-green-600" size={18} />
               ) : (
-                <Asterisk color="#3bb139" size={18} />
+                <Asterisk className="text-green-600" size={18} />
               ))}
-          </Flex>
-          {m?.title && <Typography.Text strong>{m?.title}</Typography.Text>}
-          {m?.message_preview && (
-            <Typography.Text type="secondary" className="line-clamp-2">
-              {m?.message_preview}
-            </Typography.Text>
+          </div>
+
+          {/* Title */}
+          {m?.title && (
+            <span className="font-semibold text-gray-800">{m?.title}</span>
           )}
-          <Typography.Text
-            type="secondary"
-            className="flex items-center gap-1 ml-auto"
-          >
+
+          {/* Preview */}
+          {m?.message_preview && (
+            <span className="text-gray-500 text-sm line-clamp-2">
+              {m?.message_preview}
+            </span>
+          )}
+
+          {/* Time */}
+          <span className="text-gray-400 text-sm flex items-center gap-1 ml-auto">
             <Clock size={14} /> {getRightTimeString(m?.created_at)}
-          </Typography.Text>
-        </Flex>
-      </Flex>
-    </Card>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 };
 
