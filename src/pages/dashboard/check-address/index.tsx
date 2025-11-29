@@ -7,17 +7,20 @@ const CheckAddressPage = () => {
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={20} className="dashboard__page check-address-page p-6">
+    <Flex vertical gap={20} className="dashboard__page check-address-page">
       {/* Page Header */}
       <div>
         <Space align="center" size={12}>
           <div
-            className="flex items-center justify-center"
             style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #1890ff 0%, #096dd9 100%)',
+              width: 48,
+              height: 48,
+              borderRadius: 12,
+              background: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 12px rgba(20, 184, 166, 0.2)',
             }}
           >
             <MapPin size={24} color="white" />

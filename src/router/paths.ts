@@ -12,6 +12,7 @@ export const paths = {
   oauth_callback: '/auth/oauth-callback',
 
   private: {
+    statistics: '/dashboard/statistics',
     students: '/dashboard/students',
     learningProcess: '/dashboard/learning-process',
     attendance: '/dashboard/attendance',
