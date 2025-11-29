@@ -21,7 +21,8 @@ function AntConfigProvider({ children }: ProviderProps) {
           colorWarning: '#f59e0b',
           colorError: '#ef4444',
           borderRadius: 12,
-          fontFamily: 'Onest, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontFamily:
+            'Onest, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         },
         components: {
           Button: {
@@ -33,7 +34,8 @@ function AntConfigProvider({ children }: ProviderProps) {
           },
           Card: {
             borderRadiusLG: 16,
-            boxShadowTertiary: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+            boxShadowTertiary:
+              '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
           },
           Input: {
             borderRadius: 10,

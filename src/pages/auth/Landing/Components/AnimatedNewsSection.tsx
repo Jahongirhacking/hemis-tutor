@@ -44,7 +44,9 @@ export function AnimatedNewsSection() {
   return (
     <section id="news" ref={newsRef} className="py-12 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 ${newsInView ? 'slide-in-up' : 'opacity-0'}`}>
+        <div
+          className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 ${newsInView ? 'slide-in-up' : 'opacity-0'}`}
+        >
           <div>
             <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-semibold rounded-full mb-4">
               Yangiliklar
@@ -53,7 +55,10 @@ export function AnimatedNewsSection() {
               So'nggi e'lonlar va yangiliklar
             </h2>
           </div>
-          <a href="#" className="group text-teal-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+          <a
+            href="#"
+            className="group text-teal-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all"
+          >
             Barchasini ko'rish
             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
@@ -82,13 +87,17 @@ export function AnimatedNewsSection() {
                     className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500"
                   />
                 ) : (
-                  <div className="text-6xl group-hover:scale-125 transition-transform duration-500">📰</div>
+                  <div className="text-6xl group-hover:scale-125 transition-transform duration-500">
+                    📰
+                  </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/0 to-cyan-500/0 group-hover:from-teal-500/20 group-hover:to-cyan-500/20 transition-all duration-500"></div>
                 <div className="absolute top-4 left-4">
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold transition-transform group-hover:scale-105 ${
-                      item.category === 'E\'lon' ? 'bg-amber-100 text-amber-700' : 'bg-teal-100 text-teal-700'
+                      item.category === "E'lon"
+                        ? 'bg-amber-100 text-amber-700'
+                        : 'bg-teal-100 text-teal-700'
                     }`}
                   >
                     {item.category}
@@ -103,8 +112,12 @@ export function AnimatedNewsSection() {
                 <h3 className="font-semibold text-slate-800 leading-snug group-hover:text-teal-600 transition-colors">
                   {item.title}
                 </h3>
-                <a href="#" className="inline-flex items-center gap-1 mt-4 text-teal-600 text-sm font-medium group-hover:gap-2 transition-all">
-                  Batafsil <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-1 mt-4 text-teal-600 text-sm font-medium group-hover:gap-2 transition-all"
+                >
+                  Batafsil{' '}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>
@@ -114,4 +127,3 @@ export function AnimatedNewsSection() {
     </section>
   );
 }
-

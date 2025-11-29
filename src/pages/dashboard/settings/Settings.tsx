@@ -60,12 +60,18 @@ const SettingsPage = () => {
         onChange={key => setActiveTab(key)}
         items={[
           {
-            label: <span style={{ fontWeight: 500 }}>{t('const.profile')}</span>,
+            label: (
+              <span style={{ fontWeight: 500 }}>{t('const.profile')}</span>
+            ),
             key: '1',
             children: <ProfilePage hasTitle={false} />,
           },
           {
-            label: <span style={{ fontWeight: 500 }}>{t('const.system_settings')}</span>,
+            label: (
+              <span style={{ fontWeight: 500 }}>
+                {t('const.system_settings')}
+              </span>
+            ),
             key: '3',
             children: <SystemSettings />,
           },

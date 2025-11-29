@@ -31,12 +31,16 @@ const FinancialPage = () => {
           items={[
             {
               key: 'list',
-              label: <span style={{ fontWeight: 500 }}>Kontraktlar ro'yxati</span>,
+              label: (
+                <span style={{ fontWeight: 500 }}>Kontraktlar ro'yxati</span>
+              ),
               children: <ContractList />,
             },
             {
               key: 'debtors',
-              label: <span style={{ fontWeight: 500 }}>Kontrakt qarzdorlik</span>,
+              label: (
+                <span style={{ fontWeight: 500 }}>Kontrakt qarzdorlik</span>
+              ),
               children: <ContractDebtors />,
             },
           ]}

@@ -12,23 +12,23 @@ import { AnimatedTestimonialsSection } from './Components/AnimatedTestimonialsSe
 const getSectionId = (navItem: string): string => {
   const mapping: Record<string, string> = {
     'Bosh sahifa': 'hero',
-    'Tanlovlar': 'about',
+    Tanlovlar: 'about',
     'Tyutor minbari': 'testimonials',
-    'Yangiliklar': 'news',
-    'Maqolalar': 'cta',
-    'Hujjatlar': 'documents',
+    Yangiliklar: 'news',
+    Maqolalar: 'cta',
+    Hujjatlar: 'documents',
   };
   return mapping[navItem] || '';
 };
 
 const getNavItemFromSectionId = (sectionId: string): string => {
   const mapping: Record<string, string> = {
-    'hero': 'Bosh sahifa',
-    'about': 'Tanlovlar',
-    'testimonials': 'Tyutor minbari',
-    'news': 'Yangiliklar',
-    'cta': 'Maqolalar',
-    'documents': 'Hujjatlar',
+    hero: 'Bosh sahifa',
+    about: 'Tanlovlar',
+    testimonials: 'Tyutor minbari',
+    news: 'Yangiliklar',
+    cta: 'Maqolalar',
+    documents: 'Hujjatlar',
   };
   return mapping[sectionId] || '';
 };
@@ -39,8 +39,15 @@ export default function AnimatedLanding() {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('Bosh sahifa');
 
-  const navItems = ['Bosh sahifa', 'Tanlovlar', 'Tyutor minbari', 'Yangiliklar', 'Maqolalar', 'Hujjatlar'];
-  
+  const navItems = [
+    'Bosh sahifa',
+    'Tanlovlar',
+    'Tyutor minbari',
+    'Yangiliklar',
+    'Maqolalar',
+    'Hujjatlar',
+  ];
+
   const sectionIds = useMemo(
     () => navItems.map(item => getSectionId(item)),
     [navItems]
@@ -62,7 +69,7 @@ export default function AnimatedLanding() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         const visible = entries
           .filter(entry => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -107,8 +114,11 @@ export default function AnimatedLanding() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 overflow-x-hidden animated-landing-page" style={{ fontFamily: "'Outfit', sans-serif" }}>
-      <AnimatedNavigation 
+    <div
+      className="min-h-screen bg-slate-50 overflow-x-hidden animated-landing-page"
+      style={{ fontFamily: "'Outfit', sans-serif" }}
+    >
+      <AnimatedNavigation
         navItems={navItems}
         scrollY={scrollY}
         mobileMenuOpen={mobileMenuOpen}
@@ -116,23 +126,20 @@ export default function AnimatedLanding() {
         activeSection={activeSection}
         onNavigate={handleNavigate}
       />
-      
-      <AnimatedHeroSection 
-        mousePosition={mousePosition}
-      />
-      
+
+      <AnimatedHeroSection mousePosition={mousePosition} />
+
       <AnimatedAboutSection />
-      
+
       <AnimatedTestimonialsSection />
-      
+
       <AnimatedNewsSection />
-      
+
       <AnimatedCTASection />
-      
+
       <AnimatedDocumentsSection />
-      
+
       <AnimatedFooter navItems={navItems} />
     </div>
   );
 }
-

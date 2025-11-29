@@ -14,11 +14,11 @@ type AnimatedNavigationProps = {
 const getSectionId = (navItem: string): string => {
   const mapping: Record<string, string> = {
     'Bosh sahifa': 'hero',
-    'Tanlovlar': 'about',
+    Tanlovlar: 'about',
     'Tyutor minbari': 'testimonials',
-    'Yangiliklar': 'news',
-    'Maqolalar': 'cta',
-    'Hujjatlar': 'documents',
+    Yangiliklar: 'news',
+    Maqolalar: 'cta',
+    Hujjatlar: 'documents',
   };
   return mapping[navItem] || '';
 };
@@ -57,14 +57,18 @@ export function AnimatedNavigation({
   const navigate = useNavigate();
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollY > 50 ? 'glass shadow-lg' : 'bg-transparent'}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollY > 50 ? 'glass shadow-lg' : 'bg-transparent'}`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-500/30 group-hover:animate-pulse-glow transition-all group-hover:scale-110">
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
-            <span className={`text-xl font-bold transition-colors ${scrollY > 50 ? 'text-slate-800' : 'text-white'}`}>
+            <span
+              className={`text-xl font-bold transition-colors ${scrollY > 50 ? 'text-slate-800' : 'text-white'}`}
+            >
               tyutor<span className="text-teal-500">.hemis.uz</span>
             </span>
           </div>
@@ -76,7 +80,7 @@ export function AnimatedNavigation({
                 <a
                   key={i}
                   href={`#${getSectionId(item)}`}
-                  onClick={(e) => handleNavClick(e, item, onNavigate)}
+                  onClick={e => handleNavClick(e, item, onNavigate)}
                   className={`nav-link text-sm font-medium transition-all hover:scale-105 ${
                     scrollY > 50
                       ? isActive
@@ -105,7 +109,11 @@ export function AnimatedNavigation({
               className={`lg:hidden p-2 transition-colors ${scrollY > 50 ? 'text-slate-600' : 'text-white'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -120,7 +128,7 @@ export function AnimatedNavigation({
                 <a
                   key={i}
                   href={`#${getSectionId(item)}`}
-                  onClick={(e) => {
+                  onClick={e => {
                     handleNavClick(e, item, onNavigate);
                     setMobileMenuOpen(false);
                   }}
@@ -147,4 +155,3 @@ export function AnimatedNavigation({
     </nav>
   );
 }
-

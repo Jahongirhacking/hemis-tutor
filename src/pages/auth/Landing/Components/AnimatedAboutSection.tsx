@@ -34,23 +34,29 @@ const kunlikVazifalar = responsibilities.map((item, index) => ({
 
 const kasbiyMaqsadlar = [
   'Talaba yoshlarni vatanparvarlik va milliy qadriyatlarini sinfga rivojlantirish',
-  'Ta\'lim tizimi jarayonlariga ma\'naviyatlarni qo\'llab-quvvatlash hamda tuzli mustahkamlash',
+  "Ta'lim tizimi jarayonlariga ma'naviyatlarni qo'llab-quvvatlash hamda tuzli mustahkamlash",
   'Ularning shuning hamada kasbiy rangsizlarning yoqonlar yoshish',
-  'Talabalarning akademik muvaffaqiyatlarini oshirish va ularga professional yondan ko\'rsatish',
+  "Talabalarning akademik muvaffaqiyatlarini oshirish va ularga professional yondan ko'rsatish",
 ];
 
 export function AnimatedAboutSection() {
   const [aboutRef, aboutInView] = useInView();
 
   return (
-    <section id="about" ref={aboutRef} className="py-12 relative overflow-hidden">
+    <section
+      id="about"
+      ref={aboutRef}
+      className="py-12 relative overflow-hidden"
+    >
       <div className="absolute inset-0 pattern-dots opacity-30"></div>
 
       <div className="absolute top-20 right-10 w-20 h-20 bg-teal-200 rounded-full opacity-20 animate-float"></div>
       <div className="absolute bottom-20 left-10 w-32 h-32 bg-cyan-200 rounded-full opacity-20 animate-float-reverse"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative">
-        <div className={`text-center max-w-3xl mx-auto mb-16 ${aboutInView ? 'slide-in-up' : 'opacity-0'}`}>
+        <div
+          className={`text-center max-w-3xl mx-auto mb-16 ${aboutInView ? 'slide-in-up' : 'opacity-0'}`}
+        >
           <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-semibold rounded-full mb-4 hover:scale-105 transition-transform cursor-pointer">
             Tyutor haqida
           </span>
@@ -58,7 +64,8 @@ export function AnimatedAboutSection() {
             Tyutorning kunlik vazifalari
           </h2>
           <p className="text-slate-600">
-            Tyutor har kuni talabalar bilan ishlash va ularni qo'llab-quvvatlash uchun belgilangan vazifalarni bajaradi
+            Tyutor har kuni talabalar bilan ishlash va ularni qo'llab-quvvatlash
+            uchun belgilangan vazifalarni bajaradi
           </p>
         </div>
 
@@ -83,13 +90,18 @@ export function AnimatedAboutSection() {
                 {item.task}
               </p>
               <div className="mt-4 h-1 bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full transition-all duration-500 group-hover:w-full" style={{ width: '0%' }}></div>
+                <div
+                  className="h-full bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full transition-all duration-500 group-hover:w-full"
+                  style={{ width: '0%' }}
+                ></div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className={`mt-20 ${aboutInView ? 'scale-in stagger-4' : 'opacity-0'}`}>
+        <div
+          className={`mt-20 ${aboutInView ? 'scale-in stagger-4' : 'opacity-0'}`}
+        >
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="blob w-64 h-64 bg-teal-500 -top-20 -right-20 opacity-10 group-hover:opacity-20 transition-opacity"></div>
@@ -113,7 +125,9 @@ export function AnimatedAboutSection() {
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 group-hover/item:rotate-12 transition-all shadow-lg shadow-teal-500/30">
                       <CheckCircle2 className="w-5 h-5 text-white" />
                     </div>
-                    <p className="text-slate-300 text-sm leading-relaxed group-hover/item:text-white transition-colors">{item}</p>
+                    <p className="text-slate-300 text-sm leading-relaxed group-hover/item:text-white transition-colors">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -124,4 +138,3 @@ export function AnimatedAboutSection() {
     </section>
   );
 }
-

@@ -31,12 +31,18 @@ const LearningProcessPage = () => {
           items={[
             {
               key: 'timetable',
-              label: <span style={{ fontWeight: 500 }}>Dars jadvalini ko'rish</span>,
+              label: (
+                <span style={{ fontWeight: 500 }}>Dars jadvalini ko'rish</span>
+              ),
               children: <Timetable />,
             },
             {
               key: 'exam-table',
-              label: <span style={{ fontWeight: 500 }}>Nazorat jadvalini ko'rish</span>,
+              label: (
+                <span style={{ fontWeight: 500 }}>
+                  Nazorat jadvalini ko'rish
+                </span>
+              ),
               children: <Exams />,
             },
           ]}

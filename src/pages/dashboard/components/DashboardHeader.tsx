@@ -30,12 +30,14 @@ const DashboardHeader = () => {
       align="center"
       gap={18}
       style={{
-        background: themeColor === 'dark'
-          ? 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)'
-          : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-        borderBottom: themeColor === 'dark'
-          ? '1px solid rgba(20, 184, 166, 0.1)'
-          : '1px solid rgba(20, 184, 166, 0.08)',
+        background:
+          themeColor === 'dark'
+            ? 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)'
+            : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+        borderBottom:
+          themeColor === 'dark'
+            ? '1px solid rgba(20, 184, 166, 0.1)'
+            : '1px solid rgba(20, 184, 166, 0.08)',
       }}
     >
       <Flex gap={8} wrap>

@@ -24,10 +24,12 @@ const LocationButton = ({
   return (
     <Button
       type={hasGeolocation ? 'link' : 'text'}
-      {...(hasGeolocation && href ? {
-        href,
-        target: '_blank',
-      } : {})}
+      {...(hasGeolocation && href
+        ? {
+            href,
+            target: '_blank',
+          }
+        : {})}
       className="!p-0 !h-auto hover:bg-transparent"
       style={{
         whiteSpace: 'normal',
@@ -41,7 +43,9 @@ const LocationButton = ({
       >
         <MapPin
           size={16}
-          className={hasGeolocation ? 'text-blue-600 mt-0.5' : 'text-gray-400 mt-0.5'}
+          className={
+            hasGeolocation ? 'text-blue-600 mt-0.5' : 'text-gray-400 mt-0.5'
+          }
           style={{ flexShrink: 0 }}
         />
         <Typography.Text
@@ -51,7 +55,7 @@ const LocationButton = ({
             lineHeight: '1.4',
           }}
         >
-          {current_address || 'Manzil ko\'rsatilmagan'}
+          {current_address || "Manzil ko'rsatilmagan"}
         </Typography.Text>
       </Space>
     </Button>

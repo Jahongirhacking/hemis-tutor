@@ -47,12 +47,12 @@ const PerformancePage = () => {
             {
               key: 'gpa',
               label: <span style={{ fontWeight: 500 }}>GPA ballar</span>,
-              children: <GPA />
+              children: <GPA />,
             },
             {
               key: 'debt',
               label: <span style={{ fontWeight: 500 }}>Akademik qarzdor</span>,
-              children: <Debtors />
+              children: <Debtors />,
             },
           ]}
         />

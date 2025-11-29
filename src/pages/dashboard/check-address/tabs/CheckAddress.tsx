@@ -24,7 +24,7 @@ import CreateVisit, {
 } from '../CreateVisitPage';
 import LivingStatusTag from '../components/LivingStatusTag';
 import LocationButton from '../components/LocationButton';
-import "./CheckAddress.scss";
+import './CheckAddress.scss';
 
 enum FilterItem {
   StudentStatus = '_student_living_status',
@@ -143,7 +143,9 @@ const CheckAddress = () => {
             {
               title: '#',
               render: (_, __, index) =>
-                ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
+                ((pagination?.page || 1) - 1) * pagination?.per_page +
+                index +
+                1,
               width: 60,
               align: 'center',
             },
@@ -240,9 +242,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                          visits?.[index]?.created_at,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ).format('DD.MM.YYYY')
+                            visits?.[index]?.created_at,
+                            'YYYY-MM-DD HH:mm:ss'
+                          ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />
@@ -296,7 +298,7 @@ const CheckAddress = () => {
         styles={{
           body: {
             padding: '0 24px',
-          }
+          },
         }}
       >
         <CreateVisit />

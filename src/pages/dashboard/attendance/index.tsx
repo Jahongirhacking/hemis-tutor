@@ -34,20 +34,12 @@ const AttendancePage = () => {
           items={[
             {
               key: 'report',
-              label: (
-                <span style={{ fontWeight: 500 }}>
-                  Davomat hisoboti
-                </span>
-              ),
+              label: <span style={{ fontWeight: 500 }}>Davomat hisoboti</span>,
               children: <AttendanceReport />,
             },
             {
               key: 'subjects',
-              label: (
-                <span style={{ fontWeight: 500 }}>
-                  Fanlar davomati
-                </span>
-              ),
+              label: <span style={{ fontWeight: 500 }}>Fanlar davomati</span>,
               children: <AttendanceBySubject />,
             },
           ]}

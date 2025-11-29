@@ -71,16 +71,17 @@ export const Navbar = () => {
           isMobile && setIsNavbarActive(false);
         }}
       >
-        <TutorLogo className='big-logo' />
+        <TutorLogo className="big-logo" />
 
-        <TutorLogo.Small className='small-logo' />
+        <TutorLogo.Small className="small-logo" />
       </Link>
 
       <div className="navbar__list">
         {navbarList.map(item => (
           <Flex
-            className={`navbar__item ${pathLocation.pathname == item.path ? 'navbar__item-active' : ''
-              }`}
+            className={`navbar__item ${
+              pathLocation.pathname == item.path ? 'navbar__item-active' : ''
+            }`}
             gap={8}
             key={item.title}
             // check restricted university click

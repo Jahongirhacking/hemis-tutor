@@ -26,7 +26,10 @@ const CheckAddressPage = () => {
             <MapPin size={24} color="white" />
           </div>
           <div>
-            <Typography.Title level={2} style={{ margin: 0, marginBottom: '4px' }}>
+            <Typography.Title
+              level={2}
+              style={{ margin: 0, marginBottom: '4px' }}
+            >
               {t('const.visit')}
             </Typography.Title>
             <Typography.Text type="secondary" style={{ fontSize: '14px' }}>

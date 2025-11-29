@@ -60,7 +60,7 @@ const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
                 key: 'comment',
                 dataIndex: 'comment',
                 width: '35%',
-                render: (comment) => (
+                render: comment => (
                   <Typography.Text
                     style={{
                       fontSize: '13px',

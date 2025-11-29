@@ -13,14 +13,15 @@ import { LoadingOutlined } from '@ant-design/icons';
 import {
   Button,
   Card,
-  Col, Flex,
+  Col,
+  Flex,
   Form,
   Input,
   message,
   Row,
   Select,
   Space,
-  Typography
+  Typography,
 } from 'antd';
 import { t } from 'i18next';
 import { Home, MapPin, MessageSquare, RefreshCcw, Send } from 'lucide-react';
@@ -143,7 +144,10 @@ const CreateVisit = ({
             <div className="mb-4">
               <Space align="center" size={8}>
                 <MapPin size={20} className="text-blue-600" />
-                <Typography.Title level={5} style={{ margin: 0, fontWeight: 600 }}>
+                <Typography.Title
+                  level={5}
+                  style={{ margin: 0, fontWeight: 600 }}
+                >
                   Manzil ma'lumotlari
                 </Typography.Title>
               </Space>
@@ -250,9 +254,13 @@ const CreateVisit = ({
 
               <Col {...ADDRESS_COL_PROPS}>
                 <Form.Item
-                  label={<span style={{ fontWeight: 500 }}>Yashash holati</span>}
+                  label={
+                    <span style={{ fontWeight: 500 }}>Yashash holati</span>
+                  }
                   name={FormNames.LIVING_STATUS}
-                  rules={[{ required: true, message: 'Yashash holati majburiy' }]}
+                  rules={[
+                    { required: true, message: 'Yashash holati majburiy' },
+                  ]}
                 >
                   <Select
                     allowClear
@@ -288,7 +296,10 @@ const CreateVisit = ({
             <div className="mb-4">
               <Space align="center" size={8}>
                 <MessageSquare size={20} className="text-green-600" />
-                <Typography.Title level={5} style={{ margin: 0, fontWeight: 600 }}>
+                <Typography.Title
+                  level={5}
+                  style={{ margin: 0, fontWeight: 600 }}
+                >
                   Qo'shimcha ma'lumotlar
                 </Typography.Title>
               </Space>
@@ -297,7 +308,11 @@ const CreateVisit = ({
             <Row gutter={[16, 16]}>
               <Col {...COMMENT_COL_PROPS}>
                 <Form.Item
-                  label={<span style={{ fontWeight: 500 }}>{t('const.current_address_info')}</span>}
+                  label={
+                    <span style={{ fontWeight: 500 }}>
+                      {t('const.current_address_info')}
+                    </span>
+                  }
                   name={FormNames.ADDRESS}
                   rules={[
                     {
@@ -320,10 +335,17 @@ const CreateVisit = ({
 
               <Col {...COMMENT_COL_PROPS}>
                 <Form.Item
-                  label={<span style={{ fontWeight: 500 }}>{t('const.comment')}</span>}
+                  label={
+                    <span style={{ fontWeight: 500 }}>
+                      {t('const.comment')}
+                    </span>
+                  }
                   name={FormNames.COMMENT}
                   rules={[
-                    { required: true, message: t('const.comment') + ' majburiy' },
+                    {
+                      required: true,
+                      message: t('const.comment') + ' majburiy',
+                    },
                   ]}
                 >
                   <Input.TextArea
