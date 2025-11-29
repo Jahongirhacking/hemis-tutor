@@ -14,12 +14,12 @@ import {
   LangType,
 } from '@/utils/dateFunc';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons';
 import {
-  Button, Collapse,
-  Divider,
-  Flex, Typography
-} from 'antd';
+  LeftOutlined,
+  LoadingOutlined,
+  RightOutlined,
+} from '@ant-design/icons';
+import { Button, Collapse, Divider, Flex, Typography } from 'antd';
 import { TimeTable as CustomTimetable, ISchedule } from 'lesson-schedule-react';
 import moment from 'moment';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -127,7 +127,7 @@ const Timetable = () => {
   }, [week_id, optionsData?.result?.weeks, getWeekInfo]);
 
   return (
-    <Flex vertical gap={18} className='timetable-page'>
+    <Flex vertical gap={18} className="timetable-page">
       <CustomFilter form={form}>
         <CustomFilter.BySelect
           field={FilterItem.FACULTY_ID}
@@ -240,7 +240,7 @@ const Timetable = () => {
                     </Flex>
                   ),
                   children: (
-                    <Flex vertical gap={12} className='relative'>
+                    <Flex vertical gap={12} className="relative">
                       <CustomTimetable
                         key={Math.random()}
                         pixelsForOneCellHeight={90}
@@ -290,11 +290,16 @@ const Timetable = () => {
                         activeWeekNumber={Number(weekNumber) || 0}
                         weekNames={weekNames}
                       />
-                      {
-                        isSchedulesFetching && (
-                          <LoadingOutlined style={{ fontSize: 60, color: '#3bb139', zIndex: '999' }} className='absolute top-[50%] left-[50%]' />
-                        )
-                      }
+                      {isSchedulesFetching && (
+                        <LoadingOutlined
+                          style={{
+                            fontSize: 60,
+                            color: '#3bb139',
+                            zIndex: '999',
+                          }}
+                          className="absolute top-[50%] left-[50%]"
+                        />
+                      )}
                     </Flex>
                   ),
                 },

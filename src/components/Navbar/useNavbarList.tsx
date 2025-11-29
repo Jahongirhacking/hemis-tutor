@@ -1,12 +1,13 @@
 import {
-  AppropriationIconSVG, CalendarIconSVG,
+  AppropriationIconSVG,
+  CalendarIconSVG,
   DocumentIconSVG,
   LogOutIconSVG,
   MoneyIconSVG,
   PlanIconSVG,
   SearchIconSVG,
   SettingIconSVG,
-  StudentIconSVG
+  StudentIconSVG,
 } from '@/assets/icon';
 import { paths } from '@/router/paths';
 import { ReactElement, useEffect, useState } from 'react';

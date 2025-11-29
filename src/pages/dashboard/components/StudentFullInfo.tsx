@@ -65,7 +65,7 @@ const StudentFullInfo = ({
                       column={{ xs: 1, sm: 1, md: 2, lg: 2, xl: 2, xxl: 2 }}
                       // bordered
 
-                      layout='vertical'
+                      layout="vertical"
                       items={[
                         {
                           label: 'Talaba ID',
@@ -116,7 +116,7 @@ const StudentFullInfo = ({
                   children: (
                     <Descriptions
                       // bordered
-                      layout='vertical'
+                      layout="vertical"
                       style={{ width: '100%' }}
                       items={[
                         {

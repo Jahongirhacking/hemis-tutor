@@ -163,7 +163,9 @@ const BySelect = ({
 }: SelectProps & { field: string } & { render?: ReactElement }) => {
   return (
     <Form.Item name={field} style={{ margin: 0, minWidth: 'min(100%, 180px)' }}>
-      {render || <Select allowClear disabled={disabled && props?.loading} {...props} />}
+      {render || (
+        <Select allowClear disabled={disabled && props?.loading} {...props} />
+      )}
     </Form.Item>
   );
 };

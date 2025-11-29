@@ -34,7 +34,7 @@ const Rating = () => {
             title: '#',
             dataIndex: 'index',
             key: 'index',
-            width: 60
+            width: 60,
           },
           {
             title: t('const.student'),
@@ -52,13 +52,13 @@ const Rating = () => {
             title: toFirstCapitalLetter(t('const.credit_plural')),
             dataIndex: 'credit',
             key: 'credit',
-            render: (credit) => credit || '-'
+            render: credit => credit || '-',
           },
           {
             title: t('const.overall'),
             dataIndex: 'total_point',
             key: 'total',
-            render: (total) => total || '-'
+            render: total => total || '-',
           },
           {
             title: t('const.mark'),
@@ -76,7 +76,10 @@ const Rating = () => {
               ),
           },
         ]}
-        dataSource={ratingData?.result?.ratings?.map((elem, index) => ({ ...elem, index: index + 1 }))}
+        dataSource={ratingData?.result?.ratings?.map((elem, index) => ({
+          ...elem,
+          index: index + 1,
+        }))}
       />
     </Flex>
   );

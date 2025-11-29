@@ -11,7 +11,7 @@ const CheckAddressPage = () => {
         {t('const.visit')}
       </Typography.Title>
       <Flex className="main-container w-full">
-        <Card className='w-full'>
+        <Card className="w-full">
           <CheckAddress />
         </Card>
       </Flex>

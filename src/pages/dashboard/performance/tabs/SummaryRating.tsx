@@ -30,7 +30,7 @@ const SummaryRating = () => {
             title: '#',
             dataIndex: 'index',
             key: 'index',
-            width: 60
+            width: 60,
           },
           {
             title: t('const.student'),
@@ -56,7 +56,10 @@ const SummaryRating = () => {
             key: 'status',
           },
         ]}
-        dataSource={ratingData?.result?.summary?.map((elem, index) => ({ ...elem, index: index + 1 }))}
+        dataSource={ratingData?.result?.summary?.map((elem, index) => ({
+          ...elem,
+          index: index + 1,
+        }))}
       />
     </Flex>
   );

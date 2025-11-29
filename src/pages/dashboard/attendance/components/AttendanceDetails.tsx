@@ -5,14 +5,27 @@ import {
   IStudent,
 } from '@/services/student/type';
 import { RootState } from '@/store/store';
-import { CURRENT_DATE_FORMAT, formatUnixTimestampToDate, LangType } from '@/utils/dateFunc';
+import {
+  CURRENT_DATE_FORMAT,
+  formatUnixTimestampToDate,
+  LangType,
+} from '@/utils/dateFunc';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { Badge, Card, Divider, Empty, Flex, Switch, Tag, Typography } from 'antd';
+import {
+  Badge,
+  Card,
+  Divider,
+  Empty,
+  Flex,
+  Switch,
+  Tag,
+  Typography,
+} from 'antd';
 import { t } from 'i18next';
 import moment from 'moment';
 import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const AttendanceDetails = ({
   attendanceData,
@@ -51,7 +64,7 @@ const AttendanceDetails = ({
     [studentAttendance]
   );
   const [inDetail, setInDetail] = useState(false);
-  const themeColor = useSelector((store: RootState) => store.themeSlice.color)
+  const themeColor = useSelector((store: RootState) => store.themeSlice.color);
 
   return (
     <Flex vertical gap={18} className="attendance-details">
@@ -73,13 +86,13 @@ const AttendanceDetails = ({
           </Flex>
         </Flex>
 
-        <Flex gap={8} className='ml-auto'>
+        <Flex gap={8} className="ml-auto">
           <Typography.Text>{t('const.by_science')}</Typography.Text>
           <Switch onChange={value => setInDetail(value)} />
         </Flex>
       </Flex>
 
-      <Divider className='m-0' />
+      <Divider className="m-0" />
 
       <Flex vertical gap={8}>
         {attendanceByDate?.length ? (
@@ -87,10 +100,14 @@ const AttendanceDetails = ({
             columnsCountBreakPoints={{
               150: 1,
               380: 2,
-            }}>
+            }}
+          >
             <Masonry gutter="20px">
               {attendanceByDate?.map(attendance => (
-                <Card hoverable className={`w-full bg-zinc-${themeColor === 'dark' ? 900 : 100}`}>
+                <Card
+                  hoverable
+                  className={`w-full bg-zinc-${themeColor === 'dark' ? 900 : 100}`}
+                >
                   <Flex vertical gap={8}>
                     <Typography.Title level={5} style={{ margin: 0 }}>
                       {`${formatUnixTimestampToDate(
@@ -104,9 +121,12 @@ const AttendanceDetails = ({
                     {inDetail ? (
                       <Flex gap={6} wrap>
                         {attendance?.[1]?.map(a => (
-                          <Tag
-                            className='w-fit flex gap-2'
-                          ><Badge status={a?.absent_on ? "warning" : "error"} /> {`${toFirstCapitalLetter(a?.subject)}: ${a?.absent_off || a?.absent_on} ${t('const.hours_plural')}`}</Tag>
+                          <Tag className="w-fit flex gap-2">
+                            <Badge
+                              status={a?.absent_on ? 'warning' : 'error'}
+                            />{' '}
+                            {`${toFirstCapitalLetter(a?.subject)}: ${a?.absent_off || a?.absent_on} ${t('const.hours_plural')}`}
+                          </Tag>
                         ))}
                       </Flex>
                     ) : (
@@ -126,10 +146,16 @@ const AttendanceDetails = ({
                           return (
                             <Flex vertical gap={6}>
                               {!!total?.absent_off && (
-                                <Tag className='w-fit flex gap-2 items-center'><Badge status='error' />{`${toFirstCapitalLetter(t('const.not_explicable'))}: ${total?.absent_off} ${t('const.hours_plural')}`}</Tag>
+                                <Tag className="w-fit flex gap-2 items-center">
+                                  <Badge status="error" />
+                                  {`${toFirstCapitalLetter(t('const.not_explicable'))}: ${total?.absent_off} ${t('const.hours_plural')}`}
+                                </Tag>
                               )}
                               {!!total?.absent_on && (
-                                <Tag className='w-fit flex gap-2 items-center'><Badge status='warning' /> {`${toFirstCapitalLetter(t('const.explicable'))}: ${total?.absent_on} ${t('const.hours_plural')}`}</Tag>
+                                <Tag className="w-fit flex gap-2 items-center">
+                                  <Badge status="warning" />{' '}
+                                  {`${toFirstCapitalLetter(t('const.explicable'))}: ${total?.absent_on} ${t('const.hours_plural')}`}
+                                </Tag>
                               )}
                             </Flex>
                           );

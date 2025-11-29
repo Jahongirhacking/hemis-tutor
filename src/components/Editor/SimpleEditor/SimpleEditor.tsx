@@ -1,37 +1,42 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react';
 
 // => Tiptap packages
-import Bold from '@tiptap/extension-bold'
-import Code from '@tiptap/extension-code'
-import Document from '@tiptap/extension-document'
-import Heading from '@tiptap/extension-heading'
-import History from '@tiptap/extension-history'
-import Image from '@tiptap/extension-image'
-import Italic from '@tiptap/extension-italic'
-import Link from '@tiptap/extension-link'
-import Paragraph from '@tiptap/extension-paragraph'
-import Placeholder from '@tiptap/extension-placeholder'
-import Strike from '@tiptap/extension-strike'
-import { Table, TableCell, TableHeader, TableRow } from '@tiptap/extension-table'
-import Text from '@tiptap/extension-text'
-import Underline from '@tiptap/extension-underline'
-import { Editor, EditorContent, useEditor } from '@tiptap/react'
-import classNames from 'classnames'
+import Bold from '@tiptap/extension-bold';
+import Code from '@tiptap/extension-code';
+import Document from '@tiptap/extension-document';
+import Heading from '@tiptap/extension-heading';
+import History from '@tiptap/extension-history';
+import Image from '@tiptap/extension-image';
+import Italic from '@tiptap/extension-italic';
+import Link from '@tiptap/extension-link';
+import Paragraph from '@tiptap/extension-paragraph';
+import Placeholder from '@tiptap/extension-placeholder';
+import Strike from '@tiptap/extension-strike';
+import {
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from '@tiptap/extension-table';
+import Text from '@tiptap/extension-text';
+import Underline from '@tiptap/extension-underline';
+import { Editor, EditorContent, useEditor } from '@tiptap/react';
+import classNames from 'classnames';
 // Custom
-import { Columns2Icon, ImageIcon, Rows2Icon, TableIcon } from 'lucide-react'
+import { Columns2Icon, ImageIcon, Rows2Icon, TableIcon } from 'lucide-react';
 
-import * as Icons from './Icons'
-import { LinkModal } from './LinkModal'
-import './styles.scss'
+import * as Icons from './Icons';
+import { LinkModal } from './LinkModal';
+import './styles.scss';
 
 export const SimpleEditor = ({
   initialValue = '',
   placeholder = 'Matn kiriting...',
-  onChange
+  onChange,
 }: {
-  initialValue?: string
-  onChange: (val: string) => void
-  placeholder?: string
+  initialValue?: string;
+  onChange: (val: string) => void;
+  placeholder?: string;
 }) => {
   const editor = useEditor({
     extensions: [
@@ -40,7 +45,7 @@ export const SimpleEditor = ({
       Paragraph,
       Text,
       Link.configure({
-        openOnClick: false
+        openOnClick: false,
       }),
       Bold,
       Underline,
@@ -49,11 +54,11 @@ export const SimpleEditor = ({
       Code,
       Heading.configure({ levels: [1, 2, 3] }),
       Placeholder.configure({
-        placeholder
+        placeholder,
       }),
       // ✅ Table
       Table.configure({
-        resizable: true
+        resizable: true,
       }),
       TableRow,
       TableHeader,
@@ -61,72 +66,77 @@ export const SimpleEditor = ({
       // ✅ Image
       Image.configure({
         inline: false,
-        allowBase64: true // optional
-      })
+        allowBase64: true, // optional
+      }),
     ],
     content: initialValue,
     onUpdate: ({ editor }) => {
-      const html = editor.getHTML()
-      onChange?.(html || '') // pass updated HTML
-    }
-  }) as Editor
-  const [modalIsOpen, setIsOpen] = useState(false)
-  const [url, setUrl] = useState<string>('')
+      const html = editor.getHTML();
+      onChange?.(html || ''); // pass updated HTML
+    },
+  }) as Editor;
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [url, setUrl] = useState<string>('');
 
   // ✅ Sync editor when initialValue changes
   useEffect(() => {
     if (editor && initialValue !== editor.getHTML()) {
-      editor.commands.setContent(initialValue, { emitUpdate: false })
+      editor.commands.setContent(initialValue, { emitUpdate: false });
       // "false" prevents creating a history step
     }
-  }, [initialValue, editor])
+  }, [initialValue, editor]);
 
   const openModal = useCallback(() => {
-    setUrl(editor.getAttributes('link').href)
-    setIsOpen(true)
-  }, [editor])
+    setUrl(editor.getAttributes('link').href);
+    setIsOpen(true);
+  }, [editor]);
 
   const closeModal = useCallback(() => {
-    setIsOpen(false)
-    setUrl('')
-  }, [])
+    setIsOpen(false);
+    setUrl('');
+  }, []);
 
   const saveLink = useCallback(() => {
     if (url) {
-      editor.chain().focus().extendMarkRange('link').setLink({ href: url, target: '_blank' }).run()
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange('link')
+        .setLink({ href: url, target: '_blank' })
+        .run();
     } else {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run()
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
     }
-    closeModal()
-  }, [editor, url, closeModal])
+    closeModal();
+  }, [editor, url, closeModal]);
 
   const removeLink = useCallback(() => {
-    editor.chain().focus().extendMarkRange('link').unsetLink().run()
-    closeModal()
-  }, [editor, closeModal])
+    editor.chain().focus().extendMarkRange('link').unsetLink().run();
+    closeModal();
+  }, [editor, closeModal]);
 
   const toggleBold = useCallback(() => {
-    editor.chain().focus().toggleBold().run()
-  }, [editor])
+    editor.chain().focus().toggleBold().run();
+  }, [editor]);
 
   const toggleUnderline = useCallback(() => {
-    editor.chain().focus().toggleUnderline().run()
-  }, [editor])
+    editor.chain().focus().toggleUnderline().run();
+  }, [editor]);
 
   const toggleItalic = useCallback(() => {
-    editor.chain().focus().toggleItalic().run()
-  }, [editor])
+    editor.chain().focus().toggleItalic().run();
+  }, [editor]);
 
   const toggleStrike = useCallback(() => {
-    editor.chain().focus().toggleStrike().run()
-  }, [editor])
+    editor.chain().focus().toggleStrike().run();
+  }, [editor]);
 
   const toggleCode = useCallback(() => {
-    editor.chain().focus().toggleCode().run()
-  }, [editor])
+    editor.chain().focus().toggleCode().run();
+  }, [editor]);
 
   if (!editor) {
-    return null
+    return null;
   }
 
   return (
@@ -150,7 +160,7 @@ export const SimpleEditor = ({
         </button>
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('link')
+            'is-active': editor.isActive('link'),
           })}
           onClick={openModal}
           title="Link qo'shish"
@@ -159,7 +169,7 @@ export const SimpleEditor = ({
         </button>
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('bold')
+            'is-active': editor.isActive('bold'),
           })}
           onClick={toggleBold}
           title="Qalin shrift"
@@ -168,7 +178,7 @@ export const SimpleEditor = ({
         </button>
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('underline')
+            'is-active': editor.isActive('underline'),
           })}
           onClick={toggleUnderline}
           title="Tagchiziq"
@@ -177,7 +187,7 @@ export const SimpleEditor = ({
         </button>
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('intalic')
+            'is-active': editor.isActive('intalic'),
           })}
           onClick={toggleItalic}
           title="Og'ma shrift"
@@ -186,7 +196,7 @@ export const SimpleEditor = ({
         </button>
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('strike')
+            'is-active': editor.isActive('strike'),
           })}
           onClick={toggleStrike}
           title="Chiziqli"
@@ -195,7 +205,7 @@ export const SimpleEditor = ({
         </button>
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('code')
+            'is-active': editor.isActive('code'),
           })}
           onClick={toggleCode}
           title="Kod qo'shish"
@@ -205,9 +215,11 @@ export const SimpleEditor = ({
 
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('heading', { level: 1 })
+            'is-active': editor.isActive('heading', { level: 1 }),
           })}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 1 }).run()
+          }
           title="Sarlavha qo'shish"
         >
           H1
@@ -215,9 +227,11 @@ export const SimpleEditor = ({
 
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('heading', { level: 2 })
+            'is-active': editor.isActive('heading', { level: 2 }),
           })}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 2 }).run()
+          }
           title="Sarlavha qo'shish"
         >
           H2
@@ -225,9 +239,11 @@ export const SimpleEditor = ({
 
         <button
           className={classNames('menu-button', {
-            'is-active': editor.isActive('heading', { level: 3 })
+            'is-active': editor.isActive('heading', { level: 3 }),
           })}
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
           title="Sarlavha qo'shish"
         >
           H3
@@ -237,7 +253,11 @@ export const SimpleEditor = ({
         <button
           className="menu-button"
           onClick={() =>
-            editor.chain().focus().insertTable({ rows: 2, cols: 1, withHeaderRow: true }).run()
+            editor
+              .chain()
+              .focus()
+              .insertTable({ rows: 2, cols: 1, withHeaderRow: true })
+              .run()
           }
           title="Jadval qo'shish"
         >
@@ -266,9 +286,9 @@ export const SimpleEditor = ({
         <button
           className="menu-button"
           onClick={() => {
-            const url = window.prompt('Rasm linki')
+            const url = window.prompt('Rasm linki');
             if (url) {
-              editor.chain().focus().setImage({ src: url }).run()
+              editor.chain().focus().setImage({ src: url }).run();
             }
           }}
           title="Rasm qo'shish"
@@ -285,10 +305,10 @@ export const SimpleEditor = ({
         onRequestClose={closeModal}
         contentLabel="Link tahrirlash"
         closeModal={closeModal}
-        onChangeUrl={(e) => setUrl(e.target.value)}
+        onChangeUrl={e => setUrl(e.target.value)}
         onSaveLink={saveLink}
         onRemoveLink={removeLink}
       />
     </div>
-  )
-}
+  );
+};

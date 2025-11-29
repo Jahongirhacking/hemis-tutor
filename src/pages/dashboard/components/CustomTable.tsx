@@ -11,14 +11,15 @@ const CustomTable = ({
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={24} className='w-full'>
+    <Flex vertical gap={24} className="w-full">
       <Table
         rowKey={'id'}
         scroll={{ x: 800, y: 'max(calc(100dvh - 450px), 300px)' }}
         locale={{ emptyText }}
         pagination={{
-          showTotal: (total) => `${t('const.total')}: ${t('const.number_count', { number: total })}`,
-          align: 'center'
+          showTotal: total =>
+            `${t('const.total')}: ${t('const.number_count', { number: total })}`,
+          align: 'center',
         }}
         {...props}
       />

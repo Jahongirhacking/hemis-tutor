@@ -2,11 +2,7 @@ import NotFoundAnimation from '@/components/SpecialComponents/NotFoundAnimation'
 import { usePagination } from '@/hooks/usePagination';
 import { useGetMessagesQuery } from '@/services/student';
 import { IMessage, MessageType } from '@/services/student/type';
-import {
-  Badge, Divider,
-  Flex, Segmented,
-  Skeleton
-} from 'antd';
+import { Badge, Divider, Flex, Segmented, Skeleton } from 'antd';
 import { Inbox, NotepadText, Send } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -28,12 +24,15 @@ const MessageList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [readedMessages, setReadedMessages] = useState<IMessage['id'][]>([]);
 
-  const handleMessageCardClick = useCallback((id: IMessage['id']) => {
-    const params = new URLSearchParams(searchParams);
-    params.set(MESSAGE_MODAL, String(id));
-    setSearchParams(params);
-    setReadedMessages(prev => [...prev, id]);
-  }, [searchParams, setSearchParams, readedMessages, setReadedMessages])
+  const handleMessageCardClick = useCallback(
+    (id: IMessage['id']) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(MESSAGE_MODAL, String(id));
+      setSearchParams(params);
+      setReadedMessages(prev => [...prev, id]);
+    },
+    [searchParams, setSearchParams, readedMessages, setReadedMessages]
+  );
 
   return (
     <Flex vertical gap={18} className="messages-page">

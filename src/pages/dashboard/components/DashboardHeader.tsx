@@ -31,18 +31,14 @@ const DashboardHeader = () => {
       gap={18}
     >
       <Flex gap={8} wrap>
-        {
-          profileData?.result?.statistics?.groups_count && (
-            <Tag color="magenta">{`${t('const.group')}: ${t('const.number_count', { number: profileData?.result?.statistics?.groups_count })}`}</Tag>
-          )
-        }
-        {
-          profileData?.result?.statistics?.total_students && (
-            <Tag color="blue">{`${t('const.student')}: ${t('const.number_count', { number: `${profileData?.result?.statistics?.active_students} / ${profileData?.result?.statistics?.total_students}` })}`}</Tag>
-          )
-        }
+        {profileData?.result?.statistics?.groups_count && (
+          <Tag color="magenta">{`${t('const.group')}: ${t('const.number_count', { number: profileData?.result?.statistics?.groups_count })}`}</Tag>
+        )}
+        {profileData?.result?.statistics?.total_students && (
+          <Tag color="blue">{`${t('const.student')}: ${t('const.number_count', { number: `${profileData?.result?.statistics?.active_students} / ${profileData?.result?.statistics?.total_students}` })}`}</Tag>
+        )}
       </Flex>
-      <Flex gap={12} align="center" className='ml-auto'>
+      <Flex gap={12} align="center" className="ml-auto">
         <Switch
           value={themeColor === 'dark'}
           onChange={() => dispatch(toggleThemeColor())}

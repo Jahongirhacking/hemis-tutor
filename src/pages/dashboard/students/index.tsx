@@ -8,7 +8,7 @@ const StudentsPage = () => {
         Talabalar
       </Typography.Title>
       <Flex className="main-container">
-        <Card className='w-full'>
+        <Card className="w-full">
           <StudentList />
         </Card>
       </Flex>

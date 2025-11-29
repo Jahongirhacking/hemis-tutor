@@ -34,7 +34,7 @@ const GPA = () => {
             title: '#',
             dataIndex: 'index',
             key: 'index',
-            width: 60
+            width: 60,
           },
           {
             title: t('const.student'),
@@ -47,7 +47,7 @@ const GPA = () => {
             title: toFirstCapitalLetter(t('const.credit_plural')),
             dataIndex: 'credit_sum',
             key: 'credit_sum',
-            render: (credit) => credit || '-',
+            render: credit => credit || '-',
           },
           {
             title: toFirstCapitalLetter(t('const.semester')),
@@ -82,7 +82,10 @@ const GPA = () => {
             fixed: 'right',
           },
         ]}
-        dataSource={gpaData?.result?.gpa_records?.map((elem, index) => ({ ...elem, index: index + 1 }))}
+        dataSource={gpaData?.result?.gpa_records?.map((elem, index) => ({
+          ...elem,
+          index: index + 1,
+        }))}
       />
     </Flex>
   );
