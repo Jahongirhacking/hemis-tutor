@@ -119,7 +119,7 @@ export interface IUpdateProfileRes {
 
 export interface IDashboardStatisticsRes {
   education_year: string;
-  semester: string;
+  semester: string | null;
   groups: {
     total_groups: number;
     groups_list: IDashboardGroup[];
@@ -129,9 +129,12 @@ export interface IDashboardStatisticsRes {
     active_students: number;
     inactive_students: number;
   };
-  attendance: IAttendanceStats;
-  performance: IPerformanceStats;
-  contracts: IContractsStats;
+  gender_statistics: {
+    male_count: number;
+    female_count: number;
+    male_percent: number;
+    female_percent: number;
+  };
   education_form_statistics: IEducationFormStat[];
   course_statistics: ICourseStat[];
   social_statistics: ISocialStat[];
@@ -139,6 +142,20 @@ export interface IDashboardStatisticsRes {
   living_status_statistics: ILivingStatusStat[];
   district_statistics: IDistrictStat[];
   geo_location_statistics: IGeoLocationStatistics;
+  attendance: IAttendanceStats;
+  absenteeism: {
+    range_30_36: { count: number; percent: number };
+    range_40_70: { count: number; percent: number };
+    range_72_plus: { count: number; percent: number };
+    top_10_absentees: Array<{
+      student_id: number;
+      full_name: string;
+      absent_count: number;
+      group_id: number;
+    }>;
+  };
+  performance: IPerformanceStats;
+  contracts: IContractsStats;
 }
 
 export interface IDashboardGroup {

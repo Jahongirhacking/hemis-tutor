@@ -1,5 +1,6 @@
+import TutorLogo from '@/components/TutorLogo';
 import { paths } from '@/router/paths';
-import { ArrowRight, GraduationCap, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 type AnimatedNavigationProps = {
@@ -58,20 +59,11 @@ export function AnimatedNavigation({
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrollY > 50 ? 'glass shadow-lg' : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 !border-0 ${scrollY > 50 ? 'glass shadow-lg' : 'bg-transparent'}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-500/30 group-hover:animate-pulse-glow transition-all group-hover:scale-110">
-              <GraduationCap className="w-6 h-6 text-white" />
-            </div>
-            <span
-              className={`text-xl font-bold transition-colors ${scrollY > 50 ? 'text-slate-800' : 'text-white'}`}
-            >
-              tyutor<span className="text-teal-500">.hemis.uz</span>
-            </span>
-          </div>
+          <TutorLogo color={scrollY > 50 ? 'text-slate-800' : 'text-white'} />
 
           <div className="hidden lg:flex items-center gap-8">
             {navItems.map((item, i) => {
@@ -81,15 +73,14 @@ export function AnimatedNavigation({
                   key={i}
                   href={`#${getSectionId(item)}`}
                   onClick={e => handleNavClick(e, item, onNavigate)}
-                  className={`nav-link text-sm font-medium transition-all hover:scale-105 ${
-                    scrollY > 50
-                      ? isActive
-                        ? 'text-teal-600'
-                        : 'text-slate-600 hover:text-slate-900'
-                      : isActive
-                        ? 'text-teal-300'
-                        : 'text-white/80 hover:text-white'
-                  }`}
+                  className={`nav-link text-sm font-medium transition-all hover:scale-105 ${scrollY > 50
+                    ? isActive
+                      ? 'text-teal-600'
+                      : 'text-slate-600 hover:text-slate-900'
+                    : isActive
+                      ? 'text-teal-300'
+                      : 'text-white/80 hover:text-white'
+                    }`}
                 >
                   {item}
                 </a>
@@ -132,11 +123,10 @@ export function AnimatedNavigation({
                     handleNavClick(e, item, onNavigate);
                     setMobileMenuOpen(false);
                   }}
-                  className={`block py-2 font-medium transition-all hover:translate-x-2 ${
-                    isActive
-                      ? 'text-teal-600'
-                      : 'text-slate-600 hover:text-teal-600'
-                  }`}
+                  className={`block py-2 font-medium transition-all hover:translate-x-2 ${isActive
+                    ? 'text-teal-600'
+                    : 'text-slate-600 hover:text-teal-600'
+                    }`}
                   style={{ animationDelay: `${i * 0.1}s` }}
                 >
                   {item}
