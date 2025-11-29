@@ -1,9 +1,10 @@
 import { SimpleEditor } from "@/components/Editor/SimpleEditor/SimpleEditor";
 import { usePagination } from "@/hooks/usePagination";
-import { useLazyGetRecipientsQuery } from "@/services/student";
+import { useLazyGetRecipientsQuery, useSendMessageMutation } from "@/services/student";
 import { IRecipient, RecipientType } from "@/services/student/type";
+import { getLocalStorage, setLocalStorage } from "@/utils/storageFunc";
 import { toFirstCapitalLetter } from "@/utils/stringFunc";
-import { Button, Divider, Empty, Flex, Input, Segmented, Select, Spin, Typography } from "antd";
+import { Button, Divider, Empty, Flex, Input, Segmented, Select, Spin, Typography, message as antdMessage } from "antd";
 import { GraduationCap, Send, SquareCheck, SquareX, UserStar } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +14,7 @@ import "./CreateMessage.scss";
 
 const ALL_ITEMS = '__all__';
 const CLEAR_ITEMS = '__clear__';
+const DRAFT_MESSAGE = 'draft_message'
 
 type IRecipientType = IRecipient['id'] | '__all__' | '__clear__';
 
@@ -21,10 +23,64 @@ const CreateMessagePage = () => {
     const { pagination } = usePagination();
     const [recipientType, setRecipientType] = useState<RecipientType>(RecipientType.ALL);
     const [getRecipients, { isFetching, data: recipientsData }] = useLazyGetRecipientsQuery();
+    const [sendMessage, { isLoading }] = useSendMessageMutation();
     const { t } = useTranslation();
     const [selected, setSelected] = useState<IRecipient['id'][]>([]);
     const [title, setTitle] = useState('');
     const [message, setMessage] = useState('');
+
+    const clearInputs = () => {
+        setSelected([]);
+        setTitle('');
+        setMessage('');
+    }
+
+    const handleSubmit = useCallback(async (asDraft: boolean = false) => {
+        const messageContent = (
+            asDraft
+                ? {
+                    ...getLocalStorage(DRAFT_MESSAGE),
+                    save_as_draft: asDraft
+                }
+                : {
+                    title,
+                    message,
+                    recipients: selected,
+                    save_as_draft: asDraft
+                }
+        )
+        if (!messageContent?.message || !messageContent?.title || !messageContent?.recipients?.length) {
+            if (!asDraft) {
+                antdMessage.warning("Xabar ma'lumot maydoni yetarli kiritilmagan");
+            }
+            return;
+        }
+        try {
+            await sendMessage(messageContent)?.unwrap();
+            antdMessage.success(asDraft ? "Xabar qoralamada saqlandi" : "Xabar muvaffaqiyatli yuborildi!");
+            clearInputs();
+        } catch (err) {
+            console.error(err);
+        } finally {
+            localStorage.removeItem(DRAFT_MESSAGE);
+        }
+    }, [sendMessage, message, title, selected]);
+
+    useEffect(() => {
+        setLocalStorage(DRAFT_MESSAGE, {
+            title,
+            message,
+            recipients: selected
+        })
+    }, [selected, title, message])
+
+    useEffect(() => {
+        return () => {
+            handleSubmit(true);
+        }
+    }, []);
+
+
 
     const fetchUsers = useCallback(() => {
         let timeoutId: NodeJS.Timeout;
@@ -84,7 +140,6 @@ const CreateMessagePage = () => {
     }, [setSelected, recipientsData])
 
     const handleChange = useCallback((values: IRecipientType[]) => {
-        console.log(values, ALL_ITEMS);
         if (values.includes(ALL_ITEMS)) {
             handleChangeAlgorithm(recipientsData?.result?.recipients?.map((o) => o?.id));
         } else if (values.includes(CLEAR_ITEMS)) {
@@ -98,7 +153,7 @@ const CreateMessagePage = () => {
         <Flex vertical gap={18} className="w-full create-message-page">
             <CustomFilter form={form}>
                 <Flex vertical gap={12} className="w-full">
-                    <Flex gap={8} align="center" justify="space-between" className="w-full">
+                    <Flex gap={8} align="center" justify="space-between" className="w-full" wrap>
                         <Segmented
                             value={recipientType}
                             onChange={(value) => setRecipientType(value)}
@@ -115,7 +170,7 @@ const CreateMessagePage = () => {
                     <Select
                         className="w-full"
                         showSearch
-                        placeholder={t('const.search')}
+                        placeholder={"Qabul qiluvchilarni tanlang"}
                         filterOption={false}
                         onSearch={searchUsers}
                         onChange={handleChange}
@@ -160,9 +215,18 @@ const CreateMessagePage = () => {
             <Divider className="m-0" />
 
             <Flex vertical gap={18} className="w-full">
-                <Flex gap={12} justify="space-between" align="center" className="w-full">
+                <Flex gap={12} justify="space-between" align="center" className="w-full" wrap>
                     <Typography.Title level={3} style={{ marginBottom: 0 }}>Xabar yozish</Typography.Title>
-                    <Button type="primary" icon={<Send size={16} />}>{t('const.send')}</Button>
+                    <Button
+                        type="primary"
+                        className="ml-auto"
+                        icon={<Send size={16} />}
+                        loading={isLoading}
+                        disabled={isLoading}
+                        onClick={() => handleSubmit(false)}
+                    >
+                        {t('const.send')}
+                    </Button>
                 </Flex>
                 <Flex vertical gap={12}>
                     <Input

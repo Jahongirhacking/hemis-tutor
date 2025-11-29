@@ -1,5 +1,5 @@
 import { useMarkAsReadMutation } from "@/services/student"
-import { IMessageDetail } from "@/services/student/type"
+import { IMessageDetail, MessageType } from "@/services/student/type"
 import { CORRECT_DATE_FORMAT, CURRENT_DATE_FORMAT } from "@/utils/dateFunc"
 import { Button, Flex, Rate, Typography } from "antd"
 import DOMPurify from 'dompurify'
@@ -12,7 +12,7 @@ const MessageDetails = ({ messageDetails }: { messageDetails: IMessageDetail }) 
     const [markAsRead] = useMarkAsReadMutation();
 
     useEffect(() => {
-        if (messageDetails && !messageDetails?.opened) {
+        if (messageDetails && messageDetails?.type === MessageType.INBOX && !messageDetails?.opened) {
             markAsRead({ id: messageDetails?.id })
         }
     }, [messageDetails])

@@ -14,8 +14,6 @@ export const rtkQueryErrorLogger: Middleware =
     // RTK Query uses createAsyncThunk from redux-toolkit under the hood, so we're able to utilize these matchers!
     const status = action.payload?.status;
 
-    console.log(action, 'action');
-
     if (isRejectedWithValue(action)) {
       // ✅ Skip if flagged
       const headers = action?.meta?.baseQueryMeta?.request?.headers;

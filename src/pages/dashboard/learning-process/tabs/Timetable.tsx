@@ -127,7 +127,7 @@ const Timetable = () => {
   }, [week_id, optionsData?.result?.weeks, getWeekInfo]);
 
   return (
-    <Flex vertical gap={18}>
+    <Flex vertical gap={18} className='timetable-page'>
       <CustomFilter form={form}>
         <CustomFilter.BySelect
           field={FilterItem.FACULTY_ID}
@@ -208,7 +208,7 @@ const Timetable = () => {
                     <Flex justify="space-between" gap={8} wrap>
                       <Typography.Text
                         strong
-                      >{`${[toFirstCapitalLetter(group?.group_name), `(${weekInterval?.map((w: number) => formatUnixTimestampToDate(w, ' ', 'long', i18n?.language as LangType))?.join(' - ')})`].join(' ')}`}</Typography.Text>
+                      >{`${[toFirstCapitalLetter(group?.group_name), `(${weekInterval?.map((w: number) => formatUnixTimestampToDate(w, ' ', 'long', i18n?.language as LangType))?.join(' - ') || ''})`].join(' ')}`}</Typography.Text>
                       <Flex gap={8}>
                         <Button
                           size="small"

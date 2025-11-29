@@ -2,23 +2,18 @@ import NotFoundAnimation from '@/components/SpecialComponents/NotFoundAnimation'
 import { usePagination } from '@/hooks/usePagination';
 import { useGetMessagesQuery } from '@/services/student';
 import { IMessage, MessageType } from '@/services/student/type';
-import { getRightTimeString } from '@/utils/dateFunc';
 import {
-  Badge,
-  Card,
-  Divider,
-  Flex,
-  Rate,
-  Segmented,
-  Skeleton,
-  Typography,
+  Badge, Divider,
+  Flex, Segmented,
+  Skeleton
 } from 'antd';
-import { Asterisk, CheckCheck, Clock, Inbox, NotepadText, Send, Trash2 } from 'lucide-react';
+import { Inbox, NotepadText, Send } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CustomPagination from '../../components/CustomPagination';
 import CustomFilter from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
+import MessageCard from '../components/MessageCard';
 import { MESSAGE_MODAL } from '../components/MessageModal';
 
 const MessageList = () => {
@@ -85,15 +80,15 @@ const MessageList = () => {
                 icon: <NotepadText size={16} />,
                 value: MessageType.DRAFT,
               },
-              {
-                label: (
-                  <Flex gap={6} align="center">
-                    {`O'chirilgan${messageData?.result?.counters?.trash ? ` (${messageData?.result?.counters?.trash})` : ''}`}
-                  </Flex>
-                ),
-                icon: <Trash2 size={16} />,
-                value: MessageType.TRASH,
-              },
+              // {
+              //   label: (
+              //     <Flex gap={6} align="center">
+              //       {`O'chirilgan${messageData?.result?.counters?.trash ? ` (${messageData?.result?.counters?.trash})` : ''}`}
+              //     </Flex>
+              //   ),
+              //   icon: <Trash2 size={16} />,
+              //   value: MessageType.TRASH,
+              // },
             ]}
           />
           <CustomFilter.BySearch />
@@ -109,40 +104,12 @@ const MessageList = () => {
           <Flex vertical gap={24} className="w-full">
             <Flex vertical gap={18} className="w-full">
               {messageData?.result?.messages?.map(m => (
-                <Card key={m?.id} hoverable className="message-card" onClick={() => handleMessageCardClick(m?.id)}>
-                  <Flex gap={12} className='w-full'>
-                    <Rate count={1} value={m?.starred ? 1 : 0} className="mt-1" />
-                    <Flex vertical gap={8} className='w-full'>
-                      <Flex gap={8} align='center' justify='space-between' className='w-full'>
-                        <Typography.Text type="success">
-                          {
-                            (m?.type === MessageType.OUTBOX || m?.type === MessageType.DRAFT
-                              ? m?.recipient?.name
-                              : m?.sender?.name) || m?.sender?.name || m?.recipient?.name
-                          }
-                        </Typography.Text>
-                        {
-                          m?.opened || readedMessages?.includes(m?.id)
-                            ? <CheckCheck color='#3bb139' size={18} />
-                            : <Asterisk color='#3bb139' size={18} />
-                        }
-                      </Flex>
-                      {
-                        m?.title && (
-                          <Typography.Text strong>{m?.title}</Typography.Text>
-                        )
-                      }
-                      {
-                        m?.message_preview && (
-                          <Typography.Text type="secondary" className='line-clamp-2'>
-                            {m?.message_preview}
-                          </Typography.Text>
-                        )
-                      }
-                      <Typography.Text type='secondary' className='flex items-center gap-1 ml-auto'><Clock size={14} /> {getRightTimeString(m?.created_at)}</Typography.Text>
-                    </Flex>
-                  </Flex>
-                </Card>
+                <MessageCard
+                  key={m?.id}
+                  handleClick={() => handleMessageCardClick(m?.id)}
+                  readedMessages={readedMessages}
+                  message={m}
+                />
               ))}
             </Flex>
             <CustomPagination

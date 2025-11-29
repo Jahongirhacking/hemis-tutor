@@ -1,6 +1,4 @@
-import { Flex, Typography } from 'antd';
-import CustomTabs from '../components/CustomTabs';
-import StudentHistory from './tabs/StudentHistory';
+import { Card, Flex, Typography } from 'antd';
 import StudentList from './tabs/StudentList';
 
 const StudentsPage = () => {
@@ -10,20 +8,9 @@ const StudentsPage = () => {
         Talabalar
       </Typography.Title>
       <Flex className="main-container">
-        <CustomTabs
-          items={[
-            {
-              key: 'list',
-              label: "Talabalar ro'yxati",
-              children: <StudentList />,
-            },
-            {
-              key: 'history',
-              label: 'Talabalar harakati',
-              children: <StudentHistory />,
-            },
-          ]}
-        />
+        <Card className='w-full'>
+          <StudentList />
+        </Card>
       </Flex>
     </Flex>
   );

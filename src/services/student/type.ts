@@ -121,9 +121,43 @@ export interface IAttendanceBySubjectReq {
   semester?: ISemester['code'];
 }
 
+export interface IAttendanceBySubjectStudent {
+  student_id: number;
+  full_name: string;
+  student_id_number: string;
+  group_id: number;
+}
+
+export interface IAttendanceBySubjectSubject {
+  curriculum_subject_id: number;
+  subject_id: number;
+  subject_name: string;
+}
+
+export interface IAttendanceBySubjectRecord {
+  id: number;
+  student_id: number;
+  student_name: string;
+  student_id_number: string;
+  subject_id: number;
+  subject_name: string;
+  lesson_date: string;
+  start_time: string | null;
+  absent_on: number;
+  absent_off: number;
+  training_type: string;
+  group_id: number;
+}
+
 export interface IAttendanceBySubjectRes {
-  subjects: ISubject[];
-  group_id: IGroup['id'];
+  students: IAttendanceBySubjectStudent[];
+  subjects: IAttendanceBySubjectSubject[];
+  attendance_records: IAttendanceBySubjectRecord[];
+  group_id: IGroup['id'] | null;
+  group_ids: IGroup['id'][];
+  semester: ISemester['code'] | null;
+  group_semesters: Record<string, ISemester['code']>;
+  education_year: IEducationYear['code'];
 }
 
 export interface IAttendanceReportReq extends IAttendanceBySubjectReq {

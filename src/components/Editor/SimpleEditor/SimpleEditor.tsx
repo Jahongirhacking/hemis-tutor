@@ -82,7 +82,6 @@ export const SimpleEditor = ({
   }, [initialValue, editor])
 
   const openModal = useCallback(() => {
-    console.log(editor.chain().focus())
     setUrl(editor.getAttributes('link').href)
     setIsOpen(true)
   }, [editor])

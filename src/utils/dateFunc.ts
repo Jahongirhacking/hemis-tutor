@@ -366,7 +366,7 @@ export const formatTime = (seconds: number | null) => {
 };
 
 export const getRightTimeString = (date: string, format?: string): string => {
-  const dateTime = moment(date, format || CURRENT_DATE_FORMAT);
+  const dateTime = moment(date, format || `${CURRENT_DATE_FORMAT} HH:mm:ss`);
   const now = moment();
   if (now.clone().startOf('day').isBefore(dateTime))
     return dateTime.format('HH:mm');

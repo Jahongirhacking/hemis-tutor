@@ -195,7 +195,8 @@
         "average_grade": "O'rtacha baho",
         "registered_address": "Ro'yxatdan o'tgan manzil",
         "student_id": "Talaba ID",
-        "create": "Yaratish"
+        "create": "Yaratish",
+        "visit": "Tashrif"
     },
     "exam": {
         "retry_title": "Testni qayta topshirasizmi?",
@@ -282,7 +283,7 @@
                 "Moliyaviy holat",
                 "Tashqi xizmatlar",
                 "Talaba pasporti",
-                "Manzil tekshiruvi",
+                "Tashrif",
                 "Xabarlar"
             ],
             "navbarBottom": [

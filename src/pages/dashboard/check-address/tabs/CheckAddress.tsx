@@ -149,7 +149,7 @@ const CheckAddress = () => {
               ),
           },
           ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
-            title: `${index + 1}-tashrif (oxirgi)`,
+            title: `Oxirgi ${index + 1}-${t('const.visit')}`,
             dataIndex: 'tutorVisits',
             key: `visit-${index}`,
             render: (visits: ITutorVisit[], record) => (
@@ -169,9 +169,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                            visits?.[index]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                          visits?.[index]?.created_at,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />

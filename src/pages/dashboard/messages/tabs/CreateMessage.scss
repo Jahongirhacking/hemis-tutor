@@ -3,4 +3,11 @@
     max-height: 180px;
     overflow-y: auto;
   }
+
+  .editor {
+    .menu {
+      overflow-y: hidden;
+      overflow-x: auto;
+    }
+  }
 }

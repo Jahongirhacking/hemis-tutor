@@ -38,6 +38,7 @@ import {
   IMessageListRes,
   IPagination,
   IProfileHistoryRes,
+  IRecipient,
   IRecipientsRes,
   IScheduleByWeekRes,
   IScheduleOptionRes,
@@ -453,6 +454,23 @@ export const studentApi = api.injectEndpoints({
         params,
       }),
     }),
+
+    sendMessage: build.mutation<
+      void,
+      {
+        title: string;
+        message: string;
+        recipients: IRecipient['id'][];
+        save_as_draft: boolean;
+      }
+    >({
+      query: body => ({
+        url: `${getBaseUrl(`/message/send`)}`,
+        body,
+        method: 'POST',
+      }),
+      invalidatesTags: ['messages'],
+    }),
   }),
 });
 
@@ -496,4 +514,5 @@ export const {
   useMarkAsReadMutation,
   useGetRecipientsQuery,
   useLazyGetRecipientsQuery,
+  useSendMessageMutation,
 } = studentApi;
