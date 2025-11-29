@@ -1,5 +1,4 @@
 import { responsibilities } from '@/utils/landingSiteContent';
-import { CheckCircle2, Target } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const useInView = (threshold = 0.1) => {
@@ -50,72 +49,117 @@ export function AnimatedAboutSection() {
       <div className="absolute bottom-20 left-10 w-32 h-32 bg-cyan-200 rounded-full opacity-20 animate-float-reverse"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative">
-        <div className={`text-center max-w-3xl mx-auto mb-16 ${aboutInView ? 'slide-in-up' : 'opacity-0'}`}>
-          <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-semibold rounded-full mb-4 hover:scale-105 transition-transform cursor-pointer">
-            Tyutor haqida
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl tracking-wide text-slate-800 mb-4">
-            Tyutorning kunlik vazifalari
-          </h2>
-          <p className="text-slate-600">
-            Tyutor har kuni talabalar bilan ishlash va ularni qo'llab-quvvatlash uchun belgilangan vazifalarni bajaradi
-          </p>
-        </div>
+        <div className={`space-y-8 rounded-[36px] bg-gradient-to-r from-teal-50 via-white to-cyan-50 p-6 shadow-lg sm:p-8 ${aboutInView ? 'slide-in-up' : 'opacity-0'}`}>
+          <div>
+            <p className="font-display text-3xl tracking-wide text-slate-900 sm:text-4xl">
+              Tyutor haqida
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {kunlikVazifalar.map((item, i) => (
-            <div
-              key={i}
-              className={`card-hover bg-white rounded-2xl p-6 shadow-sm border border-slate-100 group flex flex-col ${
-                aboutInView ? 'slide-in-up' : 'opacity-0'
-              }`}
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center text-white text-xl shadow-lg shadow-teal-500/30 group-hover:scale-110 group-hover:rotate-6 transition-all">
-                  {item.icon}
+          <div className="space-y-10">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500/20 to-teal-500/10">
+                  <svg
+                    className="h-5 w-5 text-teal-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                    />
+                  </svg>
                 </div>
-                <div className="px-3 py-1.5 bg-slate-100 rounded-lg text-slate-600 text-sm font-medium group-hover:bg-teal-100 group-hover:text-teal-700 transition-colors">
-                  {item.time}
-                </div>
+                <h3 className="text-lg font-semibold text-slate-800 sm:text-xl">
+                  Tyutorning bir kunlik vazifalari
+                </h3>
               </div>
-              <p className="text-slate-700 text-sm leading-relaxed group-hover:text-slate-900 transition-colors flex-1">
-                {item.task}
-              </p>
-              <div className="mt-4 h-1 bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full transition-all duration-500 group-hover:w-full" style={{ width: '0%' }}></div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {kunlikVazifalar.map((item, index) => (
+                  <div
+                    key={index}
+                    className="group flex flex-col gap-3 rounded-xl border-l-4 border-teal-500 bg-white p-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-teal-600 sm:flex-row sm:items-start sm:gap-4 sm:p-4"
+                  >
+                    <div className="flex items-center gap-3 sm:flex-shrink-0">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white border-2 border-teal-300 transition-all duration-300 group-hover:border-teal-500 group-hover:bg-teal-50 group-hover:scale-110">
+                        <span className="text-sm font-bold text-teal-700 transition-colors duration-300 group-hover:text-teal-600">
+                          {index + 1}
+                        </span>
+                      </div>
+                      <div className="flex-shrink-0 sm:hidden">
+                        <div className="rounded-lg bg-white border-2 border-teal-300 px-3 py-1.5 transition-all duration-300 group-hover:border-teal-500 group-hover:bg-teal-50 group-hover:scale-105">
+                          <p className="text-xs font-semibold text-teal-700 whitespace-nowrap transition-colors duration-300 group-hover:text-teal-600">
+                            {item.time}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium leading-snug text-slate-800 transition-colors duration-300 group-hover:text-slate-900">
+                        {item.task}
+                      </p>
+                    </div>
+                    <div className="hidden flex-shrink-0 pt-0.5 sm:block">
+                      <div className="rounded-lg bg-white border-2 border-teal-300 px-3 py-1.5 transition-all duration-300 group-hover:border-teal-500 group-hover:bg-teal-50 group-hover:scale-105">
+                        <p className="text-xs font-semibold text-teal-700 whitespace-nowrap transition-colors duration-300 group-hover:text-teal-600">
+                          {item.time}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className={`mt-20 ${aboutInView ? 'scale-in stagger-4' : 'opacity-0'}`}>
-          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="blob w-64 h-64 bg-teal-500 -top-20 -right-20 opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 rounded-xl bg-teal-500/20 group-hover:bg-teal-500/30 transition-colors">
-                  <Target className="w-6 h-6 text-teal-400" />
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500/20 to-teal-500/10">
+                  <svg
+                    className="h-5 w-5 text-teal-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
                 </div>
-                <h3 className="font-display text-2xl font-bold text-white">
+                <h3 className="text-lg font-semibold text-slate-800 sm:text-xl">
                   Kasbiy maqsadlari
                 </h3>
               </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {kasbiyMaqsadlar.map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-4 p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-teal-500/30 transition-all cursor-pointer group/item hover:-translate-y-1"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 group-hover/item:rotate-12 transition-all shadow-lg shadow-teal-500/30">
-                      <CheckCircle2 className="w-5 h-5 text-white" />
+              <div className="grid gap-3 sm:grid-cols-2">
+                {kasbiyMaqsadlar.map((item, i) => {
+                  const colors = [
+                    { border: 'border-teal-400', hoverBorder: 'hover:border-teal-500', bg: 'from-teal-400/20 to-teal-400/10', hoverBg: 'group-hover:from-teal-400/30 group-hover:to-teal-400/20', text: 'text-teal-500' },
+                    { border: 'border-cyan-400', hoverBorder: 'hover:border-cyan-500', bg: 'from-cyan-400/20 to-cyan-400/10', hoverBg: 'group-hover:from-cyan-400/30 group-hover:to-cyan-400/20', text: 'text-cyan-500' },
+                    { border: 'border-teal-500', hoverBorder: 'hover:border-teal-600', bg: 'from-teal-500/20 to-teal-500/10', hoverBg: 'group-hover:from-teal-500/30 group-hover:to-teal-500/20', text: 'text-teal-600' },
+                    { border: 'border-cyan-500', hoverBorder: 'hover:border-cyan-600', bg: 'from-cyan-500/20 to-cyan-500/10', hoverBg: 'group-hover:from-cyan-500/30 group-hover:to-cyan-500/20', text: 'text-cyan-600' },
+                  ];
+                  const color = colors[i] || colors[0];
+                  return (
+                    <div
+                      key={i}
+                      className={`group flex items-start gap-3 rounded-xl border-l-4 ${color.border} ${color.hoverBorder} bg-white p-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 sm:gap-4 sm:p-4`}
+                    >
+                      <div className="flex-shrink-0">
+                        <div className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${color.bg} ${color.hoverBg} transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}>
+                          <span className={`text-xs font-bold ${color.text} transition-transform duration-300`}>{i + 1}</span>
+                        </div>
+                      </div>
+                      <p className="flex-1 text-sm font-medium leading-snug text-slate-800 transition-colors duration-300 group-hover:text-slate-900">
+                        {item}
+                      </p>
                     </div>
-                    <p className="text-slate-300 text-sm leading-relaxed group-hover/item:text-white transition-colors">{item}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
