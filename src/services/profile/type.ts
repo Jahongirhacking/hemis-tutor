@@ -1,4 +1,8 @@
-import { IEducationYear, IGroupDetails } from '../student/type';
+import {
+  IEducationYear,
+  IGroupDetails,
+  StudentLivingStatus,
+} from '../student/type';
 
 export interface IGetGroupReq {
   education_year: IEducationYear['code'];
@@ -245,6 +249,7 @@ export interface IGeoLocation {
   latitude: number;
   longitude: number;
   count: number;
+  living_status: StudentLivingStatus;
   students: IGeoLocationStudent[];
 }
 

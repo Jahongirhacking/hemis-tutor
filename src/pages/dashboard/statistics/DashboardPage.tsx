@@ -19,6 +19,7 @@ import {
   TerrainsCard,
   TopAbsentCard,
 } from './components';
+import GeoLocationMapCard from './components/GeoLocationMapCard';
 
 const ResponsiveMasonryFixed = ResponsiveMasonry as unknown as React.FC<any>;
 const MasonryFixed = Masonry as unknown as React.FC<any>;
@@ -120,6 +121,10 @@ const Dashboard = () => {
             <GenderCard {...{ isDark, PRIMARY, CustomTooltip }} />
           </Col>
         </Row>
+
+        <GeoLocationMapCard
+          {...{ isDark, PRIMARY }}
+        />
 
         <ResponsiveMasonryFixed
           columnsCountBreakPoints={{
