@@ -281,6 +281,22 @@ input[type='password'] {
   visibility: hidden;
 }
 
+.map-marker {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -9px; /* distance below circle */
+    left: 50%; /* center horizontally */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #ffffff;
+  }
+}
+
 .time-table {
   .time-column {
     .table-cell {

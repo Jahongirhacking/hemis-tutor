@@ -1,3 +1,4 @@
+import 'leaflet/dist/leaflet.css';
 import ReactDOM from 'react-dom/client';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { I18nextProvider } from 'react-i18next';

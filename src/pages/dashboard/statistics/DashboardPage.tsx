@@ -122,9 +122,7 @@ const Dashboard = () => {
           </Col>
         </Row>
 
-        <GeoLocationMapCard
-          {...{ isDark, PRIMARY }}
-        />
+        <GeoLocationMapCard {...{ isDark, PRIMARY }} />
 
         <ResponsiveMasonryFixed
           columnsCountBreakPoints={{

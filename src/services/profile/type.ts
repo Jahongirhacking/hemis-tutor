@@ -239,8 +239,11 @@ export interface IDistrictStat {
 }
 
 export interface IGeoLocationStudent {
-  id: number;
+  address: string;
   full_name: string;
+  id: number;
+  living_status_color: string;
+  living_status_name: string;
   student_id_number: string;
 }
 

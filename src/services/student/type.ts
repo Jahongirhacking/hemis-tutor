@@ -710,6 +710,17 @@ export const getLivingStatusName = (code: StudentLivingStatus) => {
   }
 };
 
+export const getLivingStatusCode = (name: string): StudentLivingStatus => {
+  switch (name) {
+    case 'Yashil hudud':
+      return StudentLivingStatus.GREEN;
+    case 'Sariq hudud':
+      return StudentLivingStatus.YELLOW;
+    case 'Qizil hudud':
+      return StudentLivingStatus.RED;
+  }
+};
+
 export interface ICheckStudentAddressItem {
   id: number;
   first_name: string;
