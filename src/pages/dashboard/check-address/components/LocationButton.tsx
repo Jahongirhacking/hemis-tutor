@@ -26,9 +26,9 @@ const LocationButton = ({
       type={hasGeolocation ? 'link' : 'text'}
       {...(hasGeolocation && href
         ? {
-          href,
-          target: '_blank',
-        }
+            href,
+            target: '_blank',
+          }
         : {})}
       className="!p-0 !h-auto hover:bg-transparent"
       style={{
@@ -43,9 +43,7 @@ const LocationButton = ({
       >
         <MapPin
           size={16}
-          className={
-            hasGeolocation ? '#14b8a6' : '#8c8c8c'
-          }
+          className={hasGeolocation ? '#14b8a6' : '#8c8c8c'}
           style={{ flexShrink: 0 }}
         />
         <Typography.Text

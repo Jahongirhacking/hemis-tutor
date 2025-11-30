@@ -56,21 +56,27 @@ const AttendanceReport = () => {
             title: t('const.student'),
             key: 'student',
             dataIndex: 'student',
-            render: (_, record) => <CustomLink.Student student={record?.student} />,
+            render: (_, record) => (
+              <CustomLink.Student student={record?.student} />
+            ),
           },
           {
             title: `${toFirstCapitalLetter(t('const.explicable'))} (${t('const.hours_plural')})`,
             key: 'absent_on',
             dataIndex: 'absent_on',
             sorter: (a, b) => (a?.absent_on || 0) - (b?.absent_on || 0),
-            render: value => <Tag color="orange">{`${value} ${t('const.hours_plural')}`}</Tag>,
+            render: value => (
+              <Tag color="orange">{`${value} ${t('const.hours_plural')}`}</Tag>
+            ),
           },
           {
             title: `${toFirstCapitalLetter(t('const.not_explicable'))} (${t('const.hours_plural')})`,
             key: 'absent_off',
             dataIndex: 'absent_off',
             sorter: (a, b) => (a?.absent_off || 0) - (b?.absent_off || 0),
-            render: value => <Tag color="red">{`${value} ${t('const.hours_plural')}`}</Tag>,
+            render: value => (
+              <Tag color="red">{`${value} ${t('const.hours_plural')}`}</Tag>
+            ),
           },
           {
             title: t('const.total'),
@@ -84,7 +90,10 @@ const AttendanceReport = () => {
           {
             title: t('const.actions'),
             render: (_, record) => (
-              <Button type="link" onClick={() => setOpenDetails(record?.student)}>
+              <Button
+                type="link"
+                onClick={() => setOpenDetails(record?.student)}
+              >
                 {t('const.in_detail')}
               </Button>
             ),
@@ -94,7 +103,6 @@ const AttendanceReport = () => {
         dataSource={attendanceReport || []}
         loading={isFetching}
       />
-
 
       <CustomDrawer
         open={!!openDetails}

@@ -227,7 +227,7 @@ const CheckAddress = () => {
               title: t('const.pinfl'),
               key: 'passport_pin',
               dataIndex: 'passport_pin',
-              width: 150
+              width: 150,
             },
             {
               title: (
@@ -263,7 +263,7 @@ const CheckAddress = () => {
                   }
                 />
               ),
-              width: 130
+              width: 130,
             },
             {
               title: (
@@ -281,11 +281,16 @@ const CheckAddress = () => {
                       current_address={`${[record?.currentDistrict?.name, record?.currentTerrain?.name]?.join(', ')}`}
                     />
                   ) : (
-                    <Typography.Text type="secondary" className='color-[#14b8a6]'>-</Typography.Text>
+                    <Typography.Text
+                      type="secondary"
+                      className="color-[#14b8a6]"
+                    >
+                      -
+                    </Typography.Text>
                   )}
                 </Flex>
               ),
-              width: 180
+              width: 180,
             },
             {
               title: t('const.living_status'),
@@ -310,7 +315,7 @@ const CheckAddress = () => {
                 ) : (
                   <Typography.Text type="secondary">-</Typography.Text>
                 ),
-              width: 140
+              width: 140,
             },
             ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
               title: (
@@ -342,9 +347,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                          visits?.[index]?.created_at,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ).format('DD.MM.YYYY')
+                            visits?.[index]?.created_at,
+                            'YYYY-MM-DD HH:mm:ss'
+                          ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />
