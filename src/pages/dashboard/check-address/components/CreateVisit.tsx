@@ -150,7 +150,6 @@ const CreateVisit = ({
               border: `2px solid ${PRIMARY_COLOR}30`,
               background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
             }}
-            bodyStyle={{ padding: '24px' }}
           >
             <Flex vertical gap={20}>
               <Flex align="center" gap={12}>
@@ -324,7 +323,6 @@ const CreateVisit = ({
               border: `2px solid ${PRIMARY_COLOR}30`,
               background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
             }}
-            bodyStyle={{ padding: '24px' }}
           >
             <Flex vertical gap={20}>
               <Flex align="center" gap={12}>
@@ -423,7 +421,6 @@ const CreateVisit = ({
                       background: `linear-gradient(135deg, ${PRIMARY_COLOR}10 0%, ${PRIMARY_COLOR}05 100%)`,
                       overflow: 'hidden',
                     }}
-                    bodyStyle={{ padding: '20px' }}
                   >
                     <Space direction="vertical" size={16} className="w-full">
                       <Flex justify="space-between" align="center">

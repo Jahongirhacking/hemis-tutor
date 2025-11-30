@@ -39,7 +39,7 @@ export const profileApi = api.injectEndpoints({
 
     getDashboardStatistics: build.query<
       IBaseDataRes<IDashboardStatisticsRes>,
-      { education_year?: string; semester?: string }
+      { education_year?: string; semester?: string; expand: string }
     >({
       query: params => ({
         url: `${getBaseUrl('/statistics/dashboard')}`,
