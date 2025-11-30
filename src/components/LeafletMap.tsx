@@ -57,14 +57,11 @@ export function LeafletMap({
     });
 
     // Basemap
-    L.tileLayer(
-      'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
-      {
-        attribution: '© Stadia Maps © OpenMapTiles © OpenStreetMap',
-        maxZoom: 20,
-        minZoom: 6,
-      }
-    ).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19,
+      minZoom: 6,
+    }).addTo(map);
 
     // Light Uzbekistan rectangle
     L.rectangle(BOUNDS as L.LatLngBoundsExpression, {
@@ -112,7 +109,7 @@ export function LeafletMap({
       align-items: center;
       justify-content: center;
     ">
-      <div style="background: white; width: 10px; height: 10px; border-radius: 50%;"></div>
+      <div style="background: white; width: 6px; height: 6px; border-radius: 50%;"></div>
     </div>
   `,
         iconSize: [isSelected ? 36 : 28, isSelected ? 36 : 28],
@@ -139,8 +136,13 @@ export function LeafletMap({
       ${loc?.students?.map(
         student => `
         <div class="mb-3">
-          <b style="color: #1f2937;">${student?.address || ''}</b><br>
-        <small style="color: #6b7280;">Talaba: ${student?.full_name || ''} - <span style="color: ${student?.living_status_color}">${student?.living_status_name}<span></small>
+          <b style="color: #1f2937;">${student?.address || ''}</b>
+          <p style="color: #6b7280; margin-top: 4px">Talaba: ${student?.full_name || ''} - <span style="color: ${
+            STATUS_COLORS?.[
+              getLivingStatusCode(loc?.students?.[0]?.living_status_name)
+            ] || loc?.students?.[0]?.living_status_color
+          }">${student?.living_status_name}<span>
+          </p>
         </div>
         `
       )}
@@ -180,9 +182,9 @@ export function LeafletMap({
       .then(geojson => {
         const layer = L.geoJSON(geojson, {
           style: {
-            color: '#14b8a548',
+            color: '#14b8a58c',
             weight: 5,
-            fillOpacity: 0.1,
+            fillOpacity: 0.3,
           },
         }).addTo(map);
 

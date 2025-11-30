@@ -1,5 +1,5 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
-import { Card, Skeleton, Typography } from 'antd';
+import { Card, Flex, Skeleton, Typography } from 'antd';
 import { BarChart3 } from 'lucide-react';
 import {
   Bar,
@@ -16,6 +16,7 @@ const CourseCard = ({
   isDark,
   PRIMARY,
   CustomTooltip,
+  COLORS,
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.COURSE_STATISTICS}`,
@@ -75,6 +76,38 @@ const CourseCard = ({
           </BarChart>
         </ResponsiveContainer>
       )}
+
+      {/* Legend */}
+      <Flex vertical gap={12} style={{ marginTop: '16px' }}>
+        {isFetching ? (
+          <Skeleton.Input active className="!w-full" />
+        ) : (
+          <>
+            {courseData?.map((item, index) => (
+              <Flex key={index} justify="space-between" align="center">
+                <Flex gap={8} align="center">
+                  <div
+                    style={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: '50%',
+                      background: COLORS[index % COLORS.length],
+                    }}
+                  />
+                  <Typography.Text
+                    style={{ color: isDark ? '#fff' : '#1a1a1a' }}
+                  >
+                    {item.name}
+                  </Typography.Text>
+                </Flex>
+                <Typography.Text strong style={{ color: PRIMARY }}>
+                  {item.value}
+                </Typography.Text>
+              </Flex>
+            ))}
+          </>
+        )}
+      </Flex>
     </Card>
   );
 };

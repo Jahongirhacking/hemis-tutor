@@ -1,34 +1,28 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { Card, Flex, Skeleton, Typography } from 'antd';
-import { BarChart4, UserCheck } from 'lucide-react';
-import {
-  PolarAngleAxis,
-  PolarGrid,
-  PolarRadiusAxis,
-  Radar,
-  RadarChart,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts';
+import { UserCheck } from 'lucide-react';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const SocialCard = ({
   isDark,
   PRIMARY,
   CustomTooltip,
+  COLORS,
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${[ExpandItem.SOCIAL_STATISTICS]?.join(',')}`,
   });
 
-  // Social statistics radar chart
-  const socialRadarData =
+  // Map data to pie chart format
+  const socialData =
     data?.result?.social_statistics?.map(item => ({
-      category:
+      name:
         item.category_name.length > 15
           ? item.category_name.substring(0, 15) + '...'
           : item.category_name,
       value: item.count,
+      percent: item.percent,
     })) ?? [];
 
   return (
@@ -57,28 +51,66 @@ const SocialCard = ({
           active
           className="!m-auto !w-full !h-[180px] !overflow-hidden"
         >
-          <BarChart4 size={100} style={{ color: '#bfbfbf' }} />
+          <UserCheck size={100} style={{ color: '#bfbfbf' }} />
         </Skeleton.Node>
       ) : (
-        <ResponsiveContainer width="100%" height={350}>
-          <RadarChart data={socialRadarData}>
-            <PolarGrid stroke={isDark ? '#ffffff30' : '#00000020'} />
-            <PolarAngleAxis
-              dataKey="category"
-              stroke={isDark ? '#fff' : '#666'}
-              style={{ fontSize: '11px' }}
-            />
-            <PolarRadiusAxis stroke={isDark ? '#fff' : '#666'} />
-            <Radar
-              name="Talabalar"
-              dataKey="value"
-              stroke={PRIMARY}
-              fill={PRIMARY}
-              fillOpacity={0.6}
-            />
-            <Tooltip content={<CustomTooltip />} />
-          </RadarChart>
-        </ResponsiveContainer>
+        <>
+          <ResponsiveContainer width="100%" height={280}>
+            <PieChart>
+              <Pie
+                data={socialData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={90}
+                paddingAngle={5}
+                label={(entry: any) => `${entry.percent.toFixed(1)}%`}
+              >
+                {socialData.map((_, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+
+          {/* Legend */}
+          <Flex vertical gap={12} style={{ marginTop: '16px' }}>
+            {isFetching ? (
+              <Skeleton.Input active className="!w-full" />
+            ) : (
+              <>
+                {socialData.map((item, index) => (
+                  <Flex key={index} justify="space-between" align="center">
+                    <Flex gap={8} align="center">
+                      <div
+                        style={{
+                          width: 12,
+                          height: 12,
+                          borderRadius: '50%',
+                          background: COLORS[index % COLORS.length],
+                        }}
+                      />
+                      <Typography.Text
+                        style={{ color: isDark ? '#fff' : '#1a1a1a' }}
+                      >
+                        {item.name}
+                      </Typography.Text>
+                    </Flex>
+                    <Typography.Text strong style={{ color: PRIMARY }}>
+                      {item.value}
+                    </Typography.Text>
+                  </Flex>
+                ))}
+              </>
+            )}
+          </Flex>
+        </>
       )}
     </Card>
   );

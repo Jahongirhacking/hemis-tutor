@@ -8,7 +8,6 @@ import {
   ContractCard,
   CourseCard,
   DistrictsCard,
-  EducationFormCard,
   ExpandItem,
   GenderCard,
   GeoLocationCard,
@@ -16,7 +15,6 @@ import {
   PerformanceCard,
   SocialCard,
   StatisticsCard,
-  TerrainsCard,
   TopAbsentCard,
 } from './components';
 import GeoLocationMapCard from './components/GeoLocationMapCard';
@@ -104,16 +102,14 @@ const Dashboard = () => {
 
         {/* Main Charts Row */}
         <Row gutter={[16, 16]}>
-          {/* Education Forms Pie Chart */}
+          {/* Living Status & Geo Location */}
           <Col xs={24} lg={8}>
-            <EducationFormCard
-              {...{ COLORS, CustomTooltip, PRIMARY, isDark }}
-            />
+            <LivingStatusCard {...{ isDark, PRIMARY, COLORS }} />
           </Col>
 
           {/* Course Distribution Bar Chart */}
           <Col xs={24} lg={8}>
-            <CourseCard {...{ CustomTooltip, PRIMARY, isDark }} />
+            <CourseCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
           </Col>
 
           {/* Gender Distribution */}
@@ -121,8 +117,6 @@ const Dashboard = () => {
             <GenderCard {...{ isDark, PRIMARY, CustomTooltip }} />
           </Col>
         </Row>
-
-        <GeoLocationMapCard {...{ isDark, PRIMARY }} />
 
         <ResponsiveMasonryFixed
           columnsCountBreakPoints={{
@@ -132,33 +126,27 @@ const Dashboard = () => {
           className="dashboard-masonry"
         >
           <MasonryFixed gutter="1.5rem">
-            {/* Social Statistics & Absenteeism */}
-            {/* Social Statistics Radar */}
-            <SocialCard {...{ isDark, PRIMARY, CustomTooltip }} />
-
             {/* Absenteeism Statistics */}
             <TopAbsentCard {...{ isDark, PRIMARY, CustomTooltip }} />
-
-            {/* Terrain & District Statistics */}
-            {/* Terrain Distribution */}
-            <TerrainsCard {...{ isDark, PRIMARY, CustomTooltip }} />
 
             {/* District Statistics */}
             <DistrictsCard {...{ isDark, PRIMARY }} />
 
-            {/* Performance & Contracts */}
             {/* Performance Stats */}
             <PerformanceCard {...{ isDark, PRIMARY }} />
 
             {/* Contract Stats */}
             <ContractCard {...{ isDark, PRIMARY }} />
 
-            {/* Living Status & Geo Location */}
-            <LivingStatusCard {...{ isDark, PRIMARY, COLORS }} />
-
+            {/* Geo */}
             <GeoLocationCard {...{ isDark, PRIMARY }} />
+
+            {/* Social Statistics Radar */}
+            <SocialCard {...{ isDark, PRIMARY, CustomTooltip, COLORS }} />
           </MasonryFixed>
         </ResponsiveMasonryFixed>
+
+        <GeoLocationMapCard {...{ isDark, PRIMARY }} />
       </Flex>
     </Flex>
   );

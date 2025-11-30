@@ -49,7 +49,7 @@ const UzbekistanMapCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
 
   return (
     <Card
-      className="w-full uzbekistan-map-card"
+      className="w-full uzbekistan-map-card mb-[80px]"
       title={
         <Flex justify="space-between" align="center">
           <Typography.Title

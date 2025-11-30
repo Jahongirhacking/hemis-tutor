@@ -27,7 +27,7 @@ const PerformanceCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       }}
     >
       <Flex vertical gap={16}>
-        <Flex justify="space-between" align="center">
+        <Flex justify="space-between" align="center" wrap>
           <Flex align="center" gap={8}>
             <CheckCircle size={20} className="text-green-400" />
             <Typography.Text style={{ color: isDark ? '#fff' : '#1a1a1a' }}>
@@ -61,7 +61,7 @@ const PerformanceCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
             )}
           </Flex>
         </Flex>
-        <Flex justify="space-between" align="center">
+        <Flex justify="space-between" align="center" wrap>
           <Flex align="center" gap={8}>
             <CheckCircle size={20} className="text-blue-400" />
             <Typography.Text style={{ color: isDark ? '#fff' : '#1a1a1a' }}>
@@ -95,7 +95,7 @@ const PerformanceCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
             )}
           </Flex>
         </Flex>
-        <Flex justify="space-between" align="center">
+        <Flex justify="space-between" align="center" wrap>
           <Flex align="center" gap={8}>
             <CheckCircle size={20} className="text-yellow-400" />
             <Typography.Text style={{ color: isDark ? '#fff' : '#1a1a1a' }}>
@@ -129,7 +129,7 @@ const PerformanceCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
             )}
           </Flex>
         </Flex>
-        <Flex justify="space-between" align="center">
+        <Flex justify="space-between" align="center" wrap>
           <Flex align="center" gap={8}>
             <XCircle size={20} className="text-red-400" />
             <Typography.Text style={{ color: isDark ? '#fff' : '#1a1a1a' }}>
