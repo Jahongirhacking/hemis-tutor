@@ -26,9 +26,9 @@ const LocationButton = ({
       type={hasGeolocation ? 'link' : 'text'}
       {...(hasGeolocation && href
         ? {
-            href,
-            target: '_blank',
-          }
+          href,
+          target: '_blank',
+        }
         : {})}
       className="!p-0 !h-auto hover:bg-transparent"
       style={{
@@ -38,25 +38,25 @@ const LocationButton = ({
     >
       <Space
         size={6}
-        align="start"
+        align="center"
         className={hasGeolocation ? 'hover:opacity-80 transition-opacity' : ''}
       >
         <MapPin
           size={16}
           className={
-            hasGeolocation ? 'text-blue-600 mt-0.5' : 'text-gray-400 mt-0.5'
+            hasGeolocation ? '#14b8a6' : '#8c8c8c'
           }
           style={{ flexShrink: 0 }}
         />
-        <Typography.Link
+        <Typography.Text
           style={{
-            color: hasGeolocation ? '#1890ff' : '#8c8c8c',
+            color: hasGeolocation ? '#14b8a6' : '#8c8c8c',
             fontSize: '13px',
             lineHeight: '1.4',
           }}
         >
           {current_address || "Manzil ko'rsatilmagan"}
-        </Typography.Link>
+        </Typography.Text>
       </Space>
     </Button>
   );

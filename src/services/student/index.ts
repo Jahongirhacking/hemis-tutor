@@ -55,9 +55,9 @@ import {
 } from './type';
 
 const DEFAULT_EXPAND =
-  'tutorVisits,group,currentProvince,currentDistrict,currentTerrain,studentLivingStatus,accommodation';
+  'tutorVisits,group,currentProvince,currentDistrict,currentTerrain,studentLivingStatus,accommodation, meta.educationType, meta.educationForm, meta.educationYear, meta.semestr';
 const DEFAULT_FIELDS =
-  'id,first_name,second_name,third_name,group.name,_student_living_status,current_province,_accommodation';
+  'id,first_name,second_name,third_name,passport_pin,group.name,_student_living_status,_current_province,_accommodation, meta.id';
 
 export const studentApi = api.injectEndpoints({
   endpoints: build => ({

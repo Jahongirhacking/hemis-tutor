@@ -518,7 +518,7 @@ const CreateVisit = ({
                           fontWeight: 500,
                           boxShadow: `0 4px 12px ${PRIMARY_COLOR}40`,
                         }}
-                        onClick={handleLocate}
+                        onClick={() => handleLocate(isLocating)}
                         loading={isLocating}
                         block
                         size="large"

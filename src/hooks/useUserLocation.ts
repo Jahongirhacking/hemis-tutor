@@ -5,7 +5,8 @@ function useUserLocation() {
   const [location, setLocation] = useState<{ lat: number; lng: number }>(null);
   const [error, setError] = useState(null);
 
-  const handleLocate = useCallback(() => {
+  const handleLocate = useCallback((locating: boolean = false) => {
+    if (locating) return;
     setIsLocating(true);
     if (!navigator.geolocation) {
       setError('Geolocation is not supported by your browser');
