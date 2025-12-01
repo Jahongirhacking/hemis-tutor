@@ -24,7 +24,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
       trend:
         (statistics?.result?.students?.active_students ?? 0) >
-          (statistics?.result?.students?.inactive_students ?? 0)
+        (statistics?.result?.students?.inactive_students ?? 0)
           ? 'up'
           : 'down',
       trendValue: `${(

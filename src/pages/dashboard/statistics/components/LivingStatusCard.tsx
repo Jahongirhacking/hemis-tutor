@@ -4,7 +4,11 @@ import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
 import { STATUS_COLORS } from './GeoLocationMapCard';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
-const LivingStatusCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
+const LivingStatusCard = ({
+  isDark,
+  PRIMARY,
+  ...props
+}: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.LIVING_STATUS_STATISTICS}`,
   });

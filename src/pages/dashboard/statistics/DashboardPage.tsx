@@ -98,23 +98,32 @@ const Dashboard = () => {
         </Flex>
 
         {/* Stat Cards */}
-        <StatisticsCard className='upper-element' {...{ isDark, PRIMARY }} />
+        <StatisticsCard className="upper-element" {...{ isDark, PRIMARY }} />
 
         {/* Main Charts Row */}
         <Row gutter={[16, 16]}>
           {/* Living Status & Geo Location */}
           <Col xs={24} lg={8}>
-            <LivingStatusCard className='upper-element' {...{ isDark, PRIMARY, COLORS }} />
+            <LivingStatusCard
+              className="upper-element"
+              {...{ isDark, PRIMARY, COLORS }}
+            />
           </Col>
 
           {/* Course Distribution Bar Chart */}
           <Col xs={24} lg={8}>
-            <CourseCard className='upper-element' {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
+            <CourseCard
+              className="upper-element"
+              {...{ CustomTooltip, COLORS, PRIMARY, isDark }}
+            />
           </Col>
 
           {/* Gender Distribution */}
           <Col xs={24} lg={8}>
-            <GenderCard className='upper-element' {...{ isDark, PRIMARY, CustomTooltip }} />
+            <GenderCard
+              className="upper-element"
+              {...{ isDark, PRIMARY, CustomTooltip }}
+            />
           </Col>
         </Row>
 
@@ -127,26 +136,41 @@ const Dashboard = () => {
         >
           <MasonryFixed gutter="1.5rem">
             {/* Absenteeism Statistics */}
-            <TopAbsentCard className='upper-element' {...{ isDark, PRIMARY, CustomTooltip }} />
+            <TopAbsentCard
+              className="upper-element"
+              {...{ isDark, PRIMARY, CustomTooltip }}
+            />
 
             {/* District Statistics */}
-            <DistrictsCard className='upper-element' {...{ isDark, PRIMARY }} />
+            <DistrictsCard className="upper-element" {...{ isDark, PRIMARY }} />
 
             {/* Performance Stats */}
-            <PerformanceCard className='upper-element' {...{ isDark, PRIMARY }} />
+            <PerformanceCard
+              className="upper-element"
+              {...{ isDark, PRIMARY }}
+            />
 
             {/* Contract Stats */}
-            <ContractCard className='upper-element' {...{ isDark, PRIMARY }} />
+            <ContractCard className="upper-element" {...{ isDark, PRIMARY }} />
 
             {/* Geo */}
-            <GeoLocationCard className='upper-element' {...{ isDark, PRIMARY }} />
+            <GeoLocationCard
+              className="upper-element"
+              {...{ isDark, PRIMARY }}
+            />
 
             {/* Social Statistics Radar */}
-            <SocialCard className='upper-element' {...{ isDark, PRIMARY, CustomTooltip, COLORS }} />
+            <SocialCard
+              className="upper-element"
+              {...{ isDark, PRIMARY, CustomTooltip, COLORS }}
+            />
           </MasonryFixed>
         </ResponsiveMasonryFixed>
 
-        <GeoLocationMapCard className='upper-element' {...{ isDark, PRIMARY }} />
+        <GeoLocationMapCard
+          className="upper-element"
+          {...{ isDark, PRIMARY }}
+        />
       </Flex>
     </Flex>
   );

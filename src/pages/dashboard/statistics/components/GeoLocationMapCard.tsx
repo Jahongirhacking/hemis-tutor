@@ -22,7 +22,11 @@ const STATUS_LABELS = {
   [StudentLivingStatus.RED]: 'Qizil hudud',
 };
 
-const UzbekistanMapCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
+const UzbekistanMapCard = ({
+  isDark,
+  PRIMARY,
+  ...props
+}: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
   });
@@ -116,7 +120,7 @@ const UzbekistanMapCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) 
           {/* Map Container */}
           <LeafletMap
             locations={data?.result?.geo_location_statistics?.locations}
-            onLocationSelect={() => { }}
+            onLocationSelect={() => {}}
             selectedLocation={null}
           />
 

@@ -7,7 +7,11 @@ import MessageList from './tabs/MessageList';
 
 const MessagesPage = () => {
   return (
-    <Flex vertical gap={24} className="dashboard__page external-service-page upper-element">
+    <Flex
+      vertical
+      gap={24}
+      className="dashboard__page external-service-page upper-element"
+    >
       <Flex align="center" gap={12}>
         <div
           style={{

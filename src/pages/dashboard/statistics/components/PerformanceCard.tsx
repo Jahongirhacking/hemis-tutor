@@ -3,7 +3,11 @@ import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
-const PerformanceCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
+const PerformanceCard = ({
+  isDark,
+  PRIMARY,
+  ...props
+}: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.PERFORMANCE}`,
   });

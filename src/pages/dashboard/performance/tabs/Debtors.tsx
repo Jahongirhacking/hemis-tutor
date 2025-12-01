@@ -33,9 +33,7 @@ const Debtors = () => {
                   key: '1',
                   label: (
                     <Flex justify="space-between" gap={8}>
-                      <Typography.Text strong>
-                        {d?._student}
-                      </Typography.Text>
+                      <Typography.Text strong>{d?._student}</Typography.Text>
                       <Tag color="error">{d?.credit}</Tag>
                     </Flex>
                   ),

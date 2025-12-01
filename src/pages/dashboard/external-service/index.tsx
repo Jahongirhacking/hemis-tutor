@@ -3,7 +3,11 @@ import { Flex, Tabs, Typography } from 'antd';
 
 const ExternalServicePage = () => {
   return (
-    <Flex vertical gap={18} className="dashboard__page external-service-page upper-element">
+    <Flex
+      vertical
+      gap={18}
+      className="dashboard__page external-service-page upper-element"
+    >
       <Typography.Title level={2} style={{ margin: 0 }}>
         Tashqi xizmatlar
       </Typography.Title>

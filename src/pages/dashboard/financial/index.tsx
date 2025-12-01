@@ -6,7 +6,11 @@ import ContractList from './tabs/ContractList';
 
 const FinancialPage = () => {
   return (
-    <Flex vertical gap={24} className="dashboard__page financial-page upper-element">
+    <Flex
+      vertical
+      gap={24}
+      className="dashboard__page financial-page upper-element"
+    >
       <Flex align="center" gap={12}>
         <div
           style={{
