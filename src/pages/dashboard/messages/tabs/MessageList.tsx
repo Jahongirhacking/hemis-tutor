@@ -3,7 +3,16 @@ import NotFoundAnimation from '@/components/SpecialComponents/NotFoundAnimation'
 import { usePagination } from '@/hooks/usePagination';
 import { useGetMessagesQuery } from '@/services/student';
 import { IMessage, MessageType } from '@/services/student/type';
-import { Badge, Card, Divider, Flex, Segmented, Skeleton } from 'antd';
+import {
+  Badge,
+  Card,
+  Col,
+  Divider,
+  Flex,
+  Row,
+  Segmented,
+  Skeleton,
+} from 'antd';
 import { Inbox, NotepadText, Send } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -106,16 +115,18 @@ const MessageList = () => {
           </GenerateSkeleton>
         ) : messageData?.result?.messages?.length ? (
           <Flex vertical gap={24} className="w-full">
-            <Flex vertical gap={18} className="w-full">
-              {messageData?.result?.messages?.map(m => (
-                <MessageCard
-                  key={m?.id}
-                  handleClick={() => handleMessageCardClick(m?.id)}
-                  readedMessages={readedMessages}
-                  message={m}
-                />
+            <Row gutter={[18, 18]} className="w-full">
+              {messageData?.result?.messages?.map((m: IMessage) => (
+                <Col xs={24} xxl={12}>
+                  <MessageCard
+                    key={m?.id}
+                    handleClick={() => handleMessageCardClick(m?.id)}
+                    readedMessages={readedMessages}
+                    message={m}
+                  />
+                </Col>
               ))}
-            </Flex>
+            </Row>
             <CustomPagination
               total={messageData?.result?.pagination?.total_count}
             />

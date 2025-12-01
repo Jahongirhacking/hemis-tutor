@@ -1,6 +1,7 @@
 import Loading from '@/components/Common/Loading';
 import { ControlledFlowContext } from '@/components/ControlledFlow';
 import { IUniversity } from '@/services/type';
+import { setUniversityInfo } from '@/store/slices/authSlice';
 import { parseXML } from '@/utils/objectFunc';
 import { localStorageNames, setLocalStorage } from '@/utils/storageFunc';
 import {
@@ -13,6 +14,7 @@ import { Button, Form, message, Select } from 'antd';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 export interface IUniversityInfo {
   logo: string;
@@ -26,6 +28,7 @@ const UniversityForm = () => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [isUniProfileLoading, setIsUniProfileLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClick = async () => {
     try {
@@ -56,16 +59,18 @@ const UniversityForm = () => {
         ) {
           universityProfile = universityProfile.data;
         }
-        setLocalStorage(localStorageNames.university, {
-          name:
-            typeof universityProfile?.name === 'object'
-              ? universityProfile?.name?.value
-              : universityProfile?.name,
-          logo:
-            typeof universityProfile?.logo === 'object'
-              ? universityProfile?.logo?.value
-              : universityProfile?.logo,
-        });
+        dispatch(
+          setUniversityInfo({
+            name:
+              typeof universityProfile?.name === 'object'
+                ? universityProfile?.name?.value
+                : universityProfile?.name,
+            logo:
+              typeof universityProfile?.logo === 'object'
+                ? universityProfile?.logo?.value
+                : universityProfile?.logo,
+          })
+        );
       }
       pushData(form.getFieldsValue());
       setNextIndex();

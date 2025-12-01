@@ -18,6 +18,10 @@ interface IAuth {
   isMobileNavBottom: boolean;
   isMobile: boolean;
   profile: IGetProfileRes;
+  universityInfo: {
+    name: string;
+    logo: string;
+  };
 }
 
 const token = getLocalStorage(localStorageNames.HEMIS_TOKEN);
@@ -28,6 +32,10 @@ const initialState: IAuth = {
     getLocalStorage(localStorageNames.isMobileNavBottom) ?? false,
   isMobile: false,
   profile: null,
+  universityInfo: getLocalStorage(localStorageNames.university) ?? {
+    name: 'HEMIS axborot tizimi universiteti',
+    logo: 'https://univer.hemis.uz/static/assets/32dfc254/img/gerb.png',
+  },
 };
 
 const DATE_FORMAT = 'YYYY-MM-DD';
@@ -64,6 +72,16 @@ const authSlice = createSlice({
     setStateIsMobile: (state, action: PayloadAction<boolean>) => {
       state.isMobile = action.payload;
     },
+    setUniversityInfo: (
+      state,
+      action: PayloadAction<IAuth['universityInfo']>
+    ) => {
+      state.universityInfo = action?.payload || initialState?.universityInfo;
+      setLocalStorage(
+        localStorageNames.university,
+        action?.payload || initialState.universityInfo
+      );
+    },
   },
   extraReducers: builder => {
     builder
@@ -97,6 +115,11 @@ export const logoutThunk = () => (dispatch: AppDispatch) => {
   dispatch(api.util.resetApiState());
 };
 
-export const { logout, register, setMobileNavBottom, setStateIsMobile } =
-  authSlice.actions;
+export const {
+  logout,
+  register,
+  setMobileNavBottom,
+  setStateIsMobile,
+  setUniversityInfo,
+} = authSlice.actions;
 export default authSlice.reducer;

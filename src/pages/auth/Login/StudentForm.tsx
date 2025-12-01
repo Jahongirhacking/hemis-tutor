@@ -1,12 +1,17 @@
 import { ControlledFlowContext } from '@/components/ControlledFlow';
+import { RootState } from '@/store/store';
 import { LoadingOutlined, LoginOutlined } from '@ant-design/icons';
-import { Button, Flex, Form, Input } from 'antd';
+import { Button, Flex, Form, Image, Input, Typography } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
   const { form, onSubmit, data } = useContext(ControlledFlowContext);
   const { t } = useTranslation();
+  const universityInfo = useSelector(
+    (store: RootState) => store.authSlice.universityInfo
+  );
 
   const handleSubmit = async () => {
     try {
@@ -22,7 +27,18 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
 
   return (
     <div className="customBox login__main--card">
-      <h2 className="customBox__title">{t('login.student_form.title')}</h2>
+      <Flex vertical justify="center" gap={4} align="center" className="mb-5">
+        <Image
+          fallback="/images/gerb.png"
+          width={80}
+          preview={false}
+          src={universityInfo?.logo}
+        />
+        <Typography.Text strong className="text-[15pt] text-center">
+          {universityInfo?.name}
+        </Typography.Text>
+      </Flex>
+
       <Form
         onFinish={handleSubmit}
         layout="vertical"
@@ -31,6 +47,7 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
       >
         <Form.Item name={'login'} label={t('login.student_form.login_label')}>
           <Input
+            autoFocus
             size="large"
             placeholder={t('login.student_form.login_placeholder')}
           />
