@@ -25,13 +25,10 @@ const handleNavClick = (
   if (sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Header balandligi uchun
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
+      // scrollIntoView CSS scroll-margin-top bilan birga ishlaydi
+      element.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       });
     }
   }
