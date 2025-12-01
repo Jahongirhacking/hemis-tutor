@@ -38,7 +38,7 @@ const RootLayout = () => {
       </div>
 
       <div className="login__footer">
-        <p>Hemis {moment().year()}</p>
+        <p>HEMIS {moment().year()}</p>
       </div>
     </div>
   );

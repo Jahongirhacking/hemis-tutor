@@ -22,7 +22,8 @@ const LoginPage = () => {
     getLocalStorage(localStorageNames.universityApi) ? 1 : 0
   );
   const [form] = Form.useForm();
-  const [login, { isLoading }] = useLoginMutation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [login] = useLoginMutation();
 
   const { access } = useSelector((store: RootState) => store.authSlice);
   const { t } = useTranslation();
@@ -32,6 +33,7 @@ const LoginPage = () => {
   }, []);
 
   const submit = async (values: ILoginReq) => {
+    setIsLoading(true);
     try {
       const recaptcha = await window.grecaptcha.execute(RECAPTCHA_KEY, {
         action: 'tutorLogin',
@@ -43,6 +45,8 @@ const LoginPage = () => {
       });
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
