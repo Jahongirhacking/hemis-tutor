@@ -17,6 +17,7 @@ const CourseCard = ({
   PRIMARY,
   CustomTooltip,
   COLORS,
+  ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.COURSE_STATISTICS}`,
@@ -32,6 +33,8 @@ const CourseCard = ({
 
   return (
     <Card
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}

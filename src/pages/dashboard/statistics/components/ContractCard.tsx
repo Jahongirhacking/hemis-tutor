@@ -3,14 +3,15 @@ import { Card, Flex, Progress, Skeleton, Statistic, Typography } from 'antd';
 import { Banknote } from 'lucide-react';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
-const ContractCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
+const ContractCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.CONTRACTS}`,
   });
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}

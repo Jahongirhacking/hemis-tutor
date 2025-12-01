@@ -1,6 +1,7 @@
+import { CardProps } from 'antd';
 import { FC } from 'react';
 
-export interface IStatisticsCardProps {
+export interface IStatisticsCardProps extends CardProps {
   PRIMARY: string;
   isDark: boolean;
   COLORS?: string[];

@@ -275,9 +275,14 @@ export interface IGradeDebt {
 }
 
 export interface IGradeDebtor {
-  student: IStudent;
-  debts: IGradeDebt[];
-  total_debts: number;
+  _student: string;
+  _group: string;
+  _subject: string;
+  credit: number | string;
+  level: string;
+  specialty: string;
+  _education_year: string;
+  _semester: string;
 }
 
 export interface IGradeDebtorRes {

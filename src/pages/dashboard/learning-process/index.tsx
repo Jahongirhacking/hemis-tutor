@@ -6,7 +6,11 @@ import Timetable from './tabs/Timetable';
 
 const LearningProcessPage = () => {
   return (
-    <Flex vertical gap={24} className="dashboard__page learning-process-page">
+    <Flex
+      vertical
+      gap={24}
+      className="dashboard__page learning-process-page upper-element"
+    >
       <Flex align="center" gap={12}>
         <div
           style={{

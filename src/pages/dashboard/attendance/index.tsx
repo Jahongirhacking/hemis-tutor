@@ -9,7 +9,11 @@ const AttendancePage = () => {
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={24} className="dashboard__page attendance-page">
+    <Flex
+      vertical
+      gap={24}
+      className="dashboard__page attendance-page upper-element"
+    >
       <Flex align="center" gap={12}>
         <div
           style={{

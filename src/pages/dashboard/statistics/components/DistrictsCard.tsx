@@ -4,14 +4,15 @@ import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
 import { MapPin } from 'lucide-react';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
-const DistrictsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
+const DistrictsCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.DISTRICT_STATISTICS}`,
   });
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Flex justify="space-between" align="center">
           <Typography.Title

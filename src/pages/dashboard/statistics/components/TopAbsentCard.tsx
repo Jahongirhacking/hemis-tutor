@@ -17,6 +17,7 @@ const TopAbsentCard = ({
   isDark,
   PRIMARY,
   CustomTooltip,
+  ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${[ExpandItem.ABSENTEEISM]?.join(',')}`,
@@ -43,13 +44,14 @@ const TopAbsentCard = ({
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}
           style={{ color: isDark ? '#fff' : '#1a1a1a', margin: 0 }}
         >
-          Davomat ko'rsatkichi (foizda)
+          Davomat ko'rsatkichi
         </Typography.Title>
       }
       style={{

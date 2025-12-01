@@ -22,7 +22,11 @@ const STATUS_LABELS = {
   [StudentLivingStatus.RED]: 'Qizil hudud',
 };
 
-const UzbekistanMapCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
+const UzbekistanMapCard = ({
+  isDark,
+  PRIMARY,
+  ...props
+}: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
   });
@@ -49,7 +53,8 @@ const UzbekistanMapCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
 
   return (
     <Card
-      className="w-full uzbekistan-map-card mb-[80px]"
+      {...props}
+      className={`w-full uzbekistan-map-card mb-[80px]`}
       title={
         <Flex justify="space-between" align="center">
           <Typography.Title
