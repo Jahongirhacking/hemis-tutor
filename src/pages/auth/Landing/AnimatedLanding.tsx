@@ -12,10 +12,10 @@ import { AnimatedTestimonialsSection } from './Components/AnimatedTestimonialsSe
 const getSectionId = (navItem: string): string => {
   const mapping: Record<string, string> = {
     'Bosh sahifa': 'hero',
-    Tanlovlar: 'about',
+    Vazifalar: 'about',
     'Tyutor minbari': 'testimonials',
     Yangiliklar: 'news',
-    Maqolalar: 'cta',
+    "Qo'llanma": 'cta',
     Hujjatlar: 'documents',
   };
   return mapping[navItem] || '';
@@ -24,10 +24,10 @@ const getSectionId = (navItem: string): string => {
 const getNavItemFromSectionId = (sectionId: string): string => {
   const mapping: Record<string, string> = {
     hero: 'Bosh sahifa',
-    about: 'Tanlovlar',
+    about: 'Vazifalar',
     testimonials: 'Tyutor minbari',
     news: 'Yangiliklar',
-    cta: 'Maqolalar',
+    cta: "Qo'llanma",
     documents: 'Hujjatlar',
   };
   return mapping[sectionId] || '';
@@ -41,10 +41,10 @@ export default function AnimatedLanding() {
 
   const navItems = [
     'Bosh sahifa',
-    'Tanlovlar',
+    'Vazifalar',
     'Tyutor minbari',
     'Yangiliklar',
-    'Maqolalar',
+    "Qo'llanma",
     'Hujjatlar',
   ];
 

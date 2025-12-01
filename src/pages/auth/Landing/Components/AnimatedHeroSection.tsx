@@ -261,7 +261,7 @@ export function AnimatedHeroSection({
                     },
                     { label: "Guruh yig'ilishi", done: true, time: '11:00' },
                     {
-                      label: 'Individual konsultatsiya',
+                      label: 'Individual maslahatlar',
                       done: false,
                       time: '14:00',
                     },

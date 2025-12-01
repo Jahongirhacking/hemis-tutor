@@ -15,10 +15,10 @@ type AnimatedNavigationProps = {
 const getSectionId = (navItem: string): string => {
   const mapping: Record<string, string> = {
     'Bosh sahifa': 'hero',
-    Tanlovlar: 'about',
+    Vazifalar: 'about',
     'Tyutor minbari': 'testimonials',
     Yangiliklar: 'news',
-    Maqolalar: 'cta',
+    "Qo'llanma": 'cta',
     Hujjatlar: 'documents',
   };
   return mapping[navItem] || '';
@@ -34,13 +34,10 @@ const handleNavClick = (
   if (sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Header balandligi uchun
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
+      // scrollIntoView CSS scroll-margin-top bilan birga ishlaydi
+      element.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       });
       onNavigate(navItem);
     }
