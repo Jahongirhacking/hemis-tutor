@@ -29,7 +29,7 @@ const CustomFilter = ({
   ...props
 }: FormProps & { children: ReactElement | ReactElement[] }) => {
   return (
-    <Form layout="vertical" className="w-full" {...props}>
+    <Form layout="vertical" className="w-full upper-element" {...props}>
       <CustomFilterContext.Provider value={{ form: props?.form }}>
         <Flex gap={8} align="center" wrap>
           {Children.map(children, child =>

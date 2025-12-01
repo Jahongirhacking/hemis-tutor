@@ -16,6 +16,7 @@ const TerrainsCard = ({
   isDark,
   PRIMARY,
   CustomTooltip,
+  ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.TERRAIN_STATISTICS}`,
@@ -34,7 +35,8 @@ const TerrainsCard = ({
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Flex justify="space-between" align="center">
           <Typography.Title

@@ -9,6 +9,7 @@ const SocialCard = ({
   PRIMARY,
   CustomTooltip,
   COLORS,
+  ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${[ExpandItem.SOCIAL_STATISTICS]?.join(',')}`,
@@ -27,7 +28,8 @@ const SocialCard = ({
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Flex justify="space-between" align="center">
           <Typography.Title

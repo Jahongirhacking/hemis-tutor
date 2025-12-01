@@ -3,14 +3,15 @@ import { Card, Flex, Progress, Skeleton, Statistic, Typography } from 'antd';
 import { Banknote } from 'lucide-react';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
-const ContractCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
+const ContractCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.CONTRACTS}`,
   });
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}
@@ -67,7 +68,7 @@ const ContractCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                   percent={Math.round(
                     ((data?.result?.contracts?.paid_summa ?? 0) /
                       (data?.result?.contracts?.total_summa ?? 1)) *
-                      100
+                    100
                   )}
                   strokeColor={PRIMARY}
                   trailColor={isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0'}
@@ -103,7 +104,7 @@ const ContractCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                   percent={Math.round(
                     ((data?.result?.contracts?.debt_summa ?? 0) /
                       (data?.result?.contracts?.total_summa ?? 1)) *
-                      100
+                    100
                   )}
                   strokeColor="#f59e0b"
                   trailColor={isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0'}

@@ -10,6 +10,7 @@ const EducationFormCard = ({
   PRIMARY,
   COLORS,
   CustomTooltip,
+  ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${[ExpandItem.EDUCATION_FORM_STATISTICS]?.join(',')}`,
@@ -25,6 +26,8 @@ const EducationFormCard = ({
 
   return (
     <Card
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}

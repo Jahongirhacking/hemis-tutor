@@ -4,7 +4,7 @@ import StudentList from './tabs/StudentList';
 
 const StudentsPage = () => {
   return (
-    <Flex vertical gap={24} className="dashboard__page students-page">
+    <Flex vertical gap={24} className="dashboard__page students-page upper-element">
       <Flex align="center" gap={12}>
         <div
           style={{

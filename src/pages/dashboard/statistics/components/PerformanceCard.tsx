@@ -3,14 +3,15 @@ import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
-const PerformanceCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
+const PerformanceCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.PERFORMANCE}`,
   });
 
   return (
     <Card
-      className="w-full"
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}

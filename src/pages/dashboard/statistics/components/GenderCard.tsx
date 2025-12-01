@@ -9,6 +9,7 @@ const GenderCard = ({
   isDark,
   PRIMARY,
   CustomTooltip,
+  ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.GENDER_STATISTICS}`,
@@ -30,6 +31,8 @@ const GenderCard = ({
 
   return (
     <Card
+      {...props}
+      className={`w-full h-full`}
       title={
         <Typography.Title
           level={4}

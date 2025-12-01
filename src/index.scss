@@ -18,6 +18,12 @@
   background-color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
+  &:has(.animated-landing-page) {
+    [data-testid='SnowfallCanvas'] {
+      visibility: hidden;
+    }
+  }
 }
 
 @font-face {

@@ -1,9 +1,8 @@
 import { useGetGradeDebtorsQuery } from '@/services/student';
-import { Card, Collapse, Divider, Flex, Skeleton, Tag, Typography } from 'antd';
+import { Collapse, Divider, Flex, Skeleton, Tag, Typography } from 'antd';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import useCustomTable from '../../components/hooks/useCustomTable';
-import CustomLink from '../../students/components/CustomLink';
 
 const Debtors = () => {
   const { form, values } = useCustomFilter();
@@ -28,35 +27,35 @@ const Debtors = () => {
         ) : debtorsData?.result?.debtors?.length ? (
           debtorsData?.result?.debtors?.map(d => (
             <Collapse
-              key={d?.student?.id}
+              key={`${d?._student}.${d?._subject}`}
               items={[
                 {
                   key: '1',
                   label: (
                     <Flex justify="space-between" gap={8}>
                       <Typography.Text strong>
-                        <CustomLink.Student student={d?.student} />
+                        {d?._student}
                       </Typography.Text>
-                      <Tag color="error">{d?.total_debts}</Tag>
+                      <Tag color="error">{d?.credit}</Tag>
                     </Flex>
                   ),
-                  children: d?.debts?.length ? (
-                    <Flex gap={8}>
-                      {d?.debts?.map(s => (
-                        <Card key={s?.subject}>
-                          <Flex vertical gap={6}>
-                            <Typography.Text strong>
-                              {s?.subject}
-                            </Typography.Text>
-                            <Typography.Text>{s?.exam_type}</Typography.Text>
-                            <Tag color="red">{s?.grade}</Tag>
-                          </Flex>
-                        </Card>
-                      ))}
-                    </Flex>
-                  ) : (
-                    emptyText
-                  ),
+                  // children: d?.debts?.length ? (
+                  //   <Flex gap={8}>
+                  //     {d?.debts?.map(s => (
+                  //       <Card key={s?.subject}>
+                  //         <Flex vertical gap={6}>
+                  //           <Typography.Text strong>
+                  //             {s?.subject}
+                  //           </Typography.Text>
+                  //           <Typography.Text>{s?.exam_type}</Typography.Text>
+                  //           <Tag color="red">{s?.grade}</Tag>
+                  //         </Flex>
+                  //       </Card>
+                  //     ))}
+                  //   </Flex>
+                  // ) : (
+                  //   emptyText
+                  // ),
                 },
               ]}
             />

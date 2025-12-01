@@ -11,7 +11,7 @@ const PerformancePage = () => {
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={24} className="dashboard__page performance-page">
+    <Flex vertical gap={24} className="dashboard__page performance-page upper-element">
       <Flex align="center" gap={12}>
         <div
           style={{
