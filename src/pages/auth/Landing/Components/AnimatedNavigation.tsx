@@ -15,10 +15,10 @@ type AnimatedNavigationProps = {
 const getSectionId = (navItem: string): string => {
   const mapping: Record<string, string> = {
     'Bosh sahifa': 'hero',
-    Tanlovlar: 'about',
+    Vazifalar: 'about',
     'Tyutor minbari': 'testimonials',
     Yangiliklar: 'news',
-    Maqolalar: 'cta',
+    "Qo'llanma": 'cta',
     Hujjatlar: 'documents',
   };
   return mapping[navItem] || '';

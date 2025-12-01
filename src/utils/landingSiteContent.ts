@@ -6,9 +6,9 @@ export const handbookTexture = '/images/handbookTextTure.jpg';
 
 export const navLinks = [
   'Asosiy',
-  'Tanlovlar',
+  'Vazifalar',
   'Tyutorlar minbari',
-  'Maqolalar',
+  "Qo'llanma",
   'Yangiliklar',
   'Hujjatlar',
 ];
