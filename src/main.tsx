@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <HelmetProvider>
             <>
               <Helmet>
-                <title>TUTOR.HEMIS.UZ - Talaba Boshqaruv Tizimi</title>
+                <title>TYUTOR.HEMIS.UZ - Talaba Boshqaruv Tizimi</title>
                 <meta
                   name="description"
                   content="HEMIS - Oliy ta’lim jarayonlarini boshqarish axborot tizimi. Ushbu tizim Oliy ta’lim muassasalari uchun ma’muriy boshqaruv, o‘quv jarayoni, ilmiy faoliyat, va moliyaviy boshqaruv modullarini taqdim etadi. 226 dan ortiq OTM va 1 milliondan ortiq foydalanuvchilar (talabalar va o‘qituvchilar) tomonidan qo‘llaniladi."
@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                   name="keywords"
                   content="HEMIS, Oliy ta’lim tizimi, boshqarish axborot tizimi, ma’muriy boshqaruv, o‘quv jarayoni, ilmiy faoliyat, moliyaviy boshqaruv, OTM, talaba axborot tizimi, o‘qituvchi axborot tizimi, oliy ta’lim boshqaruvi, HEMIS yo‘riqnoma, Oliy ta’lim muassasalari"
                 />
-                <meta property="og:title" content="TUTOR.HEMIS.UZ" />
+                <meta property="og:title" content="TYUTOR.HEMIS.UZ" />
                 <meta
                   property="og:description"
                   content="HEMIS - Oliy ta’lim jarayonlarini boshqarish axborot tizimi. Ushbu tizim Oliy ta’lim muassasalari uchun ma’muriy boshqaruv, o‘quv jarayoni, ilmiy faoliyat, va moliyaviy boshqaruv modullarini taqdim etadi. 226 dan ortiq OTM va 1 milliondan ortiq foydalanuvchilar (talabalar va o‘qituvchilar) tomonidan qo‘llaniladi."

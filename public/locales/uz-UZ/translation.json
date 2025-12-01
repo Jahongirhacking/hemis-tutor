@@ -471,9 +471,9 @@
         }
     },
     "help": {
-        "tg_group_info": "«TUTOR.HEMIS.UZ» sayti bo‘yicha muhokama, savol-javob va takliflar uchun yaratilgan Telegram guruh",
+        "tg_group_info": "«TYUTOR.HEMIS.UZ» sayti bo‘yicha muhokama, savol-javob va takliflar uchun yaratilgan Telegram guruh",
         "tg_channel_info": "HEMIS tizimi bo‘yicha yangiliklar va foydali ma‘lumotlar berib boriladigan Telegram kanal",
-        "tg_bot_info": "«TUTOR.HEMIS.UZ» sayti texnik muammolarni bartaraf etish uchun ishlab chiqilgan Telegram bot",
+        "tg_bot_info": "«TYUTOR.HEMIS.UZ» sayti texnik muammolarni bartaraf etish uchun ishlab chiqilgan Telegram bot",
         "yt_channel_info": "HEMIS tizmi bo‘yicha video darslar va yo‘riqnomalar taqdim etiladigan YouTube kanal"
     },
     "landing": {

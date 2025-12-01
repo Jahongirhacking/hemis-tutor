@@ -90,7 +90,7 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
             }}
             icon={<UserOutlined />}
             onClick={() => onSubmit()}
-            // href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://TUTOR.HEMIS.UZ/auth/callback`}
+            // href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://TYUTOR.HEMIS.UZ/auth/callback`}
             target="_blank"
           >
             One ID

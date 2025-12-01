@@ -8,7 +8,7 @@
 		.t0 { font-size: 14px;fill: #ffffff;font-weight: 700;font-family: "Roboto-Bold", "Roboto" } 
 	</style>
 	<use id="Background" href="#img1" x="0" y="0"/>
-	<text id="TUTOR.HEMIS.UZ" style="transform: matrix(1,0,0,1,45.309,195.555)" >
+	<text id="TYUTOR.HEMIS.UZ" style="transform: matrix(1,0,0,1,45.309,195.555)" >
 		<tspan x="0" y="0" class="t0">M</tspan><tspan  y="0" class="t0">Y</tspan><tspan  y="0" class="t0">.</tspan><tspan  y="0" class="t0">H</tspan><tspan  y="0" class="t0">E</tspan><tspan  y="0" class="t0">M</tspan><tspan  y="0" class="t0">I</tspan><tspan  y="0" class="t0">S</tspan><tspan  y="0" class="t0">.</tspan><tspan  y="0" class="t0">U</tspan><tspan  y="0" class="t0">Z</tspan><tspan  y="0" class="t0">
 </tspan>
 	</text>

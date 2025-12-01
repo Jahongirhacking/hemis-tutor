@@ -463,9 +463,9 @@
         }
     },
     "help": {
-        "tg_group_info": "A Telegram group created for discussions, questions and answers and suggestions about the site «TUTOR.HEMIS.UZ»",
+        "tg_group_info": "A Telegram group created for discussions, questions and answers and suggestions about the site «TYUTOR.HEMIS.UZ»",
         "tg_channel_info": "Telegram channel providing news and useful information about the HEMIS system",
-        "tg_bot_info": "Telegram bot developed to resolve technical issues within the «TUTOR.HEMIS.UZ» system",
+        "tg_bot_info": "Telegram bot developed to resolve technical issues within the «TYUTOR.HEMIS.UZ» system",
         "yt_channel_info": "YouTube channel providing video tutorials and guides for the HEMIS system"
     },
     "landing": {
