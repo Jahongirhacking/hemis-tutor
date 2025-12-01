@@ -178,9 +178,10 @@ export function AnimatedHeroSection({
             </h1>
 
             <p className="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
-              Talabaning o'qish jarayonini individual tarzda qo'llab-quvvatlash,
-              yo'naltirish va o'rgatish uchun zarur bo'lgan malakali
-              mutaxassislar hamjamiyatiga qo'shiling.
+              Talabalarning o‘quv jarayonini individual tarzda
+              qo‘llab-quvvatlash, ularning bo‘sh vaqtini mazmunli tashkil etish,
+              yo‘naltirish va zarur ko‘nikmalarni o‘rgatish maqsadida malakali
+              mutaxassislar hamjamiyatiga qo‘shiling.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
