@@ -25,7 +25,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
       trend:
         (statistics?.result?.students?.active_students ?? 0) >
-          (statistics?.result?.students?.inactive_students ?? 0)
+        (statistics?.result?.students?.inactive_students ?? 0)
           ? 'up'
           : 'down',
       trendValue: `${(
@@ -82,7 +82,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
             hoverable
           >
             <Flex justify="space-between" align="flex-start" wrap gap={8}>
-              <div style={{ flex: 1 }} className='min-w-[min(100px,100%)]'>
+              <div style={{ flex: 1 }} className="min-w-[min(100px,100%)]">
                 <Typography.Text
                   style={{
                     color: isDark ? 'rgba(255, 255, 255, 0.6)' : '#666',
@@ -139,7 +139,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                   )}
                 </Flex>
               </div>
-              <Flex align='center' vertical gap={8}>
+              <Flex align="flex-end" vertical gap={8} className="ml-auto">
                 <div
                   style={{
                     width: '56px',
@@ -153,11 +153,12 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                 >
                   {stat.icon}
                 </div>
-                {
-                  (stat?.title === statCards?.[2]?.title || stat?.title === statCards?.[3]?.title) && (
-                    <Tag icon={<SettingOutlined spin />} color={'cyan'}>Ishlanmoqda</Tag>
-                  )
-                }
+                {(stat?.title === statCards?.[2]?.title ||
+                  stat?.title === statCards?.[3]?.title) && (
+                  <Tag icon={<SettingOutlined spin />} color={'cyan'}>
+                    Ishlanmoqda
+                  </Tag>
+                )}
               </Flex>
             </Flex>
           </Card>

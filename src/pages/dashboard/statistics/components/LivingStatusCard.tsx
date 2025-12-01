@@ -3,7 +3,16 @@ import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { Card, Flex, Skeleton, Typography } from 'antd';
 import { BarChartBig } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import { STATUS_COLORS } from './GeoLocationMapCard';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
@@ -62,29 +71,31 @@ const LivingStatusCard = ({
               stroke={isDark ? '#fff' : '#666'}
               style={{ fontSize: '12px' }}
             />
-            <Tooltip content={({ active, payload }) => {
-              const tempPayload = { ...(payload?.[0]) };
-              if (tempPayload) {
-                tempPayload.name = `${t('const.number_of', { name: tempPayload?.payload?.living_status_name })}`;
-                tempPayload.value = `${t('const.number_count', { number: tempPayload?.value })}`;
-              }
-              return (
-                <CustomTooltip
-                  active={active}
-                  payload={[tempPayload]}
-                />
-              )
-            }}
+            <Tooltip
+              content={({ active, payload }) => {
+                const tempPayload = { ...payload?.[0] };
+                if (tempPayload) {
+                  tempPayload.name = `${t('const.number_of', { name: tempPayload?.payload?.living_status_name })}`;
+                  tempPayload.value = `${t('const.number_count', { number: tempPayload?.value })}`;
+                }
+                return (
+                  <CustomTooltip active={active} payload={[tempPayload]} />
+                );
+              }}
             />
 
             <Bar dataKey="count" radius={[8, 8, 0, 0]}>
               {data?.result?.living_status_statistics?.map((entry, idx) => {
-                return <Cell key={idx} fill={STATUS_COLORS[entry?.living_status_code]} />;
+                return (
+                  <Cell
+                    key={idx}
+                    fill={STATUS_COLORS[entry?.living_status_code]}
+                  />
+                );
               })}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-
       )}
       <Flex vertical gap={12}>
         {isFetching ? (
@@ -94,13 +105,19 @@ const LivingStatusCard = ({
         ) : (
           <>
             {data?.result?.living_status_statistics?.map((stat, index) => (
-              <Flex key={index} justify="space-between" align="center" gap={12} wrap>
+              <Flex
+                key={index}
+                justify="space-between"
+                align="center"
+                gap={12}
+                wrap
+              >
                 <Typography.Text
                   style={{ color: STATUS_COLORS?.[stat?.living_status_code] }}
                 >
                   {stat.living_status_name}
                 </Typography.Text>
-                <Flex align="center" gap={8} className='ml-auto'>
+                <Flex align="center" gap={8} className="ml-auto">
                   <Typography.Text
                     strong
                     style={{

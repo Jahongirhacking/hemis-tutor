@@ -27,7 +27,7 @@ export interface IDashboardContext {
 }
 
 export const DashboardContext = createContext<IDashboardContext>(null);
-export const STUDENT_INFO_MODAL = "student-info-modal";
+export const STUDENT_INFO_MODAL = 'student-info-modal';
 const MOBILE_SIZE = 670;
 
 export const Dashboard = () => {
@@ -40,7 +40,7 @@ export const Dashboard = () => {
     const params = new URLSearchParams(searchParams);
     params.delete(STUDENT_INFO_MODAL);
     setSearchParams(params);
-  }
+  };
 
   const [deviceSize, setDeviceSize] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(deviceSize < MOBILE_SIZE);
@@ -135,12 +135,12 @@ export const Dashboard = () => {
             maskClosable
             onCancel={handleCloseStudentModal}
             open={searchParams.has(STUDENT_INFO_MODAL)}
-            className='!min-w-[min(1400px,99%)] '
+            className="!min-w-[min(1400px,99%)] "
           >
             <CustomInfo.Student props={searchParams.get(STUDENT_INFO_MODAL)} />
           </Modal>
         </div>
       </div>
-    </DashboardContext.Provider >
+    </DashboardContext.Provider>
   );
 };

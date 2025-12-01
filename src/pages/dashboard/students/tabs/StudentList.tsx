@@ -1,6 +1,7 @@
 import { usePagination } from '@/hooks/usePagination';
 import { useGetStudentListQuery } from '@/services/student';
 import { Divider, Flex } from 'antd';
+import { t } from 'i18next';
 import { useEffect } from 'react';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
@@ -42,16 +43,16 @@ const StudentList = () => {
             width: 60,
           },
           {
-            title: 'JShShIR',
-            key: 'passport_pin',
-            dataIndex: 'passport_pin',
-          },
-          {
-            title: 'Talaba',
+            title: t('const.student'),
             key: 'full_name',
             dataIndex: 'full_name',
             render: (_, record) => <CustomLink.Student student={record} />,
             width: 250,
+          },
+          {
+            title: t('const.pinfl'),
+            key: 'passport_pin',
+            dataIndex: 'passport_pin',
           },
           {
             title: "Yo'nalishi",
@@ -60,24 +61,24 @@ const StudentList = () => {
             render: specialty => `${specialty?.code} - ${specialty?.name}`,
           },
           {
-            title: "O'quv yili",
+            title: t('const.academic_year'),
             key: 'education_year',
             dataIndex: 'education_year',
           },
           {
-            title: "Ta'lim turi / shakli",
+            title: `${t('const.education_type')} / ${t('const.education_form')}`,
             key: 'edu_type',
             render: (_, record) =>
               `${record?.education_type} / ${record?.education_form}`,
           },
           {
-            title: 'Kurs',
+            title: t('const.course'),
             key: 'level',
             dataIndex: 'level',
             render: level => level?.name,
           },
           {
-            title: 'Guruh',
+            title: t('const.group'),
             key: 'group',
             dataIndex: 'group',
             render: group => <CustomLink.Group group={group} />,

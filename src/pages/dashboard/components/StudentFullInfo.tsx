@@ -35,7 +35,7 @@ const StudentFullInfo = ({
       <Skeleton active />
     </Flex>
   ) : (
-    <Flex vertical gap={18} align="center" className='mt-4'>
+    <Flex vertical gap={18} align="center" className="mt-4">
       <Flex vertical gap={4} align="center">
         <Image
           src={studentData?.result?.student?.image}

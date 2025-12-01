@@ -54,7 +54,7 @@ const UzbekistanMapCard = ({
   return (
     <Card
       {...props}
-      className={`w-full uzbekistan-map-card mb-[40px]`}
+      className={`w-full uzbekistan-map-card mb-[20px]`}
       title={
         <Flex justify="space-between" align="center">
           <Typography.Title
@@ -120,7 +120,7 @@ const UzbekistanMapCard = ({
           {/* Map Container */}
           <LeafletMap
             locations={data?.result?.geo_location_statistics?.locations}
-            onLocationSelect={() => { }}
+            onLocationSelect={() => {}}
             selectedLocation={null}
           />
 

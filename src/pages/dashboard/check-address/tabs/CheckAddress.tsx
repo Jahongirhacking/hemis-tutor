@@ -6,6 +6,7 @@ import {
   useGetVisitListQuery,
 } from '@/services/student';
 import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
+import { RootState } from '@/store/store';
 import { SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
 import { Badge, Button, Card, Drawer, Flex, Space, Typography } from 'antd';
@@ -13,6 +14,7 @@ import { Calendar, Filter, MapPin, User } from 'lucide-react';
 import moment from 'moment';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import CustomTable from '../../components/CustomTable';
 import { default as CustomFilter } from '../../components/forms/CustomFilter';
@@ -24,7 +26,7 @@ import CreateVisit, {
 } from '../CreateVisitPage';
 import LivingStatusTag from '../components/LivingStatusTag';
 import LocationButton from '../components/LocationButton';
-// import './CheckAddress.scss';
+import './CheckAddress.scss';
 
 enum FilterItem {
   StudentStatus = '_student_living_status',
@@ -55,6 +57,7 @@ const CheckAddress = () => {
     useGetProvincesQuery();
   const { data: districtData, isFetching: isDistrictFetching } =
     useGetDistrictsQuery({ province: province_code }, { skip: !province_code });
+  const isMobile = useSelector((store: RootState) => store.authSlice?.isMobile);
 
   const handleVisitDrawer = useCallback(
     ({
@@ -204,7 +207,7 @@ const CheckAddress = () => {
 
       {/* Table Card */}
       <Card
-        className="shadow-sm"
+        className="shadow-sm visit-list-table"
         style={{
           borderRadius: '16px',
           border: `1px solid ${PRIMARY_COLOR}20`,
@@ -224,12 +227,6 @@ const CheckAddress = () => {
               align: 'center',
             },
             {
-              title: t('const.pinfl'),
-              key: 'passport_pin',
-              dataIndex: 'passport_pin',
-              width: 150,
-            },
-            {
               title: (
                 <Space size={6}>
                   <User size={16} style={{ color: PRIMARY_COLOR }} />
@@ -246,6 +243,12 @@ const CheckAddress = () => {
                   }}
                 />
               ),
+            },
+            {
+              title: t('const.pinfl'),
+              key: 'passport_pin',
+              dataIndex: 'passport_pin',
+              width: 150,
             },
             {
               title: t('const.group'),
@@ -380,7 +383,7 @@ const CheckAddress = () => {
                 </Button>
               ),
               fixed: 'right',
-              width: 120,
+              width: isMobile ? 80 : 120,
             },
           ]}
           dataSource={addressData?.result?.items}

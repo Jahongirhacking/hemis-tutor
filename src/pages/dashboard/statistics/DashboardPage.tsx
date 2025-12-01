@@ -104,23 +104,17 @@ const Dashboard = () => {
         <Row gutter={[16, 16]}>
           {/* Living Status & Geo Location */}
           <Col xs={24} lg={8}>
-            <LivingStatusCard
-              {...{ isDark, PRIMARY, COLORS, CustomTooltip }}
-            />
+            <LivingStatusCard {...{ isDark, PRIMARY, COLORS, CustomTooltip }} />
           </Col>
 
           {/* Course Distribution Bar Chart */}
           <Col xs={24} lg={8}>
-            <CourseCard
-              {...{ CustomTooltip, COLORS, PRIMARY, isDark }}
-            />
+            <CourseCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
           </Col>
 
           {/* Gender Distribution */}
           <Col xs={24} lg={8}>
-            <GenderCard
-              {...{ isDark, PRIMARY, CustomTooltip }}
-            />
+            <GenderCard {...{ isDark, PRIMARY, CustomTooltip }} />
           </Col>
         </Row>
 
@@ -133,30 +127,22 @@ const Dashboard = () => {
         >
           <MasonryFixed className="masonry-element">
             {/* Absenteeism Statistics */}
-            <TopAbsentCard
-              {...{ isDark, PRIMARY, CustomTooltip }}
-            />
+            <TopAbsentCard {...{ isDark, PRIMARY, CustomTooltip }} />
 
             {/* District Statistics */}
             <DistrictsCard className="upper-element" {...{ isDark, PRIMARY }} />
 
             {/* Performance Stats */}
-            <PerformanceCard
-              {...{ isDark, PRIMARY }}
-            />
+            <PerformanceCard {...{ isDark, PRIMARY }} />
 
             {/* Contract Stats */}
             <ContractCard className="upper-element" {...{ isDark, PRIMARY }} />
 
             {/* Geo */}
-            <GeoLocationCard
-              {...{ isDark, PRIMARY }}
-            />
+            <GeoLocationCard {...{ isDark, PRIMARY }} />
 
             {/* Social Statistics Radar */}
-            <SocialCard
-              {...{ isDark, PRIMARY, CustomTooltip, COLORS }}
-            />
+            <SocialCard {...{ isDark, PRIMARY, CustomTooltip, COLORS }} />
           </MasonryFixed>
         </ResponsiveMasonryFixed>
 
