@@ -9,12 +9,13 @@ import {
   localStorageNames,
   setLocalStorage,
 } from '@/utils/storageFunc';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import DashboardHeader from './components/DashboardHeader';
 import './main.scss';
+import CustomInfo from './students/components/CustomInfo';
 
 export interface IDashboardContext {
   isMobile: boolean;
@@ -26,13 +27,20 @@ export interface IDashboardContext {
 }
 
 export const DashboardContext = createContext<IDashboardContext>(null);
+export const STUDENT_INFO_MODAL = "student-info-modal";
+const MOBILE_SIZE = 670;
 
 export const Dashboard = () => {
-  const MOBILE_SIZE = 670;
   const dispatch = useAppDispatch();
   const isMobileNavBottom = useSelector(
     (store: RootState) => store.authSlice.isMobileNavBottom
   );
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handleCloseStudentModal = () => {
+    const params = new URLSearchParams(searchParams);
+    params.delete(STUDENT_INFO_MODAL);
+    setSearchParams(params);
+  }
 
   const [deviceSize, setDeviceSize] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(deviceSize < MOBILE_SIZE);
@@ -121,8 +129,18 @@ export const Dashboard = () => {
             <Outlet />
           </div>
           {isMobileNavBottom && <NavbarBottom />}
+
+          <Modal
+            footer={false}
+            maskClosable
+            onCancel={handleCloseStudentModal}
+            open={searchParams.has(STUDENT_INFO_MODAL)}
+            className='!min-w-[min(1400px,99%)] '
+          >
+            <CustomInfo.Student props={searchParams.get(STUDENT_INFO_MODAL)} />
+          </Modal>
         </div>
       </div>
-    </DashboardContext.Provider>
+    </DashboardContext.Provider >
   );
 };

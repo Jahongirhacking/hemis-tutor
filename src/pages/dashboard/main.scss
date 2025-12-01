@@ -461,12 +461,34 @@ $accent: #38bdf8;
   }
 }
 
+.dashboard-stats {
+  .ant-card {
+    display: flex;
+    flex-direction: column;
+
+    .ant-card-body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
+
 .dashboard-masonry {
   & > div {
     gap: 18px !important;
 
     & > div {
       gap: 18px !important;
+    }
+  }
+
+  .masonry-element {
+    & > div {
+      & > div:last-child {
+        height: 100% !important;
+      }
     }
   }
 }

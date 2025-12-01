@@ -1,17 +1,23 @@
 import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
-import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
+import { Card, Flex, Skeleton, Typography } from 'antd';
+import { BarChartBig } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { STATUS_COLORS } from './GeoLocationMapCard';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const LivingStatusCard = ({
   isDark,
   PRIMARY,
+  CustomTooltip,
+  COLORS,
   ...props
 }: IStatisticsCardProps) => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.LIVING_STATUS_STATISTICS}`,
   });
+  const { t } = useTranslation();
 
   return (
     <Card
@@ -32,6 +38,54 @@ const LivingStatusCard = ({
         borderRadius: '16px',
       }}
     >
+      {isFetching ? (
+        <Skeleton.Node
+          active
+          className="!m-auto !w-full !h-[180px] !overflow-hidden"
+        >
+          <BarChartBig size={100} style={{ color: '#bfbfbf' }} />
+        </Skeleton.Node>
+      ) : (
+        <ResponsiveContainer width="100%" height={280}>
+          <BarChart data={data?.result?.living_status_statistics}>
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke={isDark ? '#ffffff20' : '#00000010'}
+            />
+            <XAxis
+              dataKey="living_status_name"
+              stroke={isDark ? '#fff' : '#666'}
+              style={{ fontSize: '12px' }}
+            />
+            <YAxis
+              dataKey="count"
+              stroke={isDark ? '#fff' : '#666'}
+              style={{ fontSize: '12px' }}
+            />
+            <Tooltip content={({ active, payload }) => {
+              const tempPayload = { ...(payload?.[0]) };
+              if (tempPayload) {
+                tempPayload.name = `${t('const.number_of', { name: tempPayload?.payload?.living_status_name })}`;
+                tempPayload.value = `${t('const.number_count', { number: tempPayload?.value })}`;
+              }
+              return (
+                <CustomTooltip
+                  active={active}
+                  payload={[tempPayload]}
+                />
+              )
+            }}
+            />
+
+            <Bar dataKey="count" radius={[8, 8, 0, 0]}>
+              {data?.result?.living_status_statistics?.map((entry, idx) => {
+                return <Cell key={idx} fill={STATUS_COLORS[entry?.living_status_code]} />;
+              })}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+
+      )}
       <Flex vertical gap={12}>
         {isFetching ? (
           <GenerateSkeleton vertical numberOfRepetition={3}>
@@ -40,26 +94,18 @@ const LivingStatusCard = ({
         ) : (
           <>
             {data?.result?.living_status_statistics?.map((stat, index) => (
-              <Flex key={index} justify="space-between" align="center" wrap>
+              <Flex key={index} justify="space-between" align="center" gap={12} wrap>
                 <Typography.Text
                   style={{ color: STATUS_COLORS?.[stat?.living_status_code] }}
                 >
                   {stat.living_status_name}
                 </Typography.Text>
-                <Flex align="center" gap={12}>
-                  <Progress
-                    percent={stat.percent}
-                    strokeColor={STATUS_COLORS?.[stat?.living_status_code]}
-                    trailColor={isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0'}
-                    style={{ width: '100px' }}
-                    size="small"
-                    showInfo={false}
-                  />
+                <Flex align="center" gap={8} className='ml-auto'>
                   <Typography.Text
                     strong
                     style={{
                       color: STATUS_COLORS?.[stat?.living_status_code],
-                      minWidth: '40px',
+                      minWidth: '20px',
                       textAlign: 'right',
                     }}
                   >

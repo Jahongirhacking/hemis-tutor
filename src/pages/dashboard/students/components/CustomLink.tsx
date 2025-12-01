@@ -4,6 +4,7 @@ import { Typography } from 'antd';
 import { LinkProps } from 'antd/es/typography/Link';
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { STUDENT_INFO_MODAL } from '../..';
 
 const CustomLink = (props: LinkProps) => {
   return <Typography.Link {...props} />;
@@ -15,8 +16,7 @@ const StudentLink = ({ student }: { student: Partial<IStudent> }) => {
   const handleStudentClick = useCallback(() => {
     if (!student?.id) return;
     const params = new URLSearchParams(searchParams);
-    params.set(SearchParams.Drawer, DrawerChildTypes.StudentInfo);
-    params.set(SearchParams.DrawerProps, String(student?.id));
+    params.set(STUDENT_INFO_MODAL, String(student?.id));
     setSearchParams(params);
   }, [searchParams, setSearchParams, student]);
 

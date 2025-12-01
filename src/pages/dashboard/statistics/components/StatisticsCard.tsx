@@ -1,5 +1,6 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
-import { Card, Col, Flex, Row, Skeleton, Typography } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
+import { Card, Col, Flex, Row, Skeleton, Tag, Typography } from 'antd';
 import {
   BookOpen,
   CalendarIcon,
@@ -24,7 +25,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
       trend:
         (statistics?.result?.students?.active_students ?? 0) >
-        (statistics?.result?.students?.inactive_students ?? 0)
+          (statistics?.result?.students?.inactive_students ?? 0)
           ? 'up'
           : 'down',
       trendValue: `${(
@@ -80,8 +81,8 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
             }}
             hoverable
           >
-            <Flex justify="space-between" align="flex-start">
-              <div style={{ flex: 1 }}>
+            <Flex justify="space-between" align="flex-start" wrap gap={8}>
+              <div style={{ flex: 1 }} className='min-w-[min(100px,100%)]'>
                 <Typography.Text
                   style={{
                     color: isDark ? 'rgba(255, 255, 255, 0.6)' : '#666',
@@ -138,19 +139,26 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                   )}
                 </Flex>
               </div>
-              <div
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '12px',
-                  background: `${PRIMARY}15`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                {stat.icon}
-              </div>
+              <Flex align='center' vertical gap={8}>
+                <div
+                  style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '12px',
+                    background: `${PRIMARY}15`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {stat.icon}
+                </div>
+                {
+                  (stat?.title === statCards?.[2]?.title || stat?.title === statCards?.[3]?.title) && (
+                    <Tag icon={<SettingOutlined spin />} color={'cyan'}>Ishlanmoqda</Tag>
+                  )
+                }
+              </Flex>
             </Flex>
           </Card>
         </Col>

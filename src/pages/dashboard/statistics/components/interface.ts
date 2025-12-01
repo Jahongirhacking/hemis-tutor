@@ -5,7 +5,7 @@ export interface IStatisticsCardProps extends CardProps {
   PRIMARY: string;
   isDark: boolean;
   COLORS?: string[];
-  CustomTooltip?: FC<any>;
+  CustomTooltip?: FC<{ active?: boolean; payload?: any }>;
 }
 
 export enum ExpandItem {

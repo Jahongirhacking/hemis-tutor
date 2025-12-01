@@ -55,11 +55,11 @@ const Dashboard = () => {
           }}
         >
           <Typography.Text strong style={{ color: isDark ? '#fff' : '#000' }}>
-            {payload[0].name}
+            {payload?.[0]?.name}
           </Typography.Text>
           <br />
           <Typography.Text style={{ color: PRIMARY }}>
-            {payload[0].value}
+            {payload?.[0]?.value}
           </Typography.Text>
         </Card>
       );
@@ -105,15 +105,13 @@ const Dashboard = () => {
           {/* Living Status & Geo Location */}
           <Col xs={24} lg={8}>
             <LivingStatusCard
-              className="upper-element"
-              {...{ isDark, PRIMARY, COLORS }}
+              {...{ isDark, PRIMARY, COLORS, CustomTooltip }}
             />
           </Col>
 
           {/* Course Distribution Bar Chart */}
           <Col xs={24} lg={8}>
             <CourseCard
-              className="upper-element"
               {...{ CustomTooltip, COLORS, PRIMARY, isDark }}
             />
           </Col>
@@ -121,7 +119,6 @@ const Dashboard = () => {
           {/* Gender Distribution */}
           <Col xs={24} lg={8}>
             <GenderCard
-              className="upper-element"
               {...{ isDark, PRIMARY, CustomTooltip }}
             />
           </Col>
@@ -134,10 +131,9 @@ const Dashboard = () => {
           }}
           className="dashboard-masonry"
         >
-          <MasonryFixed gutter="1.5rem">
+          <MasonryFixed className="masonry-element">
             {/* Absenteeism Statistics */}
             <TopAbsentCard
-              className="upper-element"
               {...{ isDark, PRIMARY, CustomTooltip }}
             />
 
@@ -146,7 +142,6 @@ const Dashboard = () => {
 
             {/* Performance Stats */}
             <PerformanceCard
-              className="upper-element"
               {...{ isDark, PRIMARY }}
             />
 
@@ -155,13 +150,11 @@ const Dashboard = () => {
 
             {/* Geo */}
             <GeoLocationCard
-              className="upper-element"
               {...{ isDark, PRIMARY }}
             />
 
             {/* Social Statistics Radar */}
             <SocialCard
-              className="upper-element"
               {...{ isDark, PRIMARY, CustomTooltip, COLORS }}
             />
           </MasonryFixed>
