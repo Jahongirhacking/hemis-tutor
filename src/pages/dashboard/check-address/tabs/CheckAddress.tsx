@@ -303,7 +303,8 @@ const CheckAddress = () => {
               dataIndex: 'tutorVisits',
               key: `visit-${index}`,
               align: 'center' as const,
-              render: (visits: ITutorVisit[], record) => (
+              width: 100,
+              render: (visits: ITutorVisit[], record: any) => (
                 <Button
                   type="link"
                   className="p-0"
@@ -323,9 +324,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                            visits?.[index]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                          visits?.[index]?.created_at,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />

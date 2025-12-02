@@ -5,7 +5,6 @@ import CustomTabs from '../components/CustomTabs';
 import Debtors from './tabs/Debtors';
 import GPA from './tabs/GPA';
 import Rating from './tabs/Rating';
-import SummaryRating from './tabs/SummaryRating';
 
 const PerformancePage = () => {
   const { t } = useTranslation();
@@ -44,19 +43,19 @@ const PerformancePage = () => {
               children: <Rating />,
             },
             {
-              key: 'collected',
-              label: <span style={{ fontWeight: 500 }}>Jamlanma qaydnoma</span>,
-              children: <SummaryRating />,
+              key: 'debt',
+              label: <span style={{ fontWeight: 500 }}>Akademik qarzdor</span>,
+              children: <Debtors />,
             },
+            // {
+            //   key: 'collected',
+            //   label: <span style={{ fontWeight: 500 }}>Jamlanma qaydnoma</span>,
+            //   children: <SummaryRating />,
+            // },
             {
               key: 'gpa',
               label: <span style={{ fontWeight: 500 }}>GPA ballar</span>,
               children: <GPA />,
-            },
-            {
-              key: 'debt',
-              label: <span style={{ fontWeight: 500 }}>Akademik qarzdor</span>,
-              children: <Debtors />,
             },
           ]}
         />
