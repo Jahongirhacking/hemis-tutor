@@ -1,7 +1,8 @@
 import { ControlledFlowContext } from '@/components/ControlledFlow';
 import { RootState } from '@/store/store';
-import { LoadingOutlined, LoginOutlined } from '@ant-design/icons';
-import { Button, Flex, Form, Image, Input, Typography } from 'antd';
+import { getLocalStorage, localStorageNames } from '@/utils/storageFunc';
+import { LoadingOutlined, LoginOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Divider, Flex, Form, Image, Input, Typography } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -76,7 +77,7 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
             </Button>
           </Form.Item>
 
-          {/* <Divider style={{ margin: '3px 0', fontSize: '11pt' }}>
+          <Divider style={{ margin: '3px 0', fontSize: '11pt' }}>
             {t('const.enter_via_other_method')}
           </Divider>
 
@@ -89,12 +90,11 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
               color: '#fff',
             }}
             icon={<UserOutlined />}
-            onClick={() => onSubmit()}
-            // href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://TYUTOR.HEMIS.UZ/auth/callback`}
+            href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://tyutor.hemis.uz/auth/callback`}
             target="_blank"
           >
             One ID
-          </Button> */}
+          </Button>
         </Flex>
       </Form>
     </div>
