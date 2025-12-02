@@ -283,6 +283,7 @@ export interface IGradeDebtor {
   specialty: string;
   _education_year: string;
   _semester: string;
+  student_id: number;
 }
 
 export interface IGradeDebtorRes {

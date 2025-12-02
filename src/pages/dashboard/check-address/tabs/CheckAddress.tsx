@@ -262,11 +262,11 @@ const CheckAddress = () => {
               width: 180,
             },
             {
-              title: "Turar joy turi",
-              dataIndex: "accommodation",
-              key: "accommodation",
-              render: (accomodation) => accomodation?.name,
-              width: 120
+              title: 'Turar joy turi',
+              dataIndex: 'accommodation',
+              key: 'accommodation',
+              render: accomodation => accomodation?.name,
+              width: 120,
             },
             {
               title: t('const.living_status'),
@@ -323,9 +323,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                          visits?.[index]?.created_at,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ).format('DD.MM.YYYY')
+                            visits?.[index]?.created_at,
+                            'YYYY-MM-DD HH:mm:ss'
+                          ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />

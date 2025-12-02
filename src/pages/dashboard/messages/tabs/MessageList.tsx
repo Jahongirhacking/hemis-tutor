@@ -117,11 +117,7 @@ const MessageList = () => {
           <Flex vertical gap={24} className="w-full">
             <Row gutter={[18, 18]} className="w-full">
               {messageData?.result?.messages?.map((m: IMessage) => (
-                <Col
-                  xs={24}
-                  xxl={12}
-                  key={m?.id}
-                >
+                <Col xs={24} xxl={12} key={m?.id}>
                   <MessageCard
                     handleClick={() => handleMessageCardClick(m?.id)}
                     readedMessages={readedMessages}
