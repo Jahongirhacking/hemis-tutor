@@ -85,67 +85,33 @@ const CheckAddress = () => {
   return (
     <Flex vertical gap={24} className="check-address-page">
       {/* Header Section */}
-      <Card
-        style={{
-          background: `linear-gradient(135deg, ${PRIMARY_COLOR} 0%, #0d9488 100%)`,
-          border: 'none',
-          borderRadius: '16px',
-        }}
-      >
-        <Flex
-          justify="space-between"
-          align="center"
-          className="lg:justify-between justify-center"
-          wrap
-          gap={16}
+      <Flex align="center" gap={12}>
+        <div
+          style={{
+            width: 48,
+            height: 48,
+            borderRadius: 12,
+            background: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 12px rgba(20, 184, 166, 0.2)',
+          }}
         >
-          <Flex vertical gap={8}>
-            <Typography.Title
-              level={3}
-              style={{
-                margin: 0,
-                color: '#fff',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-              }}
-            >
-              <MapPin size={28} />
-              Manzillarni tekshirish
-            </Typography.Title>
-            <Typography.Text style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-              Talabalarning yashash manzillari va tashrif tarixi
-            </Typography.Text>
-          </Flex>
-          <Flex gap={12} wrap>
-            <Card
-              style={{
-                background: 'rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-              }}
-            >
-              <Flex vertical align="center" gap={4}>
-                <Typography.Text
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    fontSize: '12px',
-                  }}
-                >
-                  Jami talabalar
-                </Typography.Text>
-                <Typography.Title
-                  level={4}
-                  style={{ margin: 0, color: '#fff' }}
-                >
-                  {addressData?.result?._meta?.totalCount || 0}
-                </Typography.Title>
-              </Flex>
-            </Card>
-          </Flex>
-        </Flex>
-      </Card>
+          <MapPin size={24} color="white" />
+        </div>
+        <div>
+          <Typography.Title
+            level={2}
+            style={{ margin: 0, marginBottom: '4px' }}
+          >
+            Manzillarni tekshirish
+          </Typography.Title>
+          <Typography.Text type="secondary" style={{ fontSize: '14px' }}>
+            Talabalarning yashash manzillari va tashrif tarixi
+          </Typography.Text>
+        </div>
+      </Flex>
 
       {/* Filters Card */}
       <Card
@@ -296,6 +262,13 @@ const CheckAddress = () => {
               width: 180,
             },
             {
+              title: "Turar joy turi",
+              dataIndex: "accommodation",
+              key: "accommodation",
+              render: (accomodation) => accomodation?.name,
+              width: 120
+            },
+            {
               title: t('const.living_status'),
               dataIndex: 'studentLivingStatus',
               key: 'studentLivingStatus',
@@ -350,9 +323,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                            visits?.[index]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                          visits?.[index]?.created_at,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />
