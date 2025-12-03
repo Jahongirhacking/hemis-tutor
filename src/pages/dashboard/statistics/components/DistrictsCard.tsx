@@ -1,10 +1,11 @@
-import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
-import { PieChartFilled } from '@ant-design/icons';
-import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
-import { MapPin } from 'lucide-react';
-import { useMemo } from 'react';
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { toFirstLowerLetter } from '@/utils/stringFunc';
+import { Card, Flex, Skeleton, Typography } from 'antd';
+import { BarChartHorizontalBig, MapPin } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import CustomSelect from '../../components/CustomSelect';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const DistrictsCard = ({
@@ -13,28 +14,28 @@ const DistrictsCard = ({
   COLORS,
   ...props
 }: IStatisticsCardProps) => {
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
+  const { data: regionData, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.DISTRICT_STATISTICS}`,
   });
+  const [activeRegion, setActiveRegion] = useState();
   const districtData = useMemo(
     () =>
-      data?.result?.district_statistics?.map(stat => ({
-        name: stat?.district_name,
-        value: stat?.percent, // or stat.percent if you prefer
-      })),
-    [data]
+      activeRegion ?
+        regionData?.result?.district_statistics?.find(d => d?.province_code === activeRegion)?.districts?.map(stat => ({
+          name: stat?.district_name,
+          value: stat?.count,
+          percent: stat?.percent
+        }))
+        : regionData?.result?.district_statistics?.map(stat => ({
+          name: stat?.province_name,
+          value: stat?.total_count,
+          percent: stat?.total_percent,
+        })),
+    [regionData, activeRegion]
   );
+  const { t } = useTranslation();
 
-  const maxPercent = useMemo(
-    () =>
-      data?.result?.district_statistics?.reduce(
-        (acc, curr) => Math.max(acc, curr?.percent),
-        0
-      ),
-    [data?.result?.district_statistics]
-  );
-
-  if (data && !data?.result?.district_statistics) return null;
+  if (regionData && !regionData?.result?.district_statistics) return null;
 
   return (
     <Card
@@ -46,9 +47,22 @@ const DistrictsCard = ({
             level={4}
             style={{ color: isDark ? '#fff' : '#1a1a1a', margin: 0 }}
           >
-            Tumanlar bo'yicha
+            Hududlar bo'yicha
           </Typography.Title>
-          <MapPin size={20} style={{ color: PRIMARY }} />
+          <Flex gap={6} align='center'>
+            {
+              regionData?.result?.district_statistics?.length && regionData?.result?.district_statistics?.[0]?.province_code && (
+                <CustomSelect
+                  allowClear
+                  placeholder="Viloyat tanlang"
+                  options={regionData?.result?.district_statistics?.map(d => ({ label: d?.province_name, value: d?.province_code }))}
+                  value={activeRegion}
+                  onChange={(value) => setActiveRegion(value)}
+                />
+              )
+            }
+            <MapPin size={20} style={{ color: PRIMARY }} />
+          </Flex>
         </Flex>
       }
       style={{
@@ -64,89 +78,61 @@ const DistrictsCard = ({
             active
             className="!m-auto !w-full !h-[140px] !overflow-hidden"
           >
-            <PieChartFilled style={{ fontSize: 100, color: '#bfbfbf' }} />
+            <BarChartHorizontalBig style={{ fontSize: 100, color: '#bfbfbf' }} />
           </Skeleton.Node>
         ) : (
           <ResponsiveContainer
             width="100%"
-            height={districtData?.length <= 20 ? 240 : 180}
+            className="!min-h-[100px]"
           >
-            <PieChart>
-              <Pie
-                data={districtData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={80}
-                fill={PRIMARY}
-                {...(districtData?.length <= 20
-                  ? {
-                      label: ({ name, percent }) =>
-                        `${name}: ${(percent * 100).toFixed(0)}%`,
-                    }
-                  : {})}
-              >
+            <BarChart data={districtData} layout="vertical">
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={isDark ? '#ffffff20' : '#00000010'}
+              />
+              <XAxis dataKey="value" type="number" stroke={isDark ? '#fff' : '#666'} />
+              <YAxis
+                dataKey="name"
+                type="category"
+                stroke={isDark ? '#fff' : '#666'}
+                width={140}
+              />
+              <Tooltip
+                content={({ payload }) => {
+                  if (payload && payload.length) {
+                    const { name, value, percent } = payload?.[0]?.payload;
+                    return (
+                      <Card
+                        style={{
+                          background: isDark
+                            ? 'rgba(15, 23, 42, 0.95)'
+                            : 'rgba(255, 255, 255, 0.95)',
+                          border: `1px solid ${PRIMARY}40`,
+                          borderRadius: '8px',
+                          padding: '8px 12px',
+                        }}
+                      >
+                        {`${name}`}:{' '}
+                        <span style={{ color: PRIMARY }}>
+                          {`${t('const.number_count', { number: value })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
+                        </span>
+                      </Card>
+                    );
+                  }
+                  return null;
+                }}
+              />
+              <Bar dataKey="value" radius={[0, 8, 8, 0]}>
                 {districtData?.map((_, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
+                    fill={COLORS?.[index % COLORS.length]}
                   />
                 ))}
-              </Pie>
-              <Tooltip
-                formatter={(value: number, name: string) => [`${value}%`, name]}
-              />
-            </PieChart>
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         )}
-
-        <Flex
-          vertical
-          gap={12}
-          className="overflow-y-auto max-h-[350px] pr-3"
-          style={{ scrollbarColor: '#14b8a571 transparent' }}
-        >
-          {isFetching ? (
-            <GenerateSkeleton vertical numberOfRepetition={3}>
-              <Skeleton.Input className="!w-full" active />
-            </GenerateSkeleton>
-          ) : (
-            <>
-              {data?.result?.district_statistics?.map((stat, index) => (
-                <Flex key={index} justify="space-between" align="center">
-                  <Typography.Text
-                    style={{ color: isDark ? '#fff' : '#1a1a1a', flex: 1 }}
-                  >
-                    {stat?.district_name}
-                  </Typography.Text>
-                  <Flex align="center" gap={12}>
-                    <Progress
-                      percent={(stat?.percent / (maxPercent || 100)) * 100}
-                      strokeColor={PRIMARY}
-                      trailColor={
-                        isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0'
-                      }
-                      style={{ width: '100px' }}
-                      size="small"
-                      showInfo={false}
-                    />
-                    <Typography.Text
-                      strong
-                      style={{
-                        color: PRIMARY,
-                        minWidth: '40px',
-                        textAlign: 'right',
-                      }}
-                    >
-                      {stat.count}
-                    </Typography.Text>
-                  </Flex>
-                </Flex>
-              ))}
-            </>
-          )}
-        </Flex>
       </Flex>
     </Card>
   );

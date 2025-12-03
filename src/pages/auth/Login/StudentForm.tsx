@@ -94,7 +94,7 @@ const StudentForm = ({ isLoading = false }: { isLoading?: boolean }) => {
               color: '#fff',
             }}
             icon={<UserOutlined />}
-            href={`${getLocalStorage(localStorageNames.universityApi)}/auth/oauth?redirect_uri=https://tyutor.hemis.uz/auth/callback`}
+            href={`${getLocalStorage(localStorageNames.employeeApi)}/auth/oauth?redirect_uri=https://tyutor.hemis.uz/auth/callback`}
             target="_blank"
           >
             One ID

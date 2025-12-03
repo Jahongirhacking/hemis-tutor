@@ -29,7 +29,7 @@ export const enum ChatTopic {
 }
 
 export const isTestUniversity = () =>
-  getLocalStorage(localStorageNames.universityApi) ===
+  getLocalStorage(localStorageNames.employeeApi) ===
   'https://student.hemis.uz/rest/v1';
 
 export const testUniversities = [

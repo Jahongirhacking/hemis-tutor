@@ -1,7 +1,6 @@
-import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { toFirstLowerLetter } from '@/utils/stringFunc';
-import { Card, Flex, Skeleton, Tag, Typography } from 'antd';
+import { Card, Skeleton, Typography } from 'antd';
 import { BarChartHorizontalBig } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -30,17 +29,17 @@ const TopAbsentCard = ({
   // Absenteeism data
   const absenteeismData = [
     {
-      range: '+24%',
+      range: '24%+',
       count: data?.result?.absenteeism?.range_24_plus?.count ?? 0,
       percent: data?.result?.absenteeism?.range_24_plus?.percent ?? 0,
     },
     {
-      range: '+48%',
+      range: '48%+',
       count: data?.result?.absenteeism?.range_48_plus?.count ?? 0,
       percent: data?.result?.absenteeism?.range_48_plus?.percent ?? 0,
     },
     {
-      range: '+72%',
+      range: '72%+',
       count: data?.result?.absenteeism?.range_72_plus?.count ?? 0,
       percent: data?.result?.absenteeism?.range_72_plus?.percent ?? 0,
     },
@@ -101,7 +100,7 @@ const TopAbsentCard = ({
                         padding: '8px 12px',
                       }}
                     >
-                      {`+${range}`}:{' '}
+                      {`${range}`}:{' '}
                       <span style={{ color: PRIMARY }}>
                         {`${t('const.number_count', { number: count })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
                       </span>
@@ -119,41 +118,6 @@ const TopAbsentCard = ({
           </BarChart>
         </ResponsiveContainer>
       )}
-      <Flex vertical gap={16} style={{ marginTop: '16px' }}>
-        <Typography.Text strong style={{ color: isDark ? '#fff' : '#1a1a1a' }}>
-          Eng ko'p dars qoldirganlar (TOP 10)
-        </Typography.Text>
-        {isFetching ? (
-          <GenerateSkeleton vertical numberOfRepetition={2}>
-            <Skeleton.Input active className="!w-full" />
-          </GenerateSkeleton>
-        ) : (
-          <Flex
-            vertical
-            gap={16}
-            className="overflow-y-auto !max-h-[200px] pr-2 scrollbar-thin"
-            style={{ scrollbarColor: '#14b8a571 transparent' }}
-          >
-            {data?.result?.absenteeism?.top_10_absentees
-              ?.slice(0, 10)
-              ?.map((student, index) => (
-                <Flex key={index} justify="space-between" align="center" wrap>
-                  <Typography.Text
-                    style={{
-                      color: isDark ? '#fff' : '#666',
-                      fontSize: '13px',
-                    }}
-                  >
-                    {student?.full_name}
-                  </Typography.Text>
-                  <Tag color="red">
-                    {(student?.absent_count || 0) * 2} {t('const.hours_plural')}
-                  </Tag>
-                </Flex>
-              ))}
-          </Flex>
-        )}
-      </Flex>
     </Card>
   );
 };

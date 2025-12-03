@@ -18,7 +18,7 @@ const UniversitySelect = () => {
       try {
         if (value) {
           const universityApiUrl = `${value}rest/v1`;
-          setLocalStorage(localStorageNames.universityApi, universityApiUrl);
+          setLocalStorage(localStorageNames.employeeApi, universityApiUrl);
           const response = await axios.get(
             `${universityApiUrl}/public/university-profile`
           );

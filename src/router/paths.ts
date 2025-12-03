@@ -22,6 +22,7 @@ export const paths = {
     checkAddress: '/dashboard/check-address',
     messages: '/dashboard/messages',
     settings: '/dashboard/settings',
+    todo: '/dashboard/todo',
   },
 };
 

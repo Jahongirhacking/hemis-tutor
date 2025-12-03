@@ -1,9 +1,9 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { RootState } from '@/store/store';
-import { Card, Flex, Skeleton, Typography } from 'antd';
+import { Card, Flex, Row, Skeleton, Typography } from 'antd';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import CustomCol from '../components/CustomCol';
 import {
   ContractCard,
   CourseCard,
@@ -11,18 +11,16 @@ import {
   ExpandItem,
   GenderCard,
   GeoLocationCard,
-  LivingStatusCard,
-  PerformanceCard,
-  SocialCard,
+  LivingStatusCard, SocialCard,
   StatisticsCard,
-  TopAbsentCard,
+  TopAbsentCard
 } from './components';
 import AccommodationCard from './components/AccommodationCard';
 import ContractTypeCard from './components/ContractTypeCard';
 import GeoLocationMapCard from './components/GeoLocationMapCard';
 
-const ResponsiveMasonryFixed = ResponsiveMasonry as unknown as React.FC<any>;
-const MasonryFixed = Masonry as unknown as React.FC<any>;
+// const ResponsiveMasonryFixed = ResponsiveMasonry as unknown as React.FC<any>;
+// const MasonryFixed = Masonry as unknown as React.FC<any>;
 
 const Dashboard = () => {
   const { data, isFetching } = useGetDashboardStatisticsQuery({
@@ -103,11 +101,10 @@ const Dashboard = () => {
         <StatisticsCard className="upper-element" {...{ isDark, PRIMARY }} />
 
         {/* Main Charts Row */}
-        <Flex className="flex flex-col md:flex-row gap-4" align="stretch">
+        <Flex className="flex flex-col xl:flex-row gap-4" align="stretch">
           {/* Living Status & Geo Location */}
           <LivingStatusCard
             {...{ isDark, PRIMARY, COLORS, CustomTooltip }}
-            style={{ height: 'auto' }}
           />
 
           {/* Course Distribution Bar Chart */}
@@ -117,43 +114,37 @@ const Dashboard = () => {
           <GenderCard {...{ isDark, PRIMARY, CustomTooltip }} />
         </Flex>
 
-        <ResponsiveMasonryFixed
-          columnsCountBreakPoints={{
-            300: 1,
-            800: 2,
-          }}
-          className="dashboard-masonry"
-        >
-          <MasonryFixed className="masonry-element">
-            {/* Absenteeism Statistics */}
+        <Row gutter={[18, 18]}>
+          <CustomCol>
             <TopAbsentCard {...{ isDark, PRIMARY, CustomTooltip }} />
+          </CustomCol>
 
+          <CustomCol>
             <CourseCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
+          </CustomCol>
 
-            {/* Performance Stats */}
-            <PerformanceCard {...{ isDark, PRIMARY }} />
-
+          <CustomCol>
             <AccommodationCard {...{ isDark, PRIMARY, CustomTooltip }} />
+          </CustomCol>
 
-            {/* Geo */}
-            <GeoLocationCard {...{ isDark, PRIMARY }} />
+          <CustomCol>
+            <ContractCard {...{ isDark, PRIMARY }} />
+          </CustomCol>
 
-            {/* Contract Stats */}
-            <ContractCard className="upper-element" {...{ isDark, PRIMARY }} />
-
-            {/* Social Statistics Radar */}
+          <CustomCol>
             <SocialCard {...{ isDark, PRIMARY, CustomTooltip, COLORS }} />
+          </CustomCol>
 
-            {/* District Statistics */}
-            <DistrictsCard
-              className="upper-element"
-              {...{ isDark, PRIMARY, COLORS }}
-            />
-          </MasonryFixed>
-        </ResponsiveMasonryFixed>
+          <CustomCol>
+            <DistrictsCard {...{ isDark, PRIMARY, COLORS }} />
+          </CustomCol>
+
+          <CustomCol>
+            <GeoLocationCard {...{ isDark, PRIMARY }} />
+          </CustomCol>
+        </Row>
 
         <GeoLocationMapCard
-          className="upper-element"
           {...{ isDark, PRIMARY }}
         />
       </Flex>

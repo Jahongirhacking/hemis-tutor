@@ -19,7 +19,7 @@ const RECAPTCHA_KEY = '6LfTNQwsAAAAAAy2FCAkyKCik93JR84Hge9hWs6u';
 
 const LoginPage = () => {
   const [step, setStep] = useState(
-    getLocalStorage(localStorageNames.universityApi) ? 1 : 0
+    getLocalStorage(localStorageNames.employeeApi) ? 1 : 0
   );
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);

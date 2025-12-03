@@ -17,6 +17,7 @@ import StudentsPage from '@/pages/dashboard/students';
 import SubMenus from '@/pages/dashboard/submenu';
 import ProfileMenus from '@/pages/dashboard/submenu/ProfileMenus';
 import UsefulMenus from '@/pages/dashboard/submenu/UsefulMenus';
+import TodoPage from '@/pages/dashboard/todo/TodoPage';
 import { paths } from '../paths';
 
 export const privateRoutes: RouteObject[] = [
@@ -67,6 +68,10 @@ export const privateRoutes: RouteObject[] = [
       {
         path: paths.private.settings,
         element: <SettingsPage />,
+      },
+      {
+        path: paths.private.todo,
+        element: <TodoPage />,
       },
       {
         path: 'help',

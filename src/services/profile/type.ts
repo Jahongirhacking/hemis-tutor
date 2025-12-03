@@ -205,8 +205,8 @@ export interface IEducationFormStat {
 }
 
 export interface IGrantType {
-  grant_type_code: number;
-  grant_type_name: string;
+  payment_form_code: number;
+  payment_form_name: string;
   count: number;
   percent: number;
 }
@@ -216,7 +216,7 @@ export interface ICourseStat {
   course_name: string;
   count: number;
   percent: number;
-  grant_types: IGrantType[];
+  payment_forms: IGrantType[];
 }
 
 export interface ISocialStat {
@@ -239,12 +239,19 @@ export interface ILivingStatusStat {
   count: number;
   percent: number;
 }
-
-export interface IDistrictStat {
+export interface IDistrictItem {
   district_code: string;
   district_name: string;
   count: number;
   percent: number;
+}
+
+export interface IDistrictStat {
+  province_code: string;
+  province_name: string;
+  total_count: number;
+  total_percent: number;
+  districts: IDistrictItem[];
 }
 
 export interface IGeoLocationStudent {

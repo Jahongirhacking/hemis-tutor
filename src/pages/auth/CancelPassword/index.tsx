@@ -25,7 +25,7 @@ const CancelPasswordPage = () => {
   };
 
   const handleUniver = () => {
-    if (getLocalStorage(localStorageNames.universityApi)) {
+    if (getLocalStorage(localStorageNames.employeeApi)) {
       navigate('/');
       window.location.href = getBaseUrl('', false).replace(
         'rest/v1',
@@ -57,7 +57,7 @@ const CancelPasswordPage = () => {
         />
         <meta property="og:image" content="/images/hemis-icon.svg" />
       </Helmet>
-      {!getLocalStorage(localStorageNames.universityApi) ? (
+      {!getLocalStorage(localStorageNames.employeeApi) ? (
         <Flex
           gap={10}
           align="center"

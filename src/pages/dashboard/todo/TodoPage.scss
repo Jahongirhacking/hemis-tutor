@@ -1,0 +1,233 @@
+.todo-page {
+  min-height: 100vh;
+
+  .todo-header {
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(20, 184, 166, 0.1);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+
+    .stat-card {
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .progress-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+    .ant-progress-bg {
+      border-radius: 8px;
+    }
+  }
+
+  .calendar-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+    .todo-calendar {
+      .ant-picker-calendar-date-content {
+        height: 40px;
+      }
+
+      .calendar-cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 0;
+      }
+
+      .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+        background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+      }
+
+      .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(
+          .ant-picker-cell-range-start
+        ):not(.ant-picker-cell-range-end)
+        .ant-picker-cell-inner {
+        background: rgba(20, 184, 166, 0.1);
+      }
+    }
+  }
+
+  .tasks-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+    .task-item {
+      border-radius: 12px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateX(4px);
+        box-shadow: 0 4px 16px rgba(20, 184, 166, 0.15);
+      }
+
+      &.completed {
+        .ant-checkbox-checked .ant-checkbox-inner {
+          background-color: #14b8a6;
+          border-color: #14b8a6;
+        }
+      }
+    }
+  }
+}
+
+.todo-modal {
+  .task-detail-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    &.completed {
+      opacity: 0.8;
+    }
+
+    .ant-checkbox-checked .ant-checkbox-inner {
+      background-color: #14b8a6;
+      border-color: #14b8a6;
+    }
+  }
+}
+
+.add-todo-modal {
+  .ant-input,
+  .ant-input-textarea {
+    border-radius: 8px;
+
+    &:focus,
+    &:hover {
+      border-color: #14b8a6;
+    }
+  }
+}
+
+// Dark theme styles
+.dark-theme {
+  .todo-page {
+    .stat-card,
+    .progress-card,
+    .calendar-card,
+    .tasks-card,
+    .todo-header {
+      background-color: #1e293b !important;
+      border-color: rgba(20, 184, 166, 0.2) !important;
+
+      .ant-card-head {
+        border-bottom-color: rgba(20, 184, 166, 0.1);
+      }
+    }
+
+    .task-item {
+      background-color: rgba(255, 255, 255, 0.03) !important;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+      }
+
+      &.completed {
+        background-color: rgba(20, 184, 166, 0.15) !important;
+      }
+    }
+
+    .todo-calendar {
+      .ant-picker-content th {
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .ant-picker-cell {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .ant-picker-cell-disabled {
+        color: rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+
+  .todo-modal,
+  .add-todo-modal {
+    .ant-modal-content {
+      background-color: #1e293b;
+    }
+
+    .task-detail-card {
+      background-color: rgba(255, 255, 255, 0.03) !important;
+      border-color: rgba(148, 163, 184, 0.2) !important;
+
+      &.completed {
+        background-color: rgba(20, 184, 166, 0.15) !important;
+        border-color: rgba(20, 184, 166, 0.3) !important;
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .todo-page {
+    padding: 16px;
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .todo-calendar {
+      .ant-picker-calendar-date-content {
+        height: 30px;
+      }
+    }
+  }
+}
+
+// Animation for shimmer effect on progress bar
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+}
+
+// Hover effect for checkboxes
+.ant-checkbox-wrapper:hover .ant-checkbox-inner {
+  border-color: #14b8a6;
+}
+
+// Custom badge styles
+.ant-badge {
+  .ant-badge-count {
+    font-weight: 600;
+    font-size: 11px;
+    min-width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}
+
+// Card hover effects
+.ant-card-hoverable:hover {
+  border-color: rgba(20, 184, 166, 0.5);
+}
