@@ -87,18 +87,9 @@ const TopAbsentCard = ({
             />
             <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="count" radius={[0, 8, 8, 0]}>
-              <Cell
-                key={0}
-                fill={'#ffc03aff'}
-              />
-              <Cell
-                key={1}
-                fill={'#ff5420ff'}
-              />
-              <Cell
-                key={2}
-                fill={'#e91b00ff'}
-              />
+              <Cell key={0} fill={'#ffc03aff'} />
+              <Cell key={1} fill={'#ff5420ff'} />
+              <Cell key={2} fill={'#e91b00ff'} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
@@ -112,7 +103,12 @@ const TopAbsentCard = ({
             <Skeleton.Input active className="!w-full" />
           </GenerateSkeleton>
         ) : (
-          <Flex vertical gap={16} className='overflow-y-auto !max-h-[200px] pr-2 scrollbar-thin' style={{ scrollbarColor: '#14b8a571 transparent' }}>
+          <Flex
+            vertical
+            gap={16}
+            className="overflow-y-auto !max-h-[200px] pr-2 scrollbar-thin"
+            style={{ scrollbarColor: '#14b8a571 transparent' }}
+          >
             {data?.result?.absenteeism?.top_10_absentees
               ?.slice(0, 10)
               ?.map((student, index) => (
@@ -125,7 +121,9 @@ const TopAbsentCard = ({
                   >
                     {student?.full_name}
                   </Typography.Text>
-                  <Tag color="red">{(student?.absent_count || 0) * 2} {t('const.hours_plural')}</Tag>
+                  <Tag color="red">
+                    {(student?.absent_count || 0) * 2} {t('const.hours_plural')}
+                  </Tag>
                 </Flex>
               ))}
           </Flex>

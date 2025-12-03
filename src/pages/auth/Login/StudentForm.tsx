@@ -1,7 +1,11 @@
 import { ControlledFlowContext } from '@/components/ControlledFlow';
 import { RootState } from '@/store/store';
 import { getLocalStorage, localStorageNames } from '@/utils/storageFunc';
-import { LoadingOutlined, LoginOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  LoadingOutlined,
+  LoginOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { Button, Divider, Flex, Form, Image, Input, Typography } from 'antd';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';

@@ -130,7 +130,10 @@ const Dashboard = () => {
             <TopAbsentCard {...{ isDark, PRIMARY, CustomTooltip }} />
 
             {/* District Statistics */}
-            <DistrictsCard className="upper-element" {...{ isDark, PRIMARY, COLORS }} />
+            <DistrictsCard
+              className="upper-element"
+              {...{ isDark, PRIMARY, COLORS }}
+            />
 
             {/* Performance Stats */}
             <PerformanceCard {...{ isDark, PRIMARY }} />

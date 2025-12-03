@@ -90,7 +90,10 @@ const CourseCard = ({
                         padding: '8px 12px',
                       }}
                     >
-                      {name}: <span style={{ color: PRIMARY }}>{t('const.number_count', { number: value })}</span>
+                      {name}:{' '}
+                      <span style={{ color: PRIMARY }}>
+                        {t('const.number_count', { number: value })}
+                      </span>
                     </Card>
                   );
                 }
