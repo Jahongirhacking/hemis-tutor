@@ -80,7 +80,9 @@ const AttendanceReport = () => {
           },
           {
             title: t('const.total'),
-            sorter: (a, b) => ((a?.absent_on + a?.absent_off) || 0) - ((b?.absent_on + b?.absent_off) || 0),
+            sorter: (a, b) =>
+              (a?.absent_on + a?.absent_off || 0) -
+              (b?.absent_on + b?.absent_off || 0),
             render: (_, record) => (
               <Tag color="magenta">
                 {`${record?.absent_off + record?.absent_on} ${t('const.hours_plural')}`}

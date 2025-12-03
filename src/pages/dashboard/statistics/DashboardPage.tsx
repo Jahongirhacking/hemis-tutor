@@ -103,9 +103,12 @@ const Dashboard = () => {
         <StatisticsCard className="upper-element" {...{ isDark, PRIMARY }} />
 
         {/* Main Charts Row */}
-        <Flex className="flex flex-col md:flex-row gap-4" align='stretch'>
+        <Flex className="flex flex-col md:flex-row gap-4" align="stretch">
           {/* Living Status & Geo Location */}
-          <LivingStatusCard {...{ isDark, PRIMARY, COLORS, CustomTooltip }} style={{ height: 'auto' }} />
+          <LivingStatusCard
+            {...{ isDark, PRIMARY, COLORS, CustomTooltip }}
+            style={{ height: 'auto' }}
+          />
 
           {/* Course Distribution Bar Chart */}
           <ContractTypeCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
@@ -146,7 +149,6 @@ const Dashboard = () => {
               className="upper-element"
               {...{ isDark, PRIMARY, COLORS }}
             />
-
           </MasonryFixed>
         </ResponsiveMasonryFixed>
 

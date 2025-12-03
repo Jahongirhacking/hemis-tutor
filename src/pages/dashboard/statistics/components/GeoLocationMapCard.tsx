@@ -122,7 +122,7 @@ const UzbekistanMapCard = ({
           {/* Map Container */}
           <LeafletMap
             locations={data?.result?.geo_location_statistics?.locations}
-            onLocationSelect={() => { }}
+            onLocationSelect={() => {}}
             selectedLocation={null}
           />
 

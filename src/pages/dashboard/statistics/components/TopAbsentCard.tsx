@@ -86,29 +86,31 @@ const TopAbsentCard = ({
               stroke={isDark ? '#fff' : '#666'}
               width={80}
             />
-            <Tooltip content={({ payload }) => {
-              if (payload && payload.length) {
-                const { range, count, percent } = payload?.[0]?.payload;
-                return (
-                  <Card
-                    style={{
-                      background: isDark
-                        ? 'rgba(15, 23, 42, 0.95)'
-                        : 'rgba(255, 255, 255, 0.95)',
-                      border: `1px solid ${PRIMARY}40`,
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                    }}
-                  >
-                    {`+${range}`}:{' '}
-                    <span style={{ color: PRIMARY }}>
-                      {`${t('const.number_count', { number: count })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
-                    </span>
-                  </Card>
-                );
-              }
-              return null;
-            }} />
+            <Tooltip
+              content={({ payload }) => {
+                if (payload && payload.length) {
+                  const { range, count, percent } = payload?.[0]?.payload;
+                  return (
+                    <Card
+                      style={{
+                        background: isDark
+                          ? 'rgba(15, 23, 42, 0.95)'
+                          : 'rgba(255, 255, 255, 0.95)',
+                        border: `1px solid ${PRIMARY}40`,
+                        borderRadius: '8px',
+                        padding: '8px 12px',
+                      }}
+                    >
+                      {`+${range}`}:{' '}
+                      <span style={{ color: PRIMARY }}>
+                        {`${t('const.number_count', { number: count })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
+                      </span>
+                    </Card>
+                  );
+                }
+                return null;
+              }}
+            />
             <Bar dataKey="count" radius={[0, 8, 8, 0]}>
               <Cell key={0} fill={'#ffc03aff'} />
               <Cell key={1} fill={'#ff5420ff'} />
