@@ -54,18 +54,20 @@ const useNavbarList = () => {
         path: paths.private.checkAddress,
         isPrivatePath: true,
       },
-      ...(
-        isTestUniversity() ? [
-          {
-            title: (
-              t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
-            )[10],
-            icon: <TodoIconSVG />,
-            path: paths.private.todo,
-            isPrivatePath: false,
-          }
-        ] : []
-      ),
+      ...(isTestUniversity()
+        ? [
+            {
+              title: (
+                t('dashboard.navbar.navbarList', {
+                  returnObjects: true,
+                }) as string[]
+              )[10],
+              icon: <TodoIconSVG />,
+              path: paths.private.todo,
+              isPrivatePath: false,
+            },
+          ]
+        : []),
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]

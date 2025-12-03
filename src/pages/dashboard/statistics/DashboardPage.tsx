@@ -11,9 +11,10 @@ import {
   ExpandItem,
   GenderCard,
   GeoLocationCard,
-  LivingStatusCard, SocialCard,
+  LivingStatusCard,
+  SocialCard,
   StatisticsCard,
-  TopAbsentCard
+  TopAbsentCard,
 } from './components';
 import AccommodationCard from './components/AccommodationCard';
 import ContractTypeCard from './components/ContractTypeCard';
@@ -103,9 +104,7 @@ const Dashboard = () => {
         {/* Main Charts Row */}
         <Flex className="flex flex-col xl:flex-row gap-4" align="stretch">
           {/* Living Status & Geo Location */}
-          <LivingStatusCard
-            {...{ isDark, PRIMARY, COLORS, CustomTooltip }}
-          />
+          <LivingStatusCard {...{ isDark, PRIMARY, COLORS, CustomTooltip }} />
 
           {/* Course Distribution Bar Chart */}
           <ContractTypeCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
@@ -144,9 +143,7 @@ const Dashboard = () => {
           </CustomCol>
         </Row>
 
-        <GeoLocationMapCard
-          {...{ isDark, PRIMARY }}
-        />
+        <GeoLocationMapCard {...{ isDark, PRIMARY }} />
       </Flex>
     </Flex>
   );

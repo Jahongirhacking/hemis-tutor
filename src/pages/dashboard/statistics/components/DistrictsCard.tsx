@@ -4,7 +4,16 @@ import { Card, Flex, Skeleton, Typography } from 'antd';
 import { BarChartHorizontalBig, MapPin } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import CustomSelect from '../../components/CustomSelect';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
@@ -20,17 +29,19 @@ const DistrictsCard = ({
   const [activeRegion, setActiveRegion] = useState();
   const districtData = useMemo(
     () =>
-      activeRegion ?
-        regionData?.result?.district_statistics?.find(d => d?.province_code === activeRegion)?.districts?.map(stat => ({
-          name: stat?.district_name,
-          value: stat?.count,
-          percent: stat?.percent
-        }))
+      activeRegion
+        ? regionData?.result?.district_statistics
+            ?.find(d => d?.province_code === activeRegion)
+            ?.districts?.map(stat => ({
+              name: stat?.district_name,
+              value: stat?.count,
+              percent: stat?.percent,
+            }))
         : regionData?.result?.district_statistics?.map(stat => ({
-          name: stat?.province_name,
-          value: stat?.total_count,
-          percent: stat?.total_percent,
-        })),
+            name: stat?.province_name,
+            value: stat?.total_count,
+            percent: stat?.total_percent,
+          })),
     [regionData, activeRegion]
   );
   const { t } = useTranslation();
@@ -49,18 +60,20 @@ const DistrictsCard = ({
           >
             Hududlar bo'yicha
           </Typography.Title>
-          <Flex gap={6} align='center'>
-            {
-              regionData?.result?.district_statistics?.length && regionData?.result?.district_statistics?.[0]?.province_code && (
+          <Flex gap={6} align="center">
+            {regionData?.result?.district_statistics?.length &&
+              regionData?.result?.district_statistics?.[0]?.province_code && (
                 <CustomSelect
                   allowClear
                   placeholder="Viloyat tanlang"
-                  options={regionData?.result?.district_statistics?.map(d => ({ label: d?.province_name, value: d?.province_code }))}
+                  options={regionData?.result?.district_statistics?.map(d => ({
+                    label: d?.province_name,
+                    value: d?.province_code,
+                  }))}
                   value={activeRegion}
-                  onChange={(value) => setActiveRegion(value)}
+                  onChange={value => setActiveRegion(value)}
                 />
-              )
-            }
+              )}
             <MapPin size={20} style={{ color: PRIMARY }} />
           </Flex>
         </Flex>
@@ -78,19 +91,22 @@ const DistrictsCard = ({
             active
             className="!m-auto !w-full !h-[140px] !overflow-hidden"
           >
-            <BarChartHorizontalBig style={{ fontSize: 100, color: '#bfbfbf' }} />
+            <BarChartHorizontalBig
+              style={{ fontSize: 100, color: '#bfbfbf' }}
+            />
           </Skeleton.Node>
         ) : (
-          <ResponsiveContainer
-            width="100%"
-            className="!min-h-[100px]"
-          >
+          <ResponsiveContainer width="100%" className="!min-h-[100px]">
             <BarChart data={districtData} layout="vertical">
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke={isDark ? '#ffffff20' : '#00000010'}
               />
-              <XAxis dataKey="value" type="number" stroke={isDark ? '#fff' : '#666'} />
+              <XAxis
+                dataKey="value"
+                type="number"
+                stroke={isDark ? '#fff' : '#666'}
+              />
               <YAxis
                 dataKey="name"
                 type="category"
