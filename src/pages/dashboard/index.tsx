@@ -135,7 +135,8 @@ export const Dashboard = () => {
             maskClosable
             onCancel={handleCloseStudentModal}
             open={searchParams.has(STUDENT_INFO_MODAL)}
-            className="!min-w-[min(1400px,99%)] "
+            className="!min-w-[min(1400px,99%)]"
+            destroyOnHidden
           >
             <CustomInfo.Student props={searchParams.get(STUDENT_INFO_MODAL)} />
           </Modal>

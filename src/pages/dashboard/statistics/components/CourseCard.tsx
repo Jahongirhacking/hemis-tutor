@@ -1,5 +1,6 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { Card, Flex, Skeleton, Typography } from 'antd';
+import { t } from 'i18next';
 import { BarChart3 } from 'lucide-react';
 import {
   Bar,
@@ -74,7 +75,28 @@ const CourseCard = ({
               stroke={isDark ? '#fff' : '#666'}
               style={{ fontSize: '12px' }}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip
+              content={({ payload }) => {
+                if (payload && payload.length) {
+                  const { name, value } = payload?.[0]?.payload;
+                  return (
+                    <Card
+                      style={{
+                        background: isDark
+                          ? 'rgba(15, 23, 42, 0.95)'
+                          : 'rgba(255, 255, 255, 0.95)',
+                        border: `1px solid ${PRIMARY}40`,
+                        borderRadius: '8px',
+                        padding: '8px 12px',
+                      }}
+                    >
+                      {name}: <span style={{ color: PRIMARY }}>{t('const.number_count', { number: value })}</span>
+                    </Card>
+                  );
+                }
+                return null;
+              }}
+            />
             <Bar dataKey="value" fill={PRIMARY} radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>

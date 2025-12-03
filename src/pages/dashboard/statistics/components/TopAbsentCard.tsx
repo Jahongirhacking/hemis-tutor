@@ -2,10 +2,12 @@ import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { Card, Flex, Skeleton, Tag, Typography } from 'antd';
 import { BarChartHorizontalBig } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -22,6 +24,7 @@ const TopAbsentCard = ({
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${[ExpandItem.ABSENTEEISM]?.join(',')}`,
   });
+  const { t } = useTranslation();
 
   // Absenteeism data
   const absenteeismData = [
@@ -83,11 +86,24 @@ const TopAbsentCard = ({
               width={80}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="count" fill="#f59e0b" radius={[0, 8, 8, 0]} />
+            <Bar dataKey="count" radius={[0, 8, 8, 0]}>
+              <Cell
+                key={0}
+                fill={'#ffc03aff'}
+              />
+              <Cell
+                key={1}
+                fill={'#ff5420ff'}
+              />
+              <Cell
+                key={2}
+                fill={'#e91b00ff'}
+              />
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       )}
-      <Flex vertical gap={8} style={{ marginTop: '16px' }}>
+      <Flex vertical gap={16} style={{ marginTop: '16px' }}>
         <Typography.Text strong style={{ color: isDark ? '#fff' : '#1a1a1a' }}>
           Eng ko'p dars qoldirganlar (TOP 10)
         </Typography.Text>
@@ -96,23 +112,23 @@ const TopAbsentCard = ({
             <Skeleton.Input active className="!w-full" />
           </GenerateSkeleton>
         ) : (
-          <>
+          <Flex vertical gap={16} className='overflow-y-auto !max-h-[200px] pr-2 scrollbar-thin' style={{ scrollbarColor: '#14b8a571 transparent' }}>
             {data?.result?.absenteeism?.top_10_absentees
-              ?.slice(0, 5)
+              ?.slice(0, 10)
               ?.map((student, index) => (
-                <Flex key={index} justify="space-between" align="center">
+                <Flex key={index} justify="space-between" align="center" wrap>
                   <Typography.Text
                     style={{
                       color: isDark ? '#fff' : '#666',
                       fontSize: '13px',
                     }}
                   >
-                    {student.full_name}
+                    {student?.full_name}
                   </Typography.Text>
-                  <Tag color="orange">{student.absent_count} dars</Tag>
+                  <Tag color="red">{(student?.absent_count || 0) * 2} {t('const.hours_plural')}</Tag>
                 </Flex>
               ))}
-          </>
+          </Flex>
         )}
       </Flex>
     </Card>

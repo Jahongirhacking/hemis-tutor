@@ -54,6 +54,7 @@ const useStudentPassport = ({ id }: { id: string }) => {
     pageStyle:
       '@page :first { size: A4; margin: 0; } @page { size: A4; margin-top: 10mm; margin-bottom: 0; margin-left: 0; margin-right: 0; } body { background: #e2e8f0; margin: 0; } .print-resume { width: 100%; min-height: calc(297mm - 16mm); margin: 0; padding: 4mm; box-sizing: border-box; } @media print { .resume-layout { width: 100%; box-shadow: none !important; border: none !important; } .education-card { break-inside: avoid !important; page-break-inside: avoid !important; } .education-cards-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1rem !important; } .registry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .registry-card { break-inside: avoid !important; page-break-inside: avoid !important; box-shadow: none !important; -webkit-print-color-adjust: exact !important; color-adjust: exact !important; print-color-adjust: exact !important; } .info-card { break-inside: avoid !important; page-break-inside: avoid !important; box-shadow: none !important; -webkit-print-color-adjust: exact !important; color-adjust: exact !important; print-color-adjust: exact !important; } section.grid.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }',
   });
+
   const { data: studentInfoData, isFetching: isStudentLoading } =
     useGetStudentExtraInfoQuery(
       { student_hash_number: student?.id },
@@ -105,53 +106,53 @@ const useStudentPassport = ({ id }: { id: string }) => {
 
   const educationSingles: SummaryItem[] = hasEducationData
     ? [
-        { label: 'OTM', value: student?.universityName },
-        { label: 'Mutaxassislik', value: student?.specialityName },
-        { label: 'Fakultet', value: student?.facultyName },
-        { label: "To'lov shakli", value: student?.paymentFormName },
-      ]
+      { label: 'OTM', value: student?.universityName },
+      { label: 'Mutaxassislik', value: student?.specialityName },
+      { label: 'Fakultet', value: student?.facultyName },
+      { label: "To'lov shakli", value: student?.paymentFormName },
+    ]
     : [];
 
   const educationPairs: EducationPairRow[] = hasEducationData
     ? [
-        {
-          leftLabel: 'Ta’lim turi',
-          leftValue: student?.eduType,
-          rightLabel: "Ta'lim shakli",
-          rightValue: student?.eduForm,
-        },
-        {
-          leftLabel: 'Kurs',
-          leftValue: student?.course,
-          rightLabel: "Ta'lim tili",
-          rightValue: student?.eduLanguageName,
-        },
-        {
-          leftLabel: 'Qabul yili',
-          leftValue: student?.enrollEducationYear,
-          rightLabel: 'Holati',
-          rightValue: student?.status,
-        },
-      ]
+      {
+        leftLabel: 'Ta’lim turi',
+        leftValue: student?.eduType,
+        rightLabel: "Ta'lim shakli",
+        rightValue: student?.eduForm,
+      },
+      {
+        leftLabel: 'Kurs',
+        leftValue: student?.course,
+        rightLabel: "Ta'lim tili",
+        rightValue: student?.eduLanguageName,
+      },
+      {
+        leftLabel: 'Qabul yili',
+        leftValue: student?.enrollEducationYear,
+        rightLabel: 'Holati',
+        rightValue: student?.status,
+      },
+    ]
     : [];
 
   const workplaceSummary: SummaryItem[] =
     hasWorkplaceData && position
       ? limitItems([
-          { label: 'Tashkilot', value: position.org },
-          { label: 'Lavozim', value: position.position },
-          { label: 'Stavka', value: position.rate },
-        ])
+        { label: 'Tashkilot', value: position.org },
+        { label: 'Lavozim', value: position.position },
+        { label: 'Stavka', value: position.rate },
+      ])
       : [];
 
   const educationItems: SummaryItem[] = hasEducationData
     ? [
-        ...educationSingles,
-        ...educationPairs.flatMap(pair => [
-          { label: pair.leftLabel, value: pair.leftValue },
-          { label: pair.rightLabel, value: pair.rightValue },
-        ]),
-      ]
+      ...educationSingles,
+      ...educationPairs.flatMap(pair => [
+        { label: pair.leftLabel, value: pair.leftValue },
+        { label: pair.rightLabel, value: pair.rightValue },
+      ]),
+    ]
     : [];
 
   const registryBlocks = [
@@ -274,10 +275,10 @@ function youthSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.YOUTH_R?.[0];
   return item
     ? [
-        { label: 'Holati', value: item.status },
-        { label: "Ro'yxatga olingan sana", value: item.entered_date },
-        { label: "Yo'nalish:", value: item.direction_name },
-      ]
+      { label: 'Holati', value: item.status },
+      { label: "Ro'yxatga olingan sana", value: item.entered_date },
+      { label: "Yo'nalish:", value: item.direction_name },
+    ]
     : [];
 }
 
@@ -285,10 +286,10 @@ function womenSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.WOMEN_R?.[0];
   return item
     ? [
-        { label: 'Holati', value: item.status },
-        { label: "Ro'yxatga olingan sana", value: item.entered_date },
-        { label: "Yo'nalish:", value: ' ' + item.direction_name },
-      ]
+      { label: 'Holati', value: item.status },
+      { label: "Ro'yxatga olingan sana", value: item.entered_date },
+      { label: "Yo'nalish:", value: ' ' + item.direction_name },
+    ]
     : [];
 }
 
@@ -296,13 +297,13 @@ function ironSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.IRON_R;
   return item
     ? [
-        { label: 'Holati', value: item.status.value },
-        {
-          label: "Ro'yxatga olingan sana",
-          value: moment(item?.registrationDate).format('DD.MM.YYYY HH:mm'),
-        },
-        { label: "Oila a'zolari", value: item.members_count },
-      ]
+      { label: 'Holati', value: item.status.value },
+      {
+        label: "Ro'yxatga olingan sana",
+        value: moment(item?.registrationDate).format('DD.MM.YYYY HH:mm'),
+      },
+      { label: "Oila a'zolari", value: item.members_count },
+    ]
     : [];
 }
 
@@ -310,10 +311,10 @@ function povertySummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.POVERTY_R;
   return item
     ? [
-        { label: 'Holati', value: item.action },
-        { label: 'MFY INN', value: item.mfyInn },
-        { label: 'Daraja', value: item.povertyLevelId },
-      ]
+      { label: 'Holati', value: item.action },
+      { label: 'MFY INN', value: item.mfyInn },
+      { label: 'Daraja', value: item.povertyLevelId },
+    ]
     : [];
 }
 
@@ -321,11 +322,11 @@ function disabilitySummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.DISABILITY;
   return item
     ? [
-        { label: 'Guruhi', value: item.disability_group },
-        // { label: 'Foizi', value: item.disability_percentage },
-        { label: 'Boshlanish', value: item.disability_date_start },
-        { label: 'Sababi', value: item.disability_reason },
-      ]
+      { label: 'Guruhi', value: item.disability_group },
+      // { label: 'Foizi', value: item.disability_percentage },
+      { label: 'Boshlanish', value: item.disability_date_start },
+      { label: 'Sababi', value: item.disability_reason },
+    ]
     : [];
 }
 
@@ -333,10 +334,10 @@ function yattSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.YATT;
   return item
     ? [
-        { label: 'TIN', value: item.company.tin },
-        { label: 'Holati', value: item.company.statusId },
-        { label: 'Biznes turi', value: Number(item.company.businessType ?? 0) },
-      ]
+      { label: 'TIN', value: item.company.tin },
+      { label: 'Holati', value: item.company.statusId },
+      { label: 'Biznes turi', value: Number(item.company.businessType ?? 0) },
+    ]
     : [];
 }
 
@@ -344,10 +345,10 @@ function selfSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const item = studentInfo?.SELF_EMPLOYED;
   return item
     ? [
-        { label: 'Faoliyat', value: item.activities[0].name },
-        { label: 'Ro‘yxat raqami', value: item.registration_number },
-        { label: 'Ro‘yxat sanasi', value: item.registration_date },
-      ]
+      { label: 'Faoliyat', value: item.activities[0].name },
+      { label: 'Ro‘yxat raqami', value: item.registration_number },
+      { label: 'Ro‘yxat sanasi', value: item.registration_date },
+    ]
     : [];
 }
 
@@ -355,39 +356,39 @@ function schoolCertificateSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const cert = studentInfo?.SCHOOL_CERTIFICATE;
   return cert
     ? [
-        {
-          label: 'Guvohnoma',
-          value: cert.certSN ?? '-',
-        },
-        {
-          label: 'Maktab',
-          value: cert.school ?? '-',
-        },
-        {
-          label: 'Sinfi',
-          value: cert.classLevel ?? '-',
-        },
-        {
-          label: 'Bitirgan yil',
-          value: cert.gradYear ?? '-',
-        },
-        {
-          label: 'Hudud',
-          value: cert.region ?? '-',
-        },
-        {
-          label: 'Tuman',
-          value: cert.district ?? '-',
-        },
-        {
-          label: 'Guvohnoma turi',
-          value: cert.certTypeName ?? '-',
-        },
-        {
-          label: "O'rtacha baho",
-          value: cert.grades6YearsAvg ?? '-',
-        },
-      ]
+      {
+        label: 'Guvohnoma',
+        value: cert.certSN ?? '-',
+      },
+      {
+        label: 'Maktab',
+        value: cert.school ?? '-',
+      },
+      {
+        label: 'Sinfi',
+        value: cert.classLevel ?? '-',
+      },
+      {
+        label: 'Bitirgan yil',
+        value: cert.gradYear ?? '-',
+      },
+      {
+        label: 'Hudud',
+        value: cert.region ?? '-',
+      },
+      {
+        label: 'Tuman',
+        value: cert.district ?? '-',
+      },
+      {
+        label: 'Guvohnoma turi',
+        value: cert.certTypeName ?? '-',
+      },
+      {
+        label: "O'rtacha baho",
+        value: cert.grades6YearsAvg ?? '-',
+      },
+    ]
     : [];
 }
 
@@ -395,43 +396,43 @@ function profEmisSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const profEmis = studentInfo?.PROF_EMIS;
   return profEmis
     ? [
-        {
-          label: "Ta'lim muassasasi",
-          value: profEmis.edu_name ?? '-',
-        },
-        {
-          label: 'Hudud',
-          value: profEmis.edu_region_name ?? '-',
-        },
-        {
-          label: 'Tuman',
-          value: profEmis.edu_district_name ?? '-',
-        },
-        {
-          label: 'Kurs',
-          value: profEmis.course ?? '-',
-        },
-        {
-          label: 'Semestr',
-          value: profEmis.semester ?? '-',
-        },
-        {
-          label: 'Diplom',
-          value: profEmis.is_have_diploma
-            ? [profEmis.diploma_serial, profEmis.diploma_number]
-                .filter(Boolean)
-                .join(' ')
-            : "Yo'q",
-        },
-        {
-          label: "Ta'lim turi",
-          value: profEmis.education_type_name ?? '-',
-        },
-        {
-          label: 'Bitirgan yil',
-          value: profEmis.graduated_year ?? '-',
-        },
-      ]
+      {
+        label: "Ta'lim muassasasi",
+        value: profEmis.edu_name ?? '-',
+      },
+      {
+        label: 'Hudud',
+        value: profEmis.edu_region_name ?? '-',
+      },
+      {
+        label: 'Tuman',
+        value: profEmis.edu_district_name ?? '-',
+      },
+      {
+        label: 'Kurs',
+        value: profEmis.course ?? '-',
+      },
+      {
+        label: 'Semestr',
+        value: profEmis.semester ?? '-',
+      },
+      {
+        label: 'Diplom',
+        value: profEmis.is_have_diploma
+          ? [profEmis.diploma_serial, profEmis.diploma_number]
+            .filter(Boolean)
+            .join(' ')
+          : "Yo'q",
+      },
+      {
+        label: "Ta'lim turi",
+        value: profEmis.education_type_name ?? '-',
+      },
+      {
+        label: 'Bitirgan yil',
+        value: profEmis.graduated_year ?? '-',
+      },
+    ]
     : [];
 }
 
@@ -439,29 +440,29 @@ function creditModuleSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const creditModule = studentInfo?.CREDIT_MODULE?.[0];
   return creditModule
     ? [
-        {
-          label: 'Kredit soni',
-          value: creditModule.creditCount ?? '-',
-        },
-        {
-          label: '1 kredit summasi',
-          value: creditModule.oneCreditAmount
-            ? `${creditModule.oneCreditAmount.toLocaleString('uz-UZ')} so'm`
-            : '-',
-        },
-        {
-          label: 'Jami summa',
-          value: creditModule.amount
-            ? `${creditModule.amount.toLocaleString('uz-UZ')} so'm`
-            : '-',
-        },
-        {
-          label: 'Fanlar',
-          value: creditModule.subjects?.length
-            ? creditModule.subjects.join(', ')
-            : '-',
-        },
-      ]
+      {
+        label: 'Kredit soni',
+        value: creditModule.creditCount ?? '-',
+      },
+      {
+        label: '1 kredit summasi',
+        value: creditModule.oneCreditAmount
+          ? `${creditModule.oneCreditAmount.toLocaleString('uz-UZ')} so'm`
+          : '-',
+      },
+      {
+        label: 'Jami summa',
+        value: creditModule.amount
+          ? `${creditModule.amount.toLocaleString('uz-UZ')} so'm`
+          : '-',
+      },
+      {
+        label: 'Fanlar',
+        value: creditModule.subjects?.length
+          ? creditModule.subjects.join(', ')
+          : '-',
+      },
+    ]
     : [];
 }
 
@@ -469,15 +470,15 @@ function residenceSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const residence = studentInfo?.RESIDENCE?.[0];
   return residence
     ? [
-        {
-          label: "O'quv muassasasi",
-          value: residence.universityName ?? '-',
-        },
-        {
-          label: 'Kurs',
-          value: residence.course ?? '-',
-        },
-      ]
+      {
+        label: "O'quv muassasasi",
+        value: residence.universityName ?? '-',
+      },
+      {
+        label: 'Kurs',
+        value: residence.course ?? '-',
+      },
+    ]
     : [];
 }
 
@@ -503,19 +504,19 @@ function scholarshipSummary(studentInfo: IStudentExtraInfoRes['data']) {
   const stipend = studentInfo?.SCHOLARSHIP?.stipendTypes?.[0];
   return stipend
     ? [
-        { label: 'Status', value: stipend.status ?? '-' },
-        { label: 'Turi', value: stipend.stipendTypeId ?? '-' },
-        {
-          label: 'Umumiy to‘langan summa',
-          value: stipend.totalCreditSum?.toLocaleString('uz-UZ')
-            ? `${stipend.totalCreditSum.toLocaleString('uz-UZ')} so‘m`
-            : '-',
-        },
-        {
-          label: 'Davr',
-          value: `${stipend.starOn} - ${stipend.endOn}`,
-        },
-      ]
+      { label: 'Status', value: stipend.status ?? '-' },
+      { label: 'Turi', value: stipend.stipendTypeId ?? '-' },
+      {
+        label: 'Umumiy to‘langan summa',
+        value: stipend.totalCreditSum?.toLocaleString('uz-UZ')
+          ? `${stipend.totalCreditSum.toLocaleString('uz-UZ')} so‘m`
+          : '-',
+      },
+      {
+        label: 'Davr',
+        value: `${stipend.starOn} - ${stipend.endOn}`,
+      },
+    ]
     : [];
 }
 

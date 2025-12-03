@@ -18,12 +18,9 @@ const SocialCard = ({
   // Map data to pie chart format
   const socialData =
     data?.result?.social_statistics?.map(item => ({
-      name:
-        item.category_name.length > 15
-          ? item.category_name.substring(0, 15) + '...'
-          : item.category_name,
-      value: item.count,
-      percent: item.percent,
+      name: item?.category_name,
+      value: item?.count,
+      percent: item?.percent,
     })) ?? [];
 
   return (
@@ -95,7 +92,7 @@ const SocialCard = ({
                           width: 12,
                           height: 12,
                           borderRadius: '50%',
-                          background: COLORS[index % COLORS.length],
+                          background: COLORS?.[index % COLORS.length],
                         }}
                       />
                       <Typography.Text
