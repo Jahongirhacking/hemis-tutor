@@ -85,7 +85,7 @@ const CheckAddress = () => {
   return (
     <Flex vertical gap={24} className="check-address-page">
       {/* Header Section */}
-      <Flex align="center" gap={12}>
+      <Flex align="center" gap={12} wrap>
         <div
           style={{
             width: 48,
@@ -324,9 +324,9 @@ const CheckAddress = () => {
                       code: visits?.[index]?._student_living_status,
                       name: visits?.[index]
                         ? moment(
-                            visits?.[index]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                          visits?.[index]?.created_at,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ).format('DD.MM.YYYY')
                         : '-',
                     }}
                   />

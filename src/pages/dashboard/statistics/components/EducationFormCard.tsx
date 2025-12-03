@@ -24,6 +24,8 @@ const EducationFormCard = ({
       percent: item.percent,
     })) ?? [];
 
+  if (data && !data?.result?.education_form_statistics) return null;
+
   return (
     <Card
       {...props}

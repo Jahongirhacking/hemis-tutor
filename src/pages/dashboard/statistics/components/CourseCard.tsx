@@ -32,6 +32,8 @@ const CourseCard = ({
       percent: item.percent,
     })) ?? [];
 
+  if (data && !data?.result?.course_statistics) return null;
+
   return (
     <Card
       {...props}

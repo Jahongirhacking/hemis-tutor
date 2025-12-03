@@ -145,7 +145,7 @@ const StudentFullInfo = ({
                               ?.name,
                         },
                         {
-                          label: 'Hudud',
+                          label: 'Mahalla',
                           children:
                             studentData?.result?.student?.current_terrain?.name,
                         },

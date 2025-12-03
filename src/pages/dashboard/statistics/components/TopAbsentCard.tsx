@@ -1,5 +1,6 @@
 import GenerateSkeleton from '@/components/Skeletons/GenerateSkeleton';
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
+import { toFirstLowerLetter } from '@/utils/stringFunc';
 import { Card, Flex, Skeleton, Tag, Typography } from 'antd';
 import { BarChartHorizontalBig } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -29,17 +30,17 @@ const TopAbsentCard = ({
   // Absenteeism data
   const absenteeismData = [
     {
-      range: '30-36%',
-      count: data?.result?.absenteeism?.range_30_36?.count ?? 0,
-      percent: data?.result?.absenteeism?.range_30_36?.percent ?? 0,
+      range: '+24%',
+      count: data?.result?.absenteeism?.range_24_plus?.count ?? 0,
+      percent: data?.result?.absenteeism?.range_24_plus?.percent ?? 0,
     },
     {
-      range: '40-70%',
-      count: data?.result?.absenteeism?.range_40_70?.count ?? 0,
-      percent: data?.result?.absenteeism?.range_40_70?.percent ?? 0,
+      range: '+48%',
+      count: data?.result?.absenteeism?.range_48_plus?.count ?? 0,
+      percent: data?.result?.absenteeism?.range_48_plus?.percent ?? 0,
     },
     {
-      range: '72%+',
+      range: '+72%',
       count: data?.result?.absenteeism?.range_72_plus?.count ?? 0,
       percent: data?.result?.absenteeism?.range_72_plus?.percent ?? 0,
     },
@@ -85,7 +86,29 @@ const TopAbsentCard = ({
               stroke={isDark ? '#fff' : '#666'}
               width={80}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={({ payload }) => {
+              if (payload && payload.length) {
+                const { range, count, percent } = payload?.[0]?.payload;
+                return (
+                  <Card
+                    style={{
+                      background: isDark
+                        ? 'rgba(15, 23, 42, 0.95)'
+                        : 'rgba(255, 255, 255, 0.95)',
+                      border: `1px solid ${PRIMARY}40`,
+                      borderRadius: '8px',
+                      padding: '8px 12px',
+                    }}
+                  >
+                    {`+${range}`}:{' '}
+                    <span style={{ color: PRIMARY }}>
+                      {`${t('const.number_count', { number: count })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
+                    </span>
+                  </Card>
+                );
+              }
+              return null;
+            }} />
             <Bar dataKey="count" radius={[0, 8, 8, 0]}>
               <Cell key={0} fill={'#ffc03aff'} />
               <Cell key={1} fill={'#ff5420ff'} />

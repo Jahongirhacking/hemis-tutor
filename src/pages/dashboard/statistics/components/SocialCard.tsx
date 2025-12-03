@@ -23,6 +23,8 @@ const SocialCard = ({
       percent: item?.percent,
     })) ?? [];
 
+  if (data && !data?.result?.social_statistics) return null;
+
   return (
     <Card
       {...props}

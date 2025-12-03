@@ -29,6 +29,8 @@ const GenderCard = ({
     },
   ];
 
+  if (data && !data?.result?.gender_statistics) return null;
+
   return (
     <Card
       {...props}

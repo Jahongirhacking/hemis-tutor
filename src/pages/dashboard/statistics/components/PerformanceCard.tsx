@@ -12,6 +12,8 @@ const PerformanceCard = ({
     expand: `${ExpandItem.PERFORMANCE}`,
   });
 
+  if (data && !data?.result?.performance) return null;
+
   return (
     <Card
       {...props}

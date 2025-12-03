@@ -34,6 +34,8 @@ const DistrictsCard = ({
     [data?.result?.district_statistics]
   );
 
+  if (data && !data?.result?.district_statistics) return null;
+
   return (
     <Card
       {...props}
@@ -56,7 +58,7 @@ const DistrictsCard = ({
         borderRadius: '16px',
       }}
     >
-      <Flex vertical gap={12}>
+      <Flex vertical gap={24}>
         {isFetching ? (
           <Skeleton.Node
             active
@@ -67,7 +69,7 @@ const DistrictsCard = ({
         ) : (
           <ResponsiveContainer
             width="100%"
-            height={districtData?.length <= 10 ? 240 : 180}
+            height={districtData?.length <= 20 ? 240 : 180}
           >
             <PieChart>
               <Pie
@@ -78,11 +80,11 @@ const DistrictsCard = ({
                 cy="50%"
                 outerRadius={80}
                 fill={PRIMARY}
-                {...(districtData?.length <= 10
+                {...(districtData?.length <= 20
                   ? {
-                      label: ({ name, percent }) =>
-                        `${name}: ${(percent * 100).toFixed(0)}%`,
-                    }
+                    label: ({ name, percent }) =>
+                      `${name}: ${(percent * 100).toFixed(0)}%`,
+                  }
                   : {})}
               >
                 {districtData?.map((_, index) => (
@@ -102,7 +104,7 @@ const DistrictsCard = ({
         <Flex
           vertical
           gap={12}
-          className="overflow-y-auto max-h-[250px] pr-3"
+          className="overflow-y-auto max-h-[350px] pr-3"
           style={{ scrollbarColor: '#14b8a571 transparent' }}
         >
           {isFetching ? (

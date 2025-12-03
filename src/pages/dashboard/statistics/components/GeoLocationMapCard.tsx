@@ -51,6 +51,8 @@ const UzbekistanMapCard = ({
     return { locations: locs, statusCounts: counts };
   }, [data]);
 
+  if (data && !data?.result?.geo_location_statistics) return null;
+
   return (
     <Card
       {...props}
@@ -120,7 +122,7 @@ const UzbekistanMapCard = ({
           {/* Map Container */}
           <LeafletMap
             locations={data?.result?.geo_location_statistics?.locations}
-            onLocationSelect={() => {}}
+            onLocationSelect={() => { }}
             selectedLocation={null}
           />
 

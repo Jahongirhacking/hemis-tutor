@@ -28,6 +28,8 @@ const LivingStatusCard = ({
   });
   const { t } = useTranslation();
 
+  if (data && !data?.result?.living_status_statistics) return null;
+
   return (
     <Card
       {...props}

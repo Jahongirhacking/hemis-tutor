@@ -12,6 +12,8 @@ const GeoLocationCard = ({
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
   });
 
+  if (data && !data?.result?.geo_location_statistics) return null;
+
   return (
     <Card
       {...props}

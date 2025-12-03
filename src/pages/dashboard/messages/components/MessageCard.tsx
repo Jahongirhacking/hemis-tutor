@@ -38,13 +38,13 @@ const MessageCard = ({
         <div className="flex flex-col gap-1 w-full">
           {/* Top Row */}
           <div className="flex items-center justify-between w-full">
-            <span className="font-medium text-green-600">{senderName}</span>
+            <span className="font-medium text-[#14b8a6]">{senderName}</span>
 
             {m?.type === MessageType.INBOX &&
               (isRead ? (
-                <CheckCheck className="text-green-600" size={18} />
+                <CheckCheck className="text-[#14b8a6]" size={18} />
               ) : (
-                <Asterisk className="text-green-600" size={18} />
+                <Asterisk className="text-[#14b8a6]" size={18} />
               ))}
           </div>
 

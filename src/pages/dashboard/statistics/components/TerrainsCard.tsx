@@ -33,6 +33,8 @@ const TerrainsCard = ({
       percent: item.percent,
     })) ?? [];
 
+  if (data && !data?.result?.terrain_statistics) return null;
+
   return (
     <Card
       {...props}

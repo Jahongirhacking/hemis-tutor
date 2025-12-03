@@ -148,8 +148,8 @@ export interface IDashboardStatisticsRes {
   geo_location_statistics: IGeoLocationStatistics;
   attendance: IAttendanceStats;
   absenteeism: {
-    range_30_36: { count: number; percent: number };
-    range_40_70: { count: number; percent: number };
+    range_24_plus: { count: number; percent: number };
+    range_48_plus: { count: number; percent: number };
     range_72_plus: { count: number; percent: number };
     top_10_absentees: Array<{
       student_id: number;
@@ -160,6 +160,7 @@ export interface IDashboardStatisticsRes {
   };
   performance: IPerformanceStats;
   contracts: IContractsStats;
+  accommodation_statistics: IAccomodationStatistics[];
 }
 
 export interface IDashboardGroup {
@@ -203,11 +204,19 @@ export interface IEducationFormStat {
   percent: number;
 }
 
+export interface IGrantType {
+  grant_type_code: number;
+  grant_type_name: string;
+  count: number;
+  percent: number;
+}
+
 export interface ICourseStat {
   course_code: string;
   course_name: string;
   count: number;
   percent: number;
+  grant_types: IGrantType[];
 }
 
 export interface ISocialStat {
@@ -262,4 +271,11 @@ export interface IGeoLocationStatistics {
   without_location: number;
   with_location_percent: number;
   without_location_percent: number;
+}
+
+export interface IAccomodationStatistics {
+  accommodation_code: string;
+  accommodation_name: string;
+  count: number;
+  percent: number;
 }

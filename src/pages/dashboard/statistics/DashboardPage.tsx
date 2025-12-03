@@ -17,6 +17,8 @@ import {
   StatisticsCard,
   TopAbsentCard,
 } from './components';
+import AccommodationCard from './components/AccommodationCard';
+import ContractTypeCard from './components/ContractTypeCard';
 import GeoLocationMapCard from './components/GeoLocationMapCard';
 
 const ResponsiveMasonryFixed = ResponsiveMasonry as unknown as React.FC<any>;
@@ -109,7 +111,7 @@ const Dashboard = () => {
 
           {/* Course Distribution Bar Chart */}
           <Col xs={24} lg={8}>
-            <CourseCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
+            <ContractTypeCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
           </Col>
 
           {/* Gender Distribution */}
@@ -129,23 +131,28 @@ const Dashboard = () => {
             {/* Absenteeism Statistics */}
             <TopAbsentCard {...{ isDark, PRIMARY, CustomTooltip }} />
 
+            <CourseCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
+
+            {/* Performance Stats */}
+            <PerformanceCard {...{ isDark, PRIMARY }} />
+
+            <AccommodationCard {...{ isDark, PRIMARY, CustomTooltip }} />
+
+            {/* Geo */}
+            <GeoLocationCard {...{ isDark, PRIMARY }} />
+
+            {/* Contract Stats */}
+            <ContractCard className="upper-element" {...{ isDark, PRIMARY }} />
+
+            {/* Social Statistics Radar */}
+            <SocialCard {...{ isDark, PRIMARY, CustomTooltip, COLORS }} />
+
             {/* District Statistics */}
             <DistrictsCard
               className="upper-element"
               {...{ isDark, PRIMARY, COLORS }}
             />
 
-            {/* Performance Stats */}
-            <PerformanceCard {...{ isDark, PRIMARY }} />
-
-            {/* Contract Stats */}
-            <ContractCard className="upper-element" {...{ isDark, PRIMARY }} />
-
-            {/* Geo */}
-            <GeoLocationCard {...{ isDark, PRIMARY }} />
-
-            {/* Social Statistics Radar */}
-            <SocialCard {...{ isDark, PRIMARY, CustomTooltip, COLORS }} />
           </MasonryFixed>
         </ResponsiveMasonryFixed>
 

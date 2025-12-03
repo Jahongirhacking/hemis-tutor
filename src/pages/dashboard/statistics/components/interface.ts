@@ -25,4 +25,5 @@ export enum ExpandItem {
   CONTRACTS = 'contracts',
   SEMESTER = 'semester',
   EDUCATION_YEAR = 'education_year',
+  ACCOMODATION_STATISTICS = 'accommodation_statistics',
 }
