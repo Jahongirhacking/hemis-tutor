@@ -33,7 +33,7 @@ const LivingStatusCard = ({
   return (
     <Card
       {...props}
-      className={`w-full h-full`}
+      className={`w-full`}
       title={
         <Typography.Title
           level={4}

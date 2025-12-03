@@ -1,6 +1,6 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { RootState } from '@/store/store';
-import { Card, Col, Flex, Row, Skeleton, Typography } from 'antd';
+import { Card, Flex, Skeleton, Typography } from 'antd';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
@@ -103,22 +103,16 @@ const Dashboard = () => {
         <StatisticsCard className="upper-element" {...{ isDark, PRIMARY }} />
 
         {/* Main Charts Row */}
-        <Row gutter={[16, 16]}>
+        <Flex className="flex flex-col md:flex-row gap-4" align='stretch'>
           {/* Living Status & Geo Location */}
-          <Col xs={24} lg={8}>
-            <LivingStatusCard {...{ isDark, PRIMARY, COLORS, CustomTooltip }} />
-          </Col>
+          <LivingStatusCard {...{ isDark, PRIMARY, COLORS, CustomTooltip }} style={{ height: 'auto' }} />
 
           {/* Course Distribution Bar Chart */}
-          <Col xs={24} lg={8}>
-            <ContractTypeCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
-          </Col>
+          <ContractTypeCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
 
           {/* Gender Distribution */}
-          <Col xs={24} lg={8}>
-            <GenderCard {...{ isDark, PRIMARY, CustomTooltip }} />
-          </Col>
-        </Row>
+          <GenderCard {...{ isDark, PRIMARY, CustomTooltip }} />
+        </Flex>
 
         <ResponsiveMasonryFixed
           columnsCountBreakPoints={{

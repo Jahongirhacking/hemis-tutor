@@ -25,7 +25,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
       trend:
         (statistics?.result?.students?.active_students ?? 0) >
-        (statistics?.result?.students?.inactive_students ?? 0)
+          (statistics?.result?.students?.inactive_students ?? 0)
           ? 'up'
           : 'down',
       trendValue: `${(
@@ -155,10 +155,10 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                 </div>
                 {(stat?.title === statCards?.[2]?.title ||
                   stat?.title === statCards?.[3]?.title) && (
-                  <Tag icon={<SettingOutlined spin />} color={'cyan'}>
-                    Ishlanmoqda
-                  </Tag>
-                )}
+                    <Tag icon={<SettingOutlined spin />} color={'cyan'}>
+                      Ishlanmoqda
+                    </Tag>
+                  )}
               </Flex>
             </Flex>
           </Card>

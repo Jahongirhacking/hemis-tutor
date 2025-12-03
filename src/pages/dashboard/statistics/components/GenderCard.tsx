@@ -34,7 +34,7 @@ const GenderCard = ({
   return (
     <Card
       {...props}
-      className={`w-full h-full`}
+      className={`w-full`}
       title={
         <Typography.Title
           level={4}
@@ -48,7 +48,6 @@ const GenderCard = ({
         backdropFilter: 'blur(10px)',
         border: `1px solid ${PRIMARY}20`,
         borderRadius: '16px',
-        height: '100%',
       }}
     >
       {isFetching ? (
@@ -70,7 +69,7 @@ const GenderCard = ({
               fill="#8884d8"
               paddingAngle={5}
               dataKey="value"
-              label={(entry: any) => `${entry.percent.toFixed(1)}%`}
+              label={(entry: any) => `${entry?.percent?.toFixed(1)}%`}
             >
               <Cell fill="#3b82f6" />
               <Cell fill="#ec4899" />

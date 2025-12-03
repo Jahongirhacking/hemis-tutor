@@ -42,12 +42,12 @@ const ContractTypeCard = ({
 
     const sumCount = useMemo(() => courseData?.reduce((acc, curr) => acc + curr?.value, 0), [courseData])
 
-    if (data && !data?.result?.course_statistics) return null;
+    if (data && !data?.result?.course_statistics?.[0]?.grant_types) return null;
 
     return (
         <Card
             {...props}
-            className={`w-full h-full`}
+            className={`w-full`}
             title={
                 <Typography.Title
                     level={4}
@@ -61,7 +61,6 @@ const ContractTypeCard = ({
                 backdropFilter: 'blur(10px)',
                 border: `1px solid ${PRIMARY}20`,
                 borderRadius: '16px',
-                height: '100%',
             }}
         >
             {isFetching ? (
