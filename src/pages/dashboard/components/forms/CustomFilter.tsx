@@ -1,4 +1,7 @@
-import { useGetEducationYearsQuery, useGetGroupSemestersQuery } from '@/services/student';
+import {
+  useGetEducationYearsQuery,
+  useGetGroupSemestersQuery,
+} from '@/services/student';
 import { IEducationYear, IGroup } from '@/services/student/type';
 import { RootState } from '@/store/store';
 import {
@@ -48,7 +51,7 @@ export enum FilterKey {
   Pinfl = 'pinfl',
   Search = 'search',
   SubjectId = 'subject_id',
-  EducationYear = 'education_year'
+  EducationYear = 'education_year',
 }
 
 const ByGroup = ({
@@ -179,15 +182,23 @@ const BySearch = ({ field, ...props }: { field?: string } & SearchProps) => {
   );
 };
 
-const ByEducationYear = ({ field, disabled, ...props }: { field?: string } & SelectProps) => {
+const ByEducationYear = ({
+  field,
+  disabled,
+  ...props
+}: { field?: string } & SelectProps) => {
   const form = useContext(CustomFilterContext)?.form;
   const { data: educationYearsData, isFetching } = useGetEducationYearsQuery();
 
   useEffect(() => {
     if (educationYearsData?.result?.items?.length) {
-      form.setFieldValue(FilterKey.EducationYear, educationYearsData?.result?.items?.find(i => i?.current_status === 1)?.code);
+      form.setFieldValue(
+        FilterKey.EducationYear,
+        educationYearsData?.result?.items?.find(i => i?.current_status === 1)
+          ?.code
+      );
     }
-  }, [educationYearsData])
+  }, [educationYearsData]);
 
   return (
     <Form.Item
@@ -209,7 +220,7 @@ const ByEducationYear = ({ field, disabled, ...props }: { field?: string } & Sel
       />
     </Form.Item>
   );
-}
+};
 
 const BySelect = ({
   render,

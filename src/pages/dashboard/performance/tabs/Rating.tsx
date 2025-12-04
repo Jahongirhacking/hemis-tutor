@@ -12,11 +12,14 @@ const MAX_BALL = 5;
 
 const Rating = () => {
   const { form, values } = useCustomFilter();
-  const { data: ratingData, isFetching } = useGetGradeRatingQuery({
-    group_id: values?.[FilterKey.GroupId],
-    semester: values?.[FilterKey.Semester],
-    education_year: values?.[FilterKey.EducationYear]
-  }, { skip: !values?.[FilterKey.EducationYear] });
+  const { data: ratingData, isFetching } = useGetGradeRatingQuery(
+    {
+      group_id: values?.[FilterKey.GroupId],
+      semester: values?.[FilterKey.Semester],
+      education_year: values?.[FilterKey.EducationYear],
+    },
+    { skip: !values?.[FilterKey.EducationYear] }
+  );
   const { t } = useTranslation();
 
   return (
@@ -32,7 +35,10 @@ const Rating = () => {
             form.setFieldValue(FilterKey.Semester, undefined);
           }}
         />
-        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} education_year={values?.[FilterKey.EducationYear]} />
+        <CustomFilter.BySemester
+          group_id={values?.[FilterKey.GroupId]}
+          education_year={values?.[FilterKey.EducationYear]}
+        />
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />

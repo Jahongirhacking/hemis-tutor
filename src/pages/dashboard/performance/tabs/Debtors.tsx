@@ -15,11 +15,14 @@ const decodeSubjectName = (name: string) =>
 
 const Debtors = () => {
   const { form, values } = useCustomFilter();
-  const { data: debtorsData, isFetching } = useGetGradeDebtorsQuery({
-    group_id: values?.[FilterKey.GroupId],
-    semester: values?.[FilterKey.Semester],
-    education_year: values?.[FilterKey.EducationYear]
-  }, { skip: !values?.[FilterKey.EducationYear] });
+  const { data: debtorsData, isFetching } = useGetGradeDebtorsQuery(
+    {
+      group_id: values?.[FilterKey.GroupId],
+      semester: values?.[FilterKey.Semester],
+      education_year: values?.[FilterKey.EducationYear],
+    },
+    { skip: !values?.[FilterKey.EducationYear] }
+  );
   const { t } = useTranslation();
 
   const debtsByStudent = useMemo(() => {
@@ -85,31 +88,31 @@ const Debtors = () => {
           },
           ...(values?.[FilterKey.GroupId]
             ? Object.keys(debtsByStudent?.[0]?.values || {})?.map(key => ({
-              title: decodeSubjectName(key),
-              key,
-              render: (_: any, record: any) => (
-                <Tag
-                  color={record?.values?.[key] > 0 ? 'orange' : 'default'}
-                >{`${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
-              ),
-              width: 150
-            }))
-            : [
-              {
-                title: t('const.subjects'),
-                key: 'subjects',
+                title: decodeSubjectName(key),
+                key,
                 render: (_: any, record: any) => (
-                  <Flex gap={8} wrap>
-                    {Object.keys(record?.values || {})?.map(key => (
-                      <Tag
-                        key={key}
-                      >{`${decodeSubjectName(key)} - ${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
-                    ))}
-                  </Flex>
+                  <Tag
+                    color={record?.values?.[key] > 0 ? 'orange' : 'default'}
+                  >{`${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
                 ),
-                width: 700,
-              },
-            ]),
+                width: 150,
+              }))
+            : [
+                {
+                  title: t('const.subjects'),
+                  key: 'subjects',
+                  render: (_: any, record: any) => (
+                    <Flex gap={8} wrap>
+                      {Object.keys(record?.values || {})?.map(key => (
+                        <Tag
+                          key={key}
+                        >{`${decodeSubjectName(key)} - ${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
+                      ))}
+                    </Flex>
+                  ),
+                  width: 700,
+                },
+              ]),
           {
             title: `${t('const.total')} ${t('const.credit_plural')}`,
             key: 'total',

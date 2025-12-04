@@ -9,7 +9,16 @@ import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
 import { RootState } from '@/store/store';
 import { SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
-import { Badge, Button, Card, Drawer, Flex, Space, Tag, Typography } from 'antd';
+import {
+  Badge,
+  Button,
+  Card,
+  Drawer,
+  Flex,
+  Space,
+  Tag,
+  Typography,
+} from 'antd';
 import { Calendar, Filter, MapPin, User } from 'lucide-react';
 import moment from 'moment';
 import { useCallback, useMemo } from 'react';
@@ -325,17 +334,15 @@ const CheckAddress = () => {
                         code: visits?.[0]?._student_living_status,
                         name: visits?.[0]
                           ? moment(
-                            visits?.[0]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                              visits?.[0]?.created_at,
+                              'YYYY-MM-DD HH:mm:ss'
+                            ).format('DD.MM.YYYY')
                           : '-',
                       }}
                     />
-                    {
-                      visits?.length - 1 > 0 && (
-                        <Tag>{`+${visits?.length - 1}`}</Tag>
-                      )
-                    }
+                    {visits?.length - 1 > 0 && (
+                      <Tag>{`+${visits?.length - 1}`}</Tag>
+                    )}
                   </Flex>
                 </Button>
               ),

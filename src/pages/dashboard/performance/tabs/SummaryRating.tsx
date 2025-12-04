@@ -8,11 +8,14 @@ import CustomLink from '../../students/components/CustomLink';
 
 const SummaryRating = () => {
   const { form, values } = useCustomFilter();
-  const { data: ratingData, isFetching } = useGetGradeSummaryRatingQuery({
-    group_id: values?.[FilterKey.GroupId],
-    semester: values?.[FilterKey.Semester],
-    education_year: values?.[FilterKey.EducationYear]
-  }, { skip: !values?.[FilterKey.EducationYear] });
+  const { data: ratingData, isFetching } = useGetGradeSummaryRatingQuery(
+    {
+      group_id: values?.[FilterKey.GroupId],
+      semester: values?.[FilterKey.Semester],
+      education_year: values?.[FilterKey.EducationYear],
+    },
+    { skip: !values?.[FilterKey.EducationYear] }
+  );
   const { t } = useTranslation();
 
   return (
