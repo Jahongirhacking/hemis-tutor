@@ -358,7 +358,10 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
-    getEducationYears: build.query<void, void>({
+    getEducationYears: build.query<
+      IBaseDataRes<{ items: IEducationYear[] }>,
+      void
+    >({
       query: () => ({
         url: `${getBaseUrl(`/reference/education-years`)}`,
       }),

@@ -30,7 +30,7 @@ const StudentFullInfo = ({
   );
 
   return isFetching ? (
-    <Flex vertical gap={12}>
+    <Flex vertical gap={18} align="center" className="mt-4">
       <Skeleton.Image active />
       <Skeleton active />
     </Flex>

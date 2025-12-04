@@ -11,12 +11,14 @@ const SummaryRating = () => {
   const { data: ratingData, isFetching } = useGetGradeSummaryRatingQuery({
     group_id: values?.[FilterKey.GroupId],
     semester: values?.[FilterKey.Semester],
-  });
+    education_year: values?.[FilterKey.EducationYear]
+  }, { skip: !values?.[FilterKey.EducationYear] });
   const { t } = useTranslation();
 
   return (
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
+        <CustomFilter.ByEducationYear />
         <CustomFilter.ByGroup />
         <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
       </CustomFilter>

@@ -1,5 +1,5 @@
-import { useGetGroupSemestersQuery } from '@/services/student';
-import { IGroup } from '@/services/student/type';
+import { useGetEducationYearsQuery, useGetGroupSemestersQuery } from '@/services/student';
+import { IEducationYear, IGroup } from '@/services/student/type';
 import { RootState } from '@/store/store';
 import {
   Flex,
@@ -18,6 +18,7 @@ import {
   ReactElement,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
 } from 'react';
 import { useSelector } from 'react-redux';
@@ -47,10 +48,12 @@ export enum FilterKey {
   Pinfl = 'pinfl',
   Search = 'search',
   SubjectId = 'subject_id',
+  EducationYear = 'education_year'
 }
 
 const ByGroup = ({
   field,
+  disabled,
   ...props
 }: { field?: string } & SelectProps<{ label: string; value: number }>) => {
   const profile = useSelector((store: RootState) => store.authSlice?.profile);
@@ -69,6 +72,7 @@ const ByGroup = ({
             value: g.id,
           })) ?? []
         }
+        disabled={disabled || props?.loading}
         allowClear
         {...props}
       />
@@ -78,13 +82,17 @@ const ByGroup = ({
 
 const BySemester = ({
   group_id,
+  education_year,
   field,
+  disabled,
+  ...props
 }: {
   group_id?: IGroup['id'];
+  education_year?: IEducationYear['code'];
   field?: string;
-}) => {
+} & SelectProps) => {
   const { data: semestersData, isFetching } = useGetGroupSemestersQuery(
-    { group_id },
+    { group_id, education_year },
     { skip: !group_id }
   );
   return (
@@ -102,6 +110,8 @@ const BySemester = ({
           value: s?.code,
         }))}
         allowClear
+        disabled={disabled || props?.loading}
+        {...props}
       />
     </Form.Item>
   );
@@ -169,6 +179,38 @@ const BySearch = ({ field, ...props }: { field?: string } & SearchProps) => {
   );
 };
 
+const ByEducationYear = ({ field, disabled, ...props }: { field?: string } & SelectProps) => {
+  const form = useContext(CustomFilterContext)?.form;
+  const { data: educationYearsData, isFetching } = useGetEducationYearsQuery();
+
+  useEffect(() => {
+    if (educationYearsData?.result?.items?.length) {
+      form.setFieldValue(FilterKey.EducationYear, educationYearsData?.result?.items?.find(i => i?.current_status === 1)?.code);
+    }
+  }, [educationYearsData])
+
+  return (
+    <Form.Item
+      className="min-w-full max-w-[200px] sm:min-w-[180px] flex-1"
+      name={field || FilterKey.EducationYear}
+      style={{ margin: 0 }}
+    >
+      <Select
+        loading={isFetching}
+        className="w-full"
+        placeholder={"O'quv yili"}
+        disabled={disabled || props?.loading}
+        options={educationYearsData?.result?.items?.map(s => ({
+          label: s?.name,
+          value: s?.code,
+        }))}
+        allowClear
+        {...props}
+      />
+    </Form.Item>
+  );
+}
+
 const BySelect = ({
   render,
   field,
@@ -181,7 +223,7 @@ const BySelect = ({
       name={field}
     >
       {render || (
-        <Select allowClear disabled={disabled && props?.loading} {...props} />
+        <Select allowClear disabled={disabled || props?.loading} {...props} />
       )}
     </Form.Item>
   );
@@ -192,4 +234,5 @@ CustomFilter.BySemester = BySemester;
 CustomFilter.ByPinfl = ByPinfl;
 CustomFilter.BySearch = BySearch;
 CustomFilter.BySelect = BySelect;
+CustomFilter.ByEducationYear = ByEducationYear;
 export default CustomFilter;

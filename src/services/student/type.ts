@@ -104,6 +104,7 @@ export interface IEducationYear {
   code: string;
   name: string;
   id?: string;
+  current_status: 0 | 1;
 }
 
 export interface IAttendance {
@@ -265,6 +266,7 @@ export interface IContractDetailsRes {
 export interface IGradeDebtorReq {
   group_id: IGroup['id'];
   semester?: ISemester['code'];
+  education_year: IEducationYear['code'];
 }
 
 export interface IGradeDebt {
@@ -297,6 +299,7 @@ export interface IGradeRatingReq {
   group_id: IGroup['id'];
   semester?: ISemester['code'];
   subject_id?: ISubject['subject_id'];
+  education_year: IEducationYear['code'];
 }
 
 export interface IRating {

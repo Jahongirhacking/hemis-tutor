@@ -9,7 +9,7 @@ import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
 import { RootState } from '@/store/store';
 import { SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
-import { Badge, Button, Card, Drawer, Flex, Space, Typography } from 'antd';
+import { Badge, Button, Card, Drawer, Flex, Space, Tag, Typography } from 'antd';
 import { Calendar, Filter, MapPin, User } from 'lucide-react';
 import moment from 'moment';
 import { useCallback, useMemo } from 'react';
@@ -293,7 +293,7 @@ const CheckAddress = () => {
                 ),
               width: 140,
             },
-            ...Array.from({ length: LAST_VISITS }).map((_, index) => ({
+            {
               title: (
                 <Space size={6}>
                   <Calendar size={16} style={{ color: PRIMARY_COLOR }} />
@@ -301,13 +301,13 @@ const CheckAddress = () => {
                 </Space>
               ),
               dataIndex: 'tutorVisits',
-              key: `visit-${index}`,
+              key: `visits`,
               align: 'center' as const,
-              width: 100,
+              width: 140,
               render: (visits: ITutorVisit[], record: any) => (
                 <Button
                   type="link"
-                  className="p-0"
+                  className="p-0 w-full flex justify-start"
                   onClick={() =>
                     handleVisitDrawer({
                       id: record?.id,
@@ -319,20 +319,27 @@ const CheckAddress = () => {
                     height: 'auto',
                   }}
                 >
-                  <LivingStatusTag
-                    livingStatus={{
-                      code: visits?.[index]?._student_living_status,
-                      name: visits?.[index]
-                        ? moment(
-                            visits?.[index]?.created_at,
+                  <Flex gap={4}>
+                    <LivingStatusTag
+                      livingStatus={{
+                        code: visits?.[0]?._student_living_status,
+                        name: visits?.[0]
+                          ? moment(
+                            visits?.[0]?.created_at,
                             'YYYY-MM-DD HH:mm:ss'
                           ).format('DD.MM.YYYY')
-                        : '-',
-                    }}
-                  />
+                          : '-',
+                      }}
+                    />
+                    {
+                      visits?.length - 1 > 0 && (
+                        <Tag>{`+${visits?.length - 1}`}</Tag>
+                      )
+                    }
+                  </Flex>
                 </Button>
               ),
-            })),
+            },
             {
               title: t('const.actions'),
               dataIndex: 'id',

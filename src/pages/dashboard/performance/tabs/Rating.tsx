@@ -15,14 +15,24 @@ const Rating = () => {
   const { data: ratingData, isFetching } = useGetGradeRatingQuery({
     group_id: values?.[FilterKey.GroupId],
     semester: values?.[FilterKey.Semester],
-  });
+    education_year: values?.[FilterKey.EducationYear]
+  }, { skip: !values?.[FilterKey.EducationYear] });
   const { t } = useTranslation();
 
   return (
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
-        <CustomFilter.ByGroup />
-        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+        <CustomFilter.ByEducationYear
+          onChange={() => {
+            form.setFieldValue(FilterKey.Semester, undefined);
+          }}
+        />
+        <CustomFilter.ByGroup
+          onChange={() => {
+            form.setFieldValue(FilterKey.Semester, undefined);
+          }}
+        />
+        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} education_year={values?.[FilterKey.EducationYear]} />
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />
