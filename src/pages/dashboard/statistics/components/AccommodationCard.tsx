@@ -8,7 +8,7 @@ const COLORS = [
   '#4F46E5', // Indigo
   '#14B8A6', // Teal
   '#F97316', // Orange
-  '#EF4444', // Red
+  '#f147b9ff', // Red
   '#22C55E', // Green
   '#FACC15', // Yellow
   '#A855F7', // Purple

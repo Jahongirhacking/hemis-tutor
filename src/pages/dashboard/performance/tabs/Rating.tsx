@@ -57,7 +57,7 @@ const Rating = () => {
             title: t('const.subject'),
             dataIndex: 'subject',
             key: 'subject',
-            render: (subject) => subject?.name || '-'
+            render: subject => subject?.name || '-',
           },
           {
             title: toFirstCapitalLetter(t('const.credit_plural')),

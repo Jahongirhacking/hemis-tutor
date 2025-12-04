@@ -2,6 +2,7 @@ import { useGetGradeDebtorsQuery } from '@/services/student';
 import { IGradeDebtor, IStudent } from '@/services/student/type';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
 import { Divider, Flex, Tag } from 'antd';
+import { ChartNoAxesCombined } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
@@ -99,33 +100,38 @@ const Debtors = () => {
           },
           ...(values?.[FilterKey.GroupId]
             ? Object.keys(debtsByStudent?.[0]?.values || {})?.map(key => ({
-              title: decodeSubjectName(key),
-              key,
-              render: (_: any, record: any) => (
-                <Tag
-                  color={record?.values?.[key] > 0 ? 'orange' : 'default'}
-                >{`${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
-              ),
-              width: 150,
-            }))
-            : [
-              {
-                title: t('const.subjects'),
-                key: 'subjects',
+                title: decodeSubjectName(key),
+                key,
                 render: (_: any, record: any) => (
-                  <Flex gap={8} wrap>
-                    {Object.keys(record?.values || {})?.map(key => (
-                      <Tag
-                        key={key}
-                      >{`${decodeSubjectName(key)} - ${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
-                    ))}
-                  </Flex>
+                  <Tag
+                    color={record?.values?.[key] > 0 ? 'orange' : 'default'}
+                  >{`${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
                 ),
-                width: 700,
-              },
-            ]),
+                width: 150,
+              }))
+            : [
+                {
+                  title: t('const.subjects'),
+                  key: 'subjects',
+                  render: (_: any, record: any) => (
+                    <Flex gap={8} wrap>
+                      {Object.keys(record?.values || {})?.map(key => (
+                        <Tag
+                          key={key}
+                        >{`${decodeSubjectName(key)} - ${record?.values?.[key]} ${t('const.credit_plural')}`}</Tag>
+                      ))}
+                    </Flex>
+                  ),
+                  width: 700,
+                },
+              ]),
           {
-            title: `${t('const.total')} ${t('const.credit_plural')}`,
+            title: (
+              <Flex align="center" gap={8}>
+                <ChartNoAxesCombined color="#14b8a6" size={14} />{' '}
+                <span>{`${t('const.total')} ${t('const.credit_plural')}`}</span>
+              </Flex>
+            ),
             key: 'total',
             render: (_, record) => (
               <Tag

@@ -103,7 +103,7 @@ const DistrictsCard = ({
             />
           </Skeleton.Node>
         ) : (
-          <ResponsiveContainer width="100%" className="!min-h-[100px]">
+          <ResponsiveContainer width="100%" className="!min-h-[350px]">
             <BarChart data={districtData} layout="vertical">
               <CartesianGrid
                 strokeDasharray="3 3"
