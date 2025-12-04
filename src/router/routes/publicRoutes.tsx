@@ -2,12 +2,11 @@ import { type RouteObject } from 'react-router-dom';
 
 import CallbackPage from '@/pages/auth/Callback';
 import CancelPasswordPage from '@/pages/auth/CancelPassword';
+import AnimatedLanding from '@/pages/auth/Landing/AnimatedLanding';
 import LoginPage from '@/pages/auth/Login';
 import RootLayout from '@/pages/auth/RootLayout';
-import StatisticsDashboard from '@/pages/auth/StatisticsDashboard';
 import HelpPage from '@/pages/dashboard/help/HelpPage';
 import { paths } from '../paths';
-import AnimatedLanding from '@/pages/auth/Landing/AnimatedLanding';
 
 export const publicRoutes: RouteObject[] = [
   {
@@ -36,9 +35,5 @@ export const publicRoutes: RouteObject[] = [
         element: <CallbackPage />,
       },
     ],
-  },
-  {
-    path: paths.statisticsDashboard,
-    element: <StatisticsDashboard />,
   },
 ];
