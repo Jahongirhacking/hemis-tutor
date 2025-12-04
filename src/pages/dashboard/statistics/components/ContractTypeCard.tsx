@@ -74,7 +74,7 @@ const ContractTypeCard = ({
         borderRadius: '16px',
       }}
     >
-      {!isFetching ? (
+      {isFetching ? (
         <Skeleton.Node
           active
           className="!m-auto !w-full !h-[180px] !overflow-hidden"
