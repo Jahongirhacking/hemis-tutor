@@ -25,11 +25,7 @@ const Exams = () => {
   return (
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
-        <CustomFilter.ByGroup
-          onChange={() => {
-            form.setFieldValue(FilterKey.Semester, undefined);
-          }}
-        />
+        <CustomFilter.ByGroup />
         <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
       </CustomFilter>
 

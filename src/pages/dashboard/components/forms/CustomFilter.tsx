@@ -1,9 +1,9 @@
+import { useGetGroupsQuery } from '@/services/profile';
 import {
   useGetEducationYearsQuery,
   useGetGroupSemestersQuery,
 } from '@/services/student';
 import { IEducationYear, IGroup } from '@/services/student/type';
-import { RootState } from '@/store/store';
 import {
   Flex,
   Form,
@@ -24,7 +24,6 @@ import {
   useEffect,
   useMemo,
 } from 'react';
-import { useSelector } from 'react-redux';
 
 export const CustomFilterContext = createContext<{ form: FormInstance }>(null);
 
@@ -56,10 +55,15 @@ export enum FilterKey {
 
 const ByGroup = ({
   field,
+  education_year,
   disabled,
   ...props
-}: { field?: string } & SelectProps<{ label: string; value: number }>) => {
-  const profile = useSelector((store: RootState) => store.authSlice?.profile);
+}: { field?: string; education_year?: IEducationYear['code'] } & SelectProps<{
+  label: string;
+  value: number;
+}>) => {
+  const { data: groupData, isFetching } = useGetGroupsQuery({ education_year });
+  const form = useContext(CustomFilterContext)?.form;
   return (
     <Form.Item
       className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1"
@@ -70,13 +74,16 @@ const ByGroup = ({
         className="w-full"
         placeholder="Guruh tanlang"
         options={
-          profile?.groups?.map(g => ({
+          groupData?.result?.groups?.map(g => ({
             label: g.name,
             value: g.id,
           })) ?? []
         }
-        disabled={disabled || props?.loading}
+        disabled={disabled || props?.loading || isFetching}
         allowClear
+        onChange={() => {
+          form?.setFieldValue?.(FilterKey.Semester, undefined);
+        }}
         {...props}
       />
     </Form.Item>
@@ -113,7 +120,7 @@ const BySemester = ({
           value: s?.code,
         }))}
         allowClear
-        disabled={disabled || props?.loading}
+        disabled={disabled || props?.loading || isFetching}
         {...props}
       />
     </Form.Item>
@@ -216,6 +223,12 @@ const ByEducationYear = ({
           value: s?.code,
         }))}
         allowClear
+        onChange={() => {
+          form.setFieldsValue({
+            [FilterKey.GroupId]: undefined,
+            [FilterKey.Semester]: undefined,
+          });
+        }}
         {...props}
       />
     </Form.Item>

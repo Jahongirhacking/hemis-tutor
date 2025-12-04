@@ -333,9 +333,9 @@ const CheckAddress = () => {
                         code: visits?.[0]?._student_living_status,
                         name: visits?.[0]
                           ? moment(
-                            visits?.[0]?.created_at,
-                            'YYYY-MM-DD HH:mm:ss'
-                          ).format('DD.MM.YYYY')
+                              visits?.[0]?.created_at,
+                              'YYYY-MM-DD HH:mm:ss'
+                            ).format('DD.MM.YYYY')
                           : '-',
                       }}
                     />

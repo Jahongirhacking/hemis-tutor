@@ -60,8 +60,13 @@ const Debtors = () => {
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.ByEducationYear />
-        <CustomFilter.ByGroup />
-        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+        <CustomFilter.ByGroup
+          education_year={values?.[FilterKey.EducationYear]}
+        />
+        <CustomFilter.BySemester
+          group_id={values?.[FilterKey.GroupId]}
+          education_year={values?.[FilterKey.EducationYear]}
+        />
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />

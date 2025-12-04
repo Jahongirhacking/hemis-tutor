@@ -25,15 +25,9 @@ const Rating = () => {
   return (
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
-        <CustomFilter.ByEducationYear
-          onChange={() => {
-            form.setFieldValue(FilterKey.Semester, undefined);
-          }}
-        />
+        <CustomFilter.ByEducationYear />
         <CustomFilter.ByGroup
-          onChange={() => {
-            form.setFieldValue(FilterKey.Semester, undefined);
-          }}
+          education_year={values?.[FilterKey.EducationYear]}
         />
         <CustomFilter.BySemester
           group_id={values?.[FilterKey.GroupId]}

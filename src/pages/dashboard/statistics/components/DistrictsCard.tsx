@@ -46,6 +46,24 @@ const DistrictsCard = ({
   );
   const { t } = useTranslation();
 
+  const regionInput = useMemo(
+    () =>
+      regionData?.result?.district_statistics?.length &&
+      regionData?.result?.district_statistics?.[0]?.province_code && (
+        <CustomSelect
+          allowClear
+          placeholder="Viloyat tanlang"
+          options={regionData?.result?.district_statistics?.map(d => ({
+            label: d?.province_name,
+            value: d?.province_code,
+          }))}
+          value={activeRegion}
+          onChange={value => setActiveRegion(value)}
+        />
+      ),
+    [regionData]
+  );
+
   if (regionData && !regionData?.result?.district_statistics) return null;
 
   return (
@@ -53,7 +71,7 @@ const DistrictsCard = ({
       {...props}
       className={`w-full h-full`}
       title={
-        <Flex justify="space-between" align="center">
+        <Flex justify="space-between" align="center" wrap>
           <Typography.Title
             level={4}
             style={{ color: isDark ? '#fff' : '#1a1a1a', margin: 0 }}
@@ -61,19 +79,7 @@ const DistrictsCard = ({
             Hududlar bo'yicha
           </Typography.Title>
           <Flex gap={6} align="center">
-            {regionData?.result?.district_statistics?.length &&
-              regionData?.result?.district_statistics?.[0]?.province_code && (
-                <CustomSelect
-                  allowClear
-                  placeholder="Viloyat tanlang"
-                  options={regionData?.result?.district_statistics?.map(d => ({
-                    label: d?.province_name,
-                    value: d?.province_code,
-                  }))}
-                  value={activeRegion}
-                  onChange={value => setActiveRegion(value)}
-                />
-              )}
+            <div className="hidden xl:block">{regionInput}</div>
             <MapPin size={20} style={{ color: PRIMARY }} />
           </Flex>
         </Flex>
@@ -86,6 +92,7 @@ const DistrictsCard = ({
       }}
     >
       <Flex vertical gap={24}>
+        <div className="ml-auto block xl:hidden">{regionInput}</div>
         {isFetching ? (
           <Skeleton.Node
             active
