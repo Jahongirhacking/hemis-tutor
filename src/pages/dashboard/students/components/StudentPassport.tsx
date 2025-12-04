@@ -42,7 +42,12 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
               {/* Talaba ma'lumotlari - Bitta katta card */}
               {isLoading ? (
                 <Card className="mb-4">
-                  <Skeleton active />
+                  <Flex vertical gap={18}>
+                    <Flex gap={12} align="center">
+                      <Skeleton.Image active className="!w-[60px] !h-[60px]" />
+                    </Flex>
+                    <Skeleton active />
+                  </Flex>
                 </Card>
               ) : (
                 <>
@@ -56,7 +61,9 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                         <div className="flex items-center gap-4">
                           <Image
                             src={avatarUrl}
-                            alt={student?.fullName ?? 'Talaba'}
+                            alt={
+                              student?.__details?.student?.full_name ?? 'Talaba'
+                            }
                             className="border-slate-300 shadow-sm"
                             fallback={DEFAULT_IMAGE}
                             preview={false}
@@ -68,13 +75,19 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                           />
                           <div>
                             <h2 className="text-[14px] leading-[16px] font-medium text-black">
-                              {convertIfCyrillic(student?.fullName) ||
-                                'Talaba nomi'}
+                              {convertIfCyrillic(
+                                student?.__details?.student?.full_name ||
+                                  student?.fullName
+                              ) || 'Talaba'}
                             </h2>
-                            {student?.specialityName && (
+                            {(student?.__details?.meta?.specialty?.name ||
+                              student?.specialityName) && (
                               <p className="mt-1 text-sm text-slate-600">
                                 Mutaxassislik:{' '}
-                                {convertIfCyrillic(student.specialityName)}
+                                {convertIfCyrillic(
+                                  student?.__details?.meta?.specialty?.name ||
+                                    student?.specialityName
+                                )}
                               </p>
                             )}
                           </div>
@@ -82,10 +95,10 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                         {studentInfo?.DTM?.score !== undefined && (
                           <div className="text-right">
                             <p className="bg-gradient-to-b from-[#0036FF] to-[#4E74FF] bg-clip-text text-2xl font-medium text-transparent">
-                              {studentInfo.DTM.score}
+                              {studentInfo?.DTM?.score}
                             </p>
                             <p className="text-sm font-medium text-slate-600">
-                              Umumiy DTM bal
+                              Umumiy DTM ball
                             </p>
                           </div>
                         )}
@@ -117,7 +130,10 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                               Talaba ID
                             </span>
                             <span className="text-sm text-slate-900">
-                              {convertIfCyrillic(student?.code)}
+                              {convertIfCyrillic(
+                                student?.__details?.student
+                                  ?.student_id_number || student?.code
+                              )}
                             </span>
                           </li>
                           <li className="flex items-center gap-2">
@@ -125,7 +141,10 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                               JSHSHIR
                             </span>
                             <span className="text-sm text-slate-900">
-                              {convertIfCyrillic(student?.pinfl)}
+                              {convertIfCyrillic(
+                                student?.__details?.student?.passport_pin ||
+                                  student?.pinfl
+                              )}
                             </span>
                           </li>
                           <li className="flex items-center gap-2">
@@ -133,7 +152,10 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                               Pasport
                             </span>
                             <span className="text-sm text-slate-900">
-                              {convertIfCyrillic(student?.serialAndNumber)}
+                              {convertIfCyrillic(
+                                student?.__details?.student?.passport_number ||
+                                  student?.serialAndNumber
+                              )}
                             </span>
                           </li>
                           <li className="flex items-center gap-2">
@@ -141,7 +163,10 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                               Jinsi
                             </span>
                             <span className="text-sm text-slate-900">
-                              {convertIfCyrillic(student?.gender)}
+                              {convertIfCyrillic(
+                                student?.__details?.student?.gender?.name ||
+                                  student?.gender
+                              )}
                             </span>
                           </li>
                         </ul>
@@ -165,7 +190,7 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                           </span>
                         </div>
                         <ul className="space-y-2">
-                          {contactInfo.map(item => (
+                          {contactInfo?.map(item => (
                             <li
                               key={item.label}
                               className="flex items-center gap-2"
@@ -177,7 +202,9 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                                 {item.label}
                               </span>
                               <span className="overflow-wrap-anywhere flex-1 text-sm break-words text-slate-900">
-                                {convertIfCyrillic(item.value)}
+                                {typeof item?.value === 'string'
+                                  ? convertIfCyrillic(item?.value)
+                                  : item?.value}
                               </span>
                             </li>
                           ))}
@@ -189,62 +216,68 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
               )}
 
               {/* Registry Cards Grid - 2 ustunli layout */}
-              <section className="registry-grid mb-4 grid gap-4 md:grid-cols-2">
-                {registryBlocks
-                  .filter(block => block.items.length > 0)
-                  .map(block => (
-                    <div
-                      key={block.title}
-                      className="registry-card overflow-hidden rounded-lg border bg-white shadow-sm transition-colors"
-                      style={{ borderColor: '#B0C0D0', borderWidth: '1px' }}
-                    >
-                      <h3
-                        className="border-b border-slate-200 px-4 pt-4 pb-2 text-xs font-semibold tracking-widest uppercase"
-                        style={{ color: '#0137FF' }}
+              {isLoading ? (
+                <Card className="mb-[30px]">
+                  <Skeleton active />
+                </Card>
+              ) : (
+                <section className="registry-grid mb-4 grid gap-4 md:grid-cols-2">
+                  {registryBlocks
+                    .filter(block => block.items.length > 0)
+                    .map(block => (
+                      <div
+                        key={block.title}
+                        className="registry-card overflow-hidden rounded-lg border bg-white shadow-sm transition-colors"
+                        style={{ borderColor: '#B0C0D0', borderWidth: '1px' }}
                       >
-                        {block.title}
-                      </h3>
-                      <ul className="text-slate-700">
-                        {block.items &&
-                          block.items.map((item, index) => (
-                            <li
-                              key={item.label}
-                              className={`flex items-start justify-between gap-2 px-4 ${
-                                index === block.items.length - 1
-                                  ? 'pt-1.5 pb-4'
-                                  : 'py-1.5'
-                              }`}
-                              style={{
-                                backgroundColor:
-                                  index % 2 === 0
-                                    ? 'rgba(3, 49, 220, 0.05)'
-                                    : 'white',
-                                WebkitPrintColorAdjust: 'exact',
-                                printColorAdjust: 'exact',
-                                colorAdjust: 'exact',
-                              }}
-                            >
-                              <span className="text-sm font-semibold text-slate-700">
-                                {item.label}
-                              </span>
-                              <span className="flex-1 overflow-hidden text-right text-sm text-slate-900">
-                                {typeof item.value === 'string' ||
-                                typeof item.value === 'number' ||
-                                item.value === null ||
-                                item.value === undefined
-                                  ? convertIfCyrillic(item.value)
-                                  : item.value}
-                              </span>
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  ))}
-              </section>
+                        <h3
+                          className="border-b border-slate-200 px-4 pt-4 pb-2 text-xs font-semibold tracking-widest uppercase"
+                          style={{ color: '#0137FF' }}
+                        >
+                          {block.title}
+                        </h3>
+                        <ul className="text-slate-700">
+                          {block.items &&
+                            block.items.map((item, index) => (
+                              <li
+                                key={item.label}
+                                className={`flex items-start justify-between gap-2 px-4 ${
+                                  index === block.items.length - 1
+                                    ? 'pt-1.5 pb-4'
+                                    : 'py-1.5'
+                                }`}
+                                style={{
+                                  backgroundColor:
+                                    index % 2 === 0
+                                      ? 'rgba(3, 49, 220, 0.05)'
+                                      : 'white',
+                                  WebkitPrintColorAdjust: 'exact',
+                                  printColorAdjust: 'exact',
+                                  colorAdjust: 'exact',
+                                }}
+                              >
+                                <span className="text-sm font-semibold text-slate-700">
+                                  {item.label}
+                                </span>
+                                <span className="flex-1 overflow-hidden text-right text-sm text-slate-900">
+                                  {typeof item.value === 'string' ||
+                                  typeof item.value === 'number' ||
+                                  item.value === null ||
+                                  item.value === undefined
+                                    ? convertIfCyrillic(item.value)
+                                    : item.value}
+                                </span>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    ))}
+                </section>
+              )}
 
               {/* Ma'lumoti kelmagan cardlar - 4 ta ustunli grid */}
-              {registryBlocks.filter(block => block.items.length === 0).length >
-                0 && (
+              {registryBlocks?.filter(block => block.items.length === 0)
+                .length > 0 && (
                 <section className="grid grid-cols-4 items-stretch gap-4">
                   {registryBlocks
                     .filter(block => block.items.length === 0)

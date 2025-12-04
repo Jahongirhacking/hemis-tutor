@@ -4,6 +4,7 @@ import NavbarBottom from '@/components/Navbar/NavbarBottom';
 import { useAppDispatch } from '@/store/hooks';
 import { setMobileNavBottom, setStateIsMobile } from '@/store/slices/authSlice';
 import { RootState } from '@/store/store';
+import { SearchParams } from '@/utils/config';
 import {
   getLocalStorage,
   localStorageNames,
@@ -38,6 +39,7 @@ export const Dashboard = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const handleCloseStudentModal = () => {
     const params = new URLSearchParams(searchParams);
+    params.delete(SearchParams.DrawerTab);
     params.delete(STUDENT_INFO_MODAL);
     setSearchParams(params);
   };

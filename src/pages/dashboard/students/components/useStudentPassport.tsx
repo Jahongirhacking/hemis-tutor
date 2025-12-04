@@ -43,7 +43,7 @@ const useStudentPassport = ({ id }: { id: string }) => {
       ...(studentData?.data || {}),
       __details: { ...(studentDetails?.result || {}) },
     }),
-    [studentData]
+    [studentData, studentDetails]
   );
 
   const printRef = useRef<HTMLDivElement>(null);
@@ -236,20 +236,36 @@ const useStudentPassport = ({ id }: { id: string }) => {
       icon: <MapPin size={12} />,
       label: 'Manzil',
       value:
-        [student?.region, student?.district, student?.address]
+        [
+          student?.region ||
+            student?.__details?.student?.current_province?.name,
+          student?.district ||
+            student?.__details?.student?.current_district?.name,
+          student?.address || student?.__details?.student?.current_address,
+        ]
           .filter(Boolean)
           .join(', ') || "Ma'lumot yo'q",
     },
     {
       icon: <Phone size={12} />,
       label: 'Telefon',
-      value: student?.phone || "Ma'lumot yo'q",
+      value: (
+        <a
+          href={`tel:${student?.phone || student?.__details?.student?.phone}`}
+          target="_blank"
+        >
+          {student?.phone ||
+            student?.__details?.student?.phone ||
+            "Ma'lumot yo'q"}
+        </a>
+      ),
     },
 
     {
       icon: <Mail size={12} />,
       label: 'Email',
-      value: student?.email || "Ma'lumot yo'q",
+      value:
+        student?.email || student?.__details?.student?.email || "Ma'lumot yo'q",
     },
   ];
 

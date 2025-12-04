@@ -4,11 +4,15 @@ import {
   IStudent,
   ITutorVisit,
 } from '@/services/student/type';
-import { Card, Empty, Flex, Space, Typography } from 'antd';
+import { SearchParams } from '@/utils/config';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Card, Empty, Flex, Space, Typography } from 'antd';
 import { Activity, Calendar, MapPin, MessageSquare } from 'lucide-react';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import CustomTable from '../../components/CustomTable';
+import { DrawerTabKeys } from '../CreateVisitPage';
 import LivingStatusTag from './LivingStatusTag';
 import LocationButton from './LocationButton';
 
@@ -18,6 +22,7 @@ const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
     { skip: !studentId }
   );
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const visits = visitData?.result?.items?.[0]?.tutorVisits || [];
 
@@ -124,6 +129,18 @@ const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
                 <Typography.Text type="secondary" style={{ fontSize: '12px' }}>
                   Birinchi tashrifni qayd eting
                 </Typography.Text>
+                <Button
+                  className="mt-4"
+                  type="primary"
+                  icon={<PlusOutlined />}
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams);
+                    params.set(SearchParams.DrawerTab, DrawerTabKeys.CREATE);
+                    setSearchParams(params);
+                  }}
+                >
+                  {t('const.visit')}
+                </Button>
               </Space>
             }
             style={{ padding: '40px 0' }}

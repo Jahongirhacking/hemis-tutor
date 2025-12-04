@@ -94,9 +94,9 @@ const ContractTypeCard = ({
               fill={PRIMARY}
               {...(courseData?.length <= 20
                 ? {
-                  label: ({ name, value }) =>
-                    `${name}: ${((value / sumCount) * 100).toFixed(0)}%`,
-                }
+                    label: ({ name, value }) =>
+                      `${name}: ${((value / sumCount) * 100).toFixed(0)}%`,
+                  }
                 : {})}
             >
               {courseData?.map((_, index) => (

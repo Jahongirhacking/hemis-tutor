@@ -42,6 +42,7 @@ const StudentFullInfo = ({
           width={130}
           preview={false}
           fallback="/images/avatar.png"
+          className="rounded-full"
         />
         <Typography.Title level={4} style={{ margin: 0, textAlign: 'center' }}>
           {studentData?.result?.student?.full_name}
