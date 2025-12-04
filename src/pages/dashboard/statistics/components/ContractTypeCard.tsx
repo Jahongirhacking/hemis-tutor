@@ -74,12 +74,12 @@ const ContractTypeCard = ({
         borderRadius: '16px',
       }}
     >
-      {isFetching ? (
+      {!isFetching ? (
         <Skeleton.Node
           active
           className="!m-auto !w-full !h-[180px] !overflow-hidden"
         >
-          <PieChartFilled size={100} style={{ color: '#bfbfbf' }} />
+          <PieChartFilled style={{ fontSize: 100, color: '#bfbfbf' }} />
         </Skeleton.Node>
       ) : (
         <ResponsiveContainer width="100%" height={280}>
@@ -94,9 +94,9 @@ const ContractTypeCard = ({
               fill={PRIMARY}
               {...(courseData?.length <= 20
                 ? {
-                    label: ({ name, value }) =>
-                      `${name}: ${((value / sumCount) * 100).toFixed(0)}%`,
-                  }
+                  label: ({ name, value }) =>
+                    `${name}: ${((value / sumCount) * 100).toFixed(0)}%`,
+                }
                 : {})}
             >
               {courseData?.map((_, index) => (
