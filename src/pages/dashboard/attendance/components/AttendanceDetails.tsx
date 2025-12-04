@@ -109,6 +109,7 @@ const AttendanceDetails = ({
             <MasonryFixed gutter="20px">
               {attendanceByDate?.map(attendance => (
                 <Card
+                  key={attendance?.[0]}
                   hoverable
                   className={`w-full bg-zinc-${themeColor === 'dark' ? 900 : 100}`}
                 >

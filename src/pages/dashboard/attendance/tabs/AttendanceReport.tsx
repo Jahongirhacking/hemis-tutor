@@ -53,6 +53,12 @@ const AttendanceReport = () => {
       <CustomTable
         columns={[
           {
+            title: '#',
+            dataIndex: 'index',
+            key: 'index',
+            width: 60,
+          },
+          {
             title: t('const.student'),
             key: 'student',
             dataIndex: 'student',

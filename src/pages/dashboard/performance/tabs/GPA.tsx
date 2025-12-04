@@ -82,10 +82,7 @@ const GPA = () => {
             fixed: 'right',
           },
         ]}
-        dataSource={gpaData?.result?.gpa_records?.map((elem, index) => ({
-          ...elem,
-          index: index + 1,
-        }))}
+        dataSource={gpaData?.result?.gpa_records || []}
       />
     </Flex>
   );

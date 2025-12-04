@@ -57,6 +57,7 @@ const Rating = () => {
             title: t('const.subject'),
             dataIndex: 'subject',
             key: 'subject',
+            render: (subject) => subject?.name || '-'
           },
           {
             title: toFirstCapitalLetter(t('const.credit_plural')),
@@ -86,10 +87,7 @@ const Rating = () => {
               ),
           },
         ]}
-        dataSource={ratingData?.result?.ratings?.map((elem, index) => ({
-          ...elem,
-          index: index + 1,
-        }))}
+        dataSource={ratingData?.result?.ratings || []}
       />
     </Flex>
   );

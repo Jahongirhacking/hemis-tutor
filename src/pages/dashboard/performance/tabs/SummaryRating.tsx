@@ -61,10 +61,7 @@ const SummaryRating = () => {
             key: 'status',
           },
         ]}
-        dataSource={ratingData?.result?.summary?.map((elem, index) => ({
-          ...elem,
-          index: index + 1,
-        }))}
+        dataSource={ratingData?.result?.summary || []}
       />
     </Flex>
   );

@@ -72,9 +72,7 @@ const AttendanceBySubject = () => {
             ),
           },
         ]}
-        dataSource={attendanceData?.result?.attendance_records?.map(
-          (el, index) => ({ ...el, index: index + 1 })
-        )}
+        dataSource={attendanceData?.result?.attendance_records || []}
         loading={isFetching}
       />
     </Flex>
