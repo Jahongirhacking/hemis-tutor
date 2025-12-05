@@ -54,10 +54,18 @@ const Rating = () => {
             render: student => <CustomLink.Student student={student} />,
           },
           {
+            title: t('const.group'),
+            dataIndex: 'group',
+            key: 'group',
+            width: 150,
+            render: group => <CustomLink.Group group={group} />,
+          },
+          {
             title: t('const.subject'),
             dataIndex: 'subject',
             key: 'subject',
             render: subject => subject?.name || '-',
+            width: 180
           },
           {
             title: toFirstCapitalLetter(t('const.credit_plural')),

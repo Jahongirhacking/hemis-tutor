@@ -1,5 +1,6 @@
 import { usePagination } from '@/hooks/usePagination';
 import {
+  useGetAccommodationsQuery,
   useGetDistrictsQuery,
   useGetLivingStatusesQuery,
   useGetProvincesQuery,
@@ -42,6 +43,7 @@ enum FilterItem {
   StudentId = 'student_id',
   ProvinceCode = 'province_code',
   DistictCode = '_current_district',
+  Accommodation = '_accommodation'
 }
 
 const PRIMARY_COLOR = '#14b8a6';
@@ -59,6 +61,8 @@ const CheckAddress = () => {
   });
   const { data: livingStatusData, isFetching: isLivingStatusFetching } =
     useGetLivingStatusesQuery();
+  const { data: accommodationsData, isFetching: isAccommodationsFetching } =
+    useGetAccommodationsQuery();
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const { data: provinceData, isFetching: isProvinceFetching } =
@@ -173,6 +177,15 @@ const CheckAddress = () => {
               }))}
               placeholder="Tuman"
               loading={isDistrictFetching}
+            />
+            <CustomFilter.BySelect
+              field={FilterItem.Accommodation}
+              options={accommodationsData?.result?.items?.map(i => ({
+                label: i?.name,
+                value: i?.code,
+              }))}
+              placeholder="Turar joyi"
+              loading={isAccommodationsFetching}
             />
             <CustomFilter.BySearch />
           </CustomFilter>
@@ -333,9 +346,9 @@ const CheckAddress = () => {
                         code: visits?.[0]?._student_living_status,
                         name: visits?.[0]
                           ? moment(
-                              visits?.[0]?.created_at,
-                              'YYYY-MM-DD HH:mm:ss'
-                            ).format('DD.MM.YYYY')
+                            visits?.[0]?.created_at,
+                            'YYYY-MM-DD HH:mm:ss'
+                          ).format('DD.MM.YYYY')
                           : '-',
                       }}
                     />
