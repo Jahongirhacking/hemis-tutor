@@ -1,6 +1,6 @@
 import { STATUS_COLORS } from '@/pages/dashboard/statistics/components/GeoLocationMapCard';
 import { IGeoLocation } from '@/services/profile/type';
-import { getLivingStatusCode } from '@/services/student/type';
+import { getLivingStatusCode, getLivingStatusName, StudentLivingStatus } from '@/services/student/type';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
@@ -120,7 +120,7 @@ export function LeafletMap({
 
       const color =
         STATUS_COLORS?.[
-          getLivingStatusCode(loc?.students?.[0]?.living_status_name)
+        getLivingStatusCode(loc?.students?.[0]?.living_status_name)
         ] ||
         loc?.students?.[0]?.living_status_color ||
         '#999'; // fallback color
@@ -135,25 +135,24 @@ export function LeafletMap({
           `
       <div style="font-family: system-ui; padding: 8px; min-width: 180px;">
       ${loc?.students?.map(
-        student => `
+            student => `
         <div class="mb-3">
           <b style="color: #1f2937;">${student?.address || ''}</b>
-          <p style="color: #6b7280; margin-top: 4px">Talaba: ${student?.full_name || ''} - <span style="color: ${
-            STATUS_COLORS?.[
+          <p style="color: #6b7280; margin-top: 4px">Talaba: ${student?.full_name || ''} - <span style="color: ${STATUS_COLORS?.[
               getLivingStatusCode(loc?.students?.[0]?.living_status_name)
-            ] ||
-            loc?.students?.[0]?.living_status_color ||
-            '#999'
-          }">${student?.living_status_name || ''}<span>
+              ] ||
+              loc?.students?.[0]?.living_status_color ||
+              '#999'
+              }">${student?.living_status_name || getLivingStatusName(StudentLivingStatus.UNKNOWN)}<span>
           </p>
         </div>
         `
-      )}
+          )}
       </div>
     `
         )
-        .on('click', () => onLocationSelect(loc.geo_location))
-        .addTo(map);
+        ?.on('click', () => onLocationSelect(loc?.geo_location || ''))
+        ?.addTo(map);
     });
 
     const markers = locations

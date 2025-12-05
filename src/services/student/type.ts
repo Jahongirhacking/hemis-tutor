@@ -706,6 +706,7 @@ export enum StudentLivingStatus {
   GREEN = '11',
   YELLOW = '12',
   RED = '13',
+  UNKNOWN = '-1',
 }
 
 export const getLivingStatusName = (code: StudentLivingStatus) => {
@@ -716,6 +717,8 @@ export const getLivingStatusName = (code: StudentLivingStatus) => {
       return 'Sariq hudud';
     case StudentLivingStatus.RED:
       return 'Qizil hudud';
+    default:
+      return 'Belgilanmagan';
   }
 };
 
@@ -727,6 +730,8 @@ export const getLivingStatusCode = (name: string): StudentLivingStatus => {
       return StudentLivingStatus.YELLOW;
     case 'Qizil hudud':
       return StudentLivingStatus.RED;
+    default:
+      return StudentLivingStatus.UNKNOWN;
   }
 };
 

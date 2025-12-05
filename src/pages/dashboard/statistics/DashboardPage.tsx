@@ -5,16 +5,14 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import CustomCol from '../components/CustomCol';
 import {
-  ContractCard,
-  CourseCard,
-  DistrictsCard,
+  ContractCard, DistrictsCard,
   ExpandItem,
   GenderCard,
   GeoLocationCard,
   LivingStatusCard,
   SocialCard,
   StatisticsCard,
-  TopAbsentCard,
+  TopAbsentCard
 } from './components';
 import AccommodationCard from './components/AccommodationCard';
 import ContractTypeCard from './components/ContractTypeCard';
@@ -119,15 +117,7 @@ const Dashboard = () => {
           </CustomCol>
 
           <CustomCol>
-            <CourseCard {...{ CustomTooltip, COLORS, PRIMARY, isDark }} />
-          </CustomCol>
-
-          <CustomCol>
             <AccommodationCard {...{ isDark, PRIMARY, CustomTooltip }} />
-          </CustomCol>
-
-          <CustomCol>
-            <ContractCard {...{ isDark, PRIMARY }} />
           </CustomCol>
 
           <CustomCol>
@@ -136,6 +126,10 @@ const Dashboard = () => {
 
           <CustomCol>
             <DistrictsCard {...{ isDark, PRIMARY, COLORS }} />
+          </CustomCol>
+
+          <CustomCol>
+            <ContractCard {...{ isDark, PRIMARY }} />
           </CustomCol>
 
           <CustomCol>
