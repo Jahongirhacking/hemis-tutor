@@ -23,22 +23,21 @@ const extractLatLng = (url: string) => {
   }
 
   return null;
-}
-
+};
 
 // Status colors matching your design
 export const STATUS_COLORS = {
   [StudentLivingStatus.GREEN]: '#10b981',
   [StudentLivingStatus.YELLOW]: '#f59e0b',
   [StudentLivingStatus.RED]: '#ef4444',
-  [StudentLivingStatus.UNKNOWN]: '#cacaca'
+  [StudentLivingStatus.UNKNOWN]: '#cacaca',
 };
 
 const STATUS_LABELS = {
   [StudentLivingStatus.GREEN]: 'Yashil hudud',
   [StudentLivingStatus.YELLOW]: 'Sariq hudud',
   [StudentLivingStatus.RED]: 'Qizil hudud',
-  [StudentLivingStatus.UNKNOWN]: 'Belgilanmagan'
+  [StudentLivingStatus.UNKNOWN]: 'Belgilanmagan',
 };
 const UzbekistanMapCard = ({
   isDark,
@@ -58,12 +57,15 @@ const UzbekistanMapCard = ({
       [StudentLivingStatus.GREEN]: 0,
       [StudentLivingStatus.YELLOW]: 0,
       [StudentLivingStatus.RED]: 0,
-      [StudentLivingStatus.UNKNOWN]: 0
+      [StudentLivingStatus.UNKNOWN]: 0,
     };
 
     const tempLocs = locs?.map(loc => {
       loc?.students?.forEach(student => {
-        counts[getLivingStatusCode(student?.living_status_name) || StudentLivingStatus.UNKNOWN]++;
+        counts[
+          getLivingStatusCode(student?.living_status_name) ||
+            StudentLivingStatus.UNKNOWN
+        ]++;
       });
 
       if (!loc?.latitude || !loc?.longitude) {
@@ -72,11 +74,11 @@ const UzbekistanMapCard = ({
           return {
             ...loc,
             latitude: temp?.lat,
-            longitude: temp?.lng
-          }
+            longitude: temp?.lng,
+          };
         }
       }
-      return { ...loc }
+      return { ...loc };
     });
 
     return { locations: tempLocs, statusCounts: counts };
@@ -153,7 +155,7 @@ const UzbekistanMapCard = ({
           {/* Map Container */}
           <LeafletMap
             locations={locations}
-            onLocationSelect={() => { }}
+            onLocationSelect={() => {}}
             selectedLocation={null}
           />
 

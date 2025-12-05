@@ -5,14 +5,15 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import CustomCol from '../components/CustomCol';
 import {
-  ContractCard, DistrictsCard,
+  ContractCard,
+  DistrictsCard,
   ExpandItem,
   GenderCard,
   GeoLocationCard,
   LivingStatusCard,
   SocialCard,
   StatisticsCard,
-  TopAbsentCard
+  TopAbsentCard,
 } from './components';
 import AccommodationCard from './components/AccommodationCard';
 import ContractTypeCard from './components/ContractTypeCard';
