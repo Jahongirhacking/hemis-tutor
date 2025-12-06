@@ -4,7 +4,7 @@ import NavbarBottom from '@/components/Navbar/NavbarBottom';
 import { useAppDispatch } from '@/store/hooks';
 import { setMobileNavBottom, setStateIsMobile } from '@/store/slices/authSlice';
 import { RootState } from '@/store/store';
-import { DrawerChildTypes, SearchParams } from '@/utils/config';
+import { SearchParams } from '@/utils/config';
 import {
   getLocalStorage,
   localStorageNames,
@@ -44,11 +44,11 @@ export const Dashboard = () => {
     setSearchParams(params);
   };
 
-  const handleAiChatOpen = () => {
-    const params = new URLSearchParams(searchParams);
-    params.set(SearchParams.Drawer, DrawerChildTypes.AiChat);
-    setSearchParams(params);
-  };
+  // const handleAiChatOpen = () => {
+  //   const params = new URLSearchParams(searchParams);
+  //   params.set(SearchParams.Drawer, DrawerChildTypes.AiChat);
+  //   setSearchParams(params);
+  // };
 
   const [deviceSize, setDeviceSize] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(deviceSize < MOBILE_SIZE);
