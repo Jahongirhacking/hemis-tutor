@@ -27,7 +27,7 @@ const MessageCard = ({
       className="
         w-full cursor-pointer select-none
         rounded-xl border border-gray-200 bg-white
-        p-4 shadow-sm
+        p-4 shadow-sm h-full
         hover:shadow-md hover:bg-gray-50
         transition-all duration-150
       "
