@@ -4,7 +4,7 @@ import NavbarBottom from '@/components/Navbar/NavbarBottom';
 import { useAppDispatch } from '@/store/hooks';
 import { setMobileNavBottom, setStateIsMobile } from '@/store/slices/authSlice';
 import { RootState } from '@/store/store';
-import { SearchParams } from '@/utils/config';
+import { DrawerChildTypes, SearchParams } from '@/utils/config';
 import {
   getLocalStorage,
   localStorageNames,
@@ -41,6 +41,12 @@ export const Dashboard = () => {
     const params = new URLSearchParams(searchParams);
     params.delete(SearchParams.DrawerTab);
     params.delete(STUDENT_INFO_MODAL);
+    setSearchParams(params);
+  };
+
+  const handleAiChatOpen = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set(SearchParams.Drawer, DrawerChildTypes.AiChat);
     setSearchParams(params);
   };
 
@@ -129,6 +135,13 @@ export const Dashboard = () => {
           <DashboardHeader />
           <div className="dashboard__body--box">
             <Outlet />
+            {/* <FloatButton
+              tooltip={'HEMIS AI'}
+              className="ai-chat-btn"
+              icon={<img src={'/icons/logo.svg'} />}
+              onClick={handleAiChatOpen}
+              aria-label="HEMIS AI Chat"
+            /> */}
           </div>
           {isMobileNavBottom && <NavbarBottom />}
 

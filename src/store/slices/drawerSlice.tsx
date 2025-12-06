@@ -1,5 +1,6 @@
 import Notifications from '@/components/Notifications';
 import ExtraOptions from '@/pages/auth/ExtraOptions';
+import AiChat from '@/pages/dashboard/ai-chat';
 import CustomInfo from '@/pages/dashboard/students/components/CustomInfo';
 import { DrawerChildTypes } from '@/utils/config';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -44,6 +45,8 @@ export const getChildElement = (childType: IChildType): ReactElement | null => {
       return <CustomInfo.Student />;
     case DrawerChildTypes.GroupInfo:
       return <CustomInfo.Group />;
+    case DrawerChildTypes.AiChat:
+      return <AiChat />;
     default:
       return null;
   }

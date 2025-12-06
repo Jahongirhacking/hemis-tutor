@@ -11,6 +11,7 @@ import React, { Suspense, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import AiLogo from '../Chat/components/AiLogo';
 
 const CustomDrawer = () => {
   const { title, isOpen, childType, props } = useSelector(
@@ -74,7 +75,7 @@ const CustomDrawer = () => {
       closable={false}
       extra={<CloseOutlined onClick={handleClose} />}
       onClose={handleClose}
-      title={title ? title : t('const.close')}
+      title={title ? title === 'ai' ? <AiLogo /> : title : t('const.close')}
       open={isOpen}
       getContainer={() => document.getElementById('root')}
     >

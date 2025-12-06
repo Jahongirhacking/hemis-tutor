@@ -559,6 +559,12 @@ $accent: #38bdf8;
   z-index: 10;
 }
 
+.visits-history {
+  .ant-card-body {
+    padding: 5px;
+  }
+}
+
 .analyze-btn {
   position: relative;
   z-index: 1;

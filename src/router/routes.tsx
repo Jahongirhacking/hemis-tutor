@@ -1,3 +1,4 @@
+import AnalyzeModal from '@/components/Chat/AnalyzeModal';
 import Drawer from '@/components/Drawer';
 import Wrapper from '@/router/wrapper';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
@@ -51,8 +52,8 @@ export function Router() {
           ))}
         </Route>
       </Routes>
-
       <Drawer />
+      <AnalyzeModal />
     </BrowserRouter>
   );
 }

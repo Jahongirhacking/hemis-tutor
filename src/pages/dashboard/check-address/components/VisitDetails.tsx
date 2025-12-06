@@ -29,7 +29,7 @@ const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
   return (
     <Flex vertical gap={16} className="py-4">
       <Card
-        className="shadow-sm"
+        className="shadow-sm visits-history"
         style={{
           borderRadius: '12px',
           border: '1px solid #e8e8e8',

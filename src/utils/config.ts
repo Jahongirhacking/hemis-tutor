@@ -17,6 +17,7 @@ export const enum DrawerChildTypes {
   AuthExtraOptions = 'auth-extra-options',
   StudentInfo = 'student-info',
   GroupInfo = 'group-info',
+  AiChat = 'ai-chat',
 }
 
 export const enum ChatTopic {

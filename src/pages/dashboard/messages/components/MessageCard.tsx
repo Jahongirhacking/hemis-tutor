@@ -32,8 +32,14 @@ const MessageCard = ({
         transition-all duration-150
       "
     >
-      <div className="flex gap-3">
-        <Rate count={1} value={m?.starred ? 1 : 0} className="mt-1" />
+      <div className="flex gap-3 items-start">
+        <div onClick={(e) => e.stopPropagation()}>
+          <Rate
+            count={1}
+            value={m?.starred ? 1 : 0}
+            className="mt-1"
+          />
+        </div>
 
         <div className="flex flex-col gap-1 w-full">
           {/* Top Row */}
@@ -44,7 +50,7 @@ const MessageCard = ({
               (isRead ? (
                 <CheckCheck className="text-[#14b8a6]" size={18} />
               ) : (
-                <Asterisk className="text-[#14b8a6]" size={18} />
+                <Asterisk className="text-[#ef4444]" size={18} />
               ))}
           </div>
 
