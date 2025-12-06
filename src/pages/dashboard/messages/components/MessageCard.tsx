@@ -33,12 +33,8 @@ const MessageCard = ({
       "
     >
       <div className="flex gap-3 items-start">
-        <div onClick={(e) => e.stopPropagation()}>
-          <Rate
-            count={1}
-            value={m?.starred ? 1 : 0}
-            className="mt-1"
-          />
+        <div onClick={e => e.stopPropagation()}>
+          <Rate count={1} value={m?.starred ? 1 : 0} className="mt-1" />
         </div>
 
         <div className="flex flex-col gap-1 w-full">

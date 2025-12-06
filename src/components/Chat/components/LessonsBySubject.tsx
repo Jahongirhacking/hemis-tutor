@@ -40,7 +40,7 @@ const LessonsBySubject = ({ data }: { data: any[] }) => {
       {transformed?.map((subject, index) => {
         const defaultIcon =
           defaultIcons?.[
-          defaultIcons?.length - 1 - (index % defaultIcons?.length)
+            defaultIcons?.length - 1 - (index % defaultIcons?.length)
           ];
         return (
           <Flex

@@ -33,46 +33,48 @@ const SubjectAttendance = ({ attendance }: { attendance: any[] }) => {
 
   return (
     <Flex vertical gap={6} className="progress-card attendance-by-subject">
-      {Array.from(attendanceBySubject || [] as any[])?.map((subject, index) => {
-        const defaultIcon =
-          defaultIcons?.[
-          defaultIcons?.length - 1 - (index % defaultIcons?.length)
-          ];
-        return (
-          <Flex
-            gap={8}
-            justify="space-between"
-            align="center"
-            wrap
-            className="progress-container"
-            key={subject?.subject?.id}
-          >
-            <Flex align="center" gap={8}>
-              <Button
-                shape="circle"
-                style={{ border: '1px solid #acacac4b', cursor: 'auto' }}
-              >
-                <Image src={defaultIcon?.icon} width={14} preview={false} />
-              </Button>
-              <Typography.Text style={{ color: defaultIcon?.primaryColor }}>
-                {toFirstCapitalLetter(subject?.subject?.name)}
-              </Typography.Text>
-            </Flex>
-            <Flex className="dashboard__details-list">
-              {!!subject?.absent_off && (
-                <Typography.Text className="absent-off-text">
-                  {`${toFirstCapitalLetter(t('const.not_explicable'))}: ${subject?.absent_off} ${t('const.hours_plural')}`}
+      {Array.from(attendanceBySubject || ([] as any[]))?.map(
+        (subject, index) => {
+          const defaultIcon =
+            defaultIcons?.[
+              defaultIcons?.length - 1 - (index % defaultIcons?.length)
+            ];
+          return (
+            <Flex
+              gap={8}
+              justify="space-between"
+              align="center"
+              wrap
+              className="progress-container"
+              key={subject?.subject?.id}
+            >
+              <Flex align="center" gap={8}>
+                <Button
+                  shape="circle"
+                  style={{ border: '1px solid #acacac4b', cursor: 'auto' }}
+                >
+                  <Image src={defaultIcon?.icon} width={14} preview={false} />
+                </Button>
+                <Typography.Text style={{ color: defaultIcon?.primaryColor }}>
+                  {toFirstCapitalLetter(subject?.subject?.name)}
                 </Typography.Text>
-              )}
-              {!!subject?.absent_on && (
-                <Typography.Text className="absent-on-text">
-                  {`${toFirstCapitalLetter(t('const.explicable'))}: ${subject?.absent_on} ${t('const.hours_plural')}`}
-                </Typography.Text>
-              )}
+              </Flex>
+              <Flex className="dashboard__details-list">
+                {!!subject?.absent_off && (
+                  <Typography.Text className="absent-off-text">
+                    {`${toFirstCapitalLetter(t('const.not_explicable'))}: ${subject?.absent_off} ${t('const.hours_plural')}`}
+                  </Typography.Text>
+                )}
+                {!!subject?.absent_on && (
+                  <Typography.Text className="absent-on-text">
+                    {`${toFirstCapitalLetter(t('const.explicable'))}: ${subject?.absent_on} ${t('const.hours_plural')}`}
+                  </Typography.Text>
+                )}
+              </Flex>
             </Flex>
-          </Flex>
-        );
-      })}
+          );
+        }
+      )}
     </Flex>
   );
 };

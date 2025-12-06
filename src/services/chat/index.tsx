@@ -135,10 +135,7 @@ export const chatApi = chatBaseApi.injectEndpoints({
       }),
     }),
 
-    getRentInfo: build.query<
-      IBaseDataRes<IRent[]>,
-      { studentId: string }
-    >({
+    getRentInfo: build.query<IBaseDataRes<IRent[]>, { studentId: string }>({
       query: ({ studentId }) => ({
         url: `${FINANCE_API_URL}/rent/${studentId}`,
         headers: {

@@ -33,9 +33,7 @@ const AnalyzeModal = () => {
   const themeColor = useSelector(
     (store: RootState) => store?.themeSlice?.color
   );
-  const { isMobile } = useSelector(
-    (store: RootState) => store?.authSlice
-  );
+  const { isMobile } = useSelector((store: RootState) => store?.authSlice);
   const { isLoading: isSpeakLoading, stopAudio, mode, onClickBtn } = useTTS();
   const { t } = useTranslation();
 
