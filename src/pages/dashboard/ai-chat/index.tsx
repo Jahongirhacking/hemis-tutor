@@ -252,28 +252,32 @@ const AiChat = () => {
                 }}
               />
 
-              <Popover
-                title={
-                  <Flex vertical gap={8}>
-                    {choices?.map(choice => (
-                      <AnalyzeButton
-                        key={choice?.chatTopic}
-                        icon={<img src={choice?.image} width={20} />}
-                        chatTopic={choice?.chatTopic}
-                      >
-                        {choice?.title}
-                      </AnalyzeButton>
-                    ))}
-                  </Flex>
-                }
-                trigger={['click']}
-              >
-                <Button
-                  type="text"
-                  icon={<LayoutGrid size={20} />}
-                  title="Qisqa tahlillar ro'yxati"
-                />
-              </Popover>
+              {
+                !!choices?.length && (
+                  <Popover
+                    title={
+                      <Flex vertical gap={8}>
+                        {choices?.map(choice => (
+                          <AnalyzeButton
+                            key={choice?.chatTopic}
+                            icon={<img src={choice?.image} width={20} />}
+                            chatTopic={choice?.chatTopic}
+                          >
+                            {choice?.title}
+                          </AnalyzeButton>
+                        ))}
+                      </Flex>
+                    }
+                    trigger={['click']}
+                  >
+                    <Button
+                      type="text"
+                      icon={<LayoutGrid size={20} />}
+                      title="Qisqa tahlillar ro'yxati"
+                    />
+                  </Popover>
+                )
+              }
             </Flex>
           </Flex>
           <Button

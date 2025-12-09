@@ -29,16 +29,15 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
       trend:
         (statistics?.result?.students?.active_students ?? 0) >
-        (statistics?.result?.students?.inactive_students ?? 0)
+          (statistics?.result?.students?.inactive_students ?? 0)
           ? 'up'
           : 'down',
-      trendValue: `${
-        (
+      trendValue: `${(
           ((statistics?.result?.students?.active_students ?? 0) /
             (statistics?.result?.students?.total_students ?? 1)) *
-            100 || 0
+          100 || 0
         ).toFixed(1) || 0
-      }%`,
+        }%`,
     },
     {
       title: 'Guruhlar',
@@ -87,7 +86,6 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
               boxShadow: `0 4px 24px ${PRIMARY}10`,
               transition: 'all 0.3s ease',
             }}
-            hoverable
           >
             <Flex justify="space-between" align="flex-start" wrap gap={8}>
               <div style={{ flex: 1 }} className="min-w-[min(100px,100%)]">
@@ -163,10 +161,10 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                 </div>
                 {(stat?.title === statCards?.[2]?.title ||
                   stat?.title === statCards?.[3]?.title) && (
-                  <Tag icon={<SettingOutlined spin />} color={'orange'}>
-                    Ishlanmoqda
-                  </Tag>
-                )}
+                    <Tag icon={<SettingOutlined spin />} color={'orange'}>
+                      Ishlanmoqda
+                    </Tag>
+                  )}
               </Flex>
             </Flex>
           </Card>
