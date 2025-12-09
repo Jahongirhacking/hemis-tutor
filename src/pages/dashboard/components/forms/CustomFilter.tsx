@@ -82,7 +82,7 @@ const BySpecialSelect = ({
 }>) => {
   return (
     <Form.Item
-      className={`min-w-full max-w-[350px] sm:min-w-[180px] flex-1 ${formItemClassName}`}
+      className={`min-w-full max-w-[350px] sm:min-w-[180px] flex-1 ${formItemClassName || ''}`}
       name={field}
       style={{ margin: 0 }}
     >
@@ -116,6 +116,7 @@ const ByGroup = ({
     <BySpecialSelect
       field={field || FilterKey.GroupId}
       placeholder="Guruh tanlang"
+      formItemClassName={formItemClassName}
       options={
         groupData?.result?.groups?.map(g => ({
           label: g.name,
@@ -153,6 +154,7 @@ const BySemester = ({
       field={field || FilterKey.Semester}
       loading={isFetching}
       placeholder={'Semestr tanlang'}
+      formItemClassName={formItemClassName}
       options={semestersData?.result?.semesters?.map(s => ({
         label: s?.name,
         value: s?.code,
@@ -177,6 +179,7 @@ const BySpecialty = ({
       field={field || FilterKey.Specialty}
       loading={isFetching}
       placeholder={'Mutaxassislik'}
+      formItemClassName={formItemClassName}
       options={specialtiesData?.result?.items?.map(s => ({
         label: s?.name,
         value: s?.id,
@@ -201,6 +204,7 @@ const ByStudentStatus = ({
       field={field || FilterKey.StudentStatus}
       loading={isFetching}
       placeholder={'Talaba holati'}
+      formItemClassName={formItemClassName}
       options={studentStatusData?.result?.items?.map(s => ({
         label: s?.name,
         value: s?.code,
@@ -275,8 +279,9 @@ const BySearch = ({ field, ...props }: { field?: string } & SearchProps) => {
 const ByEducationYear = ({
   field,
   disabled,
+  formItemClassName,
   ...props
-}: { field?: string } & SelectProps) => {
+}: { field?: string; formItemClassName?: string } & SelectProps) => {
   const form = useContext(CustomFilterContext)?.form;
   const { data: educationYearsData, isFetching } = useGetEducationYearsQuery();
 
@@ -295,6 +300,7 @@ const ByEducationYear = ({
       field={field || FilterKey.EducationYear}
       loading={isFetching}
       placeholder={"O'quv yili"}
+      formItemClassName={formItemClassName}
       options={educationYearsData?.result?.items?.map(s => ({
         label: s?.name,
         value: s?.code,

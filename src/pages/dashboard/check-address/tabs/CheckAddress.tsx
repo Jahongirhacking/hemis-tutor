@@ -95,7 +95,7 @@ const CheckAddress = () => {
   );
 
   return (
-    <Flex vertical gap={24} className="check-address-page">
+    <Flex vertical gap={18} className="check-address-page">
       {/* Header Section */}
       <Flex align="center" gap={12} wrap>
         <div

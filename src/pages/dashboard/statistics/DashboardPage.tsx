@@ -104,7 +104,7 @@ const Dashboard = () => {
               className="flex flex-1"
               filterClassName="!justify-end"
             >
-              <CustomFilter.ByEducationYear />
+              <CustomFilter.ByEducationYear formItemClassName="!max-w-[220px]" />
               <CustomFilter.ByGroup
                 education_year={values?.[FilterKey.EducationYear]}
                 formItemClassName="!max-w-[220px]"
