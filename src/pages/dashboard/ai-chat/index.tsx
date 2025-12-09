@@ -7,7 +7,7 @@ import {
 } from '@/services/chat';
 import { ChatRoleEnum, IChatMessage } from '@/services/chat/type';
 import { setDrawer } from '@/store/slices/drawerSlice';
-import { ChatTopic, SearchParams } from '@/utils/config';
+import { SearchParams } from '@/utils/config';
 import {
   Button,
   Flex,
@@ -22,22 +22,21 @@ import {
 import DOMPurify from 'dompurify';
 import { LayoutGrid, Trash2 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import ChatMessage from './ChatMessage';
 import './style.scss';
 
-interface IChoiceProps {
-  image: string;
-  title: string;
-  description: string;
-  chatTopic: ChatTopic;
-}
+// interface IChoiceProps {
+//   image: string;
+//   title: string;
+//   description: string;
+//   chatTopic: ChatTopic;
+// }
 
 const AiChat = () => {
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   // const choices: IChoiceProps[] = useMemo(
   //   () => [
