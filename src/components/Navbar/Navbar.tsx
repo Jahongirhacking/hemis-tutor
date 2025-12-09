@@ -64,34 +64,35 @@ export const Navbar = () => {
 
   return (
     <div className="navbar" ref={navbarRef}>
-      <Link
-        to={'./'}
-        className="flex-center"
-        onClick={() => {
-          isMobile && setIsNavbarActive(false);
-        }}
-      >
-        <TutorLogo className="big-logo" />
+      <Flex gap={32} vertical>
+        <Link
+          to={'./'}
+          className="flex-center"
+          onClick={() => {
+            isMobile && setIsNavbarActive(false);
+          }}
+        >
+          <TutorLogo className="big-logo" />
 
-        <TutorLogo.Small className="small-logo" />
-      </Link>
+          <TutorLogo.Small className="small-logo" />
+        </Link>
 
-      <div className="navbar__list">
-        {navbarList.map(item => (
-          <Flex
-            className={`navbar__item ${
-              pathLocation.pathname == item.path ? 'navbar__item-active' : ''
-            }`}
-            gap={8}
-            key={item.title}
-            // check restricted university click
-            onClick={() => handleClickNavItem(item.path)}
-          >
-            {/* check restricted university icon */}
-            {item.icon} <h3>{item.title}</h3>
-          </Flex>
-        ))}
-      </div>
+        <div className="navbar__list">
+          {navbarList.map(item => (
+            <Flex
+              className={`navbar__item ${pathLocation.pathname == item.path ? 'navbar__item-active' : ''
+                }`}
+              gap={8}
+              key={item.title}
+              // check restricted university click
+              onClick={() => handleClickNavItem(item.path)}
+            >
+              {/* check restricted university icon */}
+              {item.icon} <h3>{item.title}</h3>
+            </Flex>
+          ))}
+        </div>
+      </Flex>
 
       <div className="navbar__bottom">
         {navbarBottom.map((item, index) => (

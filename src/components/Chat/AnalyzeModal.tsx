@@ -15,7 +15,6 @@ import { Navigate, useSearchParams } from 'react-router-dom';
 import NotFoundAnimation from '../SpecialComponents/NotFoundAnimation';
 import AnimatedMessage from '../TypingAnimation/AnimatedMessage';
 import AnalyzeButton from './AnalyzeButton';
-import CourseResult from './AnalyzeResult/CourseResult';
 import GpaResult from './AnalyzeResult/GpaResult';
 import { IAnalyzeResultProps } from './AnalyzeResult/interface';
 import AiLogo from './components/AiLogo';
@@ -44,11 +43,6 @@ const AnalyzeModal = () => {
       children: GpaResult,
       label: t('const.gpa_appropriation'),
       value: ChatTopic.GpaSummary,
-    },
-    {
-      children: CourseResult,
-      label: t('const.recommended_courses'),
-      value: ChatTopic.CourseRecommendation,
     },
   ];
 

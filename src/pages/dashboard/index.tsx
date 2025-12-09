@@ -4,13 +4,13 @@ import NavbarBottom from '@/components/Navbar/NavbarBottom';
 import { useAppDispatch } from '@/store/hooks';
 import { setMobileNavBottom, setStateIsMobile } from '@/store/slices/authSlice';
 import { RootState } from '@/store/store';
-import { SearchParams } from '@/utils/config';
+import { DrawerChildTypes, SearchParams } from '@/utils/config';
 import {
   getLocalStorage,
   localStorageNames,
   setLocalStorage,
 } from '@/utils/storageFunc';
-import { Button, Modal } from 'antd';
+import { Button, FloatButton, Modal } from 'antd';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useSearchParams } from 'react-router-dom';
@@ -44,11 +44,11 @@ export const Dashboard = () => {
     setSearchParams(params);
   };
 
-  // const handleAiChatOpen = () => {
-  //   const params = new URLSearchParams(searchParams);
-  //   params.set(SearchParams.Drawer, DrawerChildTypes.AiChat);
-  //   setSearchParams(params);
-  // };
+  const handleAiChatOpen = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set(SearchParams.Drawer, DrawerChildTypes.AiChat);
+    setSearchParams(params);
+  };
 
   const [deviceSize, setDeviceSize] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(deviceSize < MOBILE_SIZE);
@@ -135,13 +135,13 @@ export const Dashboard = () => {
           <DashboardHeader />
           <div className="dashboard__body--box">
             <Outlet />
-            {/* <FloatButton
+            <FloatButton
               tooltip={'HEMIS AI'}
               className="ai-chat-btn"
               icon={<img src={'/icons/logo.svg'} />}
               onClick={handleAiChatOpen}
               aria-label="HEMIS AI Chat"
-            /> */}
+            />
           </div>
           {isMobileNavBottom && <NavbarBottom />}
 

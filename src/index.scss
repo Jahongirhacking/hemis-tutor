@@ -30,6 +30,32 @@
   display: none;
 }
 
+.dashboard__navbar {
+  .navbar__list {
+    max-height: max(calc(100dvh - 260px), 150px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    position: relative;
+
+    @media screen and (max-height: 450px) {
+      max-height: none;
+    }
+  }
+
+  .navbar__bottom {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      top: -15px;
+      height: 1px;
+      background-color: #d9d9d9;
+    }
+  }
+}
+
 @font-face {
   font-family: 'sans-pro';
   src: url('./assets/font/SourceSansPro-Regular.woff') format('woff');
@@ -142,6 +168,12 @@ input[type='password'] {
   *::-webkit-scrollbar-thumb {
     border-radius: 3px;
     background-color: #05335284;
+  }
+
+  .navbar__bottom {
+    &::before {
+      background-color: #424242;
+    }
   }
 }
 

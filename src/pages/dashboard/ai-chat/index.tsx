@@ -21,7 +21,7 @@ import {
 } from 'antd';
 import DOMPurify from 'dompurify';
 import { LayoutGrid, Trash2 } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
@@ -39,47 +39,48 @@ const AiChat = () => {
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
   const { t } = useTranslation();
 
-  const choices: IChoiceProps[] = useMemo(
-    () => [
-      {
-        image: '/icons/gpa.svg',
-        title: t('const.gpa_appropriation'),
-        description: 'Talabaning kuchli va zaif tomonlarni ko‘rsatadi',
-        chatTopic: ChatTopic.GpaSummary,
-      },
-      {
-        image: '/icons/attendance.svg',
-        title: t('const.attendance'),
-        description: 'Davomat bo‘yicha tahliliy hisobot beradi',
-        chatTopic: ChatTopic.AttendanceSummary,
-      },
-      {
-        image: '/icons/timetable.svg',
-        title: t('const.time_table'),
-        description: 'Darslar uchun kundalik reja tahlili',
-        chatTopic: ChatTopic.TimetableSummary,
-      },
-      {
-        image: '/icons/subjects.svg',
-        title: t('const.recommended_courses'),
-        description: "Qo'shimcha kursar bo'yicha tavsiyalar",
-        chatTopic: ChatTopic.CourseRecommendation,
-      },
-      {
-        image: '/icons/plagiarism.svg',
-        title: t('const.plagiarism'),
-        description: 'Plagiatga qarshi tekshiruv va tahlil',
-        chatTopic: ChatTopic.PlagiarismCheck,
-      },
-      {
-        image: '/icons/payment.svg',
-        title: t('const.financial_state'),
-        description: "Shartnoma to'lovi bo'yicha maslahat",
-        chatTopic: ChatTopic.ContractSummary,
-      },
-    ],
-    [t]
-  );
+  // const choices: IChoiceProps[] = useMemo(
+  //   () => [
+  //     {
+  //       image: '/icons/gpa.svg',
+  //       title: t('const.gpa_appropriation'),
+  //       description: 'Talabaning kuchli va zaif tomonlarni ko‘rsatadi',
+  //       chatTopic: ChatTopic.GpaSummary,
+  //     },
+  //     {
+  //       image: '/icons/attendance.svg',
+  //       title: t('const.attendance'),
+  //       description: 'Davomat bo‘yicha tahliliy hisobot beradi',
+  //       chatTopic: ChatTopic.AttendanceSummary,
+  //     },
+  //     {
+  //       image: '/icons/timetable.svg',
+  //       title: t('const.time_table'),
+  //       description: 'Darslar uchun kundalik reja tahlili',
+  //       chatTopic: ChatTopic.TimetableSummary,
+  //     },
+  //     {
+  //       image: '/icons/subjects.svg',
+  //       title: t('const.recommended_courses'),
+  //       description: "Qo'shimcha kursar bo'yicha tavsiyalar",
+  //       chatTopic: ChatTopic.CourseRecommendation,
+  //     },
+  //     {
+  //       image: '/icons/plagiarism.svg',
+  //       title: t('const.plagiarism'),
+  //       description: 'Plagiatga qarshi tekshiruv va tahlil',
+  //       chatTopic: ChatTopic.PlagiarismCheck,
+  //     },
+  //     {
+  //       image: '/icons/payment.svg',
+  //       title: t('const.financial_state'),
+  //       description: "Shartnoma to'lovi bo'yicha maslahat",
+  //       chatTopic: ChatTopic.ContractSummary,
+  //     },
+  //   ],
+  //   [t]
+  // );
+  const choices = [];
 
   const [
     generateChatResponse,
