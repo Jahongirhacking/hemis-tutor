@@ -3,7 +3,7 @@ import { IGrantType } from '@/services/profile/type';
 import { PieChartFilled } from '@ant-design/icons';
 import { Card, Flex, Skeleton, Typography } from 'antd';
 import { t } from 'i18next';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import {
   Bar,
   Cell,
@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
+import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const NOT_GIVEN = -1;
@@ -23,8 +24,12 @@ const ContractTypeCard = ({
   PRIMARY,
   ...props
 }: IStatisticsCardProps) => {
+  const { educationYear, groupId, semester } = useContext(StatisticsContext);
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     expand: `${ExpandItem.COURSE_STATISTICS}`,
+    group_id: groupId,
+    semester,
+    education_year: educationYear,
   });
 
   // Course statistics for chart

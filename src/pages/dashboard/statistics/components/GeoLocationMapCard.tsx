@@ -6,7 +6,8 @@ import {
 } from '@/services/student/type';
 import { Card, Flex, Spin, Typography } from 'antd';
 import { MapPin } from 'lucide-react';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const extractLatLng = (url: string) => {
@@ -44,7 +45,11 @@ const UzbekistanMapCard = ({
   PRIMARY,
   ...props
 }: IStatisticsCardProps) => {
+  const { educationYear, groupId, semester } = useContext(StatisticsContext);
   const { data, isFetching } = useGetDashboardStatisticsQuery({
+    education_year: educationYear,
+    group_id: groupId,
+    semester,
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
   });
 

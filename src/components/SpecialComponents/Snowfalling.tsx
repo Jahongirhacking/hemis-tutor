@@ -1,6 +1,6 @@
 import { ChristmasTreeEmoji, PartyConfettiEmoji } from '@/assets/emojis';
 import moment, { Moment } from 'moment';
-import Snowfall from 'react-snowfall';
+import Snowfall, { SnowfallProps } from 'react-snowfall';
 
 interface IDateRange {
   startDate: Moment;
@@ -12,7 +12,7 @@ interface IDateRange {
   speed: [number, number];
 }
 
-const Snowfalling = () => {
+const Snowfalling = (props: SnowfallProps) => {
   // Get the current date
   const currentDate = moment();
 
@@ -74,6 +74,7 @@ const Snowfalling = () => {
       speed={current.speed}
       radius={current.radius}
       opacity={current.opacity}
+      {...props}
     />
   );
 };

@@ -1,25 +1,29 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { SettingOutlined } from '@ant-design/icons';
 import { Card, Col, Flex, Row, Skeleton, Tag, Typography } from 'antd';
-import {
-  BookOpen,
-  CalendarIcon,
-  TrendingDown,
-  TrendingUp,
-  Users,
-} from 'lucide-react';
+import { BookOpen, CalendarIcon, TrendingUp, Users } from 'lucide-react';
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
+  const { educationYear, groupId, semester } = useContext(StatisticsContext);
   const { data: statistics, isFetching } = useGetDashboardStatisticsQuery({
+    education_year: educationYear,
+    group_id: groupId,
+    semester,
     expand: `${[ExpandItem.STUDENTS, ExpandItem.GROUPS, ExpandItem.ATTENDANCE, ExpandItem.PERFORMANCE, ExpandItem.EDUCATION_YEAR]?.join(',')}`,
   });
+  const { t } = useTranslation();
 
   // Stat cards data
   const statCards = [
     {
       title: 'Jami talabalar',
-      value: statistics?.result?.students?.total_students ?? 0,
+      value: statistics?.result?.students?.total_students
+        ? `${t('const.number_count', { number: statistics?.result?.students?.total_students })}`
+        : 0,
       icon: <Users size={24} style={{ color: PRIMARY }} />,
       color: `linear-gradient(135deg, ${PRIMARY} 0%, #0d9488 100%)`,
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
@@ -36,7 +40,9 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
     },
     {
       title: 'Guruhlar',
-      value: statistics?.result?.groups?.total_groups ?? 0,
+      value: statistics?.result?.groups?.total_groups
+        ? `${t('const.number_count', { number: statistics?.result?.groups?.total_groups })}`
+        : 0,
       icon: <BookOpen size={24} style={{ color: '#06b6d4' }} />,
       color: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
       subtext: statistics?.result?.education_year ?? '',
@@ -91,7 +97,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                     marginBottom: '8px',
                   }}
                 >
-                  {stat?.title}
+                  {stat?.title || ''}
                 </Typography.Text>
                 {isFetching ? (
                   <Skeleton.Button active />
@@ -106,25 +112,25 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                       backgroundClip: 'text',
                     }}
                   >
-                    {stat.value}
+                    {stat?.value || ''}
                   </Typography.Title>
                 )}
-                <Flex gap={8} align="center" style={{ marginTop: '4px' }}>
+                <Flex
+                  gap={8}
+                  align="center"
+                  style={{ marginTop: '4px' }}
+                  className="dashboard__details-list"
+                >
                   <Typography.Text
                     style={{
                       color: isDark ? 'rgba(255, 255, 255, 0.5)' : '#888',
                       fontSize: '12px',
                     }}
                   >
-                    {stat.subtext}
+                    {stat?.subtext || ''}
                   </Typography.Text>
-                  {stat.trend && (
+                  {stat?.trend && (
                     <Flex align="center" gap={2}>
-                      {stat.trend === 'up' ? (
-                        <TrendingUp size={12} style={{ color: '#10b981' }} />
-                      ) : (
-                        <TrendingDown size={12} style={{ color: '#ef4444' }} />
-                      )}
                       {stat.trendValue && (
                         <Typography.Text
                           style={{
@@ -132,7 +138,7 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                             color: stat.trend === 'up' ? '#10b981' : '#ef4444',
                           }}
                         >
-                          {stat.trendValue}
+                          {stat?.trendValue || ''}
                         </Typography.Text>
                       )}
                     </Flex>

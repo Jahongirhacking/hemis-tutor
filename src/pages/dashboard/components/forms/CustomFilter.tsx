@@ -29,12 +29,21 @@ export const CustomFilterContext = createContext<{ form: FormInstance }>(null);
 
 const CustomFilter = ({
   children,
+  filterClassName,
   ...props
-}: FormProps & { children: ReactElement | ReactElement[] }) => {
+}: FormProps & {
+  children: ReactElement | ReactElement[];
+  filterClassName?: string;
+}) => {
   return (
     <Form layout="vertical" className="w-full upper-element" {...props}>
       <CustomFilterContext.Provider value={{ form: props?.form }}>
-        <Flex gap={8} align="center" wrap>
+        <Flex
+          gap={8}
+          align="center"
+          wrap
+          className={`w-full ${filterClassName || ''}`}
+        >
           {Children.map(children, child =>
             cloneElement(child, { ...child.props })
           )}
@@ -57,8 +66,13 @@ const ByGroup = ({
   field,
   education_year,
   disabled,
+  formItemClassName,
   ...props
-}: { field?: string; education_year?: IEducationYear['code'] } & SelectProps<{
+}: {
+  field?: string;
+  education_year?: IEducationYear['code'];
+  formItemClassName?: string;
+} & SelectProps<{
   label: string;
   value: number;
 }>) => {
@@ -66,7 +80,7 @@ const ByGroup = ({
   const form = useContext(CustomFilterContext)?.form;
   return (
     <Form.Item
-      className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1"
+      className={`min-w-full max-w-[350px] sm:min-w-[180px] flex-1 ${formItemClassName}`}
       name={field || FilterKey.GroupId}
       style={{ margin: 0 }}
     >
@@ -95,11 +109,13 @@ const BySemester = ({
   education_year,
   field,
   disabled,
+  formItemClassName,
   ...props
 }: {
   group_id?: IGroup['id'];
   education_year?: IEducationYear['code'];
   field?: string;
+  formItemClassName?: string;
 } & SelectProps) => {
   const { data: semestersData, isFetching } = useGetGroupSemestersQuery(
     { group_id, education_year },
@@ -107,7 +123,7 @@ const BySemester = ({
   );
   return (
     <Form.Item
-      className="min-w-full max-w-[350px] sm:min-w-[180px] flex-1"
+      className={`min-w-full max-w-[350px] sm:min-w-[180px] flex-1 ${formItemClassName}`}
       name={field || FilterKey.Semester}
       style={{ margin: 0 }}
     >

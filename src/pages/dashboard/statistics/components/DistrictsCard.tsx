@@ -1,8 +1,8 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { toFirstLowerLetter } from '@/utils/stringFunc';
-import { Card, Flex, Skeleton, Typography } from 'antd';
+import { Card, Empty, Flex, Skeleton, Typography } from 'antd';
 import { BarChartHorizontalBig, MapPin } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Bar,
@@ -15,6 +15,7 @@ import {
   YAxis,
 } from 'recharts';
 import CustomSelect from '../../components/CustomSelect';
+import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const DistrictsCard = ({
@@ -23,7 +24,11 @@ const DistrictsCard = ({
   COLORS,
   ...props
 }: IStatisticsCardProps) => {
+  const { educationYear, groupId, semester } = useContext(StatisticsContext);
   const { data: regionData, isFetching } = useGetDashboardStatisticsQuery({
+    education_year: educationYear,
+    group_id: groupId,
+    semester,
     expand: `${ExpandItem.DISTRICT_STATISTICS}`,
   });
   const [activeRegion, setActiveRegion] = useState();
@@ -48,7 +53,7 @@ const DistrictsCard = ({
 
   const regionInput = useMemo(
     () =>
-      regionData?.result?.district_statistics?.length &&
+      !!regionData?.result?.district_statistics?.length &&
       regionData?.result?.district_statistics?.[0]?.province_code && (
         <CustomSelect
           allowClear
@@ -65,6 +70,11 @@ const DistrictsCard = ({
   );
 
   if (regionData && !regionData?.result?.district_statistics) return null;
+
+  const chartIcon = useMemo(
+    () => <BarChartHorizontalBig size={100} style={{ color: '#bfbfbf' }} />,
+    []
+  );
 
   return (
     <Card
@@ -91,72 +101,79 @@ const DistrictsCard = ({
         borderRadius: '16px',
       }}
     >
-      <Flex vertical gap={24}>
-        <div className="ml-auto block xl:hidden">{regionInput}</div>
-        {isFetching ? (
-          <Skeleton.Node
-            active
-            className="!m-auto !w-full !h-[140px] !overflow-hidden"
-          >
-            <BarChartHorizontalBig
-              style={{ fontSize: 100, color: '#bfbfbf' }}
-            />
-          </Skeleton.Node>
-        ) : (
-          <ResponsiveContainer width="100%" className="!min-h-[350px]">
-            <BarChart data={districtData} layout="vertical">
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke={isDark ? '#ffffff20' : '#00000010'}
-              />
-              <XAxis
-                dataKey="value"
-                type="number"
-                stroke={isDark ? '#fff' : '#666'}
-              />
-              <YAxis
-                dataKey="name"
-                type="category"
-                stroke={isDark ? '#fff' : '#666'}
-                width={140}
-              />
-              <Tooltip
-                content={({ payload }) => {
-                  if (payload && payload.length) {
-                    const { name, value, percent } = payload?.[0]?.payload;
-                    return (
-                      <Card
-                        style={{
-                          background: isDark
-                            ? 'rgba(15, 23, 42, 0.95)'
-                            : 'rgba(255, 255, 255, 0.95)',
-                          border: `1px solid ${PRIMARY}40`,
-                          borderRadius: '8px',
-                          padding: '8px 12px',
-                        }}
-                      >
-                        {`${name}`}:{' '}
-                        <span style={{ color: PRIMARY }}>
-                          {`${t('const.number_count', { number: value })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
-                        </span>
-                      </Card>
-                    );
-                  }
-                  return null;
-                }}
-              />
-              <Bar dataKey="value" radius={[0, 8, 8, 0]}>
-                {districtData?.map((_, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS?.[index % COLORS.length]}
+      {isFetching || regionData?.result?.district_statistics?.length ? (
+        <>
+          <Flex vertical gap={24}>
+            <div className="ml-auto block xl:hidden">{regionInput}</div>
+            {isFetching ? (
+              <Skeleton.Node
+                active
+                className="!m-auto !w-full !h-[140px] !overflow-hidden"
+              >
+                {chartIcon}
+              </Skeleton.Node>
+            ) : (
+              <ResponsiveContainer width="100%" className="!min-h-[350px]">
+                <BarChart data={districtData} layout="vertical">
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke={isDark ? '#ffffff20' : '#00000010'}
                   />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        )}
-      </Flex>
+                  <XAxis
+                    dataKey="value"
+                    type="number"
+                    stroke={isDark ? '#fff' : '#666'}
+                  />
+                  <YAxis
+                    dataKey="name"
+                    type="category"
+                    stroke={isDark ? '#fff' : '#666'}
+                    width={140}
+                  />
+                  <Tooltip
+                    content={({ payload }) => {
+                      if (payload && payload.length) {
+                        const { name, value, percent } = payload?.[0]?.payload;
+                        return (
+                          <Card
+                            style={{
+                              background: isDark
+                                ? 'rgba(15, 23, 42, 0.95)'
+                                : 'rgba(255, 255, 255, 0.95)',
+                              border: `1px solid ${PRIMARY}40`,
+                              borderRadius: '8px',
+                              padding: '8px 12px',
+                            }}
+                          >
+                            {`${name}`}:{' '}
+                            <span style={{ color: PRIMARY }}>
+                              {`${t('const.number_count', { number: value })} ${toFirstLowerLetter(t('const.student'))} (${percent}%)`}
+                            </span>
+                          </Card>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Bar dataKey="value" radius={[0, 8, 8, 0]}>
+                    {districtData?.map((_, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS?.[index % COLORS.length]}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </Flex>
+        </>
+      ) : (
+        <Empty
+          image={chartIcon}
+          description={`${t('const.info')} ${t('const.not_found')}`}
+        />
+      )}
     </Card>
   );
 };

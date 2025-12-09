@@ -1,5 +1,6 @@
 import { api } from '../api';
 import { getBaseUrl } from '../api/const';
+import { IGroup } from '../student/type';
 import { IBaseDataRes } from '../type';
 import {
   IDashboardStatisticsRes,
@@ -39,7 +40,12 @@ export const profileApi = api.injectEndpoints({
 
     getDashboardStatistics: build.query<
       IBaseDataRes<IDashboardStatisticsRes>,
-      { education_year?: string; semester?: string; expand: string }
+      {
+        education_year?: string;
+        semester?: string;
+        group_id?: IGroup['id'];
+        expand: string;
+      }
     >({
       query: params => ({
         url: `${getBaseUrl('/statistics/dashboard')}`,

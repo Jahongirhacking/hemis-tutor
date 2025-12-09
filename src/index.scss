@@ -26,6 +26,10 @@
   }
 }
 
+.leaflet-control-attribution {
+  display: none;
+}
+
 @font-face {
   font-family: 'sans-pro';
   src: url('./assets/font/SourceSansPro-Regular.woff') format('woff');

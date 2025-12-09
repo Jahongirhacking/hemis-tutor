@@ -1,10 +1,16 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { Card, Flex, Progress, Skeleton, Statistic, Typography } from 'antd';
 import { Banknote } from 'lucide-react';
+import { useContext } from 'react';
+import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const ContractCard = ({ isDark, PRIMARY, ...props }: IStatisticsCardProps) => {
+  const { educationYear, groupId, semester } = useContext(StatisticsContext);
   const { data, isFetching } = useGetDashboardStatisticsQuery({
+    education_year: educationYear,
+    group_id: groupId,
+    semester,
     expand: `${ExpandItem.CONTRACTS}`,
   });
 

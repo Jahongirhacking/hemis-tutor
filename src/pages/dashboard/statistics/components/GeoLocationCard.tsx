@@ -1,6 +1,8 @@
 import { useGetDashboardStatisticsQuery } from '@/services/profile';
 import { Card, Flex, Progress, Skeleton, Typography } from 'antd';
 import { MapPin } from 'lucide-react';
+import { useContext } from 'react';
+import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const GeoLocationCard = ({
@@ -8,7 +10,11 @@ const GeoLocationCard = ({
   PRIMARY,
   ...props
 }: IStatisticsCardProps) => {
+  const { educationYear, groupId, semester } = useContext(StatisticsContext);
   const { data, isFetching } = useGetDashboardStatisticsQuery({
+    education_year: educationYear,
+    group_id: groupId,
+    semester,
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
   });
 

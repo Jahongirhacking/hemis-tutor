@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <meta property="og:image" content="/images/hemis-icon.svg" />
               </Helmet>
               <App />
-              <Snowfalling />
+              <Snowfalling opacity={[0.05, 0.15]} />
             </>
           </HelmetProvider>
         </AntConfigProvider>
