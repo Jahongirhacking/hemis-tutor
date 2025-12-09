@@ -26,10 +26,24 @@ const StudentList = () => {
 
   return (
     <Flex vertical gap={18}>
-      <CustomFilter form={form}>
-        <CustomFilter.BySearch />
-        <CustomFilter.ByGroup />
-        <CustomFilter.ByPinfl />
+      <CustomFilter
+        form={form}
+        filterClassName="justify-between !gap-5 flex-col xl:flex-row"
+      >
+        <Flex
+          gap={8}
+          wrap
+          className="flex-1 min-w-[min(600px,100%)] max-w-[700px]"
+        >
+          <CustomFilter.ByGroup />
+          <CustomFilter.BySpecialty />
+          <CustomFilter.ByStudentStatus />
+        </Flex>
+
+        <Flex gap={8} wrap className="flex-1 justify-end">
+          <CustomFilter.ByPinfl />
+          <CustomFilter.BySearch />
+        </Flex>
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />

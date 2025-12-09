@@ -373,7 +373,10 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
-    getSpecalities: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>({
+    getSpecalities: build.query<
+      IBaseDataRes<{ items: (ICodeName & { id: number })[] }>,
+      void
+    >({
       query: () => ({
         url: `${getBaseUrl(`/reference/specialties`)}`,
       }),
@@ -394,11 +397,13 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
-    getStudentStatuses: build.query<void, void>({
-      query: () => ({
-        url: `${getBaseUrl(`/reference/student-statuses`)}`,
-      }),
-    }),
+    getStudentStatuses: build.query<IBaseDataRes<{ items: ICodeName[] }>, void>(
+      {
+        query: () => ({
+          url: `${getBaseUrl(`/reference/student-statuses`)}`,
+        }),
+      }
+    ),
 
     getTerrains: build.query<
       IBaseDataRes<{ items: ICodeName[] }>,
