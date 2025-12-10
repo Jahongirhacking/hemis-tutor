@@ -153,8 +153,8 @@ export const studentApi = api.injectEndpoints({
       IBaseDataRes<IStudentGradeRes>,
       IStudentGradeReq
     >({
-      query: ({ id, ...params }) => ({
-        url: `${getBaseUrl(`/grade/student/${id}`)}`,
+      query: ({ ...params }) => ({
+        url: `${getBaseUrl(`/grade/student`)}`,
         params,
       }),
     }),

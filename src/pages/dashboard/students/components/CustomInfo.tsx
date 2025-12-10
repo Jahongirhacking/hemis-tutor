@@ -4,14 +4,16 @@ import { SearchParams } from '@/utils/config';
 import { Card, Descriptions, Flex, Skeleton, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import CustomTabs from '../../components/CustomTabs';
+import AcademicInfo from './AcademicInfo';
 import StudentDetails from './StudentDetails';
 import StudentHistory from './StudentHistory';
 import StudentPassport from './StudentPassport';
 
-const CustomInfo = () => {};
+const CustomInfo = () => { };
 
 enum StudentTabKeys {
   PASSPORT = 'passport',
+  ACADEMIC = 'academic',
   DETAILS = 'details',
   HISTORY = 'history',
 }
@@ -36,6 +38,11 @@ const StudentInfo = (props: any) => {
           key: StudentTabKeys.HISTORY,
           label: 'Talaba tarixi',
           children: <StudentHistory {...props} />,
+        },
+        {
+          key: StudentTabKeys.ACADEMIC,
+          label: "Akademik ma'lumot",
+          children: <AcademicInfo {...props} />,
         },
       ]}
       type="line"
