@@ -1,12 +1,13 @@
+import { loading_1, loading_2 } from '@/assets/animations';
 import { AiStarsIconSVG } from '@/assets/icon';
 import useTTS from '@/hooks/useTTS';
 import { RESTRICTED_PATH } from '@/router/paths';
 import { RootState } from '@/store/store';
 import { ChatTopic, DrawerChildTypes, SearchParams } from '@/utils/config';
 import { LoadingOutlined } from '@ant-design/icons';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Button, Flex, Modal, Select, Typography } from 'antd';
 import DOMPurify from 'dompurify';
+import Lottie from 'lottie-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
@@ -118,9 +119,9 @@ const AnalyzeModal = () => {
                   width: '100%',
                 }}
               >
-                <DotLottieReact
+                <Lottie
                   key={'loading-1'}
-                  src="https://lottie.host/ad197045-a76c-4cc2-9cca-e17ee71126dc/yQ2TdCLqKB.lottie"
+                  animationData={loading_1}
                   loop
                   autoplay
                 />
@@ -143,9 +144,9 @@ const AnalyzeModal = () => {
                   width: '100%',
                 }}
               >
-                <DotLottieReact
+                <Lottie
                   key={'loading-2'}
-                  src="https://lottie.host/e6054948-bd91-48cf-a2d4-7bc0d175b9d0/evVGPhmVAc.lottie"
+                  animationData={loading_2}
                   loop
                   autoplay
                 />

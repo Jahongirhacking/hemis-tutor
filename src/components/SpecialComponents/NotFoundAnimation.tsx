@@ -1,21 +1,16 @@
-import {
-  DotLottieReact,
-  DotLottieReactProps,
-} from '@lottiefiles/dotlottie-react';
+import { animation_2 } from '@/assets/animations';
 import { Card, Flex, Typography } from 'antd';
+import Lottie, { LottieComponentProps } from 'lottie-react';
 import { CircleX } from 'lucide-react';
 import { CSSProperties, ReactElement } from 'react';
 
-export interface INotFoundProps extends DotLottieReactProps {
+export interface INotFoundProps extends Partial<LottieComponentProps> {
   description?: string;
   icon?: ReactElement;
   strong?: boolean;
   textAlign?: CSSProperties['textAlign'];
   maxWidth?: CSSProperties['maxWidth'];
 }
-
-const DEFAULT_ANIMATION =
-  'https://lottie.host/e880dc31-0ded-4ef0-b5d8-7cf326c52557/sXCbZErs26.lottie';
 
 const NotFoundAnimation = ({
   description,
@@ -35,11 +30,12 @@ const NotFoundAnimation = ({
       width: '100%',
     }}
   >
-    <DotLottieReact
+    <Lottie
       key={'not-found'}
-      src={DEFAULT_ANIMATION}
+      animationData={animation_2}
       loop
       autoplay
+      className="w-[min(200px,100%)]"
       {...(props ?? {})}
     />
     <Flex gap={12} style={{ marginBottom: 12 }} align="center">

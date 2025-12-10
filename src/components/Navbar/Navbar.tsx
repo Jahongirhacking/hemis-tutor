@@ -80,8 +80,9 @@ export const Navbar = () => {
         <div className="navbar__list">
           {navbarList.map(item => (
             <Flex
-              className={`navbar__item ${pathLocation.pathname == item.path ? 'navbar__item-active' : ''
-                }`}
+              className={`navbar__item ${
+                pathLocation.pathname == item.path ? 'navbar__item-active' : ''
+              }`}
               gap={8}
               key={item.title}
               // check restricted university click
