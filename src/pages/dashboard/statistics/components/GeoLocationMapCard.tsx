@@ -11,14 +11,15 @@ import { StatisticsContext } from '../DashboardPage';
 import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const extractLatLng = (url: string) => {
+  if (!url) return null;
   // 1) Try q=lat,lng
-  let match = url.match(/q=(-?\d+\.\d+),(-?\d+\.\d+)/);
+  let match = url?.match(/q=(-?\d+\.\d+),(-?\d+\.\d+)/);
   if (match) {
     return { lat: +match[1], lng: +match[2] };
   }
 
   // 2) Try @lat,lng format
-  match = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+  match = url?.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
   if (match) {
     return { lat: +match[1], lng: +match[2] };
   }
@@ -69,7 +70,7 @@ const UzbekistanMapCard = ({
       loc?.students?.forEach(student => {
         counts[
           getLivingStatusCode(student?.living_status_name) ||
-            StudentLivingStatus.UNKNOWN
+          StudentLivingStatus.UNKNOWN
         ]++;
       });
 
@@ -160,7 +161,7 @@ const UzbekistanMapCard = ({
           {/* Map Container */}
           <LeafletMap
             locations={locations}
-            onLocationSelect={() => {}}
+            onLocationSelect={() => { }}
             selectedLocation={null}
           />
 
