@@ -12,7 +12,6 @@ import {
   TodoIconSVG,
 } from '@/assets/icon';
 import { paths } from '@/router/paths';
-import { isTestUniversity } from '@/utils/config';
 import { ReactElement, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -54,20 +53,16 @@ const useNavbarList = () => {
         path: paths.private.checkAddress,
         isPrivatePath: true,
       },
-      ...(isTestUniversity()
-        ? [
-            {
-              title: (
-                t('dashboard.navbar.navbarList', {
-                  returnObjects: true,
-                }) as string[]
-              )[10],
-              icon: <TodoIconSVG />,
-              path: paths.private.todo,
-              isPrivatePath: false,
-            },
-          ]
-        : []),
+      {
+        title: (
+          t('dashboard.navbar.navbarList', {
+            returnObjects: true,
+          }) as string[]
+        )[10],
+        icon: <TodoIconSVG />,
+        path: paths.private.todo,
+        isPrivatePath: false,
+      },
       {
         title: (
           t('dashboard.navbar.navbarList', { returnObjects: true }) as string[]
