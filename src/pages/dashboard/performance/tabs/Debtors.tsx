@@ -81,6 +81,10 @@ const Debtors = () => {
             ),
             width: 400,
           },
+          {
+            title: `${t('const.total')} ${t('const.credit_plural')}`,
+            width: 140
+          }
         ]}
         dataSource={debtorsData?.result?.debtors || []}
         scroll={{ x: 1200, y: 'max(calc(100dvh - 450px), 300px)' }}
