@@ -1,12 +1,10 @@
-import { SoonCard } from "@/components/Common/SoonCard";
+import { SoonCard } from '@/components/Common/SoonCard';
 
 const AcademicInfo = ({ props: studentId }: { props: string }) => {
-    console.log(studentId);
-    // const { data: studentGrade } = useGetStudentGradeQuery({ id: Number(studentId) });
+  console.log(studentId);
+  // const { data: studentGrade } = useGetStudentGradeQuery({ id: Number(studentId) });
 
-    return (
-        <SoonCard />
-    )
-}
+  return <SoonCard />;
+};
 
-export default AcademicInfo
+export default AcademicInfo;

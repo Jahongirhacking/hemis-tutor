@@ -20,7 +20,7 @@ const Rating = () => {
       group_id: values?.[FilterKey.GroupId],
       semester: values?.[FilterKey.Semester],
       education_year: values?.[FilterKey.EducationYear],
-      ...pagination
+      ...pagination,
     },
     { skip: !values?.[FilterKey.EducationYear] }
   );
@@ -28,13 +28,39 @@ const Rating = () => {
 
   const expandedRowRender = (record: IRating) => (
     <Flex vertical gap={8}>
-      <Typography.Text type='secondary' className='flex flex-wrap gap-2 items-center'><User size={16} /> {record?.student?.full_name} - Reyting qaydnomasi</Typography.Text>
+      <Typography.Text
+        type="secondary"
+        className="flex flex-wrap gap-2 items-center"
+      >
+        <User size={16} /> {record?.student?.full_name} - Reyting qaydnomasi
+      </Typography.Text>
       <Table
         columns={[
-          { title: t('const.subject'), dataIndex: 'subject', key: 'subject', render: (subject) => toFirstCapitalLetter(subject?.name) },
-          { title: toFirstCapitalLetter(t('const.credit_plural')), dataIndex: 'credit', key: 'credit', render: (credit) => credit ? `${credit} ${t('const.credit_plural')}` : '-' },
-          { title: t('const.mark'), dataIndex: 'grade', key: 'grade', render: (grade) => <GradeTag grade={grade}>{grade || '-'}</GradeTag> },
-          { title: t('const.overall'), dataIndex: 'total_point', key: 'total_point', render: (total) => <GradeTag grade={total}>{total || '-'}</GradeTag> },
+          {
+            title: t('const.subject'),
+            dataIndex: 'subject',
+            key: 'subject',
+            render: subject => toFirstCapitalLetter(subject?.name),
+          },
+          {
+            title: toFirstCapitalLetter(t('const.credit_plural')),
+            dataIndex: 'credit',
+            key: 'credit',
+            render: credit =>
+              credit ? `${credit} ${t('const.credit_plural')}` : '-',
+          },
+          {
+            title: t('const.mark'),
+            dataIndex: 'grade',
+            key: 'grade',
+            render: grade => <GradeTag grade={grade}>{grade || '-'}</GradeTag>,
+          },
+          {
+            title: t('const.overall'),
+            dataIndex: 'total_point',
+            key: 'total_point',
+            render: total => <GradeTag grade={total}>{total || '-'}</GradeTag>,
+          },
         ]}
         dataSource={record?.subjects}
         pagination={false}
@@ -67,21 +93,17 @@ const Rating = () => {
           rowExpandable: (record: IRating) => record?.subjects?.length > 0,
           expandIcon: ({ expanded, onExpand, record }) =>
             record.subjects?.length ? (
-              <Button type='primary' onClick={(e) => onExpand(record, e)}>
-                {
-                  expanded ? (
-                    <EyeInvisibleOutlined
-                      style={{ cursor: "pointer", fontSize: 16 }}
-                    />
-                  ) : (
-                    <EyeOutlined
-                      style={{ cursor: "pointer", fontSize: 16 }}
-                    />
-                  )
-                }
+              <Button type="primary" onClick={e => onExpand(record, e)}>
+                {expanded ? (
+                  <EyeInvisibleOutlined
+                    style={{ cursor: 'pointer', fontSize: 16 }}
+                  />
+                ) : (
+                  <EyeOutlined style={{ cursor: 'pointer', fontSize: 16 }} />
+                )}
               </Button>
             ) : (
-              <span style={{ width: 16, display: "inline-block" }} />
+              <span style={{ width: 16, display: 'inline-block' }} />
             ),
         }}
         columns={[
@@ -111,7 +133,11 @@ const Rating = () => {
             key: 'subjects',
             render: (subjects: IRating['subjects']) => (
               <Flex gap={8} wrap>
-                {subjects?.map(subject => <GradeTag grade={subject?.total_point}>{`${[subject?.subject?.name, subject?.total_point].filter(e => !!e).join(" - ")}`}</GradeTag>)}
+                {subjects?.map(subject => (
+                  <GradeTag
+                    grade={subject?.total_point}
+                  >{`${[subject?.subject?.name, subject?.total_point].filter(e => !!e).join(' - ')}`}</GradeTag>
+                ))}
               </Flex>
             ),
             width: 400,

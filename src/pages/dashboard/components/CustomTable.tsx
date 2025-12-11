@@ -24,12 +24,13 @@ const CustomTable = ({
             `${t('const.total')}: ${t('const.number_count', { number: total })}`,
           align: 'center',
         }}
-        dataSource={
-          [...(dataSource || [])]?.map((elem, index) => ({
-            ...elem,
-            index: props?.pagination === false || dataSource?.[0]?.index !== undefined ? ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1 : index + 1,
-          }))
-        }
+        dataSource={[...(dataSource || [])]?.map((elem, index) => ({
+          ...elem,
+          index:
+            props?.pagination === false || dataSource?.[0]?.index !== undefined
+              ? ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1
+              : index + 1,
+        }))}
         {...props}
       />
 

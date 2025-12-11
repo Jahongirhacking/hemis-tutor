@@ -16,7 +16,7 @@ const Debtors = () => {
       group_id: values?.[FilterKey.GroupId],
       semester: values?.[FilterKey.Semester],
       education_year: values?.[FilterKey.EducationYear],
-      ...pagination
+      ...pagination,
     },
     { skip: !values?.[FilterKey.EducationYear] }
   );
@@ -52,22 +52,14 @@ const Debtors = () => {
             title: t('const.student'),
             dataIndex: 'student',
             key: 'student',
-            render: (student) => (
-              <CustomLink.Student
-                student={student}
-              />
-            ),
+            render: student => <CustomLink.Student student={student} />,
             width: 250,
           },
           {
             title: t('const.group'),
             dataIndex: 'group',
             key: 'group',
-            render: (group) => (
-              <CustomLink.Group
-                group={group}
-              />
-            ),
+            render: group => <CustomLink.Group group={group} />,
             width: 200,
           },
           {
@@ -76,15 +68,24 @@ const Debtors = () => {
             key: 'subjects',
             render: (subjects: IGradeDebtor['subjects']) => (
               <Flex gap={8} wrap>
-                {subjects?.map(subject => <Tag color={'red'}>{`${subject?.name} - ${subject?.credit} ${t('const.credit_plural')}`}</Tag>)}
+                {subjects?.map(subject => (
+                  <Tag>{`${subject?.name} - ${subject?.credit} ${t('const.credit_plural')}`}</Tag>
+                ))}
               </Flex>
             ),
             width: 400,
           },
           {
             title: `${t('const.total')} ${t('const.credit_plural')}`,
-            width: 140
-          }
+            dataIndex: 'subjects',
+            key: 'credits',
+            render: (subjects: IGradeDebtor['subjects']) => (
+              <Tag color={'red'}>
+                {`${subjects?.reduce((acc, curr) => acc + Number(curr?.credit), 0)} ${t('const.credit_plural')}`}
+              </Tag>
+            ),
+            width: 140,
+          },
         ]}
         dataSource={debtorsData?.result?.debtors || []}
         scroll={{ x: 1200, y: 'max(calc(100dvh - 450px), 300px)' }}

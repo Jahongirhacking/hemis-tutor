@@ -9,7 +9,7 @@ import StudentDetails from './StudentDetails';
 import StudentHistory from './StudentHistory';
 import StudentPassport from './StudentPassport';
 
-const CustomInfo = () => { };
+const CustomInfo = () => {};
 
 enum StudentTabKeys {
   PASSPORT = 'passport',
