@@ -277,15 +277,24 @@ export interface IGradeDebt {
 }
 
 export interface IGradeDebtor {
-  _student: string;
-  _group: string;
-  _subject: string;
-  credit: number | string;
+  student: {
+    id: number;
+    full_name: string;
+    student_id_number: string;
+  };
+  group: {
+    id: number;
+    name: string;
+  };
   level: string;
   specialty: string;
-  _education_year: string;
-  _semester: string;
-  student_id: number;
+  education_year: string;
+  semester: string;
+  subjects: {
+    id: number;
+    name: string;
+    credit: number;
+  }[];
 }
 
 export interface IGradeDebtorRes {
@@ -293,6 +302,10 @@ export interface IGradeDebtorRes {
   group_id: IGroup['id'];
   semester: ISemester['code'];
   total_debtors: number;
+  education_year: IEducationYear['code'];
+  curriculum: ICurriculumMeta | null;
+  subject_id: ISubject['subject_id'] | null;
+  pagination: IPagination;
 }
 
 export interface IGradeRatingReq {
@@ -304,20 +317,34 @@ export interface IGradeRatingReq {
 
 export interface IRating {
   student: IStudent;
-  subject: string;
+  subjects: {
+    id: number;
+    subject: {
+      id: number;
+      name: string;
+    };
+    grade: string | null;
+    total_point: number | null;
+    credit: number | null;
+  }[];
   exam_type: string;
   grade: string;
   total_point: number;
   final_exam_point: number;
   midterm_point: number;
   credit: number;
+  group: IGroup;
 }
 
 export interface IGradeRatingRes {
   ratings: IRating[];
-  group_id: IGroup['id'];
+  group_id: IGroup['id'] | null;
+  group_ids: IGroup['id'][];
+  group_semesters: Record<IGroup['id'], ISemester['code']>;
   semester: ISemester['code'];
-  count: number;
+  education_year: IEducationYear['code'];
+  subject_id: ISubject['subject_id'] | null;
+  pagination: IPagination;
 }
 
 export interface IGradeSummarySubject {

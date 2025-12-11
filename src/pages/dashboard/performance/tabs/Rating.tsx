@@ -1,26 +1,47 @@
+import { usePagination } from '@/hooks/usePagination';
 import { useGetGradeRatingQuery } from '@/services/student';
-import { getExamMark } from '@/utils/markFunc';
+import { IRating } from '@/services/student/type';
 import { toFirstCapitalLetter } from '@/utils/stringFunc';
-import { Divider, Flex } from 'antd';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { Button, Divider, Flex, Table, Typography } from 'antd';
+import { User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
 import CustomFilter, { FilterKey } from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import CustomLink from '../../students/components/CustomLink';
-
-const MAX_BALL = 5;
+import GradeTag from '../components/GradeTag';
 
 const Rating = () => {
+  const { pagination } = usePagination();
   const { form, values } = useCustomFilter();
   const { data: ratingData, isFetching } = useGetGradeRatingQuery(
     {
       group_id: values?.[FilterKey.GroupId],
       semester: values?.[FilterKey.Semester],
       education_year: values?.[FilterKey.EducationYear],
+      ...pagination
     },
     { skip: !values?.[FilterKey.EducationYear] }
   );
   const { t } = useTranslation();
+
+  const expandedRowRender = (record: IRating) => (
+    <Flex vertical gap={8}>
+      <Typography.Text type='secondary' className='flex flex-wrap gap-2 items-center'><User size={16} /> {record?.student?.full_name} - Reyting qaydnomasi</Typography.Text>
+      <Table
+        columns={[
+          { title: t('const.subject'), dataIndex: 'subject', key: 'subject', render: (subject) => toFirstCapitalLetter(subject?.name) },
+          { title: toFirstCapitalLetter(t('const.credit_plural')), dataIndex: 'credit', key: 'credit', render: (credit) => credit ? `${credit} ${t('const.credit_plural')}` : '-' },
+          { title: t('const.mark'), dataIndex: 'grade', key: 'grade', render: (grade) => <GradeTag grade={grade}>{grade || '-'}</GradeTag> },
+          { title: t('const.overall'), dataIndex: 'total_point', key: 'total_point', render: (total) => <GradeTag grade={total}>{total || '-'}</GradeTag> },
+        ]}
+        dataSource={record?.subjects}
+        pagination={false}
+        rowKey={'student'}
+      />
+    </Flex>
+  );
 
   return (
     <Flex vertical gap={18}>
@@ -39,6 +60,30 @@ const Rating = () => {
 
       <CustomTable
         loading={isFetching}
+        pagination={false}
+        paginationTotal={ratingData?.result?.pagination?.total_count}
+        expandable={{
+          expandedRowRender,
+          rowExpandable: (record: IRating) => record?.subjects?.length > 0,
+          expandIcon: ({ expanded, onExpand, record }) =>
+            record.subjects?.length ? (
+              <Button type='primary' onClick={(e) => onExpand(record, e)}>
+                {
+                  expanded ? (
+                    <EyeInvisibleOutlined
+                      style={{ cursor: "pointer", fontSize: 16 }}
+                    />
+                  ) : (
+                    <EyeOutlined
+                      style={{ cursor: "pointer", fontSize: 16 }}
+                    />
+                  )
+                }
+              </Button>
+            ) : (
+              <span style={{ width: 16, display: "inline-block" }} />
+            ),
+        }}
         columns={[
           {
             title: '#',
@@ -57,42 +102,19 @@ const Rating = () => {
             title: t('const.group'),
             dataIndex: 'group',
             key: 'group',
-            width: 150,
+            width: 180,
             render: group => <CustomLink.Group group={group} />,
           },
           {
-            title: t('const.subject'),
-            dataIndex: 'subject',
-            key: 'subject',
-            render: subject => subject?.name || '-',
-            width: 180,
-          },
-          {
-            title: toFirstCapitalLetter(t('const.credit_plural')),
-            dataIndex: 'credit',
-            key: 'credit',
-            render: credit => credit || '-',
-          },
-          {
-            title: t('const.overall'),
-            dataIndex: 'total_point',
-            key: 'total',
-            render: total => total || '-',
-          },
-          {
-            title: t('const.mark'),
-            dataIndex: 'grade',
-            key: 'grade',
-            render: grade =>
-              getExamMark(
-                {
-                  grade: Number(grade),
-                  max_ball: MAX_BALL,
-                  percent: (Number(grade) / MAX_BALL) * 100,
-                },
-                t('const.mark'),
-                false
-              ),
+            title: t('const.subjects'),
+            dataIndex: 'subjects',
+            key: 'subjects',
+            render: (subjects: IRating['subjects']) => (
+              <Flex gap={8} wrap>
+                {subjects?.map(subject => <GradeTag grade={subject?.total_point}>{`${[subject?.subject?.name, subject?.total_point].filter(e => !!e).join(" - ")}`}</GradeTag>)}
+              </Flex>
+            ),
+            width: 400,
           },
         ]}
         dataSource={ratingData?.result?.ratings || []}

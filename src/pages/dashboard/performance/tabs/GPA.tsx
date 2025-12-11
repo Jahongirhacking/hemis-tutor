@@ -44,26 +44,31 @@ const GPA = () => {
             render: student => <CustomLink.Student student={student} />,
           },
           {
+            title: toFirstCapitalLetter(t('const.group')),
+            dataIndex: 'group',
+            key: 'group',
+            render: (group) => <CustomLink.Group group={group} />,
+            width: 180
+          },
+          {
             title: toFirstCapitalLetter(t('const.credit_plural')),
             dataIndex: 'credit_sum',
             key: 'credit_sum',
-            render: credit => credit || '-',
-          },
-          {
-            title: toFirstCapitalLetter(t('const.semester')),
-            dataIndex: 'semester',
-            key: 'semester',
+            render: credit => credit ? `${Number(credit)} ${t('const.credit_plural')}` : '-',
+            width: 120
           },
           {
             title: t('const.subjects'),
             dataIndex: 'total_subjects',
             key: 'total_subjects',
             render: total => t('const.number_count', { number: total }),
+            width: 100
           },
           {
             title: toFirstCapitalLetter(t('const.status')),
             dataIndex: 'status',
             key: 'status',
+            width: 120
           },
           {
             title: 'GPA',
@@ -80,6 +85,7 @@ const GPA = () => {
                 false
               ),
             fixed: 'right',
+            width: 120
           },
         ]}
         dataSource={gpaData?.result?.gpa_records || []}

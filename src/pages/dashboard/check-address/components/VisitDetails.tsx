@@ -40,6 +40,12 @@ const VisitDetails = ({ studentId }: { studentId: IStudent['id'] }) => {
             loading={isFetching}
             columns={[
               {
+                title: '#',
+                dataIndex: 'index',
+                key: 'index',
+                width: 60,
+              },
+              {
                 title: (
                   <Space size={4}>
                     <MapPin size={14} />

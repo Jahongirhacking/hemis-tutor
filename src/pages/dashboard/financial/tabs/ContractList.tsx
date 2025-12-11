@@ -24,6 +24,12 @@ const ContractList = () => {
         loading={isFetching}
         columns={[
           {
+            title: '#',
+            dataIndex: 'index',
+            key: 'index',
+            width: 60,
+          },
+          {
             title: 'Talaba',
             dataIndex: 'student',
             key: 'name',

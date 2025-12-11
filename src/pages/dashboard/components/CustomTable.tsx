@@ -1,3 +1,4 @@
+import { usePagination } from '@/hooks/usePagination';
 import { Flex, Table, TableProps } from 'antd';
 import { useTranslation } from 'react-i18next';
 import CustomPagination from './CustomPagination';
@@ -10,6 +11,7 @@ const CustomTable = ({
 }: TableProps & { paginationTotal?: number }) => {
   const { emptyText } = useCustomTable({});
   const { t } = useTranslation();
+  const { pagination } = usePagination();
 
   return (
     <Flex vertical gap={24} className="w-full">
@@ -23,12 +25,10 @@ const CustomTable = ({
           align: 'center',
         }}
         dataSource={
-          props?.pagination === false || dataSource?.[0]?.index !== undefined
-            ? [...(dataSource || [])]
-            : [...(dataSource || [])]?.map((elem, index) => ({
-                ...elem,
-                index: index + 1,
-              }))
+          [...(dataSource || [])]?.map((elem, index) => ({
+            ...elem,
+            index: props?.pagination === false || dataSource?.[0]?.index !== undefined ? ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1 : index + 1,
+          }))
         }
         {...props}
       />

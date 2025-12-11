@@ -206,12 +206,9 @@ const CheckAddress = () => {
           columns={[
             {
               title: '#',
-              render: (_, __, index) =>
-                ((pagination?.page || 1) - 1) * pagination?.per_page +
-                index +
-                1,
+              dataIndex: 'index',
+              key: 'index',
               width: 60,
-              align: 'center',
             },
             {
               title: (
@@ -346,9 +343,9 @@ const CheckAddress = () => {
                         code: visits?.[0]?._student_living_status,
                         name: visits?.[0]
                           ? moment(
-                              visits?.[0]?.created_at,
-                              'YYYY-MM-DD HH:mm:ss'
-                            ).format('DD.MM.YYYY')
+                            visits?.[0]?.created_at,
+                            'YYYY-MM-DD HH:mm:ss'
+                          ).format('DD.MM.YYYY')
                           : '-',
                       }}
                     />

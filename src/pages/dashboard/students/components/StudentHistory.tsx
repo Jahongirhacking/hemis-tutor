@@ -20,6 +20,12 @@ const StudentHistory = ({ props: id }: { props: string }) => {
       <CustomTable
         columns={[
           {
+            title: '#',
+            dataIndex: 'index',
+            key: 'index',
+            width: 60,
+          },
+          {
             title: t('const.education_type'),
             dataIndex: 'education_type',
             key: 'education_type',

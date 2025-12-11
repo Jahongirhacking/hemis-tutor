@@ -52,8 +52,8 @@ const StudentList = () => {
         columns={[
           {
             title: '#',
-            render: (_, __, index) =>
-              ((pagination?.page || 1) - 1) * pagination?.per_page + index + 1,
+            dataIndex: 'index',
+            key: 'index',
             width: 60,
           },
           {

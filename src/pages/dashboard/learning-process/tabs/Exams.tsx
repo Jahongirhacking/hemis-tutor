@@ -34,6 +34,7 @@ const Exams = () => {
       <Flex vertical gap={18}>
         <CustomTable
           columns={[
+            { title: "#", dataIndex: 'index', key: 'index', width: 60 },
             { title: t('const.group'), dataIndex: 'group', key: 'group' },
             {
               title: t('const.date'),
