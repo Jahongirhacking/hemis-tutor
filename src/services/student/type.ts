@@ -163,6 +163,7 @@ export interface IAttendanceBySubjectRes {
 
 export interface IAttendanceReportReq extends IAttendanceBySubjectReq {
   subject_id?: ISubject['subject_id'];
+  student_id?: IStudent['id'];
 }
 
 export interface IAttendanceReportRes {

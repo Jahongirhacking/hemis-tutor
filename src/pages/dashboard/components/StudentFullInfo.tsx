@@ -1,5 +1,6 @@
 import { useGetStudentDetailsQuery } from '@/services/student';
 import { IStudent } from '@/services/student/type';
+import { GenderType } from '@/services/type';
 import {
   Collapse,
   Descriptions,
@@ -41,7 +42,11 @@ const StudentFullInfo = ({
           src={studentData?.result?.student?.image}
           width={130}
           preview={false}
-          fallback="/images/avatar.png"
+          fallback={
+            studentData?.result?.student?.gender?.code === GenderType.Female
+              ? '/images/avatar-female.jpg'
+              : '/images/avatar-male.jpg'
+          }
           className="rounded-full shadow-md"
         />
         <Typography.Title level={4} style={{ margin: 0, textAlign: 'center' }}>
@@ -49,7 +54,7 @@ const StudentFullInfo = ({
         </Typography.Title>
       </Flex>
 
-      {infoTypes?.length && (
+      {!!infoTypes?.length && (
         <Flex vertical gap={8} className="w-full">
           {infoTypes?.includes(StudentInfoTypes.ACADEMIC) && (
             <Collapse
@@ -90,11 +95,25 @@ const StudentFullInfo = ({
                         {
                           label: 'Telefon raqami',
                           children: studentData?.result?.student?.phone ? (
-                            <a
+                            <Typography.Link
+                              target="_blank"
                               href={`tel:${studentData?.result?.student?.phone}`}
                             >
                               {studentData?.result?.student?.phone}
-                            </a>
+                            </Typography.Link>
+                          ) : (
+                            '-'
+                          ),
+                        },
+                        {
+                          label: 'Email',
+                          children: studentData?.result?.student?.email ? (
+                            <Typography.Link
+                              target="_blank"
+                              href={`mailto:${studentData?.result?.student?.email}`}
+                            >
+                              {studentData?.result?.student?.email}
+                            </Typography.Link>
                           ) : (
                             '-'
                           ),

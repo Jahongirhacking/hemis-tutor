@@ -62,6 +62,11 @@ export interface IStudentGPA {
   debtSubjects: number;
 }
 
+export enum GenderType {
+  Male = '11',
+  Female = '12',
+}
+
 export interface IStudentPassportRes {
   id: string;
   code: string;

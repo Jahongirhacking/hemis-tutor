@@ -15,7 +15,7 @@ const ProfileCard = () => {
         <Flex gap={24} wrap>
           <Flex vertical gap={8} align="center">
             <Avatar
-              src={user?.tutor?.image ?? '/images/avatar.png'}
+              src={user?.tutor?.image ?? '/images/avatar-male.jpg'}
               style={{ backgroundColor: '#8381D8' }}
             >
               {`${user?.tutor?.full_name}`}

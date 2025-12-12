@@ -1,8 +1,9 @@
 import { useGetStudentHistoryQuery } from '@/services/student';
-import { Flex, Typography } from 'antd';
+import { Flex } from 'antd';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomTable from '../../components/CustomTable';
+import StudentFullInfo from '../../components/StudentFullInfo';
 
 const StudentHistory = ({ props: id }: { props: string }) => {
   const studentId = useMemo(() => Number(id), []);
@@ -13,10 +14,8 @@ const StudentHistory = ({ props: id }: { props: string }) => {
   const { t } = useTranslation();
 
   return (
-    <Flex vertical gap={12} align="center">
-      <Typography.Title level={4}>
-        {historyData?.result?.student?.full_name}
-      </Typography.Title>
+    <Flex vertical gap={18} align="center">
+      <StudentFullInfo studentId={studentId} infoTypes={[]} />
       <CustomTable
         columns={[
           {

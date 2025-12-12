@@ -415,6 +415,16 @@ export const studentApi = api.injectEndpoints({
       }),
     }),
 
+    getSubjects: build.query<
+      IBaseDataRes<{ items: (ICodeName & { id: string })[] }>,
+      { group: IGroup['id']; year_semester: string }
+    >({
+      query: params => ({
+        url: `${getBaseUrl(`/reference/subjects`)}`,
+        params,
+      }),
+    }),
+
     // Messages
     getMessages: build.query<
       IBaseDataRes<IMessageListRes>,
@@ -523,4 +533,5 @@ export const {
   useGetRecipientsQuery,
   useLazyGetRecipientsQuery,
   useSendMessageMutation,
+  useGetSubjectsQuery,
 } = studentApi;

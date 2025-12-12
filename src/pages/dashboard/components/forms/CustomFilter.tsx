@@ -4,6 +4,7 @@ import {
   useGetGroupSemestersQuery,
   useGetSpecalitiesQuery,
   useGetStudentStatusesQuery,
+  useGetSubjectsQuery,
 } from '@/services/student';
 import { IEducationYear, IGroup } from '@/services/student/type';
 import {
@@ -125,7 +126,10 @@ const ByGroup = ({
       }
       loading={isFetching}
       onChange={() => {
-        form?.setFieldValue?.(FilterKey.Semester, undefined);
+        form?.setFieldsValue?.({
+          [FilterKey.Semester]: undefined,
+          [FilterKey.SubjectId]: undefined,
+        });
       }}
       {...props}
     />
@@ -149,15 +153,55 @@ const BySemester = ({
     { group_id, education_year },
     { skip: !group_id }
   );
+  const form = useContext(CustomFilterContext)?.form;
   return (
     <BySpecialSelect
       field={field || FilterKey.Semester}
       loading={isFetching}
+      disabled={!group_id}
       placeholder={'Semestr tanlang'}
       formItemClassName={formItemClassName}
       options={semestersData?.result?.semesters?.map(s => ({
         label: s?.name,
         value: s?.code,
+        year: s?.education_year,
+      }))}
+      onChange={() => {
+        form?.setFieldsValue?.({
+          [FilterKey.SubjectId]: undefined,
+        });
+      }}
+      {...props}
+    />
+  );
+};
+
+const BySubject = ({
+  group_id,
+  year_semester,
+  field,
+  disabled,
+  formItemClassName,
+  ...props
+}: {
+  group_id?: IGroup['id'];
+  year_semester?: string;
+  field?: string;
+  formItemClassName?: string;
+} & SelectProps) => {
+  const { data: subjectsData, isFetching } = useGetSubjectsQuery({
+    group: group_id,
+    year_semester,
+  });
+  return (
+    <BySpecialSelect
+      field={field || FilterKey.SubjectId}
+      loading={isFetching}
+      placeholder={'Fan tanlang'}
+      formItemClassName={formItemClassName}
+      options={subjectsData?.result?.items?.map(s => ({
+        label: s?.name,
+        value: s?.id,
       }))}
       {...props}
     />
@@ -342,4 +386,5 @@ CustomFilter.BySelect = BySelect;
 CustomFilter.ByEducationYear = ByEducationYear;
 CustomFilter.BySpecialty = BySpecialty;
 CustomFilter.ByStudentStatus = ByStudentStatus;
+CustomFilter.BySubject = BySubject;
 export default CustomFilter;

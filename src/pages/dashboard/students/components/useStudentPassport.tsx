@@ -4,6 +4,7 @@ import {
 } from '@/services/api/statApi';
 import { useGetStudentDetailsQuery } from '@/services/student';
 import { IStudentExtraInfoRes } from '@/services/type';
+import { Typography } from 'antd';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import moment from 'moment';
 import { ReactNode, useMemo, useRef } from 'react';
@@ -250,22 +251,30 @@ const useStudentPassport = ({ id }: { id: string }) => {
       icon: <Phone size={12} />,
       label: 'Telefon',
       value: (
-        <a
+        <Typography.Link
           href={`tel:${student?.phone || student?.__details?.student?.phone}`}
           target="_blank"
         >
           {student?.phone ||
             student?.__details?.student?.phone ||
             "Ma'lumot yo'q"}
-        </a>
+        </Typography.Link>
       ),
     },
 
     {
       icon: <Mail size={12} />,
       label: 'Email',
-      value:
-        student?.email || student?.__details?.student?.email || "Ma'lumot yo'q",
+      value: (
+        <Typography.Link
+          href={`mailto:${student?.email || student?.__details?.student?.email}`}
+          target="_blank"
+        >
+          {student?.email ||
+            student?.__details?.student?.email ||
+            "Ma'lumot yo'q"}
+        </Typography.Link>
+      ),
     },
   ];
 

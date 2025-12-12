@@ -93,7 +93,12 @@ const Rating = () => {
           rowExpandable: (record: IRating) => record?.subjects?.length > 0,
           expandIcon: ({ expanded, onExpand, record }) =>
             record.subjects?.length ? (
-              <Button type="primary" onClick={e => onExpand(record, e)}>
+              <Button
+                type="primary"
+                onClick={e => onExpand(record, e)}
+                size="middle"
+                shape="circle"
+              >
                 {expanded ? (
                   <EyeInvisibleOutlined
                     style={{ cursor: 'pointer', fontSize: 16 }}

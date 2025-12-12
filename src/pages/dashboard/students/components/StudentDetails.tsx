@@ -6,7 +6,7 @@ const StudentDetails = ({ props: id }: { props?: string }) => {
   const studentId = useMemo(() => Number(id), []);
 
   return (
-    <Flex vertical gap={12}>
+    <Flex vertical gap={18}>
       <StudentFullInfo studentId={studentId} />
     </Flex>
   );

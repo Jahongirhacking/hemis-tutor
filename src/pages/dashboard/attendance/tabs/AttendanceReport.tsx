@@ -17,6 +17,7 @@ const AttendanceReport = () => {
     ...values,
   });
   const { t } = useTranslation();
+  const [semesterCode, setSemesterCode] = useState<string>();
   const [openDetails, setOpenDetails] = useState<IStudent>(null);
 
   const attendanceReport: IAttendance[] = useMemo(
@@ -45,7 +46,21 @@ const AttendanceReport = () => {
     <Flex vertical gap={18}>
       <CustomFilter form={form}>
         <CustomFilter.ByGroup />
-        <CustomFilter.BySemester group_id={values?.[FilterKey.GroupId]} />
+        <CustomFilter.BySemester
+          group_id={values?.[FilterKey.GroupId]}
+          onChange={(_, option) => {
+            setSemesterCode(
+              'year' in option ? `${option?.year}-${option?.value}` : undefined
+            );
+            form.setFieldsValue({
+              [FilterKey.SubjectId]: undefined,
+            });
+          }}
+        />
+        <CustomFilter.BySubject
+          group_id={values?.[FilterKey.GroupId]}
+          year_semester={semesterCode}
+        />
       </CustomFilter>
 
       <Divider style={{ margin: 0 }} />
@@ -65,6 +80,7 @@ const AttendanceReport = () => {
             render: (_, record) => (
               <CustomLink.Student student={record?.student} />
             ),
+            width: 250,
           },
           {
             title: `${toFirstCapitalLetter(t('const.explicable'))} (${t('const.hours_plural')})`,

@@ -3,7 +3,7 @@ import { Button, Card, Flex, Image, Skeleton } from 'antd';
 import { Printer, User } from 'lucide-react';
 import useStudentPassport from './useStudentPassport';
 
-const DEFAULT_IMAGE = '/images/avatar.png';
+const DEFAULT_IMAGE = '/images/avatar-male.jpg';
 
 const StudentPassport = ({ props: id }: { props?: string }) => {
   const {
@@ -58,13 +58,13 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                     {/* Card Header - Rasm, Ism, DTM bali */}
                     <div className="border-b border-[#E0E7F5] bg-[#F9F9FA] px-6 py-4">
                       <div className="flex items-center justify-between flex-wrap">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 flex-wrap">
                           <Image
                             src={avatarUrl}
                             alt={
                               student?.__details?.student?.full_name ?? 'Talaba'
                             }
-                            className="border-slate-300 shadow-sm"
+                            className="border-slate-300 shadow-sm min-w-[40px]"
                             fallback={DEFAULT_IMAGE}
                             preview={false}
                             style={{
@@ -199,7 +199,7 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
                                 {item.icon}
                               </span>
                               <span className="text-sm font-bold text-black">
-                                {item.label}
+                                {item.label}:
                               </span>
                               <span className="overflow-wrap-anywhere flex-1 text-sm break-words text-slate-900">
                                 {typeof item?.value === 'string'
@@ -278,7 +278,7 @@ const StudentPassport = ({ props: id }: { props?: string }) => {
               {/* Ma'lumoti kelmagan cardlar - 4 ta ustunli grid */}
               {registryBlocks?.filter(block => block.items.length === 0)
                 .length > 0 && (
-                <section className="grid grid-cols-4 items-stretch gap-4">
+                <section className="grid grid-cols-2 items-stretch gap-4 md:!grid-cols-4">
                   {registryBlocks
                     .filter(block => block.items.length === 0)
                     .map(block => (
