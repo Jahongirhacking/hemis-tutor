@@ -7,7 +7,7 @@ import {
 } from '@/services/chat';
 import { ChatRoleEnum, IChatMessage } from '@/services/chat/type';
 import { setDrawer } from '@/store/slices/drawerSlice';
-import { SearchParams } from '@/utils/config';
+import { ChatTopic, SearchParams } from '@/utils/config';
 import {
   Button,
   Flex,
@@ -79,7 +79,14 @@ const AiChat = () => {
   //   ],
   //   [t]
   // );
-  const choices = [];
+  const choices = [
+    {
+      image: '/icons/gpa.svg',
+      title: 'Tashrif tahlili',
+      description: "Tashriflar bo'yicha tahlil",
+      chatTopic: ChatTopic.VisitSummary,
+    },
+  ];
 
   const [
     generateChatResponse,

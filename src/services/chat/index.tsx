@@ -37,6 +37,44 @@ export const chatApi = chatBaseApi.injectEndpoints({
       invalidatesTags: ['ai-chat'],
     }),
 
+    generateAttendanceResponse: build.mutation<
+      { answer: string },
+      IChatReqBody
+    >({
+      query: ({ token, ...body }) => ({
+        url: `${chatBaseUrl}/tyutor/student-attendance`,
+        method: 'POST',
+        body,
+        params: { token: encodeTutorId(token) },
+      }),
+    }),
+
+    generateAttendancePatternResponse: build.mutation<
+      { answer: string },
+      IChatReqBody
+    >({
+      query: ({ token, ...body }) => ({
+        url: `${chatBaseUrl}/tyutor/student-attendance-pattern`,
+        method: 'POST',
+        body,
+        params: { token: encodeTutorId(token) },
+      }),
+    }),
+
+    generateVisitAnomalyResponse: build.mutation<
+      { answer: string },
+      IChatReqBody
+    >({
+      query: ({ token, ...body }) => ({
+        url: `${chatBaseUrl}/tyutor/detecting-student-visit-anomaly`,
+        method: 'POST',
+        body,
+        params: { token: encodeTutorId(token) },
+      }),
+    }),
+
+    // old api
+
     getScholarshipInfo: build.query<
       IBaseDataRes<IScholarship>,
       { studentId: string }
@@ -68,4 +106,7 @@ export const {
   useDeleteChatHistoryMutation,
   useGetScholarshipInfoQuery,
   useGetRentInfoQuery,
+  useGenerateAttendancePatternResponseMutation,
+  useGenerateAttendanceResponseMutation,
+  useGenerateVisitAnomalyResponseMutation,
 } = chatApi;

@@ -1,7 +1,6 @@
 import { loading_1, loading_2 } from '@/assets/animations';
 import { AiStarsIconSVG } from '@/assets/icon';
 import useTTS from '@/hooks/useTTS';
-import { RESTRICTED_PATH } from '@/router/paths';
 import { RootState } from '@/store/store';
 import { ChatTopic, DrawerChildTypes, SearchParams } from '@/utils/config';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -9,15 +8,14 @@ import { Button, Flex, Modal, Select, Typography } from 'antd';
 import DOMPurify from 'dompurify';
 import Lottie from 'lottie-react';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { useSelector } from 'react-redux';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import NotFoundAnimation from '../SpecialComponents/NotFoundAnimation';
 import AnimatedMessage from '../TypingAnimation/AnimatedMessage';
 import AnalyzeButton from './AnalyzeButton';
-import GpaResult from './AnalyzeResult/GpaResult';
 import { IAnalyzeResultProps } from './AnalyzeResult/interface';
+import VisitsResult from './AnalyzeResult/VisitsResult';
 import AiLogo from './components/AiLogo';
 import AnalyzeWithVoice from './components/AnalyzeWithVoice';
 import VoiceBtn from './components/VoiceBtn';
@@ -35,15 +33,14 @@ const AnalyzeModal = () => {
   );
   const { isMobile } = useSelector((store: RootState) => store?.authSlice);
   const { isLoading: isSpeakLoading, stopAudio, mode, onClickBtn } = useTTS();
-  const { t } = useTranslation();
 
   const [result, setResult] = useState<string>();
 
   const tabs: IModalTabProps[] = [
     {
-      children: GpaResult,
-      label: t('const.gpa_appropriation'),
-      value: ChatTopic.GpaSummary,
+      children: VisitsResult,
+      label: 'Tashriflar tahlili',
+      value: ChatTopic.VisitSummary,
     },
   ];
 
@@ -52,9 +49,6 @@ const AnalyzeModal = () => {
       stopAudio();
     }
   }, [searchParams]);
-
-  if (searchParams.has(SearchParams.Modal))
-    return <Navigate to={RESTRICTED_PATH} />;
 
   return (
     <Modal
@@ -80,30 +74,39 @@ const AnalyzeModal = () => {
                 AI tahlili
               </Typography.Text>
             </Flex>
+            <Typography.Title level={4} className="!m-0">
+              Qayta ishlash natijasida quyidagilar aniqlandi:
+            </Typography.Title>
           </Flex>
-          {isMobile ? (
-            <Select
-              value={searchParams.get(SearchParams.Modal)}
-              options={tabs?.map(t => ({
-                label: t?.label,
-                value: t?.value,
-              }))}
-              onChange={(key: IModalTabProps['value']) => {
-                const params = new URLSearchParams(searchParams);
-                params.set(SearchParams.Modal, key);
-                setSearchParams(params);
-              }}
-              style={{ minWidth: 'min(150px, 100%)' }}
-            />
-          ) : (
-            <Flex wrap gap={12}>
-              {tabs?.map(e => (
-                <AnalyzeButton key={e?.value} icon={null} chatTopic={e?.value}>
-                  {e?.label}
-                </AnalyzeButton>
-              ))}
-            </Flex>
-          )}
+          <Flex wrap gap={12} className="ml-auto">
+            {isMobile ? (
+              <Select
+                value={searchParams.get(SearchParams.Modal)}
+                options={tabs?.map(t => ({
+                  label: t?.label,
+                  value: t?.value,
+                }))}
+                onChange={(key: IModalTabProps['value']) => {
+                  const params = new URLSearchParams(searchParams);
+                  params.set(SearchParams.Modal, key);
+                  setSearchParams(params);
+                }}
+                style={{ minWidth: 'min(150px, 100%)' }}
+              />
+            ) : (
+              <>
+                {tabs?.map(e => (
+                  <AnalyzeButton
+                    key={e?.value}
+                    icon={null}
+                    chatTopic={e?.value}
+                  >
+                    {e?.label}
+                  </AnalyzeButton>
+                ))}
+              </>
+            )}
+          </Flex>
         </Flex>
         {tabs?.map((Element, index) => (
           <Element.children
@@ -139,7 +142,7 @@ const AnalyzeModal = () => {
                 vertical
                 align="center"
                 style={{
-                  maxWidth: 'min(500px, 100%)',
+                  maxWidth: 'min(300px, 100%)',
                   margin: 'auto',
                   width: '100%',
                 }}

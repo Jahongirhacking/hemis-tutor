@@ -21,12 +21,7 @@ export const enum DrawerChildTypes {
 }
 
 export const enum ChatTopic {
-  GpaSummary = 'gpa-summary',
-  AttendanceSummary = 'attendance-summary',
-  TimetableSummary = 'timetable-summary',
-  CourseRecommendation = 'course-recommendation',
-  PlagiarismCheck = 'plagiarism-check',
-  ContractSummary = 'contract-summary',
+  VisitSummary = 'visit-summary',
 }
 
 export const isTestUniversity = () =>

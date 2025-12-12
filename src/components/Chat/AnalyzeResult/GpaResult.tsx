@@ -1,14 +1,12 @@
-import { ChatTopic, SearchParams } from '@/utils/config';
 import { Flex } from 'antd';
 import { FunctionComponent } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { IAnalyzeResultProps } from './interface';
 
 const GpaResult: FunctionComponent<IAnalyzeResultProps> = props => {
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
   console.log(props);
-  const isVisible =
-    searchParams.get(SearchParams.Modal) === ChatTopic.GpaSummary;
+  // const isVisible =
+  // searchParams.get(SearchParams.Modal) === ChatTopic.GpaSummary;
   // const profile = useSelector((store: RootState) => store.authSlice.profile);
   // const { token, ready } = useGetToken();
   // const { i18n } = useTranslation();
@@ -58,7 +56,7 @@ const GpaResult: FunctionComponent<IAnalyzeResultProps> = props => {
   //   }
   // }, [isVisible, profile, subjectGrades, gpaData, ready, token]);
 
-  if (!isVisible) return null;
+  // if (!isVisible) return null;
 
   return (
     <Flex vertical gap={12}>

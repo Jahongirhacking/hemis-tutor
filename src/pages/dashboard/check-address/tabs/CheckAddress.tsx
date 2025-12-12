@@ -1,3 +1,4 @@
+import AnalyzeButton from '@/components/Chat/AnalyzeButton';
 import { usePagination } from '@/hooks/usePagination';
 import {
   useGetAccommodationsQuery,
@@ -8,7 +9,7 @@ import {
 } from '@/services/student';
 import { ICheckStudentAddressItem, ITutorVisit } from '@/services/student/type';
 import { RootState } from '@/store/store';
-import { SearchParams } from '@/utils/config';
+import { ChatTopic, SearchParams } from '@/utils/config';
 import { PlusOutlined } from '@ant-design/icons';
 import {
   Badge,
@@ -97,32 +98,37 @@ const CheckAddress = () => {
   return (
     <Flex vertical gap={18} className="check-address-page">
       {/* Header Section */}
-      <Flex align="center" gap={12} wrap>
-        <div
-          style={{
-            width: 48,
-            height: 48,
-            borderRadius: 12,
-            background: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(20, 184, 166, 0.2)',
-          }}
-        >
-          <MapPin size={24} color="white" />
-        </div>
-        <div>
-          <Typography.Title
-            level={2}
-            style={{ margin: 0, marginBottom: '4px' }}
+      <Flex align="center" justify="space-between" wrap gap={12}>
+        <Flex align="center" gap={12} wrap>
+          <div
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: 12,
+              background: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 12px rgba(20, 184, 166, 0.2)',
+            }}
           >
-            Manzillarni tekshirish
-          </Typography.Title>
-          <Typography.Text type="secondary" style={{ fontSize: '14px' }}>
-            Talabalarning yashash manzillari va tashrif tarixi
-          </Typography.Text>
-        </div>
+            <MapPin size={24} color="white" />
+          </div>
+          <div>
+            <Typography.Title
+              level={2}
+              style={{ margin: 0, marginBottom: '4px' }}
+            >
+              Manzillarni tekshirish
+            </Typography.Title>
+            <Typography.Text type="secondary" style={{ fontSize: '14px' }}>
+              Talabalarning yashash manzillari va tashrif tarixi
+            </Typography.Text>
+          </div>
+        </Flex>
+        <AnalyzeButton chatTopic={ChatTopic.VisitSummary} className="ml-auto">
+          Tahlil qilish
+        </AnalyzeButton>
       </Flex>
 
       {/* Filters Card */}

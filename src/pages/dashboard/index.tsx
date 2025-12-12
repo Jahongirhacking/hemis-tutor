@@ -36,6 +36,7 @@ export const Dashboard = () => {
   const isMobileNavBottom = useSelector(
     (store: RootState) => store.authSlice.isMobileNavBottom
   );
+  const themeColor = useSelector((store: RootState) => store.themeSlice.color);
   const [searchParams, setSearchParams] = useSearchParams();
   const handleCloseStudentModal = () => {
     const params = new URLSearchParams(searchParams);
@@ -150,7 +151,7 @@ export const Dashboard = () => {
             maskClosable
             onCancel={handleCloseStudentModal}
             open={searchParams.has(STUDENT_INFO_MODAL)}
-            className="!min-w-[min(1400px,99%)]"
+            className={`!min-w-[min(1400px,99%)] ${themeColor}-modal`}
             destroyOnHidden
           >
             <CustomInfo.Student props={searchParams.get(STUDENT_INFO_MODAL)} />

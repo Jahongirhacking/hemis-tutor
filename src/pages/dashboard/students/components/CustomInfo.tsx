@@ -1,9 +1,11 @@
+import { AiLogoIconSVG } from '@/assets/icon';
 import PieChartWithCustomizedLabel from '@/components/Charts/PieChart';
 import { useGetGroupDetailsQuery } from '@/services/student';
 import { SearchParams } from '@/utils/config';
 import { Card, Descriptions, Flex, Skeleton, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import CustomTabs from '../../components/CustomTabs';
+import StudentAnalyze from './StudentAnalyze';
 import StudentAttendance from './StudentAttendance';
 import StudentDetails from './StudentDetails';
 import StudentHistory from './StudentHistory';
@@ -16,6 +18,7 @@ enum StudentTabKeys {
   ATTENDANCE = 'attendance',
   DETAILS = 'details',
   HISTORY = 'history',
+  ANALYZE = 'analyze',
 }
 
 const StudentInfo = (props: any) => {
@@ -43,6 +46,12 @@ const StudentInfo = (props: any) => {
           key: StudentTabKeys.HISTORY,
           label: 'Talaba tarixi',
           children: <StudentHistory {...props} />,
+        },
+        {
+          key: StudentTabKeys.ANALYZE,
+          label: 'Tahlil qilish',
+          icon: <AiLogoIconSVG />,
+          children: <StudentAnalyze {...props} />,
         },
       ]}
       type="line"

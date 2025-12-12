@@ -569,6 +569,193 @@ $accent: #38bdf8;
   min-width: 60px !important;
 }
 
+.ant-tabs-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .ant-tabs-tab-icon {
+    margin: 0 !important;
+  }
+}
+
+.analyze-result-content {
+  container-type: inline-size;
+  border-radius: 20px;
+
+  & > .ant-card-head {
+    padding: 5px 10px;
+    border-bottom: none;
+
+    svg {
+      width: 20px;
+    }
+
+    .ant-typography {
+      margin: 0;
+    }
+
+    .ant-card-head-wrapper {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 5px;
+
+      .ant-card-head-title {
+        flex: auto;
+      }
+
+      .ant-card-extra {
+        max-width: 100%;
+      }
+    }
+  }
+
+  & > .ant-card-body {
+    margin: 5px 13px 15px;
+    border-radius: 20px;
+    max-height: max(45dvh, 200px);
+    overflow-y: auto;
+    background: #efeff4;
+    scrollbar-color: #40099933 transparent;
+
+    .ant-typography {
+      margin: 0;
+    }
+    p,
+    li {
+      margin-bottom: 8px;
+      font-size: 13pt;
+    }
+
+    .course-card {
+      width: 100%;
+      cursor: auto;
+
+      @container (min-width: 700px) {
+        width: calc(50% - 9px);
+      }
+      @container (min-width: 1000px) {
+        width: calc(33% - 9px);
+      }
+      @container (min-width: 1300px) {
+        width: calc(25% - 14px);
+      }
+
+      .ant-card-body {
+        height: 100%;
+
+        & > .ant-flex {
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.dark-modal {
+  .analyze-result-content {
+    .ant-card-head {
+      background: linear-gradient(
+        90deg,
+        rgba(72, 11, 110, 0.1) 29.83%,
+        rgba(100, 6, 14, 0.1) 56.87%,
+        rgba(94, 8, 3, 0.1) 72.11%
+      );
+    }
+    .ant-card-body {
+      background: linear-gradient(
+        90deg,
+        rgba(158, 114, 186, 0.08) 29.83%,
+        rgba(214, 92, 103, 0.08) 56.87%,
+        rgba(214, 99, 92, 0.08) 72.11%
+      ) !important;
+      scrollbar-color: #7a219c56 transparent;
+    }
+  }
+
+  .recharts-default-tooltip {
+    background-color: #000 !important;
+    color: #fff !important; /* text white */
+    border: 1px solid #333; /* optional border */
+  }
+}
+
+.analyze-modal {
+  min-width: min(98%, 1800px);
+
+  * {
+    font-family: 'Onest', sans-serif;
+  }
+
+  .ant-modal-content {
+    padding: 0;
+    border-radius: 20px;
+  }
+
+  .ant-modal-header {
+    border-bottom: 1px solid #e1e4ea;
+    padding: 20px 20px 24px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .ant-modal-body {
+    padding: 10px 20px 32px;
+  }
+
+  .extra-analyzes {
+    .ant-card {
+      flex: 1;
+      width: 100%;
+      min-width: min(500px, 100%);
+      border-radius: 20px;
+
+      .ant-card-body {
+        padding: 12px 8px;
+
+        max-height: 400px;
+        overflow-y: auto;
+      }
+    }
+
+    .progress-card {
+      .progress-container {
+        padding: 12px 8px;
+        border-radius: 12px;
+        transition: background-color 0.4s ease;
+
+        &:hover {
+          background-color: #8383830a;
+        }
+      }
+
+      .ant-progress {
+        width: auto;
+
+        @media screen and (max-width: 600px) {
+          width: 100%;
+
+          .ant-progress-outer {
+            width: 100% !important;
+          }
+        }
+
+        .ant-progress-text {
+          padding: 2px 10px;
+        }
+      }
+    }
+
+    .attendance-by-subject {
+      .absent-off-text {
+        color: #c51c79;
+      }
+      .absent-on-text {
+        color: #27a23c;
+      }
+    }
+  }
+}
+
 .analyze-btn {
   position: relative;
   z-index: 1;
