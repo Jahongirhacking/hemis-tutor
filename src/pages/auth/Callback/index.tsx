@@ -29,8 +29,9 @@ const CallbackPage = () => {
         message.success(data?.data?.message);
       } catch (err) {
         console.error(err);
-        message.warning(JSON.parse(err?.request?.response)?.error);
-        navigate('/');
+        const res = JSON.parse(err?.request?.response);
+        message.warning(res?.description || res?.exception?.message);
+        navigate('/login');
       }
     })();
   }, []);
