@@ -28,6 +28,7 @@ export const truncateString = (str: string, limit: number = 100) => {
 export const getLangParam = (lang: string): ILangParam => {
   return (lang.slice(0, 2) === 'oz' ? 'uz' : lang.slice(0, 2)) as ILangParam;
 };
+
 export const encodeWithPublicKey = (value: any, publicKeyPem: string) => {
   // PEM formatidagi ochiq kalitni olish
   const publicKey = forge.pki.publicKeyFromPem(publicKeyPem);

@@ -1,14 +1,17 @@
 import { api } from '../api';
 import { getBaseUrl } from '../api/const';
-import { IGroup } from '../student/type';
+import { IGroup, IPagination, IPaginationProps } from '../student/type';
 import { IBaseDataRes } from '../type';
 import {
   IDashboardStatisticsRes,
   IGetGroupReq,
   IGetGroupRes,
   IGetProfileRes,
+  ITask,
+  ITaskDetailRes,
   IUpdateProfileReq,
   IUpdateProfileRes,
+  TaskStatus,
 } from './type';
 
 export const profileApi = api.injectEndpoints({
@@ -51,6 +54,51 @@ export const profileApi = api.injectEndpoints({
         url: `${getBaseUrl('/statistics/dashboard')}`,
         params,
       }),
+    }),
+
+    // tasks
+    createTask: build.mutation<
+      void,
+      {
+        title: string;
+        description: string;
+        due_at: string;
+        priority: string;
+      }
+    >({
+      query: body => ({
+        url: `${getBaseUrl('/task/create')}`,
+        body,
+      }),
+      invalidatesTags: ['tasks'],
+    }),
+
+    getTaskDetail: build.query<
+      IBaseDataRes<ITaskDetailRes>,
+      { id: ITask['id'] }
+    >({
+      query: params => ({
+        url: `/task/detail`,
+        params,
+      }),
+    }),
+
+    uploadTaskFile: build.mutation<void, FormData>({
+      query: body => ({
+        url: `${getBaseUrl('/task/file-upload')}`,
+        body,
+      }),
+    }),
+
+    getTaskList: build.query<
+      IBaseDataRes<{ tasks: ITask[]; pagination: IPagination }>,
+      Omit<IPaginationProps, 'search'> & { status: TaskStatus }
+    >({
+      query: params => ({
+        url: `/task/list`,
+        params,
+      }),
+      providesTags: ['tasks'],
     }),
   }),
 });

@@ -286,3 +286,33 @@ export interface IAccomodationStatistics {
   count: number;
   percent: number;
 }
+
+export enum TaskStatus {
+  Pending = 'pending',
+  Completed = 'completed',
+  InProgress = 'in_progress',
+  Rejected = 'rejected',
+}
+
+export interface ITask {
+  has_file: false;
+  id: number;
+  title: string;
+  description: string;
+  status: TaskStatus;
+  status_label: string;
+  priority: 'low' | 'medium' | 'high';
+  due_at: string;
+  created_at: string;
+}
+
+export interface ITaskDetail extends Omit<ITask, 'has_file'> {
+  result_note: string;
+  priority_label: string;
+  file_url: string;
+  updated_at: string;
+}
+
+export interface ITaskDetailRes {
+  task: ITaskDetail;
+}
