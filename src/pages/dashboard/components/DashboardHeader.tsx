@@ -41,7 +41,7 @@ const DashboardHeader = () => {
       }}
     >
       <Flex gap={8} wrap>
-        {profileData?.result?.statistics?.groups_count && (
+        {!!profileData?.result?.statistics?.groups_count && (
           <Tag
             color="cyan"
             style={{
@@ -53,7 +53,7 @@ const DashboardHeader = () => {
             {`${t('const.group')}: ${t('const.number_count', { number: profileData?.result?.statistics?.groups_count })}`}
           </Tag>
         )}
-        {profileData?.result?.statistics?.total_students && (
+        {!!profileData?.result?.statistics?.total_students && (
           <Tag
             color="blue"
             style={{

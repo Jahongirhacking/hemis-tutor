@@ -65,12 +65,23 @@
     border-radius: 16px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 
+    .ant-card-head {
+      padding: 12px 18px;
+
+      .ant-card-head-title {
+        & > .ant-flex {
+          @container (max-width: 600px) {
+            justify-content: center !important;
+          }
+        }
+      }
+    }
+
     .task-item {
       border-radius: 12px;
       transition: all 0.3s ease;
 
       &:hover {
-        transform: translateX(4px);
         box-shadow: 0 4px 16px rgba(20, 184, 166, 0.15);
       }
 

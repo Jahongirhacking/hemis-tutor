@@ -48,6 +48,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.4",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.19",
     "devtools-detect": "^4.0.2",
     "dompurify": "^3.1.7",
     "dotenv": "^16.4.5",

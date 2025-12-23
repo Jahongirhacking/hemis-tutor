@@ -44,6 +44,7 @@ export const rtkQueryErrorLogger: Middleware =
           localStorage.removeItem(localStorageNames.HEMIS_TOKEN);
           window.location.href = '/';
         }
+        return next(action);
       }
 
       message.destroy();

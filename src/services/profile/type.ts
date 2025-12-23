@@ -294,6 +294,30 @@ export enum TaskStatus {
   Rejected = 'rejected',
 }
 
+export enum TaskPriority {
+  Low = 'low',
+  Medium = 'medium',
+  High = 'high',
+}
+
+export const getTaskPriorityName = (taskPriority: TaskPriority) => {
+  switch (taskPriority) {
+    case TaskPriority.High:
+      return 'Yuqori daraja';
+    case TaskPriority.Medium:
+      return "O'rta daraja";
+    default:
+      return 'Past daraja';
+  }
+};
+
+export interface ICreateTaskReq {
+  title: string;
+  description: string;
+  due_at: string;
+  priority: string;
+}
+
 export interface ITask {
   has_file: false;
   id: number;
@@ -301,7 +325,7 @@ export interface ITask {
   description: string;
   status: TaskStatus;
   status_label: string;
-  priority: 'low' | 'medium' | 'high';
+  priority: TaskPriority;
   due_at: string;
   created_at: string;
 }

@@ -1,0 +1,29 @@
+.file-list {
+  overflow-x: hidden;
+
+  .ant-list-item {
+    flex-wrap: wrap !important;
+  }
+
+  .ant-list-item-action {
+    margin-inline-start: 8px !important;
+  }
+
+  .ant-list-item-meta {
+    flex-wrap: wrap !important;
+    align-items: center !important;
+
+    .ant-list-item-meta-avatar {
+      width: 35px;
+    }
+
+    .ant-list-item-meta-title {
+      display: -webkit-box; /* Flex-like box for WebKit */
+      -webkit-box-orient: vertical; /* Vertical stacking */
+      -webkit-line-clamp: 2; /* Number of lines to show */
+      overflow: hidden; /* Hide extra content */
+      text-overflow: ellipsis;
+      min-width: 50px;
+    }
+  }
+}
