@@ -149,6 +149,7 @@ const Rating = () => {
           },
         ]}
         dataSource={ratingData?.result?.ratings || []}
+        rowKey={record => record?.student?.id}
       />
     </Flex>
   );
