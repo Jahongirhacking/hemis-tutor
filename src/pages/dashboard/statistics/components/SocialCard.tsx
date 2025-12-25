@@ -15,12 +15,15 @@ const SocialCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    group_id: groupId,
-    semester,
-    expand: `${[ExpandItem.SOCIAL_STATISTICS]?.join(',')}`,
-  }, { skip: !educationYear });
+  const { data, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      group_id: groupId,
+      semester,
+      expand: `${[ExpandItem.SOCIAL_STATISTICS]?.join(',')}`,
+    },
+    { skip: !educationYear }
+  );
   const { t } = useTranslation();
 
   // Map data to pie chart format

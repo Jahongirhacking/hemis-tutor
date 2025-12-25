@@ -15,12 +15,15 @@ const GenderCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    group_id: groupId,
-    semester,
-    expand: `${ExpandItem.GENDER_STATISTICS}`,
-  }, { skip: !educationYear });
+  const { data, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      group_id: groupId,
+      semester,
+      expand: `${ExpandItem.GENDER_STATISTICS}`,
+    },
+    { skip: !educationYear }
+  );
   const { t } = useTranslation();
 
   // Gender distribution

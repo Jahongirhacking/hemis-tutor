@@ -22,10 +22,13 @@ const TerrainsCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear } = useContext(StatisticsContext);
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    expand: `${ExpandItem.TERRAIN_STATISTICS}`,
-  }, { skip: !educationYear });
+  const { data, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      expand: `${ExpandItem.TERRAIN_STATISTICS}`,
+    },
+    { skip: !educationYear }
+  );
   const { t } = useTranslation();
 
   // Terrain statistics

@@ -9,12 +9,15 @@ import { ExpandItem, IStatisticsCardProps } from './interface';
 
 const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data: statistics, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    group_id: groupId,
-    semester,
-    expand: `${[ExpandItem.STUDENTS, ExpandItem.GROUPS, ExpandItem.ATTENDANCE, ExpandItem.PERFORMANCE, ExpandItem.EDUCATION_YEAR]?.join(',')}`,
-  }, { skip: !educationYear });
+  const { data: statistics, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      group_id: groupId,
+      semester,
+      expand: `${[ExpandItem.STUDENTS, ExpandItem.GROUPS, ExpandItem.ATTENDANCE, ExpandItem.PERFORMANCE, ExpandItem.EDUCATION_YEAR]?.join(',')}`,
+    },
+    { skip: !educationYear }
+  );
   const { t } = useTranslation();
 
   // Stat cards data
@@ -29,15 +32,16 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
       subtext: `Faol: ${statistics?.result?.students?.active_students ?? 0}`,
       trend:
         (statistics?.result?.students?.active_students ?? 0) >
-          (statistics?.result?.students?.inactive_students ?? 0)
+        (statistics?.result?.students?.inactive_students ?? 0)
           ? 'up'
           : 'down',
-      trendValue: `${(
+      trendValue: `${
+        (
           ((statistics?.result?.students?.active_students ?? 0) /
             (statistics?.result?.students?.total_students ?? 1)) *
-          100 || 0
+            100 || 0
         ).toFixed(1) || 0
-        }%`,
+      }%`,
     },
     {
       title: 'Guruhlar',
@@ -161,10 +165,10 @@ const StatisticsCard = ({ isDark, PRIMARY }: IStatisticsCardProps) => {
                 </div>
                 {(stat?.title === statCards?.[2]?.title ||
                   stat?.title === statCards?.[3]?.title) && (
-                    <Tag icon={<SettingOutlined spin />} color={'orange'}>
-                      Ishlanmoqda
-                    </Tag>
-                  )}
+                  <Tag icon={<SettingOutlined spin />} color={'orange'}>
+                    Ishlanmoqda
+                  </Tag>
+                )}
               </Flex>
             </Flex>
           </Card>

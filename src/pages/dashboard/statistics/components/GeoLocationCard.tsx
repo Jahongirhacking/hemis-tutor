@@ -11,12 +11,15 @@ const GeoLocationCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    group_id: groupId,
-    semester,
-    expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
-  }, { skip: !educationYear });
+  const { data, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      group_id: groupId,
+      semester,
+      expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
+    },
+    { skip: !educationYear }
+  );
 
   if (data && !data?.result?.geo_location_statistics) return null;
 

@@ -19,11 +19,7 @@ import {
   Typography,
   message as antdMessage,
 } from 'antd';
-import {
-  GraduationCap,
-  Send, SquareX,
-  UserStar
-} from 'lucide-react';
+import { GraduationCap, Send, SquareX, UserStar } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomFilter from '../../components/forms/CustomFilter';
@@ -60,15 +56,15 @@ const CreateMessagePage = () => {
     async (asDraft: boolean = false) => {
       const messageContent = asDraft
         ? {
-          ...getLocalStorage(DRAFT_MESSAGE),
-          save_as_draft: asDraft,
-        }
+            ...getLocalStorage(DRAFT_MESSAGE),
+            save_as_draft: asDraft,
+          }
         : {
-          title,
-          message,
-          recipients: selected,
-          save_as_draft: asDraft,
-        };
+            title,
+            message,
+            recipients: selected,
+            save_as_draft: asDraft,
+          };
       if (
         !messageContent?.message ||
         !messageContent?.title ||
@@ -123,7 +119,7 @@ const CreateMessagePage = () => {
       if (lastTrigger && typeof lastTrigger.abort === 'function') {
         try {
           lastTrigger.abort();
-        } catch (_) { }
+        } catch (_) {}
       }
 
       timeoutId = setTimeout(async () => {
@@ -252,53 +248,53 @@ const CreateMessagePage = () => {
               //   : []),
               ...(recipientsData?.result?.recipients?.length && selected?.length
                 ? [
-                  {
-                    label: (
-                      <Typography.Text
-                        type="danger"
-                        className="flex gap-2 items-center line-clamp-1"
-                      >
-                        <SquareX size={14} /> {`${t('const.clean')}`}
-                      </Typography.Text>
-                    ),
-                    value: CLEAR_ITEMS,
-                  },
-                ]
+                    {
+                      label: (
+                        <Typography.Text
+                          type="danger"
+                          className="flex gap-2 items-center line-clamp-1"
+                        >
+                          <SquareX size={14} /> {`${t('const.clean')}`}
+                        </Typography.Text>
+                      ),
+                      value: CLEAR_ITEMS,
+                    },
+                  ]
                 : []),
               ...(studentRecipients?.length
                 ? [
-                  {
-                    label: t('const.student'),
-                    title: t('const.student'),
-                    options: studentRecipients?.map(r => ({
-                      label: (
-                        <span className="flex gap-2 items-center line-clamp-1">
-                          <GraduationCap size={14} />{' '}
-                          {`${r?.name} - ${r?.label}`}
-                        </span>
-                      ),
-                      value: r?.id,
-                      title: `${r?.name} - ${r?.label}`,
-                    })),
-                  },
-                ]
+                    {
+                      label: t('const.student'),
+                      title: t('const.student'),
+                      options: studentRecipients?.map(r => ({
+                        label: (
+                          <span className="flex gap-2 items-center line-clamp-1">
+                            <GraduationCap size={14} />{' '}
+                            {`${r?.name} - ${r?.label}`}
+                          </span>
+                        ),
+                        value: r?.id,
+                        title: `${r?.name} - ${r?.label}`,
+                      })),
+                    },
+                  ]
                 : []),
               ...(employeeRecipients?.length
                 ? [
-                  {
-                    label: t('const.staff'),
-                    title: t('const.staff'),
-                    options: employeeRecipients?.map(r => ({
-                      label: (
-                        <span className="flex gap-2 items-center line-clamp-1">
-                          <UserStar size={14} /> {`${r?.name} - ${r?.label}`}
-                        </span>
-                      ),
-                      value: r?.id,
-                      title: `${r?.name} - ${r?.label}`,
-                    })),
-                  },
-                ]
+                    {
+                      label: t('const.staff'),
+                      title: t('const.staff'),
+                      options: employeeRecipients?.map(r => ({
+                        label: (
+                          <span className="flex gap-2 items-center line-clamp-1">
+                            <UserStar size={14} /> {`${r?.name} - ${r?.label}`}
+                          </span>
+                        ),
+                        value: r?.id,
+                        title: `${r?.name} - ${r?.label}`,
+                      })),
+                    },
+                  ]
                 : []),
             ]}
             loading={isFetching}

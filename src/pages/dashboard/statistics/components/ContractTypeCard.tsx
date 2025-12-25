@@ -25,12 +25,15 @@ const ContractTypeCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
-    expand: `${ExpandItem.COURSE_STATISTICS}`,
-    group_id: groupId,
-    semester,
-    education_year: educationYear,
-  }, { skip: !educationYear });
+  const { data, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      expand: `${ExpandItem.COURSE_STATISTICS}`,
+      group_id: groupId,
+      semester,
+      education_year: educationYear,
+    },
+    { skip: !educationYear }
+  );
 
   // Course statistics for chart
   const courseData =
@@ -99,9 +102,9 @@ const ContractTypeCard = ({
               fill={PRIMARY}
               {...(courseData?.length <= 20
                 ? {
-                  label: ({ name, value }) =>
-                    `${name}: ${((value / sumCount) * 100).toFixed(0)}%`,
-                }
+                    label: ({ name, value }) =>
+                      `${name}: ${((value / sumCount) * 100).toFixed(0)}%`,
+                  }
                 : {})}
             >
               {courseData?.map((_, index) => (

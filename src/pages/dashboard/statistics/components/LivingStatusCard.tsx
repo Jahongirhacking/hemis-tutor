@@ -26,12 +26,15 @@ const LivingStatusCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    group_id: groupId,
-    semester,
-    expand: `${ExpandItem.LIVING_STATUS_STATISTICS}`,
-  }, { skip: !educationYear });
+  const { data, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      group_id: groupId,
+      semester,
+      expand: `${ExpandItem.LIVING_STATUS_STATISTICS}`,
+    },
+    { skip: !educationYear }
+  );
   const { t } = useTranslation();
 
   if (data && !data?.result?.living_status_statistics) return null;

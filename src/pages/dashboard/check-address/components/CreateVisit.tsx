@@ -127,10 +127,10 @@ const CreateVisit = ({
         [FormNames.PROVINCE]: lastVisit?._current_province,
         [FormNames.DISTRICT]: lastVisit?._current_district,
         [FormNames.TERRAIN]: lastVisit?._current_terrain,
-        [FormNames.ADDRESS]: lastVisit?.current_address
-      })
+        [FormNames.ADDRESS]: lastVisit?.current_address,
+      });
     }
-  }, [visitData])
+  }, [visitData]);
 
   useEffect(() => {
     if (isSuccess) {

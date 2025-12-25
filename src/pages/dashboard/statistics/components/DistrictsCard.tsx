@@ -25,28 +25,31 @@ const DistrictsCard = ({
   ...props
 }: IStatisticsCardProps) => {
   const { educationYear, groupId, semester } = useContext(StatisticsContext);
-  const { data: regionData, isFetching } = useGetDashboardStatisticsQuery({
-    education_year: educationYear,
-    group_id: groupId,
-    semester,
-    expand: `${ExpandItem.DISTRICT_STATISTICS}`,
-  }, { skip: !educationYear });
+  const { data: regionData, isFetching } = useGetDashboardStatisticsQuery(
+    {
+      education_year: educationYear,
+      group_id: groupId,
+      semester,
+      expand: `${ExpandItem.DISTRICT_STATISTICS}`,
+    },
+    { skip: !educationYear }
+  );
   const [activeRegion, setActiveRegion] = useState();
   const districtData = useMemo(
     () =>
       activeRegion
         ? regionData?.result?.district_statistics
-          ?.find(d => d?.province_code === activeRegion)
-          ?.districts?.map(stat => ({
-            name: stat?.district_name,
-            value: stat?.count,
-            percent: stat?.percent,
-          }))
+            ?.find(d => d?.province_code === activeRegion)
+            ?.districts?.map(stat => ({
+              name: stat?.district_name,
+              value: stat?.count,
+              percent: stat?.percent,
+            }))
         : regionData?.result?.district_statistics?.map(stat => ({
-          name: stat?.province_name,
-          value: stat?.total_count,
-          percent: stat?.total_percent,
-        })),
+            name: stat?.province_name,
+            value: stat?.total_count,
+            percent: stat?.total_percent,
+          })),
     [regionData, activeRegion]
   );
   const { t } = useTranslation();
