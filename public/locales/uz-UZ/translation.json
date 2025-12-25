@@ -197,7 +197,8 @@
         "student_id": "Talaba ID",
         "create": "Yaratish",
         "visit": "Tashrif",
-        "living_status": "Yashash toifasi"
+        "living_status": "Yashash toifasi",
+        "reply": "Javob berish"
     },
     "exam": {
         "retry_title": "Testni qayta topshirasizmi?",

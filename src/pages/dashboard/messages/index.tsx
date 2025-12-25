@@ -5,6 +5,11 @@ import MessageModal from './components/MessageModal';
 import CreateMessagePage from './tabs/CreateMessage';
 import MessageList from './tabs/MessageList';
 
+export enum MessageTabs {
+  MyMessages = 'my-messages',
+  CreateMessages = 'create-message',
+}
+
 const MessagesPage = () => {
   return (
     <Flex

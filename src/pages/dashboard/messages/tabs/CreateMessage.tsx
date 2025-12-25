@@ -22,6 +22,7 @@ import {
 import { GraduationCap, Send, SquareX, UserStar } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import CustomFilter from '../../components/forms/CustomFilter';
 import useCustomFilter from '../../components/forms/useCustomFilter';
 import './CreateMessage.scss';
@@ -31,6 +32,11 @@ const CLEAR_ITEMS = '__clear__';
 const DRAFT_MESSAGE = 'draft_message';
 
 type IRecipientType = IRecipient['id'] | '__all__' | '__clear__';
+
+export enum MessageRecipient {
+  Id = 'user_id',
+  Name = 'user_name',
+}
 
 const CreateMessagePage = () => {
   const { form, values } = useCustomFilter();
@@ -45,6 +51,11 @@ const CreateMessagePage = () => {
   const [selected, setSelected] = useState<IRecipient['id'][]>([]);
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [repliedUser, setRepliedUser] = useState<{
+    name: string;
+    id: number;
+  } | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const clearInputs = () => {
     setSelected([]);
@@ -198,6 +209,23 @@ const CreateMessagePage = () => {
     [recipientsData]
   );
 
+  useEffect(() => {
+    if (searchParams.has(MessageRecipient.Id)) {
+      const userId = Number(searchParams.get(MessageRecipient.Id));
+      if (!userId) return;
+      setRepliedUser({
+        name: searchParams.get(MessageRecipient.Name) || '',
+        id: userId,
+      });
+      handleChange([userId]);
+
+      const params = new URLSearchParams(searchParams);
+      params.delete(MessageRecipient.Id);
+      params.delete(MessageRecipient.Name);
+      setSearchParams(params);
+    }
+  }, [searchParams, handleChange, setRepliedUser, setSearchParams]);
+
   return (
     <Flex vertical gap={18} className="w-full create-message-page">
       <CustomFilter form={form}>
@@ -293,6 +321,15 @@ const CreateMessagePage = () => {
                         value: r?.id,
                         title: `${r?.name} - ${r?.label}`,
                       })),
+                    },
+                  ]
+                : []),
+              ...(repliedUser &&
+              !employeeRecipients?.find(i => i?.id === repliedUser?.id)
+                ? [
+                    {
+                      label: repliedUser?.name,
+                      value: repliedUser?.id,
                     },
                   ]
                 : []),
