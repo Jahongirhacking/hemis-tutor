@@ -25,7 +25,7 @@ const TerrainsCard = ({
   const { data, isFetching } = useGetDashboardStatisticsQuery({
     education_year: educationYear,
     expand: `${ExpandItem.TERRAIN_STATISTICS}`,
-  });
+  }, { skip: !educationYear });
   const { t } = useTranslation();
 
   // Terrain statistics

@@ -32,7 +32,7 @@ const AccommodationCard = ({
     group_id: groupId,
     semester,
     expand: [ExpandItem.ACCOMODATION_STATISTICS].join(','),
-  });
+  }, { skip: !educationYear });
   const { t } = useTranslation();
 
   // Map data to pie chart format

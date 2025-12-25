@@ -16,7 +16,7 @@ const GeoLocationCard = ({
     group_id: groupId,
     semester,
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
-  });
+  }, { skip: !educationYear });
 
   if (data && !data?.result?.geo_location_statistics) return null;
 

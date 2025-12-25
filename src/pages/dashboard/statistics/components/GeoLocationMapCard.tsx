@@ -52,7 +52,7 @@ const UzbekistanMapCard = ({
     group_id: groupId,
     semester,
     expand: `${ExpandItem.GEO_LOCATION_STATISTICS}`,
-  });
+  }, { skip: !educationYear });
 
   // Process locations and count by status
   const { locations, statusCounts } = useMemo(() => {
@@ -70,7 +70,7 @@ const UzbekistanMapCard = ({
       loc?.students?.forEach(student => {
         counts[
           getLivingStatusCode(student?.living_status_name) ||
-            StudentLivingStatus.UNKNOWN
+          StudentLivingStatus.UNKNOWN
         ]++;
       });
 
@@ -161,7 +161,7 @@ const UzbekistanMapCard = ({
           {/* Map Container */}
           <LeafletMap
             locations={locations}
-            onLocationSelect={() => {}}
+            onLocationSelect={() => { }}
             selectedLocation={null}
           />
 

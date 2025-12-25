@@ -20,7 +20,7 @@ const SocialCard = ({
     group_id: groupId,
     semester,
     expand: `${[ExpandItem.SOCIAL_STATISTICS]?.join(',')}`,
-  });
+  }, { skip: !educationYear });
   const { t } = useTranslation();
 
   // Map data to pie chart format

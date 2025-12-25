@@ -7,6 +7,7 @@ import {
   useGetLivingStatusesQuery,
   useGetProvincesQuery,
   useGetTerrainsQuery,
+  useGetVisitListQuery,
 } from '@/services/student';
 import { ICreateVisitReq, IStudent } from '@/services/student/type';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -77,6 +78,10 @@ const CreateVisit = ({
   const [createVisit, { isLoading, isSuccess }] = useCreateVisitMutation();
   const [searchParams] = useSearchParams();
 
+  const { data: visitData } = useGetVisitListQuery(
+    { student_id: studentId },
+    { skip: !studentId }
+  );
   const { data: livingStatusData, isFetching: isLivingStatusFetching } =
     useGetLivingStatusesQuery();
   const { data: provincesData, isFetching: isProvinceFetching } =
@@ -113,6 +118,19 @@ const CreateVisit = ({
     },
     [isLoading, location]
   );
+
+  useEffect(() => {
+    if (visitData?.result?.items?.[0]?.tutorVisits?.[0]) {
+      const lastVisit = visitData?.result?.items?.[0]?.tutorVisits?.[0];
+      form.setFieldsValue({
+        [FormNames.ACCOMMADATION]: lastVisit?._accommodation,
+        [FormNames.PROVINCE]: lastVisit?._current_province,
+        [FormNames.DISTRICT]: lastVisit?._current_district,
+        [FormNames.TERRAIN]: lastVisit?._current_terrain,
+        [FormNames.ADDRESS]: lastVisit?.current_address
+      })
+    }
+  }, [visitData])
 
   useEffect(() => {
     if (isSuccess) {

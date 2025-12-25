@@ -115,7 +115,7 @@ const MessageList = () => {
           </GenerateSkeleton>
         ) : messageData?.result?.messages?.length ? (
           <Flex vertical gap={24} className="w-full">
-            <Row gutter={[18, 18]} className="w-full">
+            <Row gutter={[18, 18]} className="w-auto">
               {messageData?.result?.messages?.map((m: IMessage) => (
                 <Col xs={24} xxl={12} key={m?.id}>
                   <MessageCard

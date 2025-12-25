@@ -20,7 +20,7 @@ const GenderCard = ({
     group_id: groupId,
     semester,
     expand: `${ExpandItem.GENDER_STATISTICS}`,
-  });
+  }, { skip: !educationYear });
   const { t } = useTranslation();
 
   // Gender distribution
